@@ -1,0 +1,10 @@
+refs of Eigenvalue computation in the 20th century, Golub
+
+2015:
+Matrix Eigenvalue Problems
+http://link.springer.com/chapter/10.1007/978-3-319-05089-8_3
+
+On Convergence of Iterative Projection Methods for Symmetric Eigenvalue Problems
+http://www.keisu.t.u-tokyo.ac.jp/research/techrep/data/2015/METR15-25.pdf
+
+2013:

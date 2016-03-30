@@ -1,0 +1,116 @@
+--------------------------------------------------------------------------------------------------------
+arbenz-notes-solving-large-scale-eigen-prob.pdf
+
+3 The QR Algorithm, which has its symmetric incarnation
+(includes the householder trans => hessenberg[tridiag], and the QR step). 
+On its modern shape it would use the QL or both instead. This is present in lapack STEQR,
+and testable within python thanks to scipy:
+
+https://github.com/scipy/scipy/blob/v0.17.0/scipy/linalg/decomp.py#L337
+
+this would be the equivalent to current approach (colt)
+
+
+4 Cuppen’s Divide and Conquer Algorithm
+Seems also available in lapack/scipy (STEDC), but has extra memory penalty
+
+both cases above need the decomp.py to be tweaked a bit to support calling the desired lapack routines.
+
+
+6 Vector iteration (power method), which has its symmetric incarnation [no, but explain why]
+
+think only slepc offers this flavor
+slepc:
+Basic methods
+  – Power Iteration with deflation. When combined with shift-and-invert (see chapter
+    3), it is equivalent to the Inverse Iteration. Also, this solver embeds the Rayleigh
+    Quotient Iteration (RQI) by allowing variable shifts.
+
+EPSPOWER routine
+
+This solver can only be used for the case that the wanted eigenvalues are those of largest
+magnitude (see EPSWhichEigenpairs) <<=== looks this will not serve
+
+theory says that this has specialized version for symmetric case, but slepc epspower does not
+mention anything about that.
+
+
+- subspace methods
+  • Subspace Iteration (fixed size subspace)
+    - Sometimes called simultaneous iteration
+  • Krylov and Davidson subspace methods (increasing subspace)
+    - Lanczos and block Lanczos
+    - Davidson, block Davidson, Jacobi-Davidson
+
+7 Simultaneous vector or subspace iterations
+7.1 Basic subspace iteration . . . . . . . . . . . . . . . . .
+7.2 Convergence of basic subspace iteration . . . . . . . .
+7.3 Accelerating subspace iteration . . . . . . . . . . . . .
+7.4 Relation between subspace iteration and QR algorithm
+7.5 Addendum . . . . . . . . . . . . . . . . . . . . . . . .
+
+8 Krylov subspaces
+8.1 Introduction . . . . . . . . . . . . . . . . . . . .
+8.2 Definition and basic properties . . . . . . . . .
+8.3 Polynomial representation of Krylov subspaces
+8.4 Error bounds of Saad . . . . . . . . . . . . . . .
+
+9 Arnoldi and Lanczos algorithms
+9.1 An orthonormal basis for the Krylov space K j (x) . . .
+9.2 Arnoldi algorithm with explicit restarts . . . . . . . .
+9.3 The Lanczos basis . . . . . . . . . . . . . . . . . . . .
+9.4 The Lanczos process as an iterative method . . . . . .
+9.5 An error analysis of the unmodified Lanczos algorithm
+9.6 Partial reorthogonalization . . . . . . . . . . . . . . .
+9.7 Block Lanczos . . . . . . . . . . . . . . . . . . . . . . .
+9.8 External selective reorthogonalization . . . . . . . . .
+
+10 Restarting Arnoldi and Lanczos algorithms
+10.1 The m-step Arnoldi iteration . . . . . . . .
+10.2 Implicit restart . . . . . . . . . . . . . . . .
+10.3 Convergence criterion . . . . . . . . . . . .
+10.4 The generalized eigenvalue problem . . . . .
+10.5 A numerical example . . . . . . . . . . . . .
+10.6 Another numerical example . . . . . . . . .
+10.7 The Lanczos algorithm with thick restarts .
+10.8 Krylov–Schur algorithm . . . . . . . . . . .
+10.9 The rational Krylov space method . . . . .
+
+11 The Jacobi-Davidson Method
+11.1 The Davidson algorithm . . . . . . . . . . . . . . . . . .
+11.2 The Jacobi orthogonal component correction . . . . . .
+11.2.1 Restarts . . . . . . . . . . . . . . . . . . . . . . .
+11.2.2 The computation of several eigenvalues . . . . .
+11.2.3 Spectral shifts . . . . . . . . . . . . . . . . . . .
+11.3 The generalized Hermitian eigenvalue problem . . . . .
+11.4 A numerical example . . . . . . . . . . . . . . . . . . . .
+11.5 The Jacobi–Davidson algorithm for interior eigenvalues .
+11.6 Harmonic Ritz values and vectors . . . . . . . . . . . . .
+11.7 Refined Ritz vectors . . . . . . . . . . . . . . . . . . . .
+11.8 The generalized Schur decomposition . . . . . . . . . . .
+11.9 JDQZ: Computing a partial QZ decomposition . . . . .
+11.9.1 Restart . . . . . . . . . . . . . . . . . . . . . . .
+11.9.2 Deflation . . . . . . . . . . . . . . . . . . . . . .
+11.9.3 Algorithm . . . . . . . . . . . . . . . . . . . . . .
+11.10Jacobi-Davidson for nonlinear eigenvalue problems . . .
+
+12 Rayleigh quotient and trace minimization (optimization and precond)
+12.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 223
+12.2 The method of steepest descent . . . . . . . . . . . . . . . . . . . . . . . . . 224
+12.3 The conjugate gradient algorithm . . . . . . . . . . . . . . . . . . . . . . . . 225
+12.4 Locally optimal PCG (LOPCG) . . . . . . . . . . . . . . . . . . . . . . . . . 229
+12.5 The block Rayleigh quotient minimization algorithm (BRQMIN) . . . . . . 232
+12.6 The locally-optimal block preconditioned conjugate gradient method (LOBPCG)232
+12.7 A numerical example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 233
+12.8 Trace minimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 235
+
+expand more on precond?
+
+***********
+
+fiedler specific
+
+manguoglu-tracemin-fiedler.pdf
+
+and the higher level hsl routine (old)
+

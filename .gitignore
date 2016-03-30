@@ -1,0 +1,12 @@
+.project
+.pydevproject
+python-pocs/.project
+python-pocs/.pydevproject
+*.aux
+*.log
+*.pdf
+*.out
+*.bbl
+*.blg
+*.orig
+makefile

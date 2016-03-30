@@ -1,0 +1,135 @@
+2015:
+New fast divide-and-conquer algorithms for the symmetric tridiagonal eigenvalue problem
+http://arxiv.org/abs/1510.04591
+
+2014:
+New Algorithm for Computing Eigenvectors of the Symmetric Eigenvalue Problem
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6969512&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6969512
+
+2013:
+A Sequential Subspace Projection Method For Linear Symmetric Eigenvalue Problem
+http://www.worldscientific.com/doi/abs/10.1142/S0217595913400034
+
+2011:
+Toward a high performance tile divide and conquer algorithm for the dense symmetric eigenvalue problem
+http://epubs.siam.org/doi/abs/10.1137/110823699
+
+
+2010:
+A new class of fast divide-and-conquer algorithms for the real symmetric tridiagonal eigenvalue problem
+dl.acm.org/citation.cfm?id=2049370
+
+2009:
+Symmetric Eigenvalue Problem: Tridiagonal Reduction
+http://www.eecs.berkeley.edu/~ballard/projects/CS267paper.pdf
+
+2004:
+Semiseparable matrices and the symmetric eigenvalue problem
+https://people.cs.kuleuven.be/~raf.vandebril/homepage/publications/phd_talk.pdf
+www.cs.kuleuven.ac.be/~raf/homepage/publications/phd.pdf
+
+PROPACK: A software package for the symmetric eigenvalue problem and singular value problems on Lanczos and Lanczos bidiagonalization with partial 
+http://soi. stanford. edu/rmunk/PROPACK, 2004
+
+2001:
+Solution of the three-diagonal symmetric eigenvalue problem with guaranteed accuracy in O (n^ 2) operations.
+http://www.ict.nsc.ru/ws/NikNik/1817/rep1817.pdf
+http://www.sbras.ru/ws/show_abstract.dhtml?en+29+1817
+
+2000:
+Discontinuous Plane Rotations and the Symmetric Eigenvalue Problem
+ftp://ftp.irisa.fr/pub/mirrors/netlib/lapack/lawnspdf/lawn150.pdf
+
+An observation on bisection software for the symmetric tridiagonal eigenvalue problem
+http://dl.acm.org/citation.cfm?id=365728
+
+AN ITERATIVE METHOD FOR SOLVING THE EIGENVALUE PROBLEM OF A SYMMETRIC MATRIX
+http://icms.kaist.ac.kr/mathnet/kms_tex/38687.pdf
+
+1999:
+Bisection acceleration for the symmetric tridiagonal eigenvalue problem
+http://link.springer.com/article/10.1023/A:1019146505291
+
+The Symmetric Eigenvalue Problem
+http://go.galegroup.com/ps/anonymous?id=GALE|A55207482&sid=googleScholar&v=2.1&it=r&linkaccess=fulltext&issn=01621459&p=AONE&sw=w&authCount=1&isAnonymousEntry=true
+
+1997:
+Jacobi algorithm for symmetric eigenvalue problem and integrable gradient system of Lax form
+http://link.springer.com/article/10.1007/BF03167262#page-1
+
+A NEW DIVIDE-AND-CONQUER ALGORITHM FOR THE EIGENVALUE PROBLEM OF SYMMETRIC TRIDIAGONAL MATRICES [J]
+http://en.cnki.com.cn/Article_en/CJFDTOTAL-SZJS199701009.htm
+
+A Jacobi method by blocks to solve the symmetric eigenvalue problem
+citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.4829
+
+1996:
+The constrained Newton method on a Lie group and the symmetric eigenvalue problem
+http://www.sciencedirect.com/science/article/pii/0024379595001719
+
+1994:
+A serial implementation of Cuppen's divide and conquer algorithm for the symmetric eigenvalue problem
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.52.7268
+
+A one-sided jacobi algorithm for the symmetric eigenvalue problem
+https://maths-people.anu.edu.au/~brent/pd/rpb155.pdf
+
+1993:
+Reducing the Symmetric Matrix Eigenvalue Problem to Matrix Multiplications
+http://epubs.siam.org/doi/abs/10.1137/0914008
+
+A new algorithm for the symmetric tridiagonal eigenvalue problem
+http://www.sciencedirect.com/science/article/pii/S0885064X83710253
+
+Variational Rayleigh Quotient Iteration Methods for a Symmetric Eigenvalue Problem
+http://math.ucdenver.edu/~aknyazev/research/papers/old/ks93.pdf
+
+Accelerated Solution of the Tridiagonal Symmetric Eigenvalue Problem
+http://www.icsi.berkeley.edu/pubs/techreports/tr-93-016.pdf
+
+1992:
+Improving the solution of the symmetric eigenvalue problem and an extension
+http://www.sciencedirect.com/science/article/pii/089396599290012X
+
+On the scaled Newton method for the symmetric eigenvalue problem
+http://link.springer.com/article/10.1007/BF02250639#page-1
+
+The Eigenvalue Problem For Symmetric Matrices
+http://link.springer.com/chapter/10.1007/978-1-4612-3468-5_12#page-1
+
+1990:
+The Symmetric Eigenvalue Problem
+http://epubs.siam.org/doi/abs/10.1137/1.9781611971163.fm
+
+1988:
+The Projected Newton Method has Order 1+\sqrt2 for the Symmetric Eigenvalue Problem
+http://epubs.siam.org/doi/abs/10.1137/0725079
+
+SUPRENUM software for the symmetric eigenvalue problem
+http://www.sciencedirect.com/science/article/pii/0167819188900610
+
+1985:
+A fast algorithm for the symmetric eigenvalue problem
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6158944&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6158944
+
+A survey of Lanczos procedures for very large real ‘symmetric’ eigenvalue problems
+http://www.sciencedirect.com/science/article/pii/0377042785900068
+
+
+1982:
+Preconditioned iterative methods for the large sparse symmetric eigenvalue problem
+http://www.sciencedirect.com/science/article/pii/004578258290007X
+
+---
+cites:
+
+Jacobi-type methods on semisimple Lie algebras–a Lie algebraic approach to the symmetric eigenvalue problem
+M Kleinsteuber - 2006 - PhD thesis, Bayerische Julius- …
+
+
+Implementation details of the Lanczos method for the symmetric eigenvalue problem
+http://www.sbras.ru/ws/show_abstract.dhtml?en+32+2718
+
+
+
+

@@ -1,0 +1,13 @@
+2014:
+A Memory-Efficient Algorithm for Large-Scale Symmetric Tridiagonal Eigenvalue Problem on Multi-GPU Systems
+http://homes.cs.washington.edu/~chohyu01/preprints/dstedc_worldcomp.pdf
+
+1999:
+An Efficient Algorithm for the Real Root and Symmetric Tridiagonal Eigenvalue Problems
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.33.2468&rep=rep1&type=pdf
+
+1996:
+Quasi-Laguerre Iteration in Solving Symmetric Tridiagonal Eigenvalue Problems
+Read More: http://epubs.siam.org/doi/abs/10.1137/S1064827594273225
+
+

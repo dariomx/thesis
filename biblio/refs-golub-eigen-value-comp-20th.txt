@@ -1,0 +1,104 @@
+refs of Eigenvalue computation in the 20th century, Golub
+
+2015:
+Matrix Eigenvalue Problems
+http://link.springer.com/chapter/10.1007/978-3-319-05089-8_3
+
+On Convergence of Iterative Projection Methods for Symmetric Eigenvalue Problems
+http://www.keisu.t.u-tokyo.ac.jp/research/techrep/data/2015/METR15-25.pdf
+
+2013:
+A SEQUENTIAL SUBSPACE PROJECTION METHOD FOR LINEAR SYMMETRIC EIGENVALUE PROBLEM
+http://www.worldscientific.com/doi/abs/10.1142/S0217595913400034
+
+A mathematically simple method based on definition for computing eigenvalues, generalized eigenvalues and quadratic eigenvalues of matrices
+MN Ahmadabadia 
+http://www.sid.ir/En/VEWSSID/J_pdf/5068420120203.pdf
+
+2012:
+A DC programming approach for solving the symmetric eigenvalue complementarity problem
+http://link.springer.com/article/10.1007/s10589-010-9388-5
+
+Eigenvalue algorithms for symmetric hierarchical matrices
+https://books.google.com.mx/books?hl=en&lr=&id=tNWbw0T9J3cC
+
+2011:
+Matrix perturbations: bounding and computing eigenvalues
+dare.uva.nl/cgi/arno/show.cgi?fid=220351
+
+2010:	
+A filter diagonalization for generalized eigenvalue problems based on the Sakurai–Sugiura projection method
+http://www.sciencedirect.com/science/article/pii/S0377042709006529
+
+
+2009:
+Density-matrix-based algorithm for solving eigenvalue problems
+http://journals.aps.org/prb/abstract/10.1103/PhysRevB.79.115112
+
+An extended QR‐solver for large profiled matrices
+http://onlinelibrary.wiley.com/doi/10.1002/nme.2618/full
+
+QR Decomposition An Annotated Bibliography
+http://link.springer.com/chapter/10.1007/978-0-387-09734-3_1#page-1
+
+2008:
+New fast and accurate Jacobi SVD algorithm. I
+http://epubs.siam.org/doi/abs/10.1137/050639193
+
+Continuous methods for symmetric generalized eigenvalue problems
+http://www.sciencedirect.com/science/article/pii/S0024379507004016
+
+A new vector field method for eigen-decomposition of symmetric matrices
+http://www.sciencedirect.com/science/article/pii/S0362546X06008030
+
+A generalized projective dynamic for solving extreme and interior eigenvalue problems
+https://www.researchgate.net/profile/Leihong_Zhang/publication/258995624_A_generalized_projective_dynamic_for_solving_extreme_and_interior_eigenvalue_problems/links/00b7d52a0a7541daee000000.pdf
+
+2007:
+
+Critical Eigenvalues Tracing for Power System Analysis via Continuation of Invariant Subspaces and Projected Arnoldi Method
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=4275608&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D4275608
+
+A projection method for the computation of inner eigenvalues using high degree rational operators
+http://link.springer.com/article/10.1007/s00607-007-0253-z#page-1
+
+Calculation of rightmost eigenvalues in power systems using the Jacobi-Davidson method 
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=1583719&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D1583719
+
+2004:
+Computing smallest singular triplets with implicitly restarted Lanczos bidiagonalization
+http://www.sciencedirect.com/science/article/pii/S0168927403001946
+
+Linear Algebra with Disordered Sparse Matrices that Have Spatial Structure: Theory and Computation
+http://arxiv.org/abs/cond-mat/0411386
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+http://onlinelibrary.wiley.com/doi/10.1002/0470091355.ecm016/abstract?userIsAuthenticated=false&deniedAccessCustomisedMessage=
+
+2003:
+Iterative Krylov methods for large linear systems
+https://books.google.com.mx/books?hl=en&lr=&id=wE0NrHkrqRAC&oi=fnd&pg=PR11&ots=t2Dh2DzVSb&sig=KrtrqcUQZwWxZu-tpXP6BWXbMfs#v=onepage&q&f=false
+
+A projection method for generalized eigenvalue problems using numerical integration
+http://www.sciencedirect.com/science/article/pii/S037704270300565X
+
+Subspace methods for eigenvalue problems
+http://dspace.library.uu.nl/handle/1874/881
+
+Jacobi Decomposition and Eigenvalues of Symmetric Matrices
+http://link.springer.com/chapter/10.1007/978-3-642-55566-4_24#page-1
+
+2002:
+Computational methods for large eigenvalue problems
+http://www.sciencedirect.com/science/article/pii/S1570865902080031
+
+A projection method for generalized eigenvalue problems
+http://www.cs.tsukuba.ac.jp/~sakurai/Publications_files/ISE-TR-02-189.pdf
+
+2001:
+Successive eigenvalue relaxation: a new method for the generalized eigenvalue problem and convergence estimates
+http://rspa.royalsocietypublishing.org/content/457/2006/441.short
+
+
+Numerical analysis in the twentieth century
+https://books.google.com.mx/books?hl=en&lr=&id=dt3Z1yu2VxwC&oi=fnd&pg=PA1&ots=LdW7NnjRod&sig=i-r8Ll8JX4qnydQkZzcaktlpE2M#v=onepage&q&f=false

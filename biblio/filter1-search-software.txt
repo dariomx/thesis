@@ -1,0 +1,213 @@
+--------------------------------------------------------------------------------------------------------
+current approach:
+
+colt library 1.2.0 (CERN), just the serial version; this does not seem to allow for integration
+with standard blas and lapack libraries (which some vendors as Intel do optimize)
+
+1. Symmetric Householder reduction to tridiagonal form
+   //  This is derived from the Algol procedures tred2 by
+   //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+   //  Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+   //  Fortran subroutine in EISPACK.
+
+2. Symmetric tridiagonal QL algorithm.
+   //  This is derived from the Algol procedures tql2, by
+   //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+   //  Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+   //  Fortran subroutine in EISPACK.
+
+https://en.wikipedia.org/wiki/EISPACK
+
+Originally written around 1972–1973,[1] EISPACK, like LINPACK and MINPACK, originated from Argonne National Laboratory, has always been free, and aims to be portable, robust and reliable. The library drew heavily on algorithms developed by James Wilkinson, which were originally implemented in ALGOL. Brian Smith led a team at Argonne developing EISPACK, initially by translating these algorithms into FORTRAN. Jack Dongarra joined the team as an undergraduate intern at Argonne, and later went on create LAPACK, which has largely superseded EISPACK and LINPACK.
+
+
+above imolied routines (step 2) seems superseded:
+
+J. J. DONGARRA, S. HAMMARLING, AND D. C. SORENSEN, Block reduction of matrices to condensed forms for eigenvalue computations, JCAM, 27 (1989), pp. 215-227. 
+(LAPACK Working Note #2).
+
+how to test the above?
+
+LAPACK, which despite not being designed for sparse matrices, is the modern replacement of EISPACK; the
+library on which Colt based its eigensolver.
+
+Contains both driver and computational routines:
+
+
+driver ones:
+arbenz-notes-solving-large-scale-eigen-prob.pdf
+http://www.netlib.org/lapack/lug/node30.html
+
+This computation proceeds in the following stages:
+
+1.
+The real symmetric or complex Hermitian matrix A is reduced to real tridiagonal form T. If A is real symmetric this decomposition is A=QTQT with Q orthogonal and T symmetric tridiagonal. If A is complex Hermitian, the decomposition is A=QTQH with Q unitary and T, as before, real symmetric tridiagonal.
+
+2.
+Eigenvalues and eigenvectors of the real symmetric tridiagonal matrix T are computed. If all eigenvalues and eigenvectors are computed, this is equivalent to factorizing T as  $T = S \Lambda S^T$, where S is orthogonal and $\Lambda$ is diagonal. The diagonal entries of $\Lambda$ are the eigenvalues of T, which are also the eigenvalues of A, and the columns of S are the eigenvectors of T; the eigenvectors of A are the columns of Z=QS, so that  $A=Z \Lambda Z^T$ ($Z \Lambda Z^H$ when A is complex Hermitian).
+
+
+A simple driver (name ending -EV) computes all the eigenvalues and (optionally) eigenvectors.
+
+An expert driver (name ending -EVX) computes all or a selected subset of the eigenvalues and (optionally) eigenvectors. If few enough eigenvalues or eigenvectors are desired, the expert driver is faster than the simple driver.
+
+A divide-and-conquer driver (name ending -EVD) solves the same problem as the simple driver. It is much faster than the simple driver for large matrices, but uses more workspace. The name divide-and-conquer refers to the underlying algorithm (see sections 2.4.4 and 3.4.3).
+
+A relatively robust representation (RRR) driver (name ending -EVR) computes all or (in a later release) a subset of the eigenvalues, and (optionally) eigenvectors. It is the fastest algorithm of all (except for a few cases), and uses the least workspace. The name RRR refers to the underlying algorithm (see sections 2.4.4 and 3.4.3).
+
+http://www.netlib.org/lapack/lug/node48.html#subseccompsep
+
+In the real case, the decomposition A = Q T QT is computed by one of the routines xSYTRD, xSPTRD, or xSBTRD, depending on how the matrix is stored (xSYTRD=dense, xSPTRD=packed and xSBTRD=band)
+
+if all eigen vectors are required, auxiliary routines for forming matrix may be required.
+
+once in tridiagonal form, eigen values and optionally eigen vectors are calculated:
+
+xSTEQR
+This routine uses the implicitly shifted QR algorithm. It switches between the QR and QL variants in order to handle graded matrices more effectively than the simple QL variant that is provided by the EISPACK routines IMTQL1 and IMTQL2. See [56] for details. This routine is used by drivers with names ending in -EV and -EVX to compute all the eigenvalues and eigenvectors (see section 2.3.4.1).
+
+xSTERF
+This routine uses a square-root free version of the QR algorithm, also switching between QR and QL variants, and can only compute all the eigenvalues. See [56] for details. This routine is used by drivers with names ending in -EV and -EVX to compute all the eigenvalues and no eigenvectors (see section 2.3.4.1).
+
+xSTEDC
+This routine uses Cuppen's divide and conquer algorithm to find the eigenvalues and the eigenvectors (if only eigenvalues are desired, xSTEDC calls xSTERF). xSTEDC can be many times faster than xSTEQR for large matrices but needs more work space (2n2 or 3n2). See [20,57,89] and section 3.4.3 for details. This routine is used by drivers with names ending in -EVD to compute all the eigenvalues and eigenvectors (see section 2.3.4.1).
+
+xSTEGR
+This routine uses the relatively robust representation (RRR) algorithm to find eigenvalues and eigenvectors. This routine uses an LDLT factorization of a number of translates T - sI of T, for one shift s near each cluster of eigenvalues. For each translate the algorithm computes very accurate eigenpairs for the tiny eigenvalues. xSTEGR is faster than all the other routines except in a few cases, and uses the least workspace. See [35] and section 3.4.3 for details.
+
+xPTEQR
+This routine applies to symmetric positive definite tridiagonal matrices only. It uses a combination of Cholesky factorization and bidiagonal QR iteration (see xBDSQR) and may be significantly more accurate than the other routines except xSTEGR. See [14,32,23,51] for details.
+
+xSTEBZ
+This routine uses bisection to compute some or all of the eigenvalues. Options provide for computing all the eigenvalues in a real interval or all the eigenvalues from the ith to the jth largest. It can be highly accurate, but may be adjusted to run faster if lower accuracy is acceptable. This routine is used by drivers with names ending in -EVX.
+
+xSTEIN
+Given accurate eigenvalues, this routine uses inverse iteration to compute some or all of the eigenvectors. This routine is used by drivers with names ending in -EVX.
+
+
+still lapack but as an example of block algorithms:
+http://www.netlib.org/lapack/lug/node70.html#subsecblockeig
+
+The first step in solving many types of eigenvalue problems is to reduce the original matrix to a condensed form by orthogonal transformations. In the reduction to condensed forms, the unblocked algorithms all use elementary Householder matrices and have good vector performance. Block forms of these algorithms have been developed [46], but all require additional operations, and a significant proportion of the work must still be performed by Level 2 BLAS, so there is less possibility of compensating for the extra operations.
+
+
+reduction of a symmetric matrix to tridiagonal form to solve a symmetric eigenvalue problem: LAPACK routine xSYTRD applies a symmetric block update of the form 
+\begin{displaymath}A \leftarrow A - U X^T - X U^T\end{displaymath}
+
+using the Level 3 BLAS routine xSYR2K; Level 3 BLAS account for at most half the work.
+
+Note that only in the reduction to Hessenberg form is it possible to use the block Householder representation described in subsection 3.4.2. Extra work must be performed to compute the n-by-b matrices X and Y that are required for the block updates (b is the block size) -- and extra workspace is needed to store them
+
+can be used with scipy, which uses one of the expert drivers (the fanciest one, EGR); this would
+be equivalent to testing apache commons 2.0 with Dhillon alg (RRR). but for using the same approach
+as colt, we can use STEQR. will be worth it to test divide and conquer (EDC) as well and pay attention
+to the extra memory cost. ERF can be discarded cause we always wanna at least one eigenvector.
+
+--------------------------------------------------------------------------------------------------------
+4 Cuppen’s Divide and Conquer Algorithm
+Seems also available in lapack/scipy (STEDC), but has extra memory penalty; mentioned above too.
+
+
+--------------------------------------------------------------------------------------------------------
+6 Vector iteration (power method), which has its symmetric incarnation [no, but explain why]
+
+think only slepc offers this flavor
+slepc:
+Basic methods
+  – Power Iteration with deflation. When combined with shift-and-invert (see chapter
+    3), it is equivalent to the Inverse Iteration. Also, this solver embeds the Rayleigh
+    Quotient Iteration (RQI) by allowing variable shifts.
+
+EPSPOWER routine
+
+This solver can only be used for the case that the wanted eigenvalues are those of largest
+magnitude (see EPSWhichEigenpairs) <<=== looks this will not serve
+
+theory says that this has specialized version for symmetric case, but slepc epspower does not
+mention anything about that.
+
+--------------------------------------------------------------------------------------------------------
+
+like this classif?
+
+- subspace methods
+  • Subspace Iteration (fixed size subspace)
+    - Sometimes called simultaneous iteration
+  • Krylov and Davidson subspace methods (increasing subspace)
+    - Lanczos and block Lanczos
+    - Davidson, block Davidson, Jacobi-Davidson
+
+
+--------------------------------------------------------------------------------------------------------
+- subspace methods
+  • Subspace Iteration (fixed size subspace)
+    - Sometimes called simultaneous iteration
+
+none?
+
+--------------------------------------------------------------------------------------------------------
+
+  • Krylov and Davidson subspace methods (increasing subspace)
+    - Lanczos and block Lanczos
+
+slepc:  – Subspace Iteration with Rayleigh-Ritz projection and locking.
+nag: lanczos (subspace iteration)
+
+- ARPACK. Uses the Implicitly Restarted Lanczos Method
+
+lanczos is just for a few eigenvalues/vectors!
+
+--------------------------------------------------------------------------------------------------------
+
+    - Davidson, block Davidson, Jacobi-Davidson
+
+http://pysparse.sourceforge.net/jdsym.html#the-jdsym-module
+
+--------------------------------------------------------------------------------------------------------
+
+fiedler-vector
+
+networkx -> scipy -> [lanczos, lobpcg, tracemin-fiedler] 
+
+lanczos
+This function is a wrapper to the ARPACK [1]_ SSEUPD and DSEUPD
+    functions which use the Implicitly Restarted Lanczos Method to
+    find the eigenvalues and eigenvectors [2]_.
+
+tracemin-fiedler: networkx -> scipy -> tracemin-fiedler[python] -> lapack with DDR expert driver! 
+
+lobpcg
+https://github.com/scipy/scipy/blob/v0.17.0/scipy/sparse/linalg/eigen/lobpcg/lobpcg.py#L114-L573
+Pure SciPy implementation of Locally Optimal Block Preconditioned Conjugate
+Gradient Method (LOBPCG), see
+http://www-math.cudenver.edu/~aknyazev/software/BLOPEX/
+
+
+https://github.com/fozziethebeat/S-Space/blob/master/src/main/java/edu/ucla/sspace/clustering/EigenCut.java
+ <ul>
+ *   <li style="font-family:Garamond, Georgia, serif">Cheng, D., Kannan, R.,
+ *     Vempala, S., Wang, G.  (2006).  A Divide-and-Merge Methodology for
+ *     Clustering. <i>ACM Transactions on Database Systsms</i>, <b>31</b>,
+ *     1499-1525.  Available <a
+ *     href=http://www-math.mit.edu/~vempala/papers/eigencluster.pdf">here</a>
+ *   </li>
+ *
+ *   <li style="font-family:Garamond, Georgia, serif">Kannan, R., Vempala, S.,
+ *     Vetta, A.  (2000).  On clustering: Good, bad, and spectral.  
+ *     <i>FOCS '00: Proceedings of the 41st Annual Symposium on Foundations of
+ *   Computer Science</i> Available <a
+ *     href="http://www-math.mit.edu/~vempala/papers/specfocs.ps">here</a>
+ *   </li>
+ * </ul>
+
+https://github.com/scikit-learn/scikit-learn/blob/51a765a/sklearn/cluster/spectral.py#L269
+ eigen_solver : {None, 'arpack', 'lobpcg', or 'amg'}
+        The eigenvalue decomposition strategy to use. AMG requires pyamg
+        to be installed. It can be faster on very large, sparse problems,
+        but may also lead to instabilities
+
+http://www.cs.utexas.edu/users/dml/Software/graclus.html (Dhillon!)
+Graclus (latest: Version 1.2) is a fast graph clustering software that computes normalized cut and ratio association for a given undirected graph without any eigenvector computation. This is possible because of the mathematical equivalence between general cut or association objectives (including normalized cut and ratio association) and the weighted kernel k-means objective. One important implication of this equivalence is that we can run a k-means type of iterative algorithm to minimize general cut or association objectives. Therefore unlike spectral methods, our algorithm totally avoids time-consuming eigenvector computation. We have embedded the weighted kernel k-means algorithm in a multilevel framework to develop very fast software for graph clustering.
+
+
+

@@ -1,0 +1,39 @@
+http://www.paccanarolab.org/scps/
+http://www.caam.rice.edu/software/ARPACK/
+http://dx.doi.org/10.1186/1471-2105-11-120
+Arnoldi iteration with implicit restarts
+
+chaco
+https://cfwebprod.sandia.gov/cfdocs/CompResearch/docs/guide.pdf
+Lanczos method for small and medium size problems and the RQI/Symmlq (A fast multilevel implementation of recursive spectral bisection for partitioning unstructured problems)
+
+http://scikit-learn.org/stable/modules/generated/sklearn.cluster.SpectralClustering.html
+eigen_solver : {None, ‘arpack’, ‘lobpcg’, or ‘amg’}
+he eigenvalue decomposition strategy to use. AMG requires pyamg to be installed. It can be faster on very large, sparse problems, but may also lead to instabilities
+
+https://code.google.com/archive/p/sparse-eigensolvers-java/
+
+
+A Survey of Software for Sparse Eigenvalue Problemsm, Slepc
+
+http://people.inf.ethz.ch/arbenz/ewp/
+
+http://www.swmath.org/?term=eigensolver
+
+tracemin-fiedler
+
+An efficient and accurate method to compute the Fiedler vector based on Householder deflation and inverse power iteration
+
+Summary: The Fiedler vector of a graph plays a vital role in many applications. But it is usually very expensive in that it involves the solution of an eigenvalue problem. In this paper, we introduce the inverse power method incorporated with the Householder deflation to compute the Fiedler Vector. In the inverse power iterations, the coefficient matrix is formed implicitly, to take advantage of the sparsity. The linear systems encountered at each iteration must be symmetric positive definite, thus the conjugate gradient method is used. In addition, preconditioning techniques are introduced to reduce the computation cost. Any kind of preconditioning techniques with dropping can be used. For the graphs related to some of the sparse matrices downloaded from the UF Sparse Matrix Collection, the experiments are compared to the known novel schemes. The results show that the provided method is more accurate. While it is slower than MC73 sequentially, it has good parallel efficiency compared with TraceMin. In addition, it is insensitive to the selection of parameters, which is superior to the other two methods.
+
+https://zbmath.org/?q=an:06317625
+
+MC73
+http://www.hsl.rl.ac.uk/catalogue/hsl_mc73.html
+
+https://networkx.github.io/documentation/latest/_modules/networkx/linalg/algebraicconnectivity.html
+
+http://drac.udg.edu/phison/releases/2012-05-22/phison-api-rel-2012-05-22/index.html
+
+http://mathoverflow.net/questions/120336/can-the-first-non-zero-eigenvalue-of-a-laplacian-matrix-with-more-than-1-zero-va
+

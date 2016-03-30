@@ -1,0 +1,92 @@
+0. current approach
+
+colt uses java port of eispack, which has an out-of-date QR alg (with householder reduction to tridiag form)
+
+modern equivalent (fixed) would be xSTEQR in lapack, which is available in java thanks
+to netlib-java
+
+netlib-java is possible thanks to http://www.netlib.org/java/f2j
+
+takes advantage of native blas/lapack!
+
+mention the cons of java for this (cutting edge is in fortran/c/c++)
+
+for reference of usage of the low level routines, see python impl
+networkx -> scipy -> [lanczos, lobpcg, tracemin-fiedler] 
+
+or scipy -> lapack -> xroutine
+
+
+1 get more out of lapack (modern replacement of eispack)
+
+thought still for dense matrices, seems promising for the case of calculating all
+eigenvalues/vecs. xSERF can be discarded cause we always wanna at least one eigenvector.
+beware these are driver (higher level), not computational routines (lower level, more specific)
+
+1.1. Dhillon thesis (RRR => MR3 with Parlett ... seems "ultimate" for dense case?)
+
+netlib-java => lapack => xSTEGR
+
+1.2  Cuppen’s Divide and Conquer Algorithm
+
+netlib-java => lapack => xSTEDC
+
+watch out for the memory penalty
+
+
+FROM here below, just a few eigenvalues/vec; not all (sparse)
+
+
+2. lanczos (special case of arnoldi)
+
+ARPACK xSEUPD
+
+functions which use the Implicitly Restarted Lanczos Method to
+find the eigenvalues and eigenvectors
+
+mtj => netlib-java => arpack => xSEUPD
+
+arpack java uses arpack fortran which uses blas/lapack!
+
+
+2.5. The Jacobi-Davidson Method (missing generic serial java impl, parallel ones?)
+
+
+3. lobpcg
+
+http://sparse-eigensolvers-java.googlecode.com/svn/branches/sparse-eig-01.1/doc/sparse/eigenvolvers/java/Lobpcg.html (alpha)
+
+
+4. specific for fiedler-vector
+
+4.1 high level (graph) - dont use eigendecomp - discarded due intrussivity
+  
+4.1.1 HSL_MC73 — Sparse symmetric matrix: compute Fiedler
+http://www.hsl.rl.ac.uk/catalogue/hsl_mc73.html
+barnard-fast-multilevel-implementation-rsb.pdf (seminal)
+[multilevel recursive spectral bisection] - think this is what they use.
+
+4.1.2 http://www.cs.utexas.edu/users/dml/Software/graclus.html (Dhillon!)
+Graclus (latest: Version 1.2) is a fast graph clustering software that computes normalized cut and ratio association for a given undirected graph without any eigenvector computation. This is possible because of the mathematical equivalence between general cut or association objectives (including normalized cut and ratio association) and the weighted kernel k-means objective. One important implication of this equivalence is that we can run a k-means type of iterative algorithm to minimize general cut or association objectives. Therefore unlike spectral methods, our algorithm totally avoids time-consuming eigenvector computation. We have embedded the weighted kernel k-means algorithm in a multilevel framework to develop very fast software for graph clustering.
+
+4.3 low level (calculate the fiedler vector, and its assoc eigen value - snd smallest)
+
+tracemin-fiedler
+manguoglu-tracemin-fiedler.pdf
+https://networkx.github.io/documentation/latest/_modules/networkx/linalg/algebraicconnectivity.html
+[look for tracemin_fiedler, seems to match the alg in the article above]
+
+5. mention state of the art discarded due "lang barrier" and lack of time
+
+primme
+slepc
+anazi
+jadamilu
+
+
+
+
+
+
+
+

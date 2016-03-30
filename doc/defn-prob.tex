@@ -1,0 +1,456 @@
+\chapter{Definition of the Problem}
+
+One of the main drivers for picking the thesis topic, was to enhance a
+real life software product. The quest for such problem eventually
+brought to the table a particular application which needs to calculate
+an eigen decomposition of certain matrices; and which was finding such step
+as a potencial bottleneck. To give a concrete example, a matrix of  $867
+\times 867$ was taking 14 seconds on commodity hardware; and the
+application needed to perform a serious of them in a row, which
+potentially could accumulate to one minute. Those calculations are
+to be done in the context of a single user request, for a implementing
+a higher level functionality; thus, the time spent on the eigen
+decomposition was a concern indeed. The concern raises mainly, with
+the future expectation of handling much bigger matrices. \\
+
+We adopted above problem as the thesis topic, and the purpose of this
+chapter is to document the refinement of the
+requirements we got, as well a some of the motivation and context of
+the application (not too many, as we are talking about propietary
+software whose details can not be disclosed). 
+
+\section{Initial requirements}
+
+The raw description of the problem was to speed up, as much as
+possible, the eigen decomposition calculation described above. But
+there were several restrictions or special requirements around such
+calculation, which we list below:
+
+\begin{itemize}
+  \item The computation needs to be performed in the Java programming
+    language, as the whole application is written in the same. \\
+  \item The executing hardware is a commodity computer using Intel
+    processors (exact definition of the machine used for testing
+    appears on \cref{cha:exper}).
+  \item We can not use multi-threading, the computation needs to occur
+    serially (this relates to the application architecture, but we can
+    not disclose more details about it). \\
+  \item The matrix is symmetric (is equal to its transpose). \\
+  \item All the eigenvalues are required, but only one eigenvector.
+\end{itemize}
+\hfill
+
+The above list of requirements suggested that we needed to restrict
+our attention to serial algorithms for the Symmetric Eigen
+Decomposition (proper mathematical definitions will be provided on
+\cref{cha:symm-eigen}). Such reduced scope was welcomed, as the whole
+topic of Eigen Decomposition (usually called Eigenvalue Problem in
+literature), is extensive enough to make its exploration prohibitive in
+the few months we have to finish this project; specially because a big
+part of the literature focuses on parallel/distributed algorithms, but
+their serial versions could be still attractive for our purposes and
+deserve attention. \\
+
+However, the topic of Symmetric Eigenvalue Problem is still too wide. To give
+the reader a sense of the topic's immensity, we want to mention that a
+reestrictive search by title in Google Scholar
+\cite{googlescholar}, brings almost 1000 references which contain the
+words ``symmetric'' and ``eigenvalue''. Some of those references
+are quite recent, which suggest is an active area of research. That is
+not a surprise given the recent trends of BigData, Machine Learning
+and Data Mining; which heavily rely on efficient Numeric Linear
+Algebra algorithms. \\
+
+The following sections detail a refinement of the initial
+requirements, aiming to reduce the scope of our algorithm search. 
+
+\section{The context of the calculations}
+
+\subsection{Spectral Clustering}
+Digging further into the application code, to which we got access
+granted, allowed us to realize that the requirements were actually
+more specific. The reason why all eigenvalues were required, was in
+order to detect how many of them where zero; to be more specific,
+whether we had more than one being zero \footnote{In real-life
+  computer calculations, we do not really compare exactly against
+  zero but with a quite small number; that represents a reasonable
+  approximation to zero.}. These details
+will not make much sense, unless we understand a bit more of the
+application context. \\
+
+The software application we are trying to optimize implements, among
+many other things, some clustering
+algorithms. The term Clustering might
+ring a bell to the reader, as it is a trendy topic nowaways; specially
+with algorithms like k-means (see for example \cite{rajaraman14}, a
+quite pragmatic 
+introduction to Data Mining at large scale, which devotes one chapter
+to Clustering). The technique used by our the application is a bit
+different though, to the classical approaches like k-means algorithm;
+it uses something called Spectral Clustering, where information about the
+eigenvalues and eigenvectors of an special matrix called the Laplacian
+(built out of the domain data), are used to find the clusters within
+the data. A gentle introduction to Spectral Clustering can be found in
+\cite{luxburg07}. \\
+
+\subsection{Algebraic Graph Theory}
+
+Let us now talk a bit about an apparently disconnected topic: enter
+Algebraic Graph Theory, which is a fascinating field that 
+applies tools from Algebra to the understanding of graphs
+(the canonical text books are \cite{biggs93} and \cite{godsil01}). The field
+is rich enough to have subdivisions, and the one concerning us here is
+the application of Linear Algebra machinery against matrices
+associated to graphs; in particular the usage of eigenvalues or
+eigenvectors of those matrices. Such branch is also called
+Spectral Graph Theory, for which \cite{brouwer12} offers a compressed but
+comprenhensive panoramic view. \\
+
+Let $G = (V,E,W)$ be a weigthed undirected graph, where $V$ is the set
+of vertices, $E$ is the set of edges and $W$ is an $n \times n$ matrix
+with the positive weights associated to the edges ($n = |V|$). The
+matrix used in Spectral Graph Theory that we care about is
+called the Laplacian($L$), whose definition follows below: \\ 
+
+\begin{align*}
+  L_{ij} &= \twopartdef{\d_i}{i==j}{i \ne j}{-w_{ij}} \\\\
+  \suchthat & d_i = \sum_{j=1}^n w_{ij}
+\end{align*}
+\hfill
+
+A more compact definition of the Laplacian is $L = D - W$, where $D =
+diag({d_1,d_2,\dots,d_n})$. There are actually two flavours of the
+Laplacian, and the one defined here is referred as \emph{Unnormalized}
+Laplacian in literature. \\
+
+The Laplacian is a quite interesting matrix, in the sense that its
+eigenvalues (also known as ``spectra''), reveal information about the
+underlying graph G. In particular, about its connectivity. In this
+regard, the theorem below will be cited later on the context of our
+application: 
+
+\begin{theorem}
+  \label{thm:speconn}
+  The algebraic multiplicity of zero as an eigenvalue of $L$ equals
+  the number of connected components of $G$.
+\end{theorem}
+\hfill
+
+Let us recall that the algebraic multiplicity \begin{footnote}For
+  symmetric matrices like the Laplacian, the algebraic multiplicity
+  equals the geometric multiplicity; where the later is defined as the
+  dimension of the subspace generated by the eigenvectors associated
+  with the eigenvalue. In that sense, for symmetric matrices there is
+  no ambiguity and literature simply talks about the multiplicity of
+  the eigenvalues. That happens in particular on the usual formulation
+  of \cref{thm:speconn}.
+  \end{footnote} of an eigenvalue, is the
+number of times that it appears as a root of the characteristic
+polynomial; while a connected component is a subgraph of
+$G$ such that all its vertices are connected, but that as whole is not
+connected with the rest of the graph. 
+A condensed proof of this theorem is provided in
+\cite{brouwer}, and a more detailed one appears in \cite{luxburg07}
+(though not precisely in the context of Algebraic Graph Theory). \\
+
+\subsection{The Connection between the two fields}
+
+What does Spectral Clustering (performed by our application), have to
+do with Algebraic Graph Theory? The former borrows its tools from the
+second. As \cite{jia14} explains, the idea of Spectral Clustering is
+to reduce the problem of data clustering to one of graph
+partitioning. It does so by constructing an undirected graph with each
+point in the dataset being represented as a vertex, and by defining a
+similarity function 
+between the points (vectors in \R{n} that represent our data items); such
+function serves to build the weight matrix $W$ of the undirected weighted graph
+$G = (V,E,W)$ we mentioned earlier. \begin{footnote}A typical choice
+  for the similarity function is the Euclidian Distance, but there are
+  other choices; see \cite{luxburg07} for further
+  details.\end{footnote} Thus, we can perform partitions on the graph
+based on certain cut methods, and call the resulting components as
+clusters (whose vertices reference original points in \R{n}, that
+compose our dataset). \\
+
+It is on those cut methods, that the theorems of Algebraic
+Graph Theory are used. The particular application we care about,
+performs a bi-partition by employing the so called Fiedler Method; in
+honor to Miroslav Fiedler, who wrote a seminal paper on both Algebraic
+Graph Theory and Spectral Clustering, describing the actual
+method. The idea is to calculate the eigenvector associated to the
+second smallest value of the Laplacian matrix $L$ (called Fiedler
+Vector), and use the sign of 
+its elements to split the vertices of the graph in two
+partitions. The technical details are in Fiedler's article
+(\cite{fiedler73}), or in standard texts of Algebraic Graph Theory.
+The intuitive idea is that the partitions generated by the Fiedler
+Vector are ``good'', because they minimize the number of edges
+required to split the graph; and to some extent the amount of edges
+joining the two partitions tells us how close or distant are the
+clusters that they represent in the original dataset. Actually,
+Fiedler gave us an explicit metric for this connectivity of the graph;
+it turns out that the eigenvalue associated with the Fiedler Vector
+(second smallest eigenvalue), tells us how connected or disconnected
+the graph is. Because of this, Fiedler baptized this eigenvalue as the
+Algebraic Connectivity. \\
+
+The following theorem is a corollary of \cref{thm:speconn}, 
+it refers to the newly introduced concept of Algebraic Connectivity,
+and serves as a further link between the two branches of Mathematics
+that we briefly introduced: \\
+
+\begin{theorem}
+  \label{thm:algconn}
+  The Algebraic Connectivity of $L$ is zero \iff $G$ is disconnected. 
+\end{theorem}
+
+This theorem is actually a corollary of \cref{thm:speconn}, for
+the particular case of a connected graph. This is because the
+Laplacian $L$ (a real, symmetric and positive semi-definite
+matrix \footnote{A $n \times n$ positive semi-definite matrix $M$ is
+  related to a 
+  cuadratic form, and has the property of $\trans{\vec{x}}M\vec{x} > 0
+\forall x \in \R{n}$, see \cite{strange88} for a review of this concept.}, exhibits additional properties: \\ 
+
+\begin{itemize}
+  \item All its eigenvalues are real and $ \ge 0$ (see \cite{strang88}). \\
+  \item Zero is always its smallest eigenvalue (see \cite{luxburg07}).
+\end{itemize}
+\hfill
+
+If we apply \cref{thm:speconn} to the case of a graph with a single
+component (connected graph), then it would tell us that zero appears
+once as an eigenvalue of its Laplacian ($L). Using the properties listed above, we
+know that the second smallest eigenvalue (Algebraic Connectivity)
+needs to be either zero or a 
+positive number; but as we just stated that it can not be zero again, the
+only other option is to be possitive. That could be translated into
+proposition  ``A graph is connected $\iff$ it has an algebraic
+connectivity $> 0$''; which can be reworded as follows if we negate both sides of
+the logical equivalence: ``The
+Algebraic Connectivity of a graph is zero $\iff$ it is
+disconnected''. Latest rewording is essentially \cref{thm:algconn}.
+
+\section{Final requirements}
+
+The previous sections and the two theorems mentioned, were more than
+just a cosmetic exercise; they have the practical purpose of
+understanding better the current requirement, and also of proposing a
+refinement that will help us to reduce the scope of our bibliographic
+search. \\
+
+On the context of Spectral Clustering, there is certain code in the
+application that does a bi-partition of a graph. It does so by
+calculating the Fiedler Vector, and splitting the nodes depending on
+the sign of the vector elements. However, prior doing the
+bi-partition, the application needs to verify if the graph is
+connected (the Fiedler Vector will not help much if the graph has more
+than one connected component). In order to detect the disconnected
+case, the code leverages \cref{thm:speconn} and asks how many
+eigenvalues of the Laplacian are 
+zero. If there are more than one, then we have a disconnected graph
+(which requires a different treatment); if there is just one, we
+proceed to split the graph using Fiedler Vector. The pseudo-code of
+this critical section would look like this: \\
+
+\begin{algorithm}
+  \label{alg:orig-code}
+  \caption{Original calculation of the graph partition}
+%
+  \setstretch{1.35}
+  \SetKwInOut{Input}{Input}
+  \SetKwInOut{Output}{Output}
+  \DontPrintSemicolon
+%
+    \Input{Laplacian matrix $L$ of the graph}
+%
+    \Output{A partitioned graph $G$}
+%
+    $evals, evecs = \func{calculate-all-eigenvalues-and-eigenvectors}(L)$ \;
+%    
+    \If {$|e \suchthat ev \in evals \and ev ~ 0| > 1$}
+    {
+      \text{disconnected case, special treatment for $G$ using both $evals$ and $evecs$} \;
+    }
+    \Else
+    {
+      \text{connected case, regular bi-partition of $G$ using Fiedler Vector (already calculated)} \;
+    }
+\end{algorithm}
+\hfill
+
+Under the assumption that the connected case is more common than the
+disconnected one, we can propose the first high level
+optimization. Theorem \cref{thm:algconn} tells us that, in order to
+detect the disconnected case, we do not need  to calculate all the
+eigenvalues of $L$; the Algebraic Connectivity (second smallest) is
+enough. Thus, the proposed new logic can go like this: \\
+
+\begin{algorithm}
+  \label{alg:optim-code}
+  \caption{Proposed calculation of the graph partition}
+%
+  \setstretch{1.35}
+  \SetKwInOut{Input}{Input}
+  \SetKwInOut{Output}{Output}
+  \DontPrintSemicolon
+%
+    \Input{Laplacian matrix $L$ of the graph}
+%
+    \Output{A partitioned graph $G$}
+%
+    $ac, fv = \func{calculate-algebraic-connectivity-and-fiedler-vector}(L)$ \;
+%    
+    \If {$ac ~ 0$}
+    {
+       $evals, evecs = \func{calculate-all-eigenvalues-and-eigenvectors}(L)$ \;      
+      \text{disconnected case, special treatment for $G$ using both $evals$ and $evecs$} \;
+    }
+    \Else
+    {
+      \text{connected case, regular bi-partition of $G$ using Fiedler
+        Vector $fv$} \;
+    }
+\end{algorithm}
+\hfill
+
+For the cases of disconnected graphs, we would need to
+calculate twice the Algebraic Connectivity and Fiedler Vector; but
+those are expected to be rare cases. \\
+
+With the proposed change we are opening the door for leveraging the
+properties of the Laplacian matrix $L$, which symmetric, sparse and
+positive semi-definite. While we have mentioned what it means to be
+symmetric ($L = \trans{L}$) and positive semi-definite ($\forall x \in
+\R{n} \trans{\vec{x}}L\vec{x} > 0$); the sparsity deserves a few
+words. Intuitively, an sparse matrix has ``mostly zeros'', though that
+is a quite open definition subject to arbitrary interpretations; how many
+are ``mostly''? According to \cite{richard12}, in practice a matrix
+with more than $50$\% of zero entries can be considered sparse. The
+sample $867 \times 867$ matrix we mentioned on the first section,
+which is expected to be a representative input, falls into this
+definition; it has around $70$\% of (nearly) zero entries. This
+sparse characteristic of the Laplacian is quite relevant for our
+investigation, as the numeric algorithms for solving the Symmetric
+Eigenvalue Problem are clearly divided in two big branches: those
+attacking the non sparse (dense) matrices, and those covering the
+sparse ones. \\
+
+Furthermore, the algorithms specialized for sparse matrices tend to
+focus on calculating just a few eigenvalues/eigenvectors; that fits
+perfectly well on the proposed logic, which just requires a single
+pair. This does not necessarily mean that we are totally discarding
+the dense matrix branch of algorithms. For the rare but still possible
+case of a disconnected graph, we want to use something better than
+offering of the Colt library; as it uses the classical
+algorithm known as \emph{QL} (see \cref{sec:trid-ql}); based on routine
+\emph{TQL2} of the
+70's Fortran77 library EISPACK (\cite{eispack}). Such library has been
+superseded by LAPACK (\cite{lapack}); and in particular, the
+equivalent of routine \emph{TQL2} has been improved (see
+\cref{sec:mr3}). As the sparse routines are designed for calculating a
+few eigenvalues/eigenvectors, it would make sense to continue using a
+dense matrix algorithm for the disconnected case, but leveraging
+modern LAPACK implementations (see \cref{cha:lapack}). \\
+
+Going further, there are algorithms specifically tailored for
+calculating the Fiedler Vector and its associated eigenvalue
+(Algebraic Connectivity). We also want to include those in the
+comparison (see \cref{cha:trmin-fiedler}). \\
+
+A final consideration is that, while the serial nature of the
+algorithm remains as a requirement (no parallelism), there is no
+restriction for recommending the usage of vectorized kernels like BLAS
+(\cite{blas}); which is actually used by LAPACK and other higher level
+libraries. BLAS (Basic Linear Algebra Subroutines), is a mature
+industry standard, that hardware vendors implement for their
+processors; in particular Intel leverages its vector facilities SSE
+(Intel seems to be the commodity processor that the application can
+rely on). \\
+
+Taking into account the new understanding of the problem, we proceed
+to list the refined requirements: \\
+
+\begin{itemize}
+  \item Goal is to reduce the time spent solving the Symmetric Eigenvalue
+    Problem. \\
+  \item The matrix against which we compute the eigenvalues and
+    eigenvectors is the Laplacian of a graph; expectation is to seek
+    for algorithms that leverage its qualities (symmetric, sparse and
+    positive semi-definite). \\
+  \item The computation needs to be performed in the Java programming
+    language, as the whole application is written in the same. \\
+  \item The executing hardware is a commodity computer using Intel
+    processors (exact definition of the machine used for testing
+    appears on \cref{cha:exper}).
+  \item We can not use multi-threading, the computation needs to occur
+    serially. There is no restriction
+    though, in suggesting the usage of vectorized routines for Intel
+    processors; like those present in BLAS library. \\
+  \item Assuming that the disconnected graph case is uncommon, we
+    still want to calculate there all eigenvalues and eigenvectors;
+    but with a newer algorithm for dense matrices (like those present
+    in LAPACK library). \\
+  \item For the common case of a connected graph, we shall calculate
+    only the algebraic connectivity and its associated Fiedler
+    Vector (see psedo-code from  \cref{alg:optim-code}).
+\end{itemize}
+\hfill
+
+\section{Expectation and outline of the thesis}
+Being this a master degree thesis, is not expected nor feasible due
+time constraints, that we come up with a new algorithm (that would be
+suitable for a PhD thesis). Then, expectation was to search what are
+the available algorithms; and to evaluate their performance under the
+cited requirements. Detailed descriptions of the algorithms is
+expected though, along with proper explanation of why some performed
+better than others. Ultimate expectationis that, with the suggested
+optimization, the application becomes able to cover new use-cases
+involving bigger data sets (bigger Laplacian matrices). \\
+
+The outline of the rest of this thesis is as follows: \\
+
+\begin{itemize}
+  \item \cref{symm-eigen} gives an introduction to the generic problem
+    we want to solve faster, The Symmetric Eigenvalue Problem. We also
+    include here, a brief overview of the numerical aspects that need
+    to be considered when evaluating the algorithms (numerical
+    stability and ill-conditioned data). \\
+  \item \cref{lapack} covers three dense-matrix algorithms that come bundled with
+    LAPACK, the first one is the QR algorithm; which is not really one
+    of the proposed candidates, but rather the theoretical background
+    of the Colt implementation. This chapter also includes the first two
+    candidates for the experiment phase: the MR3 and the
+    Divide-and-Conquer algorithms; both included as well in LAPACK. \\
+  \item \cref{ir-lanczos} covers the first sparse-matrix algorithm to
+    evaluate, the Implicitly Restarted Lanczos (available in a Java
+    port of ARPACK \cite{arpack}). \\
+  \item \cref{lobpcg} introduces the second sparse-matrix proposal,
+    the Locally Optimal Block Preconditioned Conjugate Gradient
+    Algorithm (LOBPCG). This is perhaps the most modern algorithm, and
+    the only one incorporating preconditioning of the data. The Java
+    implementation is available thanks to Sparse Eigensolvers for Java
+    Project (\cref{sparseigensolvjava}).\\
+  \item \cref{trmin-fiedler} explains the most specialized candidate
+    of the proposal, the TraceMin-Fielder Algorithm; which was designed
+    specifically for calculating only the algebraic connectivity and
+    the Fiedler Vector. The expectation is that this algorithm beats the rest
+    during the experiments, as is the one taking into account more
+    properties of the matrix $L$ (see \cref{cha:exper} to find out if
+    this expectation matched reality). There is no Java implementation
+    available, but we will port the Python version found in Networkx
+    Project \cite{networkx}. 
+  \item \cref{exper} describes the experimentation phase, including
+    the details of the commodity hardware, as well as the matrices
+    used for comparing the different algorithm
+    implementations (we included the provided $867 \times 867$
+    matrix, but also other ones from standard benchmarks
+    available). The performance observed (memory and cpu) are reported
+    on this chapter, across the different combinations of algorithms
+    and matrices. \\
+  \item \cref{conclu} The conclusions chapter interprets the results,
+    explaining why certain algorihtms performed better than others,
+    under the experiment setting. It includes the final recommendation
+    for the application stakeholders.
+\end{itemize}
+
