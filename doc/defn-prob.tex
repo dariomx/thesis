@@ -4,7 +4,7 @@ One of the main drivers for picking the thesis topic, was to enhance a
 real life software product. The quest for such problem eventually
 brought to the table a particular application which needs to calculate
 an eigen decomposition of certain matrices; and which was finding such step
-as a potencial bottleneck. To give a concrete example, a matrix of  $867
+as a potential bottleneck. To give a concrete example, a matrix of  $867
 \times 867$ was taking 14 seconds on commodity hardware; and the
 application needed to perform a serious of them in a row, which
 potentially could accumulate to one minute. Those calculations are
@@ -16,7 +16,7 @@ the future expectation of handling much bigger matrices. \\
 We adopted above problem as the thesis topic, and the purpose of this
 chapter is to document the refinement of the
 requirements we got, as well a some of the motivation and context of
-the application (not too many, as we are talking about propietary
+the application (not too many, as we are talking about proprietary
 software whose details can not be disclosed). 
 
 \section{Initial requirements}
@@ -53,11 +53,11 @@ deserve attention. \\
 
 However, the topic of Symmetric Eigenvalue Problem is still too wide. To give
 the reader a sense of the topic's immensity, we want to mention that a
-reestrictive search by title in Google Scholar
+restrictive search by title in Google Scholar
 \cite{googlescholar}, brings almost 1000 references which contain the
 words ``symmetric'' and ``eigenvalue''. Some of those references
 are quite recent, which suggest is an active area of research. That is
-not a surprise given the recent trends of BigData, Machine Learning
+not a surprise given the recent trends of Big Data, Machine Learning
 and Data Mining; which heavily rely on efficient Numeric Linear
 Algebra algorithms. \\
 
@@ -81,7 +81,7 @@ application context. \\
 The software application we are trying to optimize implements, among
 many other things, some clustering
 algorithms. The term Clustering might
-ring a bell to the reader, as it is a trendy topic nowaways; specially
+ring a bell to the reader, as it is a trendy topic nowadays; specially
 with algorithms like k-means (see for example \cite{rajaraman14}, a
 quite pragmatic 
 introduction to Data Mining at large scale, which devotes one chapter
@@ -104,9 +104,9 @@ the application of Linear Algebra machinery against matrices
 associated to graphs; in particular the usage of eigenvalues or
 eigenvectors of those matrices. Such branch is also called
 Spectral Graph Theory, for which \cite{brouwer12} offers a compressed but
-comprenhensive panoramic view. \\
+comprehensive panoramic view. \\
 
-Let $G = (V,E,W)$ be a weigthed undirected graph, where $V$ is the set
+Let $G = (V,E,W)$ be a weighted undirected graph, where $V$ is the set
 of vertices, $E$ is the set of edges and $W$ is an $n \times n$ matrix
 with the positive weights associated to the edges ($n = |V|$). The
 matrix used in Spectral Graph Theory that we care about is
@@ -114,12 +114,12 @@ called the Laplacian($L$), whose definition follows below: \\
 
 \begin{align*}
   L_{ij} &= \twopartdef{\d_i}{i==j}{i \ne j}{-w_{ij}} \\\\
-  \suchthat & d_i = \sum_{j=1}^n w_{ij}
+  \suchthat & d_i = \Sigma_{j=1}^n w_{ij}
 \end{align*}
 \hfill
 
 A more compact definition of the Laplacian is $L = D - W$, where $D =
-diag({d_1,d_2,\dots,d_n})$. There are actually two flavours of the
+diag({d_1,d_2,\dots,d_n})$. There are actually two flavors of the
 Laplacian, and the one defined here is referred as \emph{Unnormalized}
 Laplacian in literature. \\
 
@@ -165,7 +165,7 @@ similarity function
 between the points (vectors in \R{n} that represent our data items); such
 function serves to build the weight matrix $W$ of the undirected weighted graph
 $G = (V,E,W)$ we mentioned earlier. \begin{footnote}A typical choice
-  for the similarity function is the Euclidian Distance, but there are
+  for the similarity function is the Euclidean Distance, but there are
   other choices; see \cite{luxburg07} for further
   details.\end{footnote} Thus, we can perform partitions on the graph
 based on certain cut methods, and call the resulting components as
@@ -209,7 +209,7 @@ the particular case of a connected graph. This is because the
 Laplacian $L$ (a real, symmetric and positive semi-definite
 matrix \footnote{A $n \times n$ positive semi-definite matrix $M$ is
   related to a 
-  cuadratic form, and has the property of $\trans{\vec{x}}M\vec{x} > 0
+  quadratic form, and has the property of $\trans{\vec{x}}M\vec{x} > 0
 \forall x \in \R{n}$, see \cite{strange88} for a review of this concept.}, exhibits additional properties: \\ 
 
 \begin{itemize}
@@ -220,11 +220,11 @@ matrix \footnote{A $n \times n$ positive semi-definite matrix $M$ is
 
 If we apply \cref{thm:speconn} to the case of a graph with a single
 component (connected graph), then it would tell us that zero appears
-once as an eigenvalue of its Laplacian ($L). Using the properties listed above, we
+once as an eigenvalue of its Laplacian ($L$). Using the properties listed above, we
 know that the second smallest eigenvalue (Algebraic Connectivity)
 needs to be either zero or a 
 positive number; but as we just stated that it can not be zero again, the
-only other option is to be possitive. That could be translated into
+only other option is to be positive. That could be translated into
 proposition  ``A graph is connected $\iff$ it has an algebraic
 connectivity $> 0$''; which can be reworded as follows if we negate both sides of
 the logical equivalence: ``The
@@ -393,7 +393,7 @@ to list the refined requirements: \\
     in LAPACK library). \\
   \item For the common case of a connected graph, we shall calculate
     only the algebraic connectivity and its associated Fiedler
-    Vector (see psedo-code from  \cref{alg:optim-code}).
+    Vector (see pseudo-code from  \cref{alg:optim-code}).
 \end{itemize}
 \hfill
 
@@ -404,7 +404,7 @@ suitable for a PhD thesis). Then, expectation was to search what are
 the available algorithms; and to evaluate their performance under the
 cited requirements. Detailed descriptions of the algorithms is
 expected though, along with proper explanation of why some performed
-better than others. Ultimate expectationis that, with the suggested
+better than others. Ultimate expectation is that, with the suggested
 optimization, the application becomes able to cover new use-cases
 involving bigger data sets (bigger Laplacian matrices). \\
 
@@ -449,7 +449,7 @@ The outline of the rest of this thesis is as follows: \\
     on this chapter, across the different combinations of algorithms
     and matrices. \\
   \item \cref{conclu} The conclusions chapter interprets the results,
-    explaining why certain algorihtms performed better than others,
+    explaining why certain algorithms performed better than others,
     under the experiment setting. It includes the final recommendation
     for the application stakeholders.
 \end{itemize}
