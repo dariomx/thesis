@@ -9,4 +9,5 @@ python-pocs/.pydevproject
 *.bbl
 *.blg
 *.orig
+*.toc
 makefile
