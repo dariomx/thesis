@@ -152,7 +152,7 @@
   publisher={Institute of Mathematics, Academy of Sciences of the Czech Republic}
 }
 
-@book{eispack,
+@book{eispack76,
   added-at = {2011-06-24T00:00:00.000+0200},
   author = {Smith, Brian T. and Boyle, James M. and Dongarra, Jack and Garbow, Burton S. and Ikebe, Yasuhiko and Klema, Virginia C. and Moler, Cleve B.},
   biburl = {http://www.bibsonomy.org/bibtex/2d3a280c149a0d105bfddd617d7e6e9f0/dblp},

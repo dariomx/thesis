@@ -559,7 +559,7 @@ method comes constrained by a provided preconditioner and a distribution which
 is far less general purpose. Our goal in this software project has been to bring
 state-of-the-art methods and expertise from “bleeding edge” to production.
 
-Anasazi (C++):
+Anazi (C++):
 https://trilinos.org/docs/r12.4/packages/anasazi/doc/html/index.html
 
 Slepc (C):
