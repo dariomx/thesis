@@ -1,0 +1,22 @@
+tracemin_[pcg,lu] dont work
+
+cholesky works, but needs among other stuff these:
+
+cython
+scikits.sparse
+http://faculty.cse.tamu.edu/davis/suitesparse.html
+
+look for cholesky type in university of florida collection of sparse matrices
+
+search for group=belcastro
+http://www.cise.ufl.edu/research/sparse/matrices/Belcastro/mouse_gene.html
+http://www.cise.ufl.edu/research/sparse/matrices/Belcastro/human_gene1.html
+http://www.cise.ufl.edu/research/sparse/matrices/Belcastro/human_gene2.html
+
+https://sites.google.com/site/xiaomengsite/research/resources/graph-dataset
+
+http://staffweb.cms.gre.ac.uk/~wc06/partition/#graphs
+
+http://www.cise.ufl.edu/research/sparse/matrices/GHS_psdef/bmwcra_1.html (10m)
+http://www.cise.ufl.edu/research/sparse/matrices/Wissgott/parabolic_fem.html (3.6m)
+http://www.cise.ufl.edu/research/sparse/matrices/Schmid/thermal2.html (8.5m)

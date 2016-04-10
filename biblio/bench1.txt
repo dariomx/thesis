@@ -1,0 +1,13 @@
+Tim Davis sparse matrix collection
+
+10th DIMACS Implementation Challenge:                                   
+http://www.cc.gatech.edu/dimacs10/index.shtml        
+
+
+http://www.cc.gatech.edu/dimacs10/downloads.shtml
+
+
+http://www.cc.gatech.edu/dimacs10/archive/matrix.shtml
+
+
+

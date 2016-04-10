@@ -1,0 +1,6 @@
+http://math.ucdenver.edu/~aknyazev/research/eigensolvers/
+
+What is "preconditioned eigensolvers?" In one sentence those are matrix-free iterative methods for partial eigenvalue problems that take advantage of using preconditioners to accelerate convergence. A complete answer can be found in the papers "Preconditioned eigensolvers - an oxymoron?" and Preconditioned eigensolvers by Andrew Knyazev. See also an article Andrew Knyazev, Volker Mehrmann, and Klaus Neymeyr, Preconditioning in Eigenvalue Computations, SIAM News, v. 35, no. 10, p. 9, December 2003. about Miniworkshop: Preconditioning in Eigenvalue Computations, 03.03. - 09.03.2002, Oberwolfach.
+
+
+
