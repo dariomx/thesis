@@ -11,3 +11,4 @@ python-pocs/.pydevproject
 *.orig
 *.toc
 makefile
+*.pyc
