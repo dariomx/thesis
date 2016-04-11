@@ -121,7 +121,7 @@ def deb(fmt, *args):
         log(fmt, *args)
 
 def is_nearly_zero(x):
-    return True if abs(x < zero_tol) else False
+    return True if abs(x) < zero_tol else False
 
 if __name__ == '__main__':
     suite = ut.TestSuite()

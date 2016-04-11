@@ -2,7 +2,7 @@
 
 from sys import argv
 from fiedler import fiedler_vector
-from util import test
+from test_util import test
 
 def calc(L):
     return fiedler_vector(L, method="lobpcg")

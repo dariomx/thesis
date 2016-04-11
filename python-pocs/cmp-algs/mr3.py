@@ -2,7 +2,7 @@
 
 from sys import argv
 from scipy.linalg import eigh
-from util import test
+from test_util import test
 
 def calc(L):
     ls, vs = eigh(L, eigvals=(1,1), overwrite_a=True)
@@ -12,4 +12,4 @@ def calc(L):
 
 # main
 if __name__ == '__main__':
-    test(argv, calc)
+    test(argv, calc, True)

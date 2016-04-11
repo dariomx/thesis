@@ -20,3 +20,7 @@ http://staffweb.cms.gre.ac.uk/~wc06/partition/#graphs
 http://www.cise.ufl.edu/research/sparse/matrices/GHS_psdef/bmwcra_1.html (10m)
 http://www.cise.ufl.edu/research/sparse/matrices/Wissgott/parabolic_fem.html (3.6m)
 http://www.cise.ufl.edu/research/sparse/matrices/Schmid/thermal2.html (8.5m)
+
+examples from UL dont work, we need laplacians!
+
+fst visualize the 867 one, so we can build our own with networkx; for that use https://gephi.org

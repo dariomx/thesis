@@ -2,10 +2,10 @@
 
 from sys import argv
 from fiedler import fiedler_vector
-from util import test
+from test_util import test
 
 def calc(L):
-    return fiedler_vector(L, method="tracemin")
+    return fiedler_vector(L, method="tracemin_pcg")
 
 # main
 if __name__ == '__main__':

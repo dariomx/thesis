@@ -1,3 +1,5 @@
+# stolen from networkx (adjusted a bit)
+
 from re import compile
 from functools import partial
 from numpy import (array, asmatrix, asarray, dot, matrix, ndarray, ones,
