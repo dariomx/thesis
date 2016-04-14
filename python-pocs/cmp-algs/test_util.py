@@ -1,22 +1,27 @@
 from datetime import datetime
 from itertools import izip
-from numpy import loadtxt, sign, ndarray
+from numpy import loadtxt, sign, ndarray, concatenate, inf
 from scipy.linalg import norm as dnorm
 from scipy.sparse.linalg import norm as snorm
-from scipy.sparse import issparse
+from scipy.sparse import issparse, coo_matrix, csr_matrix
 from scipy.io import mmread, mminfo
 import networkx as nx
 
-def load(L_file, dense, ac_file=None, fv_file=None):
-    if L_file.endswith(".mat"):
-        L  = loadtxt(L_file)
-    elif L_file.endswith(".mtx") or L_file.endswith(".mtz.gz"):
-        print "loading mm format:  " + str(mminfo(L_file))
+def load_mat(fn, dense):
+    if fn.endswith(".mat"):
+        M = loadtxt(fn)
+        M = M if dense else csr_matrix(M)
+    elif fn.endswith(".mtx") or fn.endswith(".mtz.gz"):
+        print "loading mm format:  " + str(mminfo(fn))
         start = datetime.now()
-        L = mmread(L_file)
-        L = L.toarray() if dense else L.tocsr() 
+        M = mmread(fn)
+        M = M.toarray() if dense else M.tocsr()
         end = datetime.now()
         print "loaded in " + str(end-start)
+    return M
+
+def load_lap(L_file, dense, ac_file=None, fv_file=None):
+    L  = load_mat(L_file, dense)
     ac = None if ac_file is None else loadtxt(ac_file)[1]
     fv = None if fv_file is None else loadtxt(fv_file)
     return L, ac, fv
@@ -27,12 +32,16 @@ def is_nearly_zero(x):
     return True if abs(x) < zero_tol else False
 
 # loads a graph from its laplacian
-def load_graph(L_file, zeros=False):
-    L, _, _ = load(L_file, dense=False)
+def load_graph(M_file, is_lap, zeros):
+    M = load_mat(M_file, dense=False)
     G = nx.Graph()
-    G.add_nodes_from(xrange(1, L.shape[0]+1))
-    Lc = L.tocoo()
-    for i, j, w in izip(Lc.row, Lc.col, Lc.data):
+    G.add_nodes_from(xrange(1, M.shape[0]+1))
+    Mc = M.tocoo()
+    for i, j, lw in izip(Mc.row, Mc.col, Mc.data):
+        if is_lap:
+            w = 0 if i==j else -lw
+        else:
+            w = lw
         zw = 0 if zeros and is_nearly_zero(w) else w
         G.add_edge(i, j, weight=zw)
     return G
@@ -43,12 +52,12 @@ def invsign(y, x):
 
 def relres(L, ac, fv):
     norm = snorm if issparse(L) else dnorm
-    return dnorm(L*fv - ac*fv) / norm(L)
+    return dnorm(L*fv - ac*fv, inf) / norm(L, inf)
 
 def relerr(x, y):
     return dnorm(x - invsign(y, x)) / dnorm(x)
 
-def cmp(L, ac, fv, cac, cfv):
+def cmp_ac_fv(L, cac, cfv, ac, fv):
     print "alg conn: %.16f" % cac
     print "relres c: %.16f" % relres(L, cac, cfv)
     if ac is not None and fv is not None:
@@ -56,13 +65,11 @@ def cmp(L, ac, fv, cac, cfv):
         args = (relerr(ac, cac), relerr(fv, cfv))
         print "relerr:  ac = %.16f,  fv = %.16f" % args
     
-def test(argv, calc, dense=False):
-    if len(argv) == 4:
-        L, ac, fv = load(argv[1], dense, argv[2], argv[3])
-    else:
-        L, ac, fv = load(argv[1], dense)  
-    start = datetime.now()
-    cac, cfv = calc(L)
-    end = datetime.now()
-    print "calc took %s" % (end - start)
-    cmp(L, ac, fv, cac, cfv)
+def lap(W, dense):
+    L = csr_matrix(-W)
+    D = W.sum(axis=1)
+    D = D if len(D.shape) == 1 else concatenate(D.A)
+    L.setdiag(D)
+    return L.toarray() if dense else L
+
+parse_bool = lambda s: s == "true" or s == "True"

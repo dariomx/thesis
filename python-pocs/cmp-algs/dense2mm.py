@@ -14,7 +14,7 @@ def dense2mm(dense_file, sparse_file):
         sparse = csr_matrix(dense)
         mmwrite(target=sparse_file,
                 a=sparse,
-                comment="laplacian of 867",
+                comment="miau",
                 field="real")
     else:
         print "ignoring conversion, gave same files"

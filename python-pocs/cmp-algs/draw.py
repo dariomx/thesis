@@ -6,9 +6,9 @@ import networkx as nx
 
 # draws a graph from its laplacian
 def draw(L_file, img_file):
-    G  = load_graph(L_file)
+    G  = load_graph(L_file, is_lap=True, zeros=True)
     aG = nx.to_agraph(G)
-    aG.layout(prog="fdp")
+    aG.layout(prog="sfdp")
     aG.draw(img_file)
     
 # main
