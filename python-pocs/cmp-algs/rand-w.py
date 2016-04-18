@@ -12,7 +12,8 @@ def rand_w(n, pz, W_file):
     tril = np.tril_indices(n, -1)
     rand_z = lambda x: 0 if random() <= pz else x
     W[tril] = map(rand_z, W[tril])
-    W[np.triu_indices(n, 1)] = W[tril]
+    W[np.triu_indices(n, 1)] = 0
+    W = W + W.T
     np.fill_diagonal(W, 1)
     print "saving matrix to " + W_file
     mmwrite(W_file, csr_matrix(W))

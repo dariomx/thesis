@@ -59,6 +59,7 @@ def relerr(x, y):
 
 def cmp_ac_fv(L, cac, cfv, ac, fv):
     print "alg conn: %.16f" % cac
+#    print "fv = %s" % cfv
     print "relres c: %.16f" % relres(L, cac, cfv)
     if ac is not None and fv is not None:
         print "relres i: %.16f" % relres(L, ac, fv)

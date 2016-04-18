@@ -1,0 +1,19 @@
+[1] Ahmed Sameh and John Wisniewski, A Trace minimization algorithm for the generalized
+eigenvalue problem. SIAM Journal of Numerical Analysis, Volume 19, No. 6, pp. 1243-
+1259, 1982.
+
+[2] Ahmed Sameh and Zhanye Tong, The trace minimization method for the symmetric
+generalized eigenvalue problem. Journal of Computational and Applied Mathematics,
+Volume 123 (1-2), pp. 155-175, 2000.
+
+[3] A. Klinvex, F. Saied, and A. Sameh, Parallel implementations of the trace minimization
+scheme TraceMIN for the sparse symmetric eigenvalue problem. Computers and
+Mathematics with Applications, Volume 65, No. 3, pp. 460-468, 2013.
+
+[4] Sameh, Ahmed H., and Alicia Klinvex. "A Scalable Parallel Symmetric Eigenvalue Problem Solver: TraceMIN."
+Think that this one appeared on following conferences:
+11th. World Congress on Computational Mechanics (WCCM XI)
+5th. European Conference on Computational Mechanics (ECCM V)
+6th. European Conference on Computational Fluid Dynamics (ECFD VI)
+July 20 - 25, 2014, Barcelona, Spain
+

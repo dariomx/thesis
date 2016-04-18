@@ -1,0 +1,2 @@
+rayleigh-ritz theorem: eigenvalue as an optimization problem
+

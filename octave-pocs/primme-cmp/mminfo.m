@@ -1,0 +1,1 @@
+../gold-cmp/mminfo.m
