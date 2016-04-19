@@ -1,10 +1,11 @@
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
+from numpy import diag
 from scipy.linalg import norm as dnorm
 from scipy.sparse.linalg import norm as snorm
-from scipy.sparse import issparse, coo_matrix, csr_matrix
-from scipy.io import mmread, mminfo
+from scipy.sparse import issparse, coo_matrix, csr_matrix, lil_matrix
+from scipy.io import mmread, mminfo, savemat
 import networkx as nx
 
 def load_mat(fn, dense):
@@ -51,15 +52,18 @@ def invsign(y, x):
     return -y if (sign(x) == -sign(y)).all() else y
 
 def relres(L, ac, fv):
-    norm = snorm if issparse(L) else dnorm
-    return dnorm(L*fv - ac*fv, inf) / norm(L, inf)
-
+    rr = None
+    if issparse(L):
+        rr = dnorm(L*fv - ac*fv, inf) / snorm(L, inf)
+    else:
+        rr = dnorm(L.dot(fv) - ac*fv, inf) / dnorm(L, inf)        
+    return rr
+        
 def relerr(x, y):
     return dnorm(x - invsign(y, x)) / dnorm(x)
 
 def cmp_ac_fv(L, cac, cfv, ac, fv):
     print "alg conn: %.16f" % cac
-#    print "fv = %s" % cfv
     print "relres c: %.16f" % relres(L, cac, cfv)
     if ac is not None and fv is not None:
         print "relres i: %.16f" % relres(L, ac, fv)
@@ -67,10 +71,11 @@ def cmp_ac_fv(L, cac, cfv, ac, fv):
         print "relerr:  ac = %.16f,  fv = %.16f" % args
     
 def lap(W, dense):
-    L = csr_matrix(-W)
-    D = W.sum(axis=1)
-    D = D if len(D.shape) == 1 else concatenate(D.A)
-    L.setdiag(D)
+    d = W.sum(axis=1)
+    d = d if len(d.shape) == 1 else concatenate(d.A)
+    D = lil_matrix(W.shape)
+    D.setdiag(d)
+    L = csr_matrix(D) - csr_matrix(W)
     return L.toarray() if dense else L
 
 parse_bool = lambda s: s == "true" or s == "True"

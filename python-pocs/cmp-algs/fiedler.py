@@ -44,6 +44,7 @@ class _PCGSolver(object):
             alpha = rz / ddot(p, Ap)
             x = daxpy(p, x, a=alpha)
             r = daxpy(Ap, r, a=-alpha)
+            #print "tol=%.10f, res2 = %.16f\n" % (tol, dasum(r))
             if dasum(r) < tol:
                 return x
             z = M(r)
@@ -164,6 +165,7 @@ def _tracemin_fiedler(L, X, normalized, tol, method):
         X *= Y
         # Test for convergence exploiting the fact that L * X == W * Y.
         res = dasum(W * asmatrix(Y)[:, 0] - sigma[0] * X[:, 0]) / Lnorm
+        #print "res = %.16f\n" % (res)
         if res < tol:
             break
         # Depending on the linear solver to be used, two mathematically

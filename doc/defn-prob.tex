@@ -116,7 +116,7 @@ matrix used in Spectral Graph Theory, that we care about, is
 called the Laplacian ($L$); its definition follows below: 
 
 \begin{align*}
-  L_{ij} &= \twopartdef{d_i}{i = j}{-w_{ij}}{i \ne j} \\\\
+  L_{ij} &= \twopartdef{d_i - w_{ii}}{i = j}{-w_{ij}}{i \ne j} \\\\
     \suchthat & d_i = \sum_{j=1}^n w_{ij}
 \end{align*}
 \hfill
