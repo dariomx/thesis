@@ -1,10 +1,12 @@
-W = W = full(mmread("5000.mtx"));
-D = diag(sum(W));
-L = D - W;
+L = full(mmread("domain/867.mtx"));
+#W = full(mmread("mine/6000.mtx"));
+#D = diag(sum(W));
+#L = D - W;
 numEvals = 2;
 target = 'SA';
+method = 0;
 primme_start = tic;
-[primme_V,primme_D,norms,primmeout] = primme_eigs(L, numEvals, target, struct(), eigsMethod=0);
+[primme_V,primme_D,norms,primmeout] = primme_eigs(L, numEvals, target, struct(), eigsMethod=method);
 primme_time_elapsed = toc(primme_start);
 ac = diag(primme_D)(2:2);
 fv = primme_V(:,2);

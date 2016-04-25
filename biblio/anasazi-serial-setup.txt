@@ -1,0 +1,7 @@
+in a separate empty dir
+
+need swig newer (3+) to install python support
+
+cmake -DBUILD_SHARED_LIBS=ON -DTPL_ENABLE_Pthread=OFF -DTPL_ENABLE_MPI=OFF -DTPL_ENABLE_Netcdf=OFF -DTrilinos_ENABLE_Anasazi=ON -DTrilinos_ENABLE_Ifpack2=ON -DTrilinos_ENABLE_PyTrilinos=OFF -DCMAKE_INSTALL_PREFIX=/home/dario/thesis/local/trilinos ~/thesis/local/trilinos-12.6.2-Source
+
+cmake -DBUILD_SHARED_LIBS=OFF -DTPL_ENABLE_Pthread=OFF -DTPL_ENABLE_MPI=OFF -DTPL_ENABLE_Netcdf=OFF -DTrilinos_ENABLE_Anasazi=ON -DTrilinos_ENABLE_Ifpack2=ON -DTrilinos_ENABLE_PyTrilinos=OFF -DCMAKE_INSTALL_PREFIX=/home/dario/thesis/local/trilinos ~/thesis/local/trilinos-12.6.2-Source

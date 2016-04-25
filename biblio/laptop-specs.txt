@@ -1,0 +1,31 @@
+http://i.dell.com/sites/doccontent/shared-content/data-sheets/en/Documents/latitude-e6410-e6510-specsheet.pdf
+
+Intel® CoreTM i5-520M (2.4GHz, 3M cache) with Turbo Boost
+Technology
+
+/proc/cpyinfo:
+
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 37
+model name      : Intel(R) Core(TM) i5 CPU       M 520  @ 2.40GHz
+stepping        : 5
+microcode       : 0x4
+cpu MHz         : 2400.000
+cache size      : 3072 KB
+
+http://ark.intel.com/products/47341/Intel-Core-i5-520M-Processor-3M-Cache-2_40-GHz
+
+https://en.wikipedia.org/wiki/IEEE_floating_point
+
+http://www.math.utah.edu/~beebe/software/ieee/
+
+"Modern computer arithmetic is based largely on the IEEE 754 Standard for Binary Floating-Point Arithmetic. This Standard defines required and implementation-dependent behavior, but does not specify how the Standard is to be implemented. A computer vendor is free to implement the Standard entirely in hardware, entirely in software, or in a combination of the two.
+
+The AMD AMD-64 (Opteron), Intel IA-32 (formerly, x86), Hewlett-Packard/Intel IA-64, Motorola 68K, and IBM Power and PowerPC systems are examples of hardware-only implementations.
+
+The architectural specification of Java requires IEEE 754 arithmetic, but only a subset of it, and overspecifies its behavior, with severe performance loss on systems with multiply-add instructions (most RISC processors), or extended-length registers (Intel IA-32 and HP/Intel IA-64). See Kahan and Darcy's biting paper, How Java's Floating-Point Hurts Everyone Everywhere, in the bibliography.
+There is absolutely no standardization whatever for software access to IEEE 754 floating-point rounding mode control, exception masking, and interrupt handling in any programming language. Too many compilers and associated run-time libraries completely lack such support, sometimes leaving the programmer no recourse but low-level nonportable machine-dependent assembly language programming. It is simply an outrage that this situation still exists more than twenty years after the first hardware implementation of IEEE 754, the Intel 8087, was shipped to customers, with hundreds of millions of processors today supporting IEEE 754."
+
+
+
