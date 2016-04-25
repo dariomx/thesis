@@ -1,0 +1,14 @@
+kurgan:cmp-algs > ./test-fiedler.py mine/1000.mtx false lobpcg false
+loading mm format:  (1000, 1000, 151055, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.220754
+calc took 0:00:00.370000
+alg conn: -131.0099768805082476
+relres c: 0.0000000002319304
+
+kurgan:cmp-algs > ./test-fiedler.py mine/1000.mtx false lobpcg false
+loading mm format:  (1000, 1000, 151055, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.219245
+calc took 0:00:00.249003
+alg conn: 121.2337453651437187
+relres c: 0.0000000000085341
+

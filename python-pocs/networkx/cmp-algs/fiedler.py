@@ -235,7 +235,7 @@ def _get_fiedler_func(method):
 
     return find_fiedler
 
-def fiedler_vector(L, normalized=False, tol=1e-8, method='tracemin'):
+def fiedler_vector(L, normalized=False, tol=1e-7, method='tracemin'):
     find_fiedler = _get_fiedler_func(method)
     x = None if method != 'lobpcg' else random.rand(L.shape[0])
     return find_fiedler(L, x, normalized, tol)

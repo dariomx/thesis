@@ -39,6 +39,8 @@
 #include "Ifpack2_Factory.hpp"
 #include "Ifpack2_Preconditioner.hpp"
 
+#include <sys/time.h>
+
   using Teuchos::RCP;
   using std::cout;
   using std::cin;
@@ -58,6 +60,8 @@
   typedef Anasazi::OperatorTraits<Scalar, TMV, TOP>                 TOPT;
 
 void formLaplacian(const RCP<const CrsMatrix>& A, const bool weighted, const bool normalized, RCP<CrsMatrix>& L, RCP<Vector>& auxVec, const bool is_lap);
+
+long int getCurrentMillis();
 
 int main(int argc, char *argv[]) {
   //
@@ -79,7 +83,7 @@ int main(int argc, char *argv[]) {
   // 
   std::string inputFilename("/home/amklinv/matrices/mesh1em6_Laplacian.mtx");
   std::string outputFilename("/home/amklinv/matrices/mesh1em6_Fiedler.mtx");
-  Scalar tol = 1e-6;
+  Scalar tol = 1e-7;
   int nev = 1;
   int blockSize = 1;
   bool usePrec = false;
@@ -220,7 +224,10 @@ int main(int argc, char *argv[]) {
   //
   // Solve the problem to the specified tolerances
   //
+  long int start = getCurrentMillis();
   Anasazi::ReturnType returnCode = MySolverMgr.solve();
+  long int end = getCurrentMillis();
+  cout << "calc took: " << (end-start) << " ms";
   if (returnCode != Anasazi::Converged && myRank == 0) {
     cout << "Anasazi::EigensolverMgr::solve() returned unconverged." << std::endl;
   }
@@ -251,15 +258,17 @@ int main(int argc, char *argv[]) {
     TMVT::MvNorm( Kvec, normR );
   
     if (myRank == 0) {
-      cout.setf(std::ios_base::right, std::ios_base::adjustfield);
+      cout.setf(std::ios_base::right,
+                std::ios_base::adjustfield);
+      cout.setf(std::ios::fixed);
       cout<<"Actual Eigenvalues (obtained by Rayleigh quotient) : "<<std::endl;
       cout<<"------------------------------------------------------"<<std::endl;
-      cout<<std::setw(16)<<"Real Part"
-        <<std::setw(16)<<"Error"<<std::endl;
+      cout<<std::setw(20)<<"Real Part"
+        <<std::setw(20)<<"Error"<<std::endl;
       cout<<"------------------------------------------------------"<<std::endl;
       for (int i=0; i<numev; i++) {
-        cout<<std::setw(16)<<T(i,i)
-          <<std::setw(16)<<normR[i]/mat_norm
+        cout<<std::setw(20)<<std::setprecision(16)<<T(i,i)
+            <<std::setw(20)<<std::setprecision(16)<<(normR[i]/mat_norm)
           <<std::endl;
       }
       cout<<"------------------------------------------------------"<<std::endl;
@@ -276,7 +285,12 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-
+long int getCurrentMillis()
+{
+  struct timeval tp;
+  gettimeofday(&tp, NULL);
+  return tp.tv_sec * 1000 + tp.tv_usec / 1000;
+}
 
 /* Form the graph Laplacian and also return the null space
  * This function assumes the graph consists of only one strongly connected component

@@ -53,10 +53,12 @@ def invsign(y, x):
 
 def relres(L, ac, fv):
     rr = None
+    mat_norm_ord = 'fro'
+    vec_norm_ord = 2
     if issparse(L):
-        rr = dnorm(L*fv - ac*fv, inf) / snorm(L, inf)
+        rr = dnorm(L*fv - ac*fv, vec_norm_ord) / snorm(L, mat_norm_ord)
     else:
-        rr = dnorm(L.dot(fv) - ac*fv, inf) / dnorm(L, inf)        
+        rr = dnorm(L.dot(fv) - ac*fv, vec_norm_ord) / dnorm(L, mat_norm_ord)
     return rr
         
 def relerr(x, y):
