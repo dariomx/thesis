@@ -50,4 +50,4 @@ if __name__ == '__main__':
         L = get_lap(fn, is_lap, fmt)
         for met in methods:
             time, res = test_fiedler(L, met)
-            print("%s %s %s %.16f" % (fn, met, time, res))
+            print("%-20s %-15s %-10s %.16f" % (fn, met, time, res))

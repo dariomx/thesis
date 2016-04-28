@@ -6,7 +6,7 @@ from numpy import loadtxt, sign, ndarray, concatenate, inf
 from numpy import diag
 from scipy.linalg import norm as dnorm
 from scipy.sparse.linalg import norm as snorm
-from scipy.sparse import issparse
+from scipy.sparse import issparse, lil_matrix, csr_matrix
 from scipy.io import mmread, mminfo, savemat
 import networkx as nx
 

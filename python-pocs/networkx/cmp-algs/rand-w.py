@@ -5,7 +5,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.io import mmwrite
 
-def rand_w(n, pz, W_file):
+def rand_w(n, pz, fn):
     print "generating random weight matrix ... "
     tril = np.tril_indices(n, -1)
     m = len(tril[0])
@@ -17,12 +17,13 @@ def rand_w(n, pz, W_file):
     W[tril] = R
     W = W + W.T
     np.fill_diagonal(W, 1)
-    print "saving matrix to " + W_file
-    mmwrite(W_file, csr_matrix(W))
+    print "saving matrix to " + fn
+    mmwrite(fn, csr_matrix(W))
 
 # main
 if __name__ == '__main__':
-    n  = int(argv[1])
-    pz = float(argv[2])
-    W_file = argv[3]
-    rand_w(n, pz, W_file)
+    pz = float(argv[1])
+    ns  = map(int, argv[2:])
+    fns = map(lambda n: str(n) + ".mtx", ns)
+    for n,fn in zip(ns, fns):
+        rand_w(n, pz, fn)
