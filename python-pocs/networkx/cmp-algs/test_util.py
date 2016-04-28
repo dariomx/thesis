@@ -1,31 +1,52 @@
+from __future__ import print_function
+from sys import stderr
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
 from numpy import diag
 from scipy.linalg import norm as dnorm
 from scipy.sparse.linalg import norm as snorm
-from scipy.sparse import issparse, coo_matrix, csr_matrix, lil_matrix
+from scipy.sparse import issparse
 from scipy.io import mmread, mminfo, savemat
 import networkx as nx
 
-def load_mat(fn, dense):
+def eprint(*args, **kwargs):
+    print(*args, file=stderr, **kwargs)
+
+def conv_mat(M, fmt):
+    if fmt == "dense":
+        if type(M) == ndarray:
+            Mc = M
+        else:
+            Mc = M.toarray()
+    else:
+        import scipy
+        method = getattr(scipy.sparse, fmt + "_matrix")
+        Mc = method(M)
+    return Mc
+
+def load_mat(fn, fmt):
+    eprint("loading matrix ... ")
+    start = datetime.now()
     if fn.endswith(".mat"):
         M = loadtxt(fn)
-        M = M if dense else csr_matrix(M)
     elif fn.endswith(".mtx") or fn.endswith(".mtz.gz"):
-        print "loading mm format:  " + str(mminfo(fn))
-        start = datetime.now()
+        eprint("mm header:  " + str(mminfo(fn)))
         M = mmread(fn)
-        M = M.toarray() if dense else M.tocsr()
-        end = datetime.now()
-        print "loaded in " + str(end-start)
-    return M
+    end = datetime.now()
+    load_time = end - start
+    eprint("loaded in %s" % load_time)
+    start = datetime.now()
+    Mc = conv_mat(M, fmt)
+    end = datetime.now()
+    conv_time = end - start
+    eprint("converted to format %s in %s" % (fmt, conv_time))
+    return Mc    
 
-def load_lap(L_file, dense, ac_file=None, fv_file=None):
-    L  = load_mat(L_file, dense)
-    ac = None if ac_file is None else loadtxt(ac_file)[1]
-    fv = None if fv_file is None else loadtxt(fv_file)
-    return L, ac, fv
+def load_fiedler_vec(ac_fn, fv_fn):
+    ac = None if ac_fn is None else loadtxt(ac_fn)[1]
+    fv = None if fv_fn is None else loadtxt(fv_fn)
+    return ac, fv
 
 def is_nearly_zero(x):
     eps = 2.220446049250313E-16
@@ -33,8 +54,8 @@ def is_nearly_zero(x):
     return True if abs(x) < zero_tol else False
 
 # loads a graph from its laplacian
-def load_graph(M_file, is_lap, zeros):
-    M = load_mat(M_file, dense=False)
+def load_graph(fn, is_lap, zeros):
+    M = load_mat(fn, fmt="dense")
     G = nx.Graph()
     G.add_nodes_from(xrange(1, M.shape[0]+1))
     Mc = M.tocoo()
@@ -65,19 +86,19 @@ def relerr(x, y):
     return dnorm(x - invsign(y, x)) / dnorm(x)
 
 def cmp_ac_fv(L, cac, cfv, ac, fv):
-    print "alg conn: %.16f" % cac
-    print "relres c: %.16f" % relres(L, cac, cfv)
+    eprint("alg conn: %.16f" % cac)
+    eprint("relres c: %.16f" % relres(L, cac, cfv))
     if ac is not None and fv is not None:
-        print "relres i: %.16f" % relres(L, ac, fv)
+        eprint("relres i: %.16f" % relres(L, ac, fv))
         args = (relerr(ac, cac), relerr(fv, cfv))
-        print "relerr:  ac = %.16f,  fv = %.16f" % args
+        eprint("relerr:  ac = %.16f,  fv = %.16f" % args)
     
-def lap(W, dense):
+def lap(W, fmt):
     d = W.sum(axis=1)
     d = d if len(d.shape) == 1 else concatenate(d.A)
     D = lil_matrix(W.shape)
     D.setdiag(d)
     L = csr_matrix(D) - csr_matrix(W)
-    return L.toarray() if dense else L
+    return conv_mat(L, fmt)
 
 parse_bool = lambda s: s == "true" or s == "True"

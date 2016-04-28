@@ -1,40 +1,53 @@
 #!/usr/bin/env python
 
-from sys import argv
+from sys import argv, exit
 from datetime import datetime
 from scipy.linalg import eigh
 from fiedler import fiedler_vector
-from test_util import load_lap, load_mat
-from test_util import cmp_ac_fv, lap, parse_bool
+from test_util import load_mat, conv_mat, relres, lap, parse_bool
+
+def get_lap(fn, is_lap, fmt):
+    if is_lap:
+        L = load_mat(fn, fmt)
+    else:
+        W = load_mat(fn, fmt)
+        L = lap(W, fmt)
+    return L
 
 def calc_fiedler(L, method):
     if method == "mr3":
-        ls, vs = eigh(L, eigvals=(1,1), overwrite_a=True)
+        Ld = conv_mat(L, "dense")
+        ls, vs = eigh(Ld, eigvals=(1,1), overwrite_a=True)
         ac = ls[0]
         fv = vs[:,0]
         return ac, fv
     else: 
         return fiedler_vector(L, method=method)
 
-def test(M_file, is_lap, method, dense, eigvals_file, fv_file):
-    if is_lap:
-        L, ac, fv = load_lap(M_file, dense, eigvals_file, fv_file)
-    else:
-        W = load_mat(M_file, dense)
-        L = lap(W, dense)
-        ac, fv = None, None
+def test_fiedler(L, method):
     start = datetime.now()
-    cac, cfv = calc_fiedler(L, method)
+    ac, fv = calc_fiedler(L, method)
     end = datetime.now()
-    print "calc took %s" % (end - start)
-    cmp_ac_fv(L, cac, cfv, ac, fv)
+    time = (end - start).total_seconds()
+    res = relres(L, ac, fv)
+    return time, res
     
 # main
 if __name__ == '__main__':
-    M_file = argv[1]
-    is_lap = parse_bool(argv[2])
-    method = argv[3]
-    dense = parse_bool(argv[4]) if len(argv) >= 5 else False
-    eigvals_file = argv[5] if len(argv) >=6 else None
-    fv_file = argv[6] if len(argv) >= 7 else None
-    test(M_file, is_lap, method, dense, eigvals_file, fv_file)
+    if len(argv) < 5:
+        args = "<is_lap> <method> <fmt> <file1> [<file2> ... ]"
+        eprint (("\nUsage: %s " + args + "\n") % argv[0])
+        exit(1)
+    is_lap = parse_bool(argv[1])
+    method = argv[2]
+    fmt = argv[3]
+    fns = argv[4:]
+    if method == "all":
+        methods = ["mr3", "lanczos", "lobpcg", "tracemin_pcg"]
+    else:
+        methods = [method]
+    for fn in fns:
+        L = get_lap(fn, is_lap, fmt)
+        for met in methods:
+            time, res = test_fiedler(L, met)
+            print("%s %s %s %.16f" % (fn, met, time, res))

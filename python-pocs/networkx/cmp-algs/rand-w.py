@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 
 from sys import argv
-from random import random
 import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.io import mmwrite
 
 def rand_w(n, pz, W_file):
     print "generating random weight matrix ... "
-    W = np.random.random((n, n))
     tril = np.tril_indices(n, -1)
-    rand_z = lambda x: 0 if random() <= pz else x
-    W[tril] = map(rand_z, W[tril])
-    W[np.triu_indices(n, 1)] = 0
+    m = len(tril[0])
+    R = np.random.random(m)
+    R[0:int(m*pz)] = 0
+    for i in xrange(3):
+        np.random.shuffle(R)
+    W = np.zeros((n,n))
+    W[tril] = R
     W = W + W.T
     np.fill_diagonal(W, 1)
     print "saving matrix to " + W_file
