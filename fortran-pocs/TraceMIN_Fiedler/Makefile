@@ -12,6 +12,10 @@ SPARSKIT=libskit.a
 CSPARSE=libcsparse.a
 MCFIEDLER=libmcfiedler
 
+# todo:
+# sudo ln -s /usr/lib/libskit.so.2.0 /usr/lib/libskit.so
+LD_FLAGS = -lskit -lcsparse 
+
 TEST_MATRIX=matrices/small.mtx
 NUM_PROCS=4
 
@@ -25,12 +29,11 @@ fiedlerdense.o mc_general_fiedler.o
 all: mcfiedler_lib_shared
 
 
-mcfiedler_lib_static: $(LIB_OBJS)
+mcfiedler_lib: $(LIB_OBJS)
 	ar r  $(MCFIEDLER).a $(LIB_OBJS)
 
 mcfiedler_lib_shared: $(LIB_OBJS)
-	gcc -shared -o $(MCFIEDLER).so $(LIB_OBJS)
-
+	gcc -shared -o $(MCFIEDLER).so $(LIB_OBJS) $(LD_FLAGS)
 
 tar:
 	/bin/rm -r -f  TraceMIN_Fiedler
@@ -50,7 +53,7 @@ tar:
 	rmdir TraceMIN_Fiedler
 
 clean:
-	/bin/rm -f *.exe *.o
+	/bin/rm -f *.exe *.o *.so
 
 #========================================================================
 

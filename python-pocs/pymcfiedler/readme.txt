@@ -12,4 +12,8 @@ Build with: python setup.py build
 
 Install with: python setup.py install
 
+To use it, make sure that the directory where the deps of the .so live,
+are part of LD_LIBRARY_PATH; eg
+
+
 
