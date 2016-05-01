@@ -4,15 +4,7 @@ from sys import argv, exit
 from datetime import datetime
 from scipy.linalg import eigh
 from fiedler import fiedler_vector
-from test_util import load_mat, conv_mat, relres, lap, parse_bool
-
-def get_lap(fn, is_lap, fmt):
-    if is_lap:
-        L = load_mat(fn, fmt)
-    else:
-        W = load_mat(fn, fmt)
-        L = lap(W, fmt)
-    return L
+from test_util import relres, parse_bool, eprint, get_lap, conv_mat
 
 def calc_fiedler(L, method):
     if method == "mr3":
@@ -30,7 +22,7 @@ def test_fiedler(L, method):
     end = datetime.now()
     time = (end - start).total_seconds()
     res = relres(L, ac, fv)
-    return time, res
+    return ac, time, res
     
 # main
 if __name__ == '__main__':
@@ -49,5 +41,5 @@ if __name__ == '__main__':
     for fn in fns:
         L = get_lap(fn, is_lap, fmt)
         for met in methods:
-            time, res = test_fiedler(L, met)
-            print("%-20s %-15s %-10s %.16f" % (fn, met, time, res))
+            ac, time, res = test_fiedler(L, met)
+            print("%-20s %-15s %5.2f\t%-.3E\t%.3E" % (fn, met, time, ac, res))

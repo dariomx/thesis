@@ -1,9 +1,9 @@
-from numpy.distutils.core import Extension, setup
+from distutils.core import setup, Extension
 
 pymcfiedler = Extension('pymcfiedler',
-                        libraries = ['mcfiedler'],
+                        libraries = ['skit', 'csparse', 'mcfiedler'],
                         include_dirs = ['/usr/lib/python2.7/dist-packages/numpy/f2py/src/'],
-                        library_dirs = [ ],
+                        library_dirs = ['../../fortran-pocs/TraceMIN_Fiedler'],
                         sources = ['pymcfiedlermodule.c'])
 
 setup (name = 'MCFiedler',

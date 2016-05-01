@@ -14,7 +14,7 @@ MCFIEDLER=libmcfiedler
 
 # todo:
 # sudo ln -s /usr/lib/libskit.so.2.0 /usr/lib/libskit.so
-LD_FLAGS = -lskit -lcsparse 
+LD_FLAGS = -lskit -lcsparse $(MKL_LIB)
 
 TEST_MATRIX=matrices/small.mtx
 NUM_PROCS=4
@@ -33,7 +33,10 @@ mcfiedler_lib: $(LIB_OBJS)
 	ar r  $(MCFIEDLER).a $(LIB_OBJS)
 
 mcfiedler_lib_shared: $(LIB_OBJS)
-	gcc -shared -o $(MCFIEDLER).so $(LIB_OBJS) $(LD_FLAGS)
+	$(MPIF90) -shared -o $(MCFIEDLER).so $(LIB_OBJS) $(LD_FLAGS)
+
+test: $(LIB_OBJS) test.f90
+	$(MPIF90) -o $@ test.f90 $(LIB_OBJS) $(LD_FLAGS)
 
 tar:
 	/bin/rm -r -f  TraceMIN_Fiedler

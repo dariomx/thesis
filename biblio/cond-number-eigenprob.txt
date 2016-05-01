@@ -1,0 +1,2 @@
+https://en.wikipedia.org/wiki/Eigenvalue_algorithm#Condition_number
+

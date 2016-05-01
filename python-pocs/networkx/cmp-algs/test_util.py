@@ -3,13 +3,17 @@ from sys import stderr
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
-from numpy import diag
-from scipy.linalg import norm as dnorm
+from numpy import diagflat
+from numpy.linalg import cond
+from scipy.linalg import norm as dnorm, eigh
 from scipy.sparse.linalg import norm as snorm
 from scipy.sparse import issparse, lil_matrix, csr_matrix
 from scipy.io import mmread, mminfo, savemat
 import networkx as nx
 
+mat_norm_ord = 'fro'
+vec_norm_ord = 2
+    
 def eprint(*args, **kwargs):
     print(*args, file=stderr, **kwargs)
 
@@ -74,16 +78,19 @@ def invsign(y, x):
 
 def relres(L, ac, fv):
     rr = None
-    mat_norm_ord = 'fro'
-    vec_norm_ord = 2
     if issparse(L):
         rr = dnorm(L*fv - ac*fv, vec_norm_ord) / snorm(L, mat_norm_ord)
     else:
         rr = dnorm(L.dot(fv) - ac*fv, vec_norm_ord) / dnorm(L, mat_norm_ord)
     return rr
         
-def relerr(x, y):
+def relerr_vec(x, y):
     return dnorm(x - invsign(y, x)) / dnorm(x)
+
+def relerr_mat(A, B):
+    assert issparse(A) == issparse(B), "incompatible matrices"
+    norm = snorm if issparse(A) else dnorm
+    return norm(A - B, mat_norm_ord) / norm(A, mat_norm_ord)
 
 def cmp_ac_fv(L, cac, cfv, ac, fv):
     eprint("alg conn: %.16f" % cac)
@@ -100,5 +107,18 @@ def lap(W, fmt):
     D.setdiag(d)
     L = csr_matrix(D) - csr_matrix(W)
     return conv_mat(L, fmt)
+
+def get_lap(fn, is_lap, fmt):
+    if is_lap:
+        L = load_mat(fn, fmt)
+    else:
+        W = load_mat(fn, fmt)
+        L = lap(W, fmt)
+    return L
+
+def cond_err(A):
+    ls, V = eigh(conv_mat(A, fmt="dense"), overwrite_a=False)
+    D = diagflat(ls)
+    return cond(V, p=mat_norm_ord), relerr_mat(A, V.T*D*V)
 
 parse_bool = lambda s: s == "true" or s == "True"
