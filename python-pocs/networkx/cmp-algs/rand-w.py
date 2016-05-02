@@ -7,18 +7,7 @@ from scipy.io import mmwrite
 import scipy.stats
 from test_util import eprint
 
-# ensures an upperbound of the algebraic connectivity
-# (may break the contract with self-similarity)
-def ensure_upbound_ac(W, upbound_ac):
-    n = W.shape[0]
-    i = np.random.randint(0, n)
-    j = np.random.randint(0, n)
-    W[i,:] = 0
-    W[:,i] = 0
-    W[i,j] = upbound_ac
-    W[j,i] = W[i,j]
-    
-def rand_w(dist_name, dist_params, n, pz, upbound_ac, fn):
+def rand_w(dist_name, dist_params, n, pz, fn):
     print("generating random weight matrix with dist %s" % dist_name)
     dist = getattr(scipy.stats, dist_name)
     dps = map(float, dist_params.split(","))
@@ -32,21 +21,19 @@ def rand_w(dist_name, dist_params, n, pz, upbound_ac, fn):
     W[tril] = R
     W = W + W.T
     np.fill_diagonal(W, 1)
-    ensure_upbound_ac(W, upbound_ac)
     print "saving matrix to " + fn
     mmwrite(fn, csr_matrix(W))
 
 # main
 if __name__ == '__main__':
-    if len(argv) < 6:
-        args = "<pz> <dist_name> <dist_params> <upbound_ac> <n1> [<n2> <n3>...]"
+    if len(argv) < 5:
+        args = "<pz> <dist_name> <dist_params> <n1> [<n2> <n3>...]"
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
     pz = float(argv[1])
     dist_name = argv[2]
     dist_params = argv[3]
-    upbound_ac = float(argv[4])
-    ns  = map(int, argv[5:])
+    ns  = map(int, argv[4:])
     fns = map(lambda n: str(n) + ".mtx", ns)
     for n,fn in zip(ns, fns):
-        rand_w(dist_name, dist_params, n, pz, upbound_ac, fn)
+        rand_w(dist_name, dist_params, n, pz, fn)

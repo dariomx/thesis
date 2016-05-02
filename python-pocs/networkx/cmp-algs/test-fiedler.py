@@ -44,9 +44,9 @@ if __name__ == '__main__':
         methods = [method]
     for fn in fns:
         L = get_lap(fn, is_lap, fmt)
-        ac_ubl, ac_ubr, ac_ub = get_ac_upbound(L)
-        args = (relname(fn), "upbound", ac_ubl, ac_ubr, ac_ub)
-        print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
+        #ac_ubl, ac_ubr, ac_ub = get_ac_upbound(L)
+        #args = (relname(fn), "upbound", ac_ubl, ac_ubr, ac_ub)
+        #print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
         for met in methods:
             ac, time, res = test_fiedler(L, met)
             args = (relname(fn), met, time, ac, res)
