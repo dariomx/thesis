@@ -1,6 +1,12 @@
+#!/usr/bin/octave -qf
+
+warning('off',
+        'Octave:possible-matlab-short-circuit-operator');
 printf ("reading matrix from file ..."); fflush(stdout);
-#L = full(mmread("domain/867.mtx"));
-W = full(mmread("mine/6000.mtx"));
+args = argv();
+fn = args{1};
+#L = full(mmread(fn));
+W = full(mmread(fn));
 printf ("calculating laplacian ..."); fflush(stdout);
 D = diag(sum(W));
 L = D - W;

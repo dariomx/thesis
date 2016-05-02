@@ -3,7 +3,7 @@ from sys import stderr
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
-from numpy import diagflat
+from numpy import diagflat, diagonal, tril_indices
 from numpy.linalg import cond
 from scipy.linalg import norm as dnorm, eigh
 from scipy.sparse.linalg import norm as snorm
@@ -99,7 +99,8 @@ def cmp_ac_fv(L, cac, cfv, ac, fv):
         eprint("relres i: %.16f" % relres(L, ac, fv))
         args = (relerr(ac, cac), relerr(fv, cfv))
         eprint("relerr:  ac = %.16f,  fv = %.16f" % args)
-    
+
+# calculates the (unormalized) laplacian from the weights matrix
 def lap(W, fmt):
     d = W.sum(axis=1)
     d = d if len(d.shape) == 1 else concatenate(d.A)
@@ -107,6 +108,20 @@ def lap(W, fmt):
     D.setdiag(d)
     L = csr_matrix(D) - csr_matrix(W)
     return conv_mat(L, fmt)
+
+# upper bound of ac discovered by Fiedler, assumes similary (weight) graph 
+# had 1's on the diagonal (so they got lost while doing L = D - W, and
+# we recover here: diag(D) = diag(L) + diag(W) = diag(L) + diag(I))
+def get_ac_upbound(L):
+    n = float(L.shape[0])
+    dmin = min(map(lambda x: x+1, L.diagonal()))
+    return n/(n-1), dmin, n/(n-1) * dmin
+
+# returns the original weights from the laplacian (just the lower half
+# given symmetry).
+def get_weights(L):
+    n = L.shape[0]
+    return -L[tril_indices(n, -1)]
 
 def get_lap(fn, is_lap, fmt):
     if is_lap:
