@@ -1,0 +1,59 @@
+will try to fit against 24 dists 
+loading matrix ... 
+mm header:  (867, 867, 116370, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.225215
+converted to format csr in 0:00:00.004206
+extracting weights from domain/867.mtx ... 
+extracted 375411 weights (115503 nnz)
+building histogram ... 
+trying to fit data against dist norm
+norm gave fit_err of 3.689539
+trying to fit data against dist pareto
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:2225: RuntimeWarning: invalid value encountered in double_scalars
+  Lhat = muhat - Shat*mu
+pareto gave fit_err of 4.600990
+trying to fit data against dist pearson3
+pearson3 gave fit_err of 2.800046
+trying to fit data against dist powerlaw
+powerlaw gave fit_err of 117745.969736
+trying to fit data against dist powerlognorm
+powerlognorm gave fit_err of 2.886862
+trying to fit data against dist powernorm
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:3820: RuntimeWarning: divide by zero encountered in power
+  return (c*_norm_pdf(x) * (_norm_cdf(-x)**(c-1.0)))
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:3820: RuntimeWarning: invalid value encountered in multiply
+  return (c*_norm_pdf(x) * (_norm_cdf(-x)**(c-1.0)))
+powernorm gave fit_err of nan
+trying to fit data against dist rdist
+rdist gave fit_err of 40.918256
+trying to fit data against dist reciprocal
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:3943: RuntimeWarning: invalid value encountered in log
+  self.d = log(b*1.0 / a)
+reciprocal gave fit_err of 15.813698
+trying to fit data against dist rayleigh
+rayleigh gave fit_err of 2.973200
+trying to fit data against dist rice
+rice gave fit_err of 2.973837
+trying to fit data against dist recipinvgauss
+recipinvgauss gave fit_err of 3.035068
+trying to fit data against dist semicircular
+semicircular gave fit_err of 4.566676
+trying to fit data against dist t
+t gave fit_err of 3.689476
+trying to fit data against dist triang
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:4121: RuntimeWarning: divide by zero encountered in true_divide
+  return where(x < c, 2*x/c, 2*(1-x)/(1-c))
+triang gave fit_err of 1.690810
+trying to fit data against dist truncexpon
+truncexpon gave fit_err of 3.029168
+trying to fit data against dist truncnorm
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:4224: RuntimeWarning: divide by zero encountered in log
+  self._logdelta = log(self._delta)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:4224: RuntimeWarning: invalid value encountered in log
+  self._logdelta = log(self._delta)
+truncnorm gave fit_err of 11.155291
+trying to fit data against dist tukeylambda
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:1543: RuntimeWarning: divide by zero encountered in log
+  return log(self._pdf(x, *args))
+/usr/local/lib/python2.7/dist-packages/scipy/optimize/optimize.py:462: RuntimeWarning: invalid value encountered in subtract
+  numpy.max(numpy.abs(fsim[0] - fsim[1:])) <= ftol):

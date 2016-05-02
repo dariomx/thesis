@@ -1,0 +1,24 @@
+norm 	A normal continuous random variable.
+pareto 	A Pareto continuous random variable.
+pearson3 	A pearson type III continuous random variable.
+powerlaw 	A power-function continuous random variable.
+powerlognorm 	A power log-normal continuous random variable.
+powernorm 	A power normal continuous random variable.
+rdist 	An R-distributed continuous random variable.
+reciprocal 	A reciprocal continuous random variable.
+rayleigh 	A Rayleigh continuous random variable.
+rice 	A Rice continuous random variable.
+recipinvgauss 	A reciprocal inverse Gaussian continuous random variable.
+semicircular 	A semicircular continuous random variable.
+t 	A Student’s T continuous random variable.
+triang 	A triangular continuous random variable.
+truncexpon 	A truncated exponential continuous random variable.
+truncnorm 	A truncated normal continuous random variable.
+tukeylambda 	A Tukey-Lamdba continuous random variable.
+uniform 	A uniform continuous random variable.
+vonmises 	A Von Mises continuous random variable.
+vonmises_line 	A Von Mises continuous random variable.
+wald 	A Wald continuous random variable.
+weibull_min 	A Frechet right (or Weibull minimum) continuous random variable.
+weibull_max 	A Frechet left (or Weibull maximum) continuous random variable.
+wrapcauchy 	A wrapped Cauchy continuous random variable.

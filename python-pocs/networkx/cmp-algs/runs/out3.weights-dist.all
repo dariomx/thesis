@@ -1,0 +1,30 @@
+will try to fit against 7 dists 
+loading matrix ... 
+mm header:  (867, 867, 116370, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.291354
+converted to format csr in 0:00:00.004942
+extracting weights from domain/867.mtx ... 
+extracted 375411 weights (115503 nnz)
+building histogram ... 
+trying to fit data against dist uniform
+uniform gave fit_err of 4.929558
+trying to fit data against dist vonmises
+vonmises gave fit_err of 39224624000168933901979353088.000000
+trying to fit data against dist vonmises_line
+vonmises_line gave fit_err of 11.155291
+trying to fit data against dist wald
+wald gave fit_err of 4.007192
+trying to fit data against dist weibull_min
+weibull_min gave fit_err of 2.478729
+trying to fit data against dist weibull_max
+weibull_max gave fit_err of 3.213205
+trying to fit data against dist wrapcauchy
+/usr/local/lib/python2.7/dist-packages/scipy/optimize/optimize.py:462: RuntimeWarning: invalid value encountered in subtract
+  numpy.max(numpy.abs(fsim[0] - fsim[1:])) <= ftol):
+wrapcauchy gave fit_err of nan
+weibull_min is amont top 3 with fit_err=2.47872864919
+weibull_min params = (1.4988028674193501, -0.0078132813929621507, 0.40944483173676682)
+weibull_max is amont top 3 with fit_err=3.21320457377
+weibull_max params = (15.1656861212191, 3.3357460400867165, 3.0794762796577775)
+wald is amont top 3 with fit_err=4.00719239276
+wald params = (-0.043712326279597924, 0.45578389498988436)

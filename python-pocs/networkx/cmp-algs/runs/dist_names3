@@ -1,0 +1,7 @@
+uniform 	A uniform continuous random variable.
+vonmises 	A Von Mises continuous random variable.
+vonmises_line 	A Von Mises continuous random variable.
+wald 	A Wald continuous random variable.
+weibull_min 	A Frechet right (or Weibull minimum) continuous random variable.
+weibull_max 	A Frechet left (or Weibull maximum) continuous random variable.
+wrapcauchy 	A wrapped Cauchy continuous random variable.
