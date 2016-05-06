@@ -1,0 +1,25 @@
+kurgan:cmp-algs > ./test-fiedler.py true mr3 csr domain/867.mtx mine/eigv/867b.mtx  2>/dev/null 
+867.mtx    mr3             0.45081000	2.340E-01	6.362E-17
+867b.mtx   mr3             0.46415500	2.378E-01	1.170E-16
+
+kurgan:cmp-algs > ./test-fiedler.py false mr3 csr mine/867.mtx  2>/dev/null 
+867.mtx    mr3             0.44714900	7.219E+01	9.091E-17
+
+[default]
+
+kurgan:cmp-algs > ./test-fiedler.py true lanczos csr domain/867.mtx mine/eigv/867b.mtx  2>/dev/null 
+867.mtx    lanczos         2.84867400	2.340E-01	1.065E-12
+867b.mtx   lanczos         9.93465400	2.378E-01	1.245E-09
+
+kurgan:cmp-algs > ./test-fiedler.py false lanczos csr mine/867.mtx  2>/dev/null 
+867.mtx    lanczos         0.06130200	7.219E+01	1.791E-09
+
+[invert-shift sigma=0]
+
+kurgan:cmp-algs > ./test-fiedler.py true lanczos csr domain/867.mtx mine/eigv/867b.mtx  2>/dev/null 
+867.mtx    lanczos         0.21006500	2.340E-01	5.275E-07
+867b.mtx   lanczos         0.60008200	1.562E-02	3.316E-02
+
+kurgan:cmp-algs > ./test-fiedler.py false lanczos csr mine/867.mtx  2>/dev/null 
+867.mtx    lanczos         0.75586300	7.229E+01	1.164E-04
+

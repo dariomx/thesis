@@ -218,7 +218,9 @@ def _get_fiedler_func(method):
                 # Avoid LOBPCG when n < 10 due to
                 # https://github.com/scipy/scipy/issues/3592
                 # https://github.com/scipy/scipy/pull/3594
-                sigma, X = eigsh(L, 2, which='SM', tol=tol,
+                sigma, X = eigsh(L, 2, tol=tol,
+                                 sigma=0, which='LM',
+#                                 which='SM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
             else:

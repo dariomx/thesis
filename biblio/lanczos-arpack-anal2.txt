@@ -1,0 +1,13 @@
+[default]
+
+d/867.mtx    lanczos         2.84867400	2.340E-01	1.065E-12
+m/867.mtx    lanczos         0.06130200	7.219E+01	1.791E-09
+me/867b.mtx  lanczos         9.93465400	2.378E-01	1.245E-09
+
+[invert-shift sigma=0]
+
+d/867.mtx    lanczos         0.21006500	2.340E-01	5.275E-07
+m/867.mtx    lanczos         0.75586300	7.229E+01	1.164E-04
+me/867b.mtx  lanczos         0.60008200	1.562E-02	3.316E-02
+
+

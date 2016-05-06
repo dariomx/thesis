@@ -1,0 +1,5 @@
+http://mathoverflow.net/questions/105425/finding-the-smallest-eigenvalues-of-a-large-but-structured-matrix
+
+http://docs.scipy.org/doc/scipy/reference/tutorial/arpack.html
+
+
