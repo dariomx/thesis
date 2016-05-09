@@ -1,13 +1,37 @@
-[default]
+[mr3 - gold]
+m/867.mtx    mr3             0.45763600	7.219E+01	9.091E-17
+m/1000.mtx   mr3             0.71895900	8.671E+01	7.839E-17
+m/2000.mtx   mr3             5.59755900	1.825E+02	1.100E-16
+d/867.mtx    mr3             0.45882000	2.340E-01	6.362E-17
+m1/867b.mtx  mr3             0.46384600	2.378E-01	1.170E-16
+m2/867.mtx   mr3             0.47742900	2.340E-01	9.807E-17
+m2/867a.mtx  mr3             0.47754900	2.340E-01	1.175E-16
 
-d/867.mtx    lanczos         2.84867400	2.340E-01	1.065E-12
+[SM default]
 m/867.mtx    lanczos         0.06130200	7.219E+01	1.791E-09
-me/867b.mtx  lanczos         9.93465400	2.378E-01	1.245E-09
+m/1000.mtx   lanczos         0.06098900	8.671E+01	1.782E-09
+m/2000.mtx   lanczos         0.19354200	1.825E+02	1.018E-09
+d/867.mtx    lanczos         2.84867400	2.340E-01	1.065E-12
+m1/867b.mtx  lanczos         9.93465400	2.378E-01	1.245E-09
+m2/867.mtx   lanczos         8.54295000	2.340E-01	3.189E-12
+m2/867a.mtx  lanczos         8.23129300	2.340E-01	9.356E-13
 
-[invert-shift sigma=0]
-
-d/867.mtx    lanczos         0.21006500	2.340E-01	5.275E-07
+[LM invert-shift sigma=0]
 m/867.mtx    lanczos         0.75586300	7.229E+01	1.164E-04
-me/867b.mtx  lanczos         0.60008200	1.562E-02	3.316E-02
+m/1000.mtx   lanczos_si      0.91657800	2.500E-01	3.161E-02
+m/2000.mtx   lanczos_si      6.92199000	1.595E+01	2.070E-02
+d/867.mtx    lanczos         0.21006500	2.340E-01	5.275E-07
+m1/867b.mtx  lanczos         0.60008200	1.562E-02	3.316E-02
+m2/867.mtx   lanczos_si      0.63118500	2.340E-01	5.862E-09
+m2/867a.mtx  lanczos_si      0.64120800	2.340E-01	1.311E-08
 
+[LM invert-shift sigma=0, L - s*v1*v1'] <= spectral trans or shift <= sparsity lost?!!!
+m/867.mtx    lanczos_stsi    1.02142400	7.219E+01	2.025E-09
+m/1000.mtx   lanczos_stsi    1.20762300	8.671E+01	1.949E-09
+m/2000.mtx   lanczos_stsi    7.89158000	1.825E+02	1.472E-09
+d/867.mtx    lanczos_stsi    0.55473300	2.340E-01	1.115E-12
+m1/867b.mtx  lanczos_stsi    5.55055100	2.378E-01	8.966E-07
+m2/867.mtx   lanczos_stsi    0.57550600	2.340E-01	9.373E-08
+m2/867a.mtx  lanczos_stsi    0.57032200	2.340E-01	1.473E-08
 
+	

@@ -207,7 +207,7 @@ def _get_fiedler_func(method):
             X = asmatrix(normal(size=(q, L.shape[0]))).T
             sigma, X = _tracemin_fiedler(L, X, normalized, tol, method)
             return sigma[0], X[:, 0]
-    elif method == 'lanczos' or method == 'lobpcg':
+    elif method.startswith('lanczos') or method == 'lobpcg':
         def find_fiedler(L, x, normalized, tol):
             L = csc_matrix(L, dtype=float)
             n = L.shape[0]
@@ -219,10 +219,25 @@ def _get_fiedler_func(method):
                 # https://github.com/scipy/scipy/issues/3592
                 # https://github.com/scipy/scipy/pull/3594
                 sigma, X = eigsh(L, 2, tol=tol,
-                                 sigma=0, which='LM',
-#                                 which='SM',
+                                 which='SM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
+            elif method == 'lanczos_si' or n < 10:
+                # Avoid LOBPCG when n < 10 due to
+                # https://github.com/scipy/scipy/issues/3592
+                # https://github.com/scipy/scipy/pull/3594
+                sigma, X = eigsh(L, 2, tol=tol,
+                                 sigma=0, which='LM',
+                                 return_eigenvectors=True)
+                return sigma[1], X[:, 1]
+            elif method == 'lanczos_stsi':
+                v1 = ones(n)[None].T
+                M1 = dot(v1, v1.T)
+                s1 = 1
+                sigma, X = eigsh(L - s1*M1, 1, tol=tol,
+                                 sigma=0, which='LM',
+                                 return_eigenvectors=True)
+                return sigma[0], X[:, 0]
             else:
                 X = asarray(asmatrix(x).T)
                 M = spdiags(1. / L.diagonal(), [0], n, n)

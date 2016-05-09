@@ -1,0 +1,9 @@
+accumulating delta 1 day, 3:52:22
+accumulating delta 20:56:49
+accumulating delta 20:55:03
+accumulating delta 22:22:02
+accumulating delta 10:15:59
+accumulating delta 1 day, 17:07:52
+accumulating delta 20:11:04
+accumulated time = 163.686388889
+estimated original time = 254

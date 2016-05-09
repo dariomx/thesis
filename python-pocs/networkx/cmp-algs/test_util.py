@@ -5,10 +5,12 @@ from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
 from numpy import diagflat, diagonal, tril_indices
 from numpy.linalg import cond
-from scipy.linalg import norm as dnorm, eigh
+from scipy.linalg import norm as dnorm, eigh, orth
 from scipy.sparse.linalg import norm as snorm
 from scipy.sparse import issparse, lil_matrix, csr_matrix
-from scipy.io import mmread, mminfo, savemat
+import scipy.stats
+import numpy as np
+from scipy.io import mmread, mminfo, savemat, mmwrite
 import networkx as nx
 
 mat_norm_ord = 'fro'
@@ -135,5 +137,27 @@ def cond_err(A):
     ls, V = eigh(conv_mat(A, fmt="dense"), overwrite_a=False)
     D = diagflat(ls)
     return cond(V, p=mat_norm_ord), relerr_mat(A, V.T*D*V)
+
+def get_eigvals(L):
+    n = L.shape[0]
+    Ld = conv_mat(L, fmt="dense")
+    ls, _ = eigh(L, eigvals=(0,n-1), overwrite_a=True)
+    return ls
+
+# returns a random generator with given distribution and params
+def get_rand_dist(dist_name, dist_params):
+    print("random generator will use dist %s" % dist_name)
+    dist = getattr(scipy.stats, dist_name)
+    dps = map(float, dist_params.split(","))
+    return lambda s: dist.rvs(*dps[:-2], loc=dps[-2], scale=dps[-1], size=s)
+
+# returns random matrix with given eigenvalues
+# assumes that rand_dist produces non-singular matrices
+def rand_mat_eigv(rand_dist, n, eigv, fn):
+    D = np.diag(eigv)
+    Q = orth(rand_dist((n,n)))
+    M = np.dot(Q, np.dot(D, Q.T))
+    print("saving matrix to " + fn)
+    mmwrite(fn, csr_matrix(M))
 
 parse_bool = lambda s: s == "true" or s == "True"
