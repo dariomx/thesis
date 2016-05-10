@@ -16,7 +16,6 @@ if __name__ == '__main__':
     files = [argv[i] for i in xrange(2,n,2)]
     for name,file in izip(names, files):
         y = np.fromfile(file, sep=" ")
-        x = range(len(y))
         plt.plot(y, label=name)
     plt.legend(loc='upper left')
     plt.show()

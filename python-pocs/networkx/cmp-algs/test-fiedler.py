@@ -5,7 +5,7 @@ from datetime import datetime
 from scipy.linalg import eigh
 from fiedler import fiedler_vector
 from test_util import relres, parse_bool, eprint, get_lap, conv_mat
-from test_util import get_ac_upbound
+from test_util import get_ac_upbound, is_lap
 
 def calc_fiedler(L, method):
     if method == "mr3":
@@ -30,24 +30,23 @@ def relname(fn):
 
 # main
 if __name__ == '__main__':
-    if len(argv) < 5:
-        args = "<is_lap> <method> <fmt> <file1> [<file2> ... ]"
+    if len(argv) < 4:
+        args = "<method> <fmt> <file1> [<file2> ... ]"
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
-    is_lap = parse_bool(argv[1])
-    method = argv[2]
-    fmt = argv[3]
-    fns = argv[4:]
-    if method == "all":
+    method_list = argv[1]
+    fmt = argv[2]
+    fns = argv[3:]
+    if method_list == "all":
         methods = ["mr3", "lanczos", "lobpcg", "tracemin_pcg"]
     else:
-        methods = [method]
+        methods = method_list.split(",")
     for fn in fns:
-        L = get_lap(fn, is_lap, fmt)
+        L = get_lap(fn, is_lap(fn), fmt)
         #ac_ubl, ac_ubr, ac_ub = get_ac_upbound(L)
         #args = (relname(fn), "upbound", ac_ubl, ac_ubr, ac_ub)
         #print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
         for met in methods:
             ac, time, res = test_fiedler(L, met)
             args = (relname(fn), met, time, ac, res)
-            print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
+            print("%-14s %-15s %10.8f\t%.3E\t%.3E" % args)

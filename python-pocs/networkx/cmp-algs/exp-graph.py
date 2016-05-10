@@ -2,7 +2,7 @@
 
 from sys import argv
 from os.path import isfile
-from test_util import load_graph, parse_bool
+from test_util import load_graph, parse_bool, is_lap
 import networkx as nx
 
 # exports a graph from its weight or laplacian matrix into desired format.
@@ -20,8 +20,7 @@ def exp_graph(M_file, is_lap, zeros, G_file, fmt):
 # main
 if __name__ == '__main__':
     M_file = argv[1]
-    is_lap = parse_bool(argv[2])
-    zeros  = parse_bool(argv[3])
-    G_file = argv[4]
-    fmt    = argv[5]
-    exp_graph(M_file, is_lap, zeros, G_file, fmt)
+    zeros  = parse_bool(argv[2])
+    G_file = argv[3]
+    fmt    = argv[4]
+    exp_graph(M_file, is_lap(M_file), zeros, G_file, fmt)

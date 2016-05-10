@@ -12,6 +12,7 @@ import scipy.stats
 import numpy as np
 from scipy.io import mmread, mminfo, savemat, mmwrite
 import networkx as nx
+import matplotlib.pyplot as plt
 
 mat_norm_ord = 'fro'
 vec_norm_ord = 2
@@ -144,12 +145,22 @@ def get_eigvals(L):
     ls, _ = eigh(L, eigvals=(0,n-1), overwrite_a=True)
     return ls
 
-# returns a random generator with given distribution and params
-def get_rand_dist(dist_name, dist_params):
+# returns a distribution object and its parsed params
+def get_dist(dist_name, dist_params):
     print("random generator will use dist %s" % dist_name)
     dist = getattr(scipy.stats, dist_name)
     dps = map(float, dist_params.split(","))
+    return dist, dps
+
+# returns a random generator for given distribution/params
+def get_rand_dist(dist_name, dist_params):
+    dist, dps = get_dist(dist_name, dist_params)
     return lambda s: dist.rvs(*dps[:-2], loc=dps[-2], scale=dps[-1], size=s)
+
+# returns the probability density function of a distribution/params
+def get_pdf_dist(dist_name, dist_params):
+    dist, dps = get_dist(dist_name, dist_params)
+    return lambda xs: dist.pdf(xs, *dps[:-2], loc=dps[-2], scale=dps[-1])
 
 # returns random matrix with given eigenvalues
 # assumes that rand_dist produces non-singular matrices
@@ -159,5 +170,36 @@ def rand_mat_eigv(rand_dist, n, eigv, fn):
     M = np.dot(Q, np.dot(D, Q.T))
     print("saving matrix to " + fn)
     mmwrite(fn, csr_matrix(M))
+
+# tells if the matrix represents a laplacian base on file name convention
+def is_lap(fn):
+    return fn.endswith("-lap.mtx")
+
+def load_weights(is_lap, fn):
+    L = get_lap(fn, is_lap, fmt="csr")
+    eprint("extracting weights from %s ... " % fn)        
+    ws = get_weights(L)
+    nnz = np.squeeze(np.asarray(ws[ws > 0].T))
+    args = (ws.shape[1], nnz.shape[0])
+    eprint("extracted %d weights (%d nnz)" % args)
+    return nnz.shape[0], nnz
+
+def get_plot_axis():
+    fig = plt.figure()
+    return fig.add_subplot(111)
+
+def save_plot(ax, title, img_file, bgcolor="black", fgcolor="white"):
+    ax.set_axis_bgcolor(bgcolor)
+    ax.spines['bottom'].set_color(fgcolor)
+    ax.spines['top'].set_color(fgcolor)
+    ax.spines['right'].set_color(fgcolor)
+    ax.spines['left'].set_color(fgcolor)
+    ax.tick_params(axis='x', colors=fgcolor)
+    ax.tick_params(axis='y', colors=fgcolor)
+    ax.yaxis.label.set_color(fgcolor)
+    ax.xaxis.label.set_color(fgcolor)
+    ax.title.set_color(fgcolor)
+    ax.set_title(title)
+    plt.savefig(img_file, facecolor=bgcolor, edgecolor='none')
 
 parse_bool = lambda s: s == "true" or s == "True"

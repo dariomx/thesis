@@ -5,15 +5,14 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.io import mmwrite
 import scipy.stats
-from test_util import eprint
+from test_util import eprint, get_rand_dist
 
 def rand_w(dist_name, dist_params, n, pz, fn):
     print("generating random weight matrix with dist %s" % dist_name)
-    dist = getattr(scipy.stats, dist_name)
-    dps = map(float, dist_params.split(","))
+    dist = get_rand_dist(dist_name, dist_params)
     tril = np.tril_indices(n, -1)
     m = len(tril[0])
-    R = dist.rvs(*dps[:-2], loc=dps[-2], scale=dps[-1], size=m)
+    R = dist(m)
     R[0:int(m*pz)] = 0
     for i in xrange(3):
         np.random.shuffle(R)

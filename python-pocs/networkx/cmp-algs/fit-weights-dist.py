@@ -1,20 +1,11 @@
 #!/usr/bin/env python
 
 from sys import argv, exit, exc_info
-from test_util import get_lap, get_weights, parse_bool, eprint
+from test_util import get_lap, get_weights, parse_bool, eprint, load_weights
 import matplotlib.pyplot as plt
 import scipy
 import scipy.stats
 import numpy as np
-
-def load_weights(is_lap, fn):
-    L = get_lap(fn, is_lap, fmt="csr")
-    eprint("extracting weights from %s ... " % fn)        
-    ws = get_weights(L)
-    nnz = np.squeeze(np.asarray(ws[ws > 0].T))
-    args = (ws.shape[1], nnz.shape[0])
-    eprint("extracted %d weights (%d nnz)" % args)
-    return nnz.shape[0], nnz
 
 def fit_data(xs, ys, ws, dist_name):
     eprint("trying to fit data against dist %s" % dist_name)
@@ -47,17 +38,16 @@ def get_dist_names(fn):
     
 # main
 if __name__ == '__main__':
-    if len(argv) < 5:
-        args = "<is_lap> <file1> <bins> <dist_names_file> <topn>"
+    if len(argv) < 4:
+        args = "<file1> <bins> <dist_names_file> <topn>"
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
-    is_lap = parse_bool(argv[1])
-    fn = argv[2]
-    bins = int(argv[3])
-    dist_names = get_dist_names(argv[4])
-    topn = int(argv[5])
+    fn = argv[1]
+    bins = int(argv[2])
+    dist_names = get_dist_names(argv[3])
+    topn = int(argv[4])
     eprint("will try to fit against %d dists " % len(dist_names))
-    n, ws = load_weights(is_lap, fn)
+    n, ws = load_weights(is_lap(fn), fn)
     eprint("building histogram ... ")
     ys, xs, _ = plt.hist(ws, bins=bins, color='w', normed=True)
     fitd = lambda dn: fit_data(xs, ys, ws, dn)
