@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from sys import argv, exit
-from test_util import load_weights, eprint, is_lap
+from test_util import load_weights, eprint
 from test_util import save_plot, get_plot_axis, get_pdf_dist
 
 # main
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     img_file = argv[3]
     dist_name = argv[4] if len(argv)==6 else None
     dist_params = argv[5] if len(argv)==6 else None
-    _, ws = load_weights(is_lap(mat_file), mat_file)
+    _, ws = load_weights(mat_file)
     eprint("building histogram ... ")
     ax = get_plot_axis()
     _, xs, _ = ax.hist(ws, bins=bins, color="b", normed=True)

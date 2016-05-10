@@ -126,11 +126,11 @@ def get_weights(L):
     n = L.shape[0]
     return -L[tril_indices(n, -1)]
 
-def get_lap(fn, is_lap, fmt):
-    if is_lap:
-        L = load_mat(fn, fmt)
+def get_lap(fn, fmt):
+    W = load_mat(fn, fmt)
+    if is_lap(fn):
+        L = W
     else:
-        W = load_mat(fn, fmt)
         L = lap(W, fmt)
     return L
 
@@ -164,19 +164,18 @@ def get_pdf_dist(dist_name, dist_params):
 
 # returns random matrix with given eigenvalues
 # assumes that rand_dist produces non-singular matrices
-def rand_mat_eigv(rand_dist, n, eigv, fn):
+def rand_mat_eigv(rand_dist, n, eigv):
     D = np.diag(eigv)
     Q = orth(rand_dist((n,n)))
     M = np.dot(Q, np.dot(D, Q.T))
-    print("saving matrix to " + fn)
-    mmwrite(fn, csr_matrix(M))
+    return csr_matrix(M)
 
 # tells if the matrix represents a laplacian base on file name convention
 def is_lap(fn):
     return fn.endswith("-lap.mtx")
 
-def load_weights(is_lap, fn):
-    L = get_lap(fn, is_lap, fmt="csr")
+def load_weights(fn):
+    L = get_lap(fn, fmt="csr")
     eprint("extracting weights from %s ... " % fn)        
     ws = get_weights(L)
     nnz = np.squeeze(np.asarray(ws[ws > 0].T))

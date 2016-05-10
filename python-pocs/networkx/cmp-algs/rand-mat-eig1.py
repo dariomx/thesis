@@ -26,8 +26,10 @@ if __name__ == '__main__':
     dist_params = argv[2]
     l2 = float(argv[3])
     ns  = map(int, argv[4:])
-    fns = map(lambda n: str(n) + ".mtx", ns)
+    fns = map(lambda n: str(n) + "-lap.mtx", ns)
     rand_dist = get_rand_dist(dist_name, dist_params)
     for n,fn in zip(ns, fns):
         eigv = get_eigvals(rand_dist, n, l2)
-        rand_mat_eigv(rand_dist, n, eigv, fn)
+        M = rand_mat_eigv(rand_dist, n, eigv)
+        print("saving matrix to " + fn)
+        mmwrite(fn, M)

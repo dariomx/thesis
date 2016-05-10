@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from sys import argv, exit, exc_info
-from test_util import get_lap, get_weights, parse_bool, eprint, load_weights
+from test_util import get_lap, parse_bool, eprint, load_weights
 import matplotlib.pyplot as plt
 import scipy
 import scipy.stats
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     dist_names = get_dist_names(argv[3])
     topn = int(argv[4])
     eprint("will try to fit against %d dists " % len(dist_names))
-    n, ws = load_weights(is_lap(fn), fn)
+    n, ws = load_weights(fn)
     eprint("building histogram ... ")
     ys, xs, _ = plt.hist(ws, bins=bins, color='w', normed=True)
     fitd = lambda dn: fit_data(xs, ys, ws, dn)

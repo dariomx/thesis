@@ -4,7 +4,7 @@ from sys import argv, exit
 from itertools import izip
 import matplotlib.pylab as plt
 import numpy as np
-from test_util import eprint, get_lap, get_eigvals, is_lap
+from test_util import eprint, get_lap, get_eigvals
 from test_util import save_plot, get_plot_axis
 
 # main
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     files = [argv[i] for i in xrange(3,n,2)]
     ax = get_plot_axis()
     for name, mat_file in izip(names, files):
-        L = get_lap(mat_file, is_lap(mat_file), fmt="dense")
+        L = get_lap(mat_file, fmt="dense")
         eigv = get_eigvals(L)
         eprint("plotting eigenvalues of %s" % mat_file)
         ax.plot(eigv, label=name)
