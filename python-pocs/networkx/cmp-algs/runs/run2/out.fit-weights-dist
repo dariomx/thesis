@@ -1,0 +1,847 @@
+will try to fit against 89 dists 
+loading matrix ... 
+mm header:  (867, 867, 116370, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.221740
+converted to format csr in 0:00:00.005087
+extracting weights from domain/867-lap.mtx ... 
+extracted 376278 weights (115503 nnz)
+building histogram ... 
+trying to fit data against dist alpha
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:2225: RuntimeWarning: invalid value encountered in double_scalars
+  Lhat = muhat - Shat*mu
+alpha gave fit_err of 11.155291
+trying to fit data against dist anglit
+anglit gave fit_err of 3.943535
+trying to fit data against dist arcsine
+arcsine gave fit_err of 10940561823.909166
+trying to fit data against dist beta
+beta gave fit_err of 1.167310
+trying to fit data against dist betaprime
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:552: RuntimeWarning: divide by zero encountered in true_divide
+  return where(b > 1, a/(b-1.0), inf)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:554: RuntimeWarning: divide by zero encountered in true_divide
+  return where(b > 2, a*(a+1.0)/((b-2.0)*(b-1.0)), inf)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:956: RuntimeWarning: invalid value encountered in subtract
+  mu2 = mu2p - mu * mu
+betaprime gave fit_err of 2.801352
+trying to fit data against dist bradford
+bradford gave fit_err of 3.425761
+trying to fit data against dist burr
+burr gave fit_err of 130.125616
+trying to fit data against dist cauchy
+cauchy gave fit_err of 4.774647
+trying to fit data against dist chi
+chi gave fit_err of 1.843747
+trying to fit data against dist chi2
+chi2 gave fit_err of 2.800132
+trying to fit data against dist cosine
+cosine gave fit_err of 3.660823
+trying to fit data against dist dgamma
+dgamma gave fit_err of 4.160285
+trying to fit data against dist dweibull
+dweibull gave fit_err of 4.011535
+trying to fit data against dist erlang
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.949999999999999.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.050000000000001.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.366666666666667.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.841666666666669.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.844444444444445.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.457407407407409.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.11435185185185.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.126234567901232.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.414891975308642.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.511162551440329.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.503017832647465.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.26122828074989.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.998334857491244.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.07300684600925.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.21417292206473.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.638654020389851.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.903549770811814.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.974638585821388.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.48722031820089.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.850795594842609.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.026404735152482.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.039607102728723.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.292681900516456.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.981643892262152.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.039776149712793.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.264603271099766.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 19.047129757140983.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.782858527487711.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.527946840973343.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.864485863474663.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.995953578153262.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.823014803387988.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.71095732651149.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.708146537533487.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.549017438723993.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.546726334119526.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.322112712102658.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.602399922539618.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.512170620065575.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.355014191091069.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.121013884942606.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.078460688551651.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.927703794920362.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.618192525320779.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 18.089123998334323.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.373382985666233.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.266119121271615.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 16.838671739436123.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.657275856394584.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 16.653636082433337.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.730252019359078.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 17.199273884805741.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 16.989814564548226.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 16.593589420893544.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.957441293524013.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.107524012088732.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 16.188558446541066.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.863501800093537.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.946915684550305.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.623578816378682.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.639866708782595.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 13.464892780899781.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.793856923312532.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 15.666545200971143.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.756492017328075.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.202987125945342.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.346746494021758.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 13.686847140547066.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 13.098558428059807.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.992323719298962.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.317241876000139.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 14.155929459608913.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 13.407188692357074.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 12.614621178886132.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 12.215106502033333.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.944413744385962.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 12.303590953138517.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.611962859434243.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.13853090062689.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 13.151579819863407.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 12.037811608667855.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 12.319129689943672.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.827689618833777.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.6657445183189594.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.134709836806607.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.812036165702544.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.515329406036706.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.868179618966931.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.393307409567925.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.283979684634765.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.914081599209876.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.221872799440789.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.858484919978618.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.873882570551039.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.888709819730156.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.63858205451313.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 11.012834656829902.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.279960344646511.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.7232868121858047.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.795604559790224.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.276531892780334.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.14771354514675.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.633631806129355.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.9349311090588479.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.289150280442808.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.295459474274047.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.871103307641093.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.168974158704408.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.452083281425363.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.9773794701398586.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.6492533021451123.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 10.095556546525273.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.5747629338709253.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.2509223807534937.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.7286538339932171.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.8877358646544131.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.7936013760575591.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.5544217720998503.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.5442511912143146.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.409929996538466.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.0098010029466238.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.6179008163911561.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.1304656220091296.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.0702372426369493.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.7851484232045998.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.4727576365376649.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.9364981920776536.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.4085801506918081.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.3039198178421358.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.3449848089625078.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.684095418747475.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 9.0373503900071981.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.2117112415600388.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.3270600155621004.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.2542112050743199.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.8776986312287072.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.4745002374693215.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 8.1274077348619223.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.9175244365930162.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.7243267459684546.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.492562059143955.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.0753130809348832.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.2689838893654883.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.8397719666172705.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 7.112883165089892.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.7304754320204836.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.6036875077181634.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.2428691602588007.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.7823708439661416.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.9001227831121188.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.5483404208090974.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.0324435458070269.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.9272307385811409.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.5895151251763551.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.984156914268695.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.1438648586208213.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.4700455578683176.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 6.4437572818579483.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.4688379644301026.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.2599192596510136.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.8978004323421729.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.3945465214309856.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.3430062370345492.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.4963380552906642.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.8540612261132834.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.6686987422290187.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.3057748526280353.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.2707006967551013.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 5.0749298519646873.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.8339927811958194.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.8643530241464008.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.8694989231629595.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.5030998464161387.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.2171848436418653.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.3328316254823704.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.2742142532847396.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 4.0769720088126.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.553639294478157.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.8813177268952184.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.7841514274174184.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.5098113283849415.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.4282158657533079.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.4620150750720149.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.8563895039942429.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.1615351301988319.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.3273584900172182.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.2769298021491728.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.1701690987499496.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.3890535809914986.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.0418676805080613.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.8078958565696208.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 3.1543843629413635.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.7704197667819392.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.4611028596771591.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.5448701887127774.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1788403819945792.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.2610728451015278.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.9310564834814046.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.689668436081126.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.6305547258368787.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.4055824442358236.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1428454246130331.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.322994279237879.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0992815354658489.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.4006265843237751.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.5088092876155268.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1352555713116939.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.551065219888768.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.516330080258959.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.418117098641543.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.3727710041545516.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.3148902552618407.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1227051392140792.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.2307566931424989.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.293856864732005.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.2032277261625448.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1433444496248777.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.4571985908186544.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.3735752279175109.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.3391924407577331.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.2365522194657088.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1680407152398073.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1008695839521714.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9649188738509817.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9755662428119489.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.2482858912712871.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.1415697341462994.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.025367464287565.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9139082507957035.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0104971396842162.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9317253519064206.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9495863911363354.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0935738983938084.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9854227509582216.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0720078757036839.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.092018478233574.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0420302177740672.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9894495903808371.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0059395194050906.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0330075431818231.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9499616397942336.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0061946247260116.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9447613929544842.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9306188235626109.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9873006744351613.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0117444982550072.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.965407354409427.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.030708719398052.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9662482245653763.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9741344713375182.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9675513697886968.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0018458693153138.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.992736240588842.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9449154846436079.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9941017259240641.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0077334006682399.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9766195185910922.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 2.0015038520651469.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9809768165194255.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9750624667675463.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9610041419946453.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9858273299417095.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9872199766006053.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9841805991423407.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9907036451445586.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9801405502294589.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9857888363562468.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9821798214786308.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9785066506252442.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9763707490798821.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.982228136626726.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9845256882646325.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9830209288547855.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9814132556620163.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9819881800244772.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9846842801078668.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.981276482699061.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.981962257758823.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9821616669097502.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9805966242340733.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812027003892512.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9811057199742315.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9817675650119158.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9806694984904021.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9811500265619855.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812448686647921.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9821405908869041.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9810372715895275.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9814971031215722.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812763010723313.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9806047292058515.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9814768560603997.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812820838167136.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812727800287333.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9816466865181157.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9811896253216745.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9813498732015407.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9813866592661453.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9814047896936771.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9811526694175283.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.981395809399682.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.981218748921588.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9813582795006548.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9815463494129104.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.9812788063444835.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value 1.981262163298104.
+  RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:2005: RuntimeWarning: The shape parameter of the erlang distribution has been given a non-integer value array(1.9812788063444835).
+  RuntimeWarning)
+erlang gave fit_err of 2.800115
+trying to fit data against dist expon
+expon gave fit_err of 4.019590
+trying to fit data against dist exponnorm
+exponnorm gave fit_err of 3.506801
+trying to fit data against dist exponweib
+exponweib gave fit_err of 11.881010
+trying to fit data against dist exponpow
+exponpow gave fit_err of 1.460372
+trying to fit data against dist f
+f gave fit_err of 2.798990
+trying to fit data against dist fatiguelife
+fatiguelife gave fit_err of 3.048654
+trying to fit data against dist fisk
+fisk gave fit_err of 3.454876
+trying to fit data against dist foldcauchy
+foldcauchy gave fit_err of 3.047876
+trying to fit data against dist foldnorm
+foldnorm gave fit_err of 1.228558
+trying to fit data against dist frechet_r
+frechet_r gave fit_err of 2.478729
+trying to fit data against dist frechet_l
+frechet_l gave fit_err of 3.213205
+trying to fit data against dist genlogistic
+genlogistic gave fit_err of 3.199551
+trying to fit data against dist gennorm
+gennorm gave fit_err of 3.799910
+trying to fit data against dist genpareto
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:1653: RuntimeWarning: divide by zero encountered in true_divide
+  val = val + cnk * (-1) ** ki / (1.0 - c * ki)
+genpareto gave fit_err of 1.241431
+trying to fit data against dist genexpon
+genexpon gave fit_err of 1.621326
+trying to fit data against dist genextreme
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:1776: RuntimeWarning: invalid value encountered in true_divide
+  np.sign(c)*(-g3+(g2+2*g2mg12)*g1)/((g2mg12)**(3./2.)))
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:1781: RuntimeWarning: invalid value encountered in true_divide
+  (g4+(-4*g3+3*(g2+g2mg12)*g1)*g1)/((g2mg12)**2))
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:1543: RuntimeWarning: divide by zero encountered in log
+  return log(self._pdf(x, *args))
+genextreme gave fit_err of 3.213114
+trying to fit data against dist gausshyper
+gausshyper gave fit_err of 1.383552
+trying to fit data against dist gamma
+gamma gave fit_err of 2.800122
+trying to fit data against dist gengamma
+gengamma gave fit_err of 6.971946
+trying to fit data against dist genhalflogistic
+genhalflogistic gave fit_err of 1.725898
+trying to fit data against dist gilbrat
+gilbrat gave fit_err of 3.910034
+trying to fit data against dist gompertz
+gompertz gave fit_err of 1.180657
+trying to fit data against dist gumbel_r
+gumbel_r gave fit_err of 3.204240
+trying to fit data against dist gumbel_l
+gumbel_l gave fit_err of 4.763593
+trying to fit data against dist halfcauchy
+halfcauchy gave fit_err of 3.916458
+trying to fit data against dist halflogistic
+halflogistic gave fit_err of 2.337369
+trying to fit data against dist halfnorm
+halfnorm gave fit_err of 1.823018
+trying to fit data against dist halfgennorm
+halfgennorm gave fit_err of 1.271956
+trying to fit data against dist hypsecant
+hypsecant gave fit_err of 4.029845
+trying to fit data against dist invgamma
+invgamma gave fit_err of 3.177678
+trying to fit data against dist invgauss
+invgauss gave fit_err of 3.067160
+trying to fit data against dist invweibull
+/usr/local/lib/python2.7/dist-packages/scipy/optimize/optimize.py:462: RuntimeWarning: invalid value encountered in subtract
+  numpy.max(numpy.abs(fsim[0] - fsim[1:])) <= ftol):
+invweibull gave fit_err of 8.790878
+trying to fit data against dist johnsonsb
+johnsonsb gave fit_err of 1.778848
+trying to fit data against dist johnsonsu
+johnsonsu gave fit_err of 3.120824
+trying to fit data against dist ksone
+/usr/local/lib/python2.7/dist-packages/scipy/integrate/quadpack.py:357: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  warnings.warn(msg, IntegrationWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:43: RuntimeWarning: floating point number truncated to an integer
+  return 1.0 - special.smirnov(n, x)
+ksone gave fit_err of nan
+trying to fit data against dist kstwobign
+kstwobign gave fit_err of 2.982542
+trying to fit data against dist laplace
+laplace gave fit_err of 4.795091
+trying to fit data against dist levy
+levy gave fit_err of 8.569682
+trying to fit data against dist levy_l
+levy_l gave fit_err of 8.497476
+trying to fit data against dist levy_stable
+fitting of data against levy_stable failed: <type 'exceptions.NotImplementedError'>
+trying to fit data against dist logistic
+logistic gave fit_err of 3.843860
+trying to fit data against dist loggamma
+loggamma gave fit_err of 3.696810
+trying to fit data against dist loglaplace
+loglaplace gave fit_err of 3.715105
+trying to fit data against dist lognorm
+lognorm gave fit_err of 3.120164
+trying to fit data against dist lomax
+lomax gave fit_err of 4.091325
+trying to fit data against dist maxwell
+maxwell gave fit_err of 3.220553
+trying to fit data against dist mielke
+/usr/local/lib/python2.7/dist-packages/scipy/integrate/quadpack.py:357: IntegrationWarning: Extremely bad integrand behavior occurs at some points of the
+  integration interval.
+  warnings.warn(msg, IntegrationWarning)
+/usr/local/lib/python2.7/dist-packages/scipy/integrate/quadpack.py:357: IntegrationWarning: The integral is probably divergent, or slowly convergent.
+  warnings.warn(msg, IntegrationWarning)
+mielke gave fit_err of 159.292811
+trying to fit data against dist nakagami
+nakagami gave fit_err of 1.844042
+trying to fit data against dist ncx2
+ncx2 gave fit_err of 1119.137662
+trying to fit data against dist ncf
+ncf gave fit_err of nan
+trying to fit data against dist nct
+nct gave fit_err of 3.194322
+trying to fit data against dist norm
+norm gave fit_err of 3.689539
+trying to fit data against dist pareto
+pareto gave fit_err of 4.600990
+trying to fit data against dist pearson3
+pearson3 gave fit_err of 2.800046
+trying to fit data against dist powerlaw
+powerlaw gave fit_err of 117745.969736
+trying to fit data against dist powerlognorm
+powerlognorm gave fit_err of 2.886862
+trying to fit data against dist powernorm
+powernorm gave fit_err of nan
+trying to fit data against dist rdist
+rdist gave fit_err of 40.918256
+trying to fit data against dist reciprocal
+reciprocal gave fit_err of 15.813698
+trying to fit data against dist rayleigh
+rayleigh gave fit_err of 2.973200
+trying to fit data against dist rice
+rice gave fit_err of 2.973837
+trying to fit data against dist recipinvgauss
+recipinvgauss gave fit_err of 3.035068
+trying to fit data against dist semicircular
+semicircular gave fit_err of 4.566676
+trying to fit data against dist t
+t gave fit_err of 3.689467
+trying to fit data against dist triang
+triang gave fit_err of 1.690810
+trying to fit data against dist truncexpon
+truncexpon gave fit_err of 3.029168
+trying to fit data against dist truncnorm
+truncnorm gave fit_err of 11.155291
+trying to fit data against dist tukeylambda
+tukeylambda gave fit_err of 3.473596
+trying to fit data against dist uniform
+uniform gave fit_err of 4.929558
+trying to fit data against dist vonmises
+vonmises gave fit_err of 24051549684859630735721496576.000000
+trying to fit data against dist vonmises_line
+vonmises_line gave fit_err of 11.155291
+trying to fit data against dist wald
+wald gave fit_err of 4.007192
+trying to fit data against dist weibull_min
+weibull_min gave fit_err of 2.478729
+trying to fit data against dist weibull_max
+weibull_max gave fit_err of 3.213205
+trying to fit data against dist wrapcauchy
+wrapcauchy gave fit_err of nan
+beta is amont top 5 with fit_err=1.1673097256
+beta params = (1.0860174686072066, 1.9052859178148251, 4.9371805049493837e-06, 1.0004596510825019)
+gompertz is amont top 5 with fit_err=1.18065715635
+gompertz params = (0.66636655224252683, 5.9982759606590025e-06, 0.46555325499116285)
+foldnorm is amont top 5 with fit_err=1.2285579382
+foldnorm params = (1.1255106884829744, 5.9982246782623714e-06, 0.28903822282902375)
+genpareto is amont top 5 with fit_err=1.24143088871
+genpareto params = (-0.5607752198825513, 5.9981801776439255e-06, 0.56046136744753117)
+halfgennorm is amont top 5 with fit_err=1.27195622375
+halfgennorm params = (4.1865405047019593, 5.9804477309078148e-06, 0.7583320609214792)
+saving plots to runs/run2/top5-wfit-867-lap.png ...
+Traceback (most recent call last):
+  File "./fit-weights-dist.py", line 58, in <module>
+    plt.save_fig(img_file)
+AttributeError: 'module' object has no attribute 'save_fig'

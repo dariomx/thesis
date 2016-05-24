@@ -1,0 +1,5 @@
+beta 	A beta continuous random variable.
+gompertz 	A Gompertz (or truncated Gumbel) continuous random variable.
+foldnorm 	A folded normal continuous random variable.
+genpareto 	A generalized Pareto continuous random variable.
+halfgennorm 	The upper half of a generalized normal continuous random variable.

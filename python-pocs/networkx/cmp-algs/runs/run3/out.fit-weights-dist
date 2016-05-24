@@ -1,0 +1,35 @@
+will try to fit against 5 dists 
+loading matrix ... 
+mm header:  (867, 867, 116370, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.377881
+converted to format csr in 0:00:00.006263
+extracting weights from domain/867-lap.mtx ... 
+extracted 376278 weights (115503 nnz)
+building histogram ... 
+trying to fit data against dist beta
+beta gave fit_err of 1.167310
+trying to fit data against dist gompertz
+gompertz gave fit_err of 1.180657
+trying to fit data against dist foldnorm
+foldnorm gave fit_err of 1.228558
+trying to fit data against dist genpareto
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_continuous_distns.py:1653: RuntimeWarning: divide by zero encountered in true_divide
+  val = val + cnk * (-1) ** ki / (1.0 - c * ki)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:956: RuntimeWarning: invalid value encountered in subtract
+  mu2 = mu2p - mu * mu
+/usr/local/lib/python2.7/dist-packages/scipy/stats/_distn_infrastructure.py:2225: RuntimeWarning: invalid value encountered in double_scalars
+  Lhat = muhat - Shat*mu
+genpareto gave fit_err of 1.241431
+trying to fit data against dist halfgennorm
+halfgennorm gave fit_err of 1.271956
+beta is amont top 5 with fit_err=1.1673097256
+beta params = (1.0860174686072066, 1.9052859178148251, 4.9371805049493837e-06, 1.0004596510825019)
+gompertz is amont top 5 with fit_err=1.18065715635
+gompertz params = (0.66636655224252683, 5.9982759606590025e-06, 0.46555325499116285)
+foldnorm is amont top 5 with fit_err=1.2285579382
+foldnorm params = (1.1255106884829744, 5.9982246782623714e-06, 0.28903822282902375)
+genpareto is amont top 5 with fit_err=1.24143088871
+genpareto params = (-0.5607752198825513, 5.9981801776439255e-06, 0.56046136744753117)
+halfgennorm is amont top 5 with fit_err=1.27195622375
+halfgennorm params = (4.1865405047019593, 5.9804477309078148e-06, 0.7583320609214792)
+saving plots to runs/run3/top5-wfit-867-lap.png ...

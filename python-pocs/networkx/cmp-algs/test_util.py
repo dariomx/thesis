@@ -79,13 +79,10 @@ def load_graph(fn, is_lap, zeros):
 def invsign(y, x):
     return -y if (sign(x) == -sign(y)).all() else y
 
-def relres(L, ac, fv):
-    rr = None
-    if issparse(L):
-        rr = dnorm(L*fv - ac*fv, vec_norm_ord) / snorm(L, mat_norm_ord)
-    else:
-        rr = dnorm(L.dot(fv) - ac*fv, vec_norm_ord) / dnorm(L, mat_norm_ord)
-    return rr
+def relres(L, ac, fv, Lnorm=None):
+    norm = snorm if issparse(L) else dnorm
+    Lnorm = norm(L, mat_norm_ord) if Lnorm is None else Lnorm
+    return dnorm(L.dot(fv) - ac*fv, vec_norm_ord) / Lnorm
         
 def relerr_vec(x, y):
     return dnorm(x - invsign(y, x)) / dnorm(x)
@@ -121,10 +118,11 @@ def get_ac_upbound(L):
     return n/(n-1), dmin, n/(n-1) * dmin
 
 # returns the original weights from the laplacian (just the lower half
-# given symmetry).
+# given symmetry + plus the diagonal).
 def get_weights(L):
     n = L.shape[0]
-    return -L[tril_indices(n, -1)]
+    ix, iy = tril_indices(n, 0)
+    return ix, iy, -L[ix, iy]
 
 def get_lap(fn, fmt):
     W = load_mat(fn, fmt)
@@ -177,15 +175,20 @@ def is_lap(fn):
 def load_weights(fn):
     L = get_lap(fn, fmt="csr")
     eprint("extracting weights from %s ... " % fn)        
-    ws = get_weights(L)
+    ix, iy, ws = get_weights(L)
     nnz = np.squeeze(np.asarray(ws[ws > 0].T))
+    ixy = izip(ix, iy)    
+    ix_nnz, iy_nnz = izip(*[ii for (ii,w) in izip(ixy, nnz) if w > 0])
     args = (ws.shape[1], nnz.shape[0])
     eprint("extracted %d weights (%d nnz)" % args)
-    return nnz.shape[0], nnz
+    return ix_nnz, iy_nnz, nnz.shape[0], nnz
 
-def get_plot_axis():
+def get_plot_axis(is_3d=False):
     fig = plt.figure()
-    return fig.add_subplot(111)
+    if is_3d:
+        return fig.add_subplot(111, projection="3d")
+    else:
+        return fig.add_subplot(111)
 
 def save_plot(ax, title, img_file, bgcolor="black", fgcolor="white"):
     ax.set_axis_bgcolor(bgcolor)

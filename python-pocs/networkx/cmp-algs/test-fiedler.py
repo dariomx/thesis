@@ -6,6 +6,8 @@ from scipy.linalg import eigh
 from fiedler import fiedler_vector
 from test_util import relres, parse_bool, eprint, get_lap, conv_mat
 from test_util import get_ac_upbound
+from fiedler_power import fiedler_pm
+
 
 def calc_fiedler(L, method):
     if method == "mr3":
@@ -14,6 +16,8 @@ def calc_fiedler(L, method):
         ac = ls[0]
         fv = vs[:,0]
         return ac, fv
+    elif method == "pm":
+        return fiedler_pm(L)
     else: 
         return fiedler_vector(L, method=method)
 
