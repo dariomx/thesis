@@ -79,9 +79,13 @@ def load_graph(fn, is_lap, zeros):
 def invsign(y, x):
     return -y if (sign(x) == -sign(y)).all() else y
 
+def mat_norm(A):
+    norm = snorm if issparse(A) else dnorm
+    return norm(A, mat_norm_ord)
+
 def relres(L, ac, fv, Lnorm=None):
     norm = snorm if issparse(L) else dnorm
-    Lnorm = norm(L, mat_norm_ord) if Lnorm is None else Lnorm
+    Lnorm = mat_norm(L) if Lnorm is None else Lnorm
     return dnorm(L.dot(fv) - ac*fv, vec_norm_ord) / Lnorm
         
 def relerr_vec(x, y):
@@ -89,8 +93,7 @@ def relerr_vec(x, y):
 
 def relerr_mat(A, B):
     assert issparse(A) == issparse(B), "incompatible matrices"
-    norm = snorm if issparse(A) else dnorm
-    return norm(A - B, mat_norm_ord) / norm(A, mat_norm_ord)
+    return norm(A - B, mat_norm_ord) / mat_norm(A)
 
 def cmp_ac_fv(L, cac, cfv, ac, fv):
     eprint("alg conn: %.16f" % cac)

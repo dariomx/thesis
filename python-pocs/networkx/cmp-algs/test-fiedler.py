@@ -6,7 +6,8 @@ from scipy.linalg import eigh
 from fiedler import fiedler_vector
 from test_util import relres, parse_bool, eprint, get_lap, conv_mat
 from test_util import get_ac_upbound
-from fiedler_power import fiedler_pm
+from fiedler_power import fiedler_pm, fiedler_invpow, fiedler_stip
+from fiedler_power import fiedler_ship
 
 
 def calc_fiedler(L, method):
@@ -18,6 +19,12 @@ def calc_fiedler(L, method):
         return ac, fv
     elif method == "pm":
         return fiedler_pm(L)
+    elif method == "invpow":
+        return fiedler_invpow(L)
+    elif method == "stip":
+        return fiedler_stip(L)
+    elif method == "ship":
+        return fiedler_ship(L)    
     else: 
         return fiedler_vector(L, method=method)
 
@@ -27,7 +34,7 @@ def test_fiedler(L, method):
     end = datetime.now()
     time = (end - start).total_seconds()
     res = relres(L, ac, fv)
-    return ac, time, res
+    return ac, fv, time, res
 
 def relname(fn):
     return fn.split("/")[-1]
@@ -51,6 +58,8 @@ if __name__ == '__main__':
         #args = (relname(fn), "upbound", ac_ubl, ac_ubr, ac_ub)
         #print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
         for met in methods:
-            ac, time, res = test_fiedler(L, met)
+            ac, fv, time, res = test_fiedler(L, met)
             args = (fn, met, time, ac, res)
             print("%-30s %-10s %10.8f  %.3E  %.3E" % args)
+            #eprint("%s" % (fv))
+            
