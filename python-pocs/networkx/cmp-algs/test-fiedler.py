@@ -6,8 +6,8 @@ from scipy.linalg import eigh
 from fiedler import fiedler_vector
 from test_util import relres, parse_bool, eprint, get_lap, conv_mat
 from test_util import get_ac_upbound
-from fiedler_power import fiedler_pm, fiedler_invpow, fiedler_stip
-from fiedler_power import fiedler_ship
+from fiedler_power import fiedler_pm, fiedler_invpow, fiedler_ship
+from fiedler_power import fiedler_suip, fiedler_surqi 
 
 
 def calc_fiedler(L, method):
@@ -21,10 +21,12 @@ def calc_fiedler(L, method):
         return fiedler_pm(L)
     elif method == "invpow":
         return fiedler_invpow(L)
-    elif method == "stip":
-        return fiedler_stip(L)
     elif method == "ship":
         return fiedler_ship(L)    
+    elif method == "suip":
+        return fiedler_suip(L)
+    elif method == "surqi":
+        return fiedler_surqi(L)    
     else: 
         return fiedler_vector(L, method=method)
 
@@ -54,9 +56,6 @@ if __name__ == '__main__':
         methods = method_list.split(",")
     for fn in fns:
         L = get_lap(fn, fmt)
-        #ac_ubl, ac_ubr, ac_ub = get_ac_upbound(L)
-        #args = (relname(fn), "upbound", ac_ubl, ac_ubr, ac_ub)
-        #print("%-10s %-15s %10.8f\t%.3E\t%.3E" % args)
         for met in methods:
             ac, fv, time, res = test_fiedler(L, met)
             args = (fn, met, time, ac, res)

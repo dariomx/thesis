@@ -116,9 +116,9 @@ def lap(W, fmt):
 # had 1's on the diagonal (so they got lost while doing L = D - W, and
 # we recover here: diag(D) = diag(L) + diag(W) = diag(L) + diag(I))
 def get_ac_upbound(L):
-    n = float(L.shape[0])
-    dmin = min(map(lambda x: x+1, L.diagonal()))
-    return n/(n-1), dmin, n/(n-1) * dmin
+    dmin = np.min(L.diagonal()+1)
+    n = float(L.shape[0])    
+    return n/(n-1) * dmin
 
 # returns the original weights from the laplacian (just the lower half
 # given symmetry + plus the diagonal).
