@@ -3,11 +3,13 @@ from sys import stderr
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
-from numpy import diagflat, diagonal, tril_indices
+from numpy import diagflat, diagonal, tril_indices, ones
+from numpy import dot
 from numpy.linalg import cond
 from scipy.linalg import norm as dnorm, eigh, orth
 from scipy.sparse.linalg import norm as snorm
 from scipy.sparse import issparse, lil_matrix, csr_matrix
+from scipy.sparse import eye
 import scipy.stats
 import numpy as np
 from scipy.io import mmread, mminfo, savemat, mmwrite
@@ -75,9 +77,9 @@ def load_graph(fn, is_lap, zeros):
         G.add_edge(i, j, weight=zw)
     return G
 
-# invert y if the signs are opposite as x
+# invert y if the signs are opposite as x (peek fst elem)
 def invsign(y, x):
-    return -y if (sign(x) == -sign(y)).all() else y
+    return -y if (sign(x[0]) == -sign(y[0])).all() else y
 
 def mat_norm(A):
     norm = snorm if issparse(A) else dnorm
@@ -148,7 +150,7 @@ def get_eigvals(L):
 
 # returns a distribution object and its parsed params
 def get_dist(dist_name, dist_params):
-    print("random generator will use dist %s" % dist_name)
+    eprint("random generator will use dist %s" % dist_name)
     dist = getattr(scipy.stats, dist_name)
     dps = map(float, dist_params.split(","))
     return dist, dps
@@ -206,5 +208,12 @@ def save_plot(ax, title, img_file, bgcolor="black", fgcolor="white"):
     ax.title.set_color(fgcolor)
     ax.set_title(title)
     plt.savefig(img_file, facecolor=bgcolor, edgecolor='none')
+
+def take_time(f):
+    start = datetime.now()
+    result = f()
+    end = datetime.now()
+    time = (end - start).total_seconds()
+    return result, time
 
 parse_bool = lambda s: s == "true" or s == "True"

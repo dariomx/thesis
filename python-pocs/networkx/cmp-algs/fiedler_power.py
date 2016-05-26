@@ -1,11 +1,15 @@
 from scipy.linalg import norm
 from scipy.sparse.linalg import factorized, spsolve
 from scipy.linalg import lu_factor, lu_solve, solve
-from scipy.sparse import eye, issparse
-from numpy import dot
-from test_util import get_rand_dist, relres, eprint, mat_norm, get_ac_upbound
-from numpy import ones, loadtxt
-
+from scipy.sparse import eye, issparse, csc_matrix
+from numpy import dot, ones
+from test_util import get_rand_dist, relres, eprint, mat_norm, get_ac_upbound, take_time
+from numpy import loadtxt
+from scipy.linalg import cho_factor, cho_solve
+from sksparse.cholmod import cholesky_AAt
+from scipy.sparse.linalg.interface import LinearOperator
+import numpy as np
+ 
 def power_method(A, v, tol):
     i = 0
     rr = 1
@@ -52,8 +56,17 @@ def fiedler_ship(L, tol=1e-7):
 
 def fiedler_suip(L, tol=1e-7):
     L1 = get_spec_upd(L)
-    fv = rand_vec(L.shape[0]) 
+    fv = rand_vec(L.shape[0])
     return invpow(L1, fv, get_lu_solver1(L1), tol)
+
+def fiedler_rsuip(L, tol=1e-3):
+    L1 = get_spec_upd(L)
+    solver = get_lu_solver1(L1)
+    fv = rand_vec(L.shape[0])
+    for i in xrange(4):
+        ac, fv = invpow(L1, fv, solver, tol)
+        tol *= 1e-1        
+    return ac, fv
 
 def rqi(A, v, solve, tol):
     i = 0
@@ -81,13 +94,6 @@ def rand_vec(n):
     dist = get_rand_dist("uniform","0,1")
     return dist(n)
 
-def get_spec_upd(L, above=1):
-    n = L.shape[0]
-    v1 = ones(n)[None].T
-    V1 = dot(v1, v1.T)
-    a = (get_ac_upbound(L) + above)/n
-    return L + a*V1
-
 def get_lu_solver1(A):
     if issparse(A):
         return factorized(A)
@@ -100,4 +106,73 @@ def get_lu_solver2(A):
         return spsolve
     else:
         return solve
+    
+class MatSolverOp(LinearOperator):
+    def __init__(self, A, solver):
+        self.shape = A.shape
+        self.dtype = A.dtype
+        self.isreal = not np.issubdtype(self.dtype, np.complexfloating)
+        self.solver = solver
+        self.solve_iter = 0
 
+    def _matvec(self, x):
+        solve = lambda: self.solver(x)
+        result, time = take_time(solve)
+        self.solve_iter += 1
+        args = (self.solve_iter, time)
+        eprint("solve %d took %10.8f" % args)
+        return result
+
+def get_lu_op(A):
+    eprint("A is sparse? %s" % (issparse(A)))
+    fact = lambda: get_lu_solver1(A)
+    solver, time = take_time(fact)
+    eprint("lu factorization took %10.8f" % time)
+    return MatSolverOp(A, solver)
+
+def get_chol_opd(A):
+    eprint("A is sparse? %s" % (issparse(A)))
+    fact = lambda: cho_factor(A)
+    cholf, time = take_time(fact)
+    eprint("cholesky factorization took %10.8f" % time)
+    return MatSolverOp(A, lambda b: cho_solve(cholf, b))
+
+def get_chol_ops(A, s, v):
+    eprint("A is sparse? %s" % (issparse(A)))
+    fact = lambda: cholesky_AAt(A)
+    solver, time = take_time(fact)
+    eprint("cholesky factorization took %10.8f" % time)
+    def upd():
+        V = csc_matrix(s * dot(v, v.T))
+        solver.update_inplace(V)
+        return None
+    _, time = take_time(upd)
+    eprint("spectral update took %10.8f" % time)
+    return MatSolverOp(A, solver)
+
+# https://www.quantstart.com/articles/Cholesky-Decomposition-in-Python-and-NumPy
+def spa_cho_factor(A):
+    n = A.shape[0]
+    L = np.zeros((n,n))
+    for i in xrange(n):
+        eprint("row %d" % i)
+        for k in xrange(i+1):
+            eprint("cell %d,%d" % (i,k))            
+            tmp_sum = np.sum(L[i,j] * L[k,j] for j in xrange(k))
+            if (i == k):
+                L[i, k] = np.sqrt(A[i,i] - tmp_sum)
+            else:
+                L[i, k] = (1.0 / L[k,k] * (A[i,k] - tmp_sum))
+    return csc_matrix(L)
+    
+def get_spec_upd(L, c=1, sep=False):
+    n = L.shape[0]
+    v1 = ones(n)[None].T
+    V1 = dot(v1, v1.T)
+    a = 1e-2
+    b = (get_ac_upbound(L) + c)/n
+    La = L + a*eye(n)
+    if sep:
+        return La, b, v1, a
+    else:
+        return La + b*V1, a

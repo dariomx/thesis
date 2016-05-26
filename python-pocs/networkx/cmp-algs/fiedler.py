@@ -10,6 +10,8 @@ from scipy.linalg import eigh, inv
 from scipy.sparse import csc_matrix, spdiags
 from scipy.sparse.linalg import eigsh, lobpcg
 from scipy.linalg.blas import dasum, ddot, daxpy
+from fiedler_power import get_spec_upd, get_lu_op
+from fiedler_power import get_chol_opd, get_chol_ops
 
 _tracemin_method = compile('^tracemin(?:_(.*))?$')
 
@@ -230,14 +232,37 @@ def _get_fiedler_func(method):
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
-            elif method == 'lanczos_stsi':
-                v1 = ones(n)[None].T
-                M1 = dot(v1, v1.T)
-                s1 = 1
-                sigma, X = eigsh(L - s1*M1, 1, tol=tol,
+            elif method == 'lanczos_susi':
+                L1, a = get_spec_upd(L)
+                sigma, X = eigsh(L1, 1, tol=1e-7,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
-                return sigma[0], X[:, 0]
+                return sigma[0] - a, X[:, 0]
+            elif method == 'lanczos_susilu':
+                L1, a = get_spec_upd(L)
+                solver = get_lu_op(L1)
+                sigma, X = eigsh(L, 1, tol=1e-7,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,
+                                 return_eigenvectors=True)
+                return sigma[0] - a, X[:, 0]
+            elif method == 'lanczos_susics':
+                dead = get_spec_upd(L, sep=True)
+                L, b, v1, a = get_spec_upd(L, sep=True)
+                solver = get_chol_ops(L, b, v1)
+                sigma, X = eigsh(L, 1, tol=1e-7,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,
+                                 return_eigenvectors=True)
+                return sigma[0] - a, X[:, 0]
+            elif method == 'lanczos_susicd':
+                L1, a = get_spec_upd(L)
+                solver = get_chol_opd(L1)
+                sigma, X = eigsh(L1, 1, tol=1e-7,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,
+                                 return_eigenvectors=True)
+                return sigma[0] - a, X[:, 0]     
             else:
                 X = asarray(asmatrix(x).T)
                 M = spdiags(1. / L.diagonal(), [0], n, n)
