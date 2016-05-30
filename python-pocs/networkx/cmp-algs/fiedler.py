@@ -224,11 +224,8 @@ def _get_fiedler_func(method):
                                  which='SM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
-            elif method == 'lanczos_si' or n < 10:
-                # Avoid LOBPCG when n < 10 due to
-                # https://github.com/scipy/scipy/issues/3592
-                # https://github.com/scipy/scipy/pull/3594
-                sigma, X = eigsh(L, 2, tol=tol,
+            elif method == 'lanczos_si':
+                sigma, X = eigsh(L, k=2, tol=tol,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
@@ -237,7 +234,7 @@ def _get_fiedler_func(method):
                 sigma, X = eigsh(L1, 1, tol=1e-7,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
-                return sigma[0] - a, X[:, 0]
+                return sigma[0], X[:, 0]
             elif method == 'lanczos_susilu':
                 L1, a = get_spec_upd(L)
                 solver = get_lu_op(L1)

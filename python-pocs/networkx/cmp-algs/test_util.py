@@ -8,7 +8,7 @@ from numpy import dot
 from numpy.linalg import cond
 from scipy.linalg import norm as dnorm, eigh, orth
 from scipy.sparse.linalg import norm as snorm
-from scipy.sparse import issparse, lil_matrix, csr_matrix
+from scipy.sparse import issparse, lil_matrix, csc_matrix
 from scipy.sparse import eye
 import scipy.stats
 import numpy as np
@@ -111,7 +111,7 @@ def lap(W, fmt):
     d = d if len(d.shape) == 1 else concatenate(d.A)
     D = lil_matrix(W.shape)
     D.setdiag(d)
-    L = csr_matrix(D) - csr_matrix(W)
+    L = csc_matrix(D) - csc_matrix(W)
     return conv_mat(L, fmt)
 
 # upper bound of ac discovered by Fiedler, assumes similary (weight) graph 
@@ -171,14 +171,15 @@ def rand_mat_eigv(rand_dist, n, eigv):
     D = np.diag(eigv)
     Q = orth(rand_dist((n,n)))
     M = np.dot(Q, np.dot(D, Q.T))
-    return csr_matrix(M)
+    M = (M + M.T)/2
+    return csc_matrix(M)
 
 # tells if the matrix represents a laplacian base on file name convention
 def is_lap(fn):
     return fn.endswith("-lap.mtx")
 
 def load_weights(fn):
-    L = get_lap(fn, fmt="csr")
+    L = get_lap(fn, fmt="csc")
     eprint("extracting weights from %s ... " % fn)        
     ix, iy, ws = get_weights(L)
     nnz = np.squeeze(np.asarray(ws[ws > 0].T))
