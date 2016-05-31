@@ -224,11 +224,15 @@ def _get_fiedler_func(method):
                                  which='SM',
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]
+            elif method == 'lanczos_lm':
+                sigma, X = eigsh(L, k=1, tol=tol, which='LM',
+                                 return_eigenvectors=True)
+                return sigma[0], X[:, 0]            
             elif method == 'lanczos_si':
                 sigma, X = eigsh(L, k=2, tol=tol,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
-                return sigma[1], X[:, 1]
+                return sigma[1], X[:, 1] 
             elif method == 'lanczos_susi':
                 L1, a = get_spec_upd(L)
                 sigma, X = eigsh(L1, 1, tol=1e-7,

@@ -40,7 +40,8 @@ def test_fiedler(L, method):
         res = relres(L, ac, fv)
         return ac, fv, time, res        
     except:
-        eprint("Error while calculating %s" % method)
+        eprint("Error while calculating %s", method)
+        raise
         return None
 
 def relname(fn):
