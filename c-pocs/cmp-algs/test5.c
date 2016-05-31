@@ -1,19 +1,18 @@
 #include "fiedler_arpack.h"
 
 /*
- * tests fiedler_arpack + mult_matvec
+ * tests fiedler_arpack + LU fact/solve
  */
 
 cholmod_sparse * L;
+void * factor;
 cholmod_dense * X;
 cholmod_dense * Y;
 cholmod_dense * FV;
 
-void matvec(double * x, double * y)
+void solve(double * x, double * y)
 {
-  set_vec(x, X);
-  mult_matvec(L, X, Y);
-  copy_vec(Y, y);
+  lu_solve(L, factor, x, y);
 }
 
 int main(int argc, char * argv[])
@@ -30,7 +29,8 @@ int main(int argc, char * argv[])
   lams = alloc_double(nev);
   V = alloc_double(nev * n);
   start = cputime();
-  fiedler_arpack(n, "SM", nev, -1, tol, matvec, NULL, lams, V, &iter);
+  factor = lu_factor(L);
+  fiedler_arpack(n, "LM", nev, 0, tol, NULL, solve, lams, V, &iter);
   end = cputime();
   ac = lams[1];
   fv = V + n;

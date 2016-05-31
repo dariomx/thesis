@@ -1,7 +1,7 @@
 #include "test_util.h"
 
 /*
- * tests lu fact/solver
+ * tests LU fact/solver
  */
 
 int main(int argc, char * argv[])
