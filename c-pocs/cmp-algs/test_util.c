@@ -143,9 +143,7 @@ cholmod_factor * chol_factor(cholmod_sparse * A)
 {
   cholmod_factor * factor = cholmod_analyze(A, &CM);
   int ec = cholmod_factorize(A, factor, &CM);
-  assert(ec >= 0, "failed to analyze chol: %d\n", ec);
-  if ( ec > 0 )
-    eprint("warning in analyze chol: %d\n", ec);
+  assert(ec == 0, "failed to analyze chol: %d\n", ec);
   X = Y = E = NULL;
   return factor;
 }
@@ -164,17 +162,20 @@ cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out)
 {
   int ec;
   double n = (double) L->nrow;
-  double a = 1e-2;
+  double a = 1;
   double min_degree = diag_add(L, a);
   cholmod_factor * factor = chol_factor(L);  
   double ac_bound =  n/(n-1) * min_degree;
   double b = 1;
   double c = (ac_bound + b) / n;
-  cholmod_sparse * v1 = cholmod_ones(L->nrow, 1, CHOLMODE_REAL, &CM);
-  scale_vec(v1, c);
-  ec = cholmod_updown(TRUE, v1, factor, &CM);
+  cholmod_dense * v1 = cholmod_ones(L->nrow, 1, CHOLMOD_REAL, &CM);
+  scale_vec(v1, sqrt(c));
+  cholmod_sparse * V1 = cholmod_dense_to_sparse(v1, TRUE, &CM);
+  ec = cholmod_updown(TRUE, V1, factor, &CM);
   assert(ec == 0, "error in spec_upd_prec: %d\n", ec);
   *a_out = a;
+  cholmod_free_dense(&v1, &CM);
+  cholmod_free_sparse(&V1, &CM);
   return factor;
 }
 

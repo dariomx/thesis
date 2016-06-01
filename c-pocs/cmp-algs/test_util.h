@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 #include "cholmod_internal.h"
 #include "cholmod.h"
 #include "umfpack.h"
