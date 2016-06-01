@@ -6,7 +6,7 @@ from numpy import dot, ones
 from test_util import get_rand_dist, relres, eprint, mat_norm, get_ac_upbound, take_time
 from numpy import loadtxt
 from scipy.linalg import cho_factor, cho_solve
-from sksparse.cholmod import cholesky_AAt
+from sksparse.cholmod import cholesky
 from scipy.sparse.linalg.interface import LinearOperator
 import numpy as np
  
@@ -120,7 +120,7 @@ class MatSolverOp(LinearOperator):
         result, time = take_time(solve)
         self.solve_iter += 1
         args = (self.solve_iter, time)
-        eprint("solve %d took %10.8f" % args)
+        #eprint("solve %d took %10.8f" % args)
         return result
 
 def get_lu_op(A):
@@ -139,7 +139,7 @@ def get_chol_opd(A):
 
 def get_chol_ops(A, s, v):
     eprint("A is sparse? %s" % (issparse(A)))
-    fact = lambda: cholesky_AAt(A)
+    fact = lambda: cholesky(A)
     solver, time = take_time(fact)
     eprint("cholesky factorization took %10.8f" % time)
     def upd():

@@ -54,7 +54,8 @@ def validate(ac, fv, gac, gfv):
     fv_signok = 0
     for x,y in zip(invsign(fv, gfv), gfv):
         if sign(x) != sign(y):
-            eprint("fv diff: %f %f" % (x,y))
+            #eprint("fv diff: %f %f" % (x,y))
+            None
         else:
             fv_signok += 1
     fv_ok = fv_signok / float(fv.shape[0])

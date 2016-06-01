@@ -1,7 +1,7 @@
 #include "fiedler_arpack.h"
 
 /*
- * tests fiedler_arpack + LU fact/solve
+ * tests fiedler_arpack + LU fact/solve [UMF library]
  */
 
 cholmod_sparse * L;
@@ -13,6 +13,11 @@ cholmod_dense * FV;
 void solve(double * x, double * y)
 {
   lu_solve(L, factor, x, y);
+  {
+    int i;
+    for(i=0; i<L->nrow; i++)
+      eprint("ido %d %.14f %.14f\n", i, x[i], y[i]);
+  }
 }
 
 int main(int argc, char * argv[])

@@ -24,7 +24,7 @@ void print_mat(cholmod_sparse * A, char * fn);
 
 void save_mat(cholmod_sparse * A, char * fn);
 
-void diag_add(cholmod_sparse * L, double sig);
+double diag_add(cholmod_sparse * L, double sig);
 
 cholmod_dense * load_vec(char * fn);
 
@@ -38,10 +38,18 @@ void print_vec(cholmod_dense * v, char * name);
 
 void save_vec(cholmod_dense * v, char * fn);
 
+void scale_vec(cholmod_dense * v, double s);
+
 void mult_matvec(cholmod_sparse * A, cholmod_dense * x, cholmod_dense * y);
 
 void * lu_factor(cholmod_sparse * A);
 
 void lu_solve(cholmod_sparse * A, void * factor, double * b, double * x);
+
+cholmod_factor * chol_factor(cholmod_sparse * A);
+
+cholmod_dense * chol_solve(cholmod_factor * factor, cholmod_dense * b);
+
+cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out);
 
 void test_finish();
