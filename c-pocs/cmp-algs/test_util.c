@@ -126,15 +126,15 @@ void mult_matvec(cholmod_sparse * A, cholmod_dense * x, cholmod_dense * y)
 
 void * lu_factor(cholmod_sparse * A)
 {
-  void *symbolic, *numeric ;
+  void *symbolic, *numeric;
   Int *Ap, *Ai;
   double * Ax;
   int n = A->nrow;
   Ap = A->p;
   Ai = A->i;
   Ax = A->x;
-  umfpack_di_symbolic(n, n, Ap, Ai, Ax, &symbolic, null, null) ;
-  umfpack_di_numeric(Ap, Ai, Ax, symbolic, &numeric, null, null) ;
+  umfpack_di_symbolic(n, n, Ap, Ai, Ax, &symbolic, null, null);
+  umfpack_di_numeric(Ap, Ai, Ax, symbolic, &numeric, null, null);
   umfpack_di_free_symbolic (&symbolic);
   return numeric;
 }
@@ -179,9 +179,11 @@ cholmod_dense * chol_solve(cholmod_factor * factor, cholmod_dense * b)
 cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out)
 {
   int ret;
+  double start, end, mytime;
+  double a = 1e-2;  
+  cholmod_factor * factor = chol_factor(L, a);      
+  start = cputime();
   double n = (double) L->nrow;
-  double a = 1e-2;
-  cholmod_factor * factor = chol_factor(L, a);   
   double dmin = min_diag(L) + 1 + a;
   double ac_bound =  n/(n-1) * dmin;
   double b = 1;
@@ -189,7 +191,10 @@ cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out)
   cholmod_dense * v1 = cholmod_ones(L->nrow, 1, CHOLMOD_REAL, &CM);
   scale_vec(v1, sqrt(c));
   cholmod_sparse * V1 = cholmod_dense_to_sparse(v1, TRUE, &CM);
-  ret = cholmod_updown(TRUE, V1, factor, &CM);
+  mytime = take_time(ret = cholmod_updown(TRUE, V1, factor, &CM));  
+  end = cputime();
+  mytime = end - start;
+  eprint("spec upd took %10.8f\n", mytime);
   assert(ret && CM.status == 0,
          "error in spec_upd_prec: %d, %d\n",
          ret, CM.status);

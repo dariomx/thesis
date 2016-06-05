@@ -1,7 +1,7 @@
 #include "fiedler_arpack.h"
 
 /*
- * tests fiedler_arpack + cholesky fact/solve [cholmod library]
+ * tests spec upd + fiedler_arpack + cholesky fact/solve [cholmod library]
  */
 
 cholmod_sparse * L;
@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 {
   int n, iter, nev;
   double *lams, *V, ac, *fv, tol=1e-7;
-  double start, end, tot_start, tot_end, tot_time, a, sutime;
+  double tot_start, tot_end, tot_time, a;
   assert(argc == 3, "Usage: %s <lap_file> <fv_file>\n", argv[0]);
   test_start();
   L = load_mat(argv[1]);
@@ -36,7 +36,7 @@ int main(int argc, char * argv[])
   b = create_vec(n);
   solve_calls = solve_time = solvecp_time = solvesl_time = 0;
   tot_start = cputime();
-  sutime = take_time(factor = spec_upd_prec(L, &a));
+  factor = spec_upd_prec(L, &a);
   fiedler_arpack(n, "LM", nev, 0, tol, NULL, solve, lams, V, &iter);
   tot_end = cputime();
   tot_time = tot_end - tot_start;
@@ -48,8 +48,6 @@ int main(int argc, char * argv[])
   save_vec(FV, argv[2]);
   printf("arpack+su took %10.8f (iter=%d), ac=%.3E\n",
          tot_time, iter, ac);
-  printf("spec upd stats: %.2f %10.8f\n",
-         sutime/tot_time, sutime);
   printf("solve stats: %.2f, %d, %10.8f, %10.8f, %10.8f, %10.8f\n",
          solve_time / tot_time,
          solve_calls,

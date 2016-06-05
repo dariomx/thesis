@@ -6,18 +6,11 @@
 
 cholmod_sparse * L;
 void * factor;
-cholmod_dense * X;
-cholmod_dense * Y;
 cholmod_dense * FV;
 
 void solve(double * x, double * y)
 {
   lu_solve(L, factor, x, y);
-  {
-    int i;
-    for(i=0; i<L->nrow; i++)
-      eprint("ido %d %.14f %.14f\n", i, x[i], y[i]);
-  }
 }
 
 int main(int argc, char * argv[])
@@ -28,8 +21,6 @@ int main(int argc, char * argv[])
   test_start();
   L = load_mat(argv[1]);
   n = L->nrow;
-  X = create_vec(n);
-  Y = create_vec(n);
   nev = 2;
   lams = alloc_double(nev);
   V = alloc_double(nev * n);
