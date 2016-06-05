@@ -114,13 +114,14 @@ class MatSolverOp(LinearOperator):
         self.isreal = not np.issubdtype(self.dtype, np.complexfloating)
         self.solver = solver
         self.solve_iter = 0
+        self.solve_time = 0
 
     def _matvec(self, x):
         solve = lambda: self.solver(x)
         result, time = take_time(solve)
         self.solve_iter += 1
         args = (self.solve_iter, time)
-        #eprint("solve %d took %10.8f" % args)
+        self.solve_time += time
         return result
 
 def get_lu_op(A):
@@ -137,19 +138,32 @@ def get_chol_opd(A):
     eprint("cholesky factorization took %10.8f" % time)
     return MatSolverOp(A, lambda b: cho_solve(cholf, b))
 
-def get_chol_ops(A, s, v):
+def get_chol_ops(A, a, b, v):
     eprint("A is sparse? %s" % (issparse(A)))
-    fact = lambda: cholesky(A)
+    fact = lambda: cholesky(A, beta=a)
     solver, time = take_time(fact)
     eprint("cholesky factorization took %10.8f" % time)
     def upd():
-        V = csc_matrix(s * dot(v, v.T))
+        V = csc_matrix(b * dot(v, v.T))
         solver.update_inplace(V)
         return None
     _, time = take_time(upd)
     eprint("spectral update took %10.8f" % time)
     return MatSolverOp(A, solver)
+    
+def get_spec_upd(L, c=1, sep=False):
+    n = L.shape[0]
+    a = 1e-2
+    b = (get_ac_upbound(L, a) + c)/n
+    v1 = ones(n)[None].T    
+    if sep:
+        return a, b, v1
+    else:
+        La = L + a*eye(n)
+        V1 = dot(v1, v1.T)        
+        return La + b*V1, a
 
+# above was just for curiosity, it performs badly
 # https://www.quantstart.com/articles/Cholesky-Decomposition-in-Python-and-NumPy
 def spa_cho_factor(A):
     n = A.shape[0]
@@ -164,15 +178,3 @@ def spa_cho_factor(A):
             else:
                 L[i, k] = (1.0 / L[k,k] * (A[i,k] - tmp_sum))
     return csc_matrix(L)
-    
-def get_spec_upd(L, c=1, sep=False):
-    n = L.shape[0]
-    v1 = ones(n)[None].T
-    V1 = dot(v1, v1.T)
-    a = 1e-2
-    b = (get_ac_upbound(L) + c)/n
-    La = L + a*eye(n)
-    if sep:
-        return La, b, v1, a
-    else:
-        return La + b*V1, a

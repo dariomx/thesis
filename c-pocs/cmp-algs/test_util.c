@@ -7,6 +7,7 @@ cholmod_dense *X, *Y, *E;
 void test_start()
 {
   cholmod_start(&CM);
+  CM.supernodal_switch = CHOLMOD_SUPERNODAL;  
 }
 
 FILE * safe_open(char * fn, char * mode)
@@ -34,17 +35,6 @@ void save_mat(cholmod_sparse * A, char * fn)
   cholmod_write_sparse(f, A, NULL, NULL, &CM);
 }
 
-/*
-  Adds a positive sigma to L's diagonal, where L is assumed to be a
-  weighted Laplacian (hence doing this will not alter the zero
-  structure of the diagonal; which shall not have any zero actually);
-  even isolated nodes will have at least the -self_similarity metric,
-  which is assumed to have bigger magnitude than sigma.
-
-  We also assume that assing sigma does not cause any overflow.
-  As a useful side calculation, it returns the minimum element of the
-  diagonal (which for Laplacias is the minimum degree)
- */
 double diag_add(cholmod_sparse * L, double sigma)
 {
   int k,j;
@@ -60,6 +50,26 @@ double diag_add(cholmod_sparse * L, double sigma)
     Lx[k] += sigma;
     if ( Lx[k] < min )
       min = Lx[k];
+  }
+  return min;
+}
+
+double min_diag(cholmod_sparse * L)
+{
+  int k,j;
+  Int *Lp, *Li;
+  double *Lx, min = L->ncol;
+  Lp = L->p;
+  Li = L->i;
+  Lx = L->x;
+  for(k=0, j=0; j < L->ncol; j++)
+  {
+    for(k=Lp[j]; Li[k] < j; k++);
+    assert (Li[k] == j, "Could not find diagonal entry (%d,%d)", j, j);
+    if ( Lx[k] < min )
+    {
+      min = Lx[k];
+    }
   }
   return min;
 }
@@ -139,40 +149,50 @@ void lu_solve(cholmod_sparse * A, void * factor, double * b, double * x)
   umfpack_di_solve(UMFPACK_A, Ap, Ai, Ax, x, b, factor, null, null) ;  
 }
 
-cholmod_factor * chol_factor(cholmod_sparse * A)
+cholmod_factor * chol_factor(cholmod_sparse * A, double a)
 {
-  cholmod_factor * factor = cholmod_analyze(A, &CM);
-  int ec = cholmod_factorize(A, factor, &CM);
-  assert(ec == 0, "failed to analyze chol: %d\n", ec);
+  int ret;
+  double beta[2], start, end, mytime;
+  beta[0] = a;
+  beta[1] = 0;
+  cholmod_factor * factor;
+  mytime = take_time(factor = cholmod_analyze(A, &CM));
+  eprint("chol analyze took %10.8f\n", mytime);
+  mytime = take_time(ret = cholmod_factorize_p(A, beta, NULL, 0, factor, &CM));
+  eprint("chol factorize_p took %10.8f\n", mytime);
+  assert(ret && CM.status == 0, "failed to chol factorize: %d,%d\n",
+         ret, CM.status);
   X = Y = E = NULL;
   return factor;
 }
 
 cholmod_dense * chol_solve(cholmod_factor * factor, cholmod_dense * b)
 {
-  int ec = cholmod_solve2 (CHOLMOD_A, factor, b, NULL, &X, NULL, &Y, &E, &CM) ;
-  assert(ec >= 0, "failed to solve system using cholesky: %d\n", ec);
-  if ( ec > 0 )
-    eprint("warning in solve chol: %d\n", ec);
+  int ret = cholmod_solve2 (CHOLMOD_A, factor, b, NULL, &X, NULL, &Y, &E, &CM) ;
+  assert(ret && CM.status == 0,
+         "failed to solve system using cholesky: %d, %d\n",
+         ret, CM.status);
   return X;
 }
 
 /* spectral update preconditioning of the laplacian */
 cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out)
 {
-  int ec;
+  int ret;
   double n = (double) L->nrow;
-  double a = 1;
-  double min_degree = diag_add(L, a);
-  cholmod_factor * factor = chol_factor(L);  
-  double ac_bound =  n/(n-1) * min_degree;
+  double a = 1e-2;
+  cholmod_factor * factor = chol_factor(L, a);   
+  double dmin = min_diag(L) + 1 + a;
+  double ac_bound =  n/(n-1) * dmin;
   double b = 1;
   double c = (ac_bound + b) / n;
   cholmod_dense * v1 = cholmod_ones(L->nrow, 1, CHOLMOD_REAL, &CM);
   scale_vec(v1, sqrt(c));
   cholmod_sparse * V1 = cholmod_dense_to_sparse(v1, TRUE, &CM);
-  ec = cholmod_updown(TRUE, V1, factor, &CM);
-  assert(ec == 0, "error in spec_upd_prec: %d\n", ec);
+  ret = cholmod_updown(TRUE, V1, factor, &CM);
+  assert(ret && CM.status == 0,
+         "error in spec_upd_prec: %d, %d\n",
+         ret, CM.status);
   *a_out = a;
   cholmod_free_dense(&v1, &CM);
   cholmod_free_sparse(&V1, &CM);

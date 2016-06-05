@@ -117,8 +117,8 @@ def lap(W, fmt):
 # upper bound of ac discovered by Fiedler, assumes similary (weight) graph 
 # had 1's on the diagonal (so they got lost while doing L = D - W, and
 # we recover here: diag(D) = diag(L) + diag(W) = diag(L) + diag(I))
-def get_ac_upbound(L):
-    dmin = np.min(L.diagonal()+1)
+def get_ac_upbound(L, a):
+    dmin = np.min(L.diagonal()) + 1 + a
     n = float(L.shape[0])    
     return n/(n-1) * dmin
 

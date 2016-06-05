@@ -17,6 +17,8 @@
 
 #define alloc_double(n) (double *) malloc(n * sizeof(double))
 
+#define take_time(s) (start=cputime(), s, end=cputime(), end-start)
+
 void test_start();
 
 cholmod_sparse * load_mat(char * fn);
@@ -47,7 +49,7 @@ void * lu_factor(cholmod_sparse * A);
 
 void lu_solve(cholmod_sparse * A, void * factor, double * b, double * x);
 
-cholmod_factor * chol_factor(cholmod_sparse * A);
+cholmod_factor * chol_factor(cholmod_sparse * A, double a);
 
 cholmod_dense * chol_solve(cholmod_factor * factor, cholmod_dense * b);
 

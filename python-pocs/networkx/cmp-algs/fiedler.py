@@ -12,6 +12,7 @@ from scipy.sparse.linalg import eigsh, lobpcg
 from scipy.linalg.blas import dasum, ddot, daxpy
 from fiedler_power import get_spec_upd, get_lu_op
 from fiedler_power import get_chol_opd, get_chol_ops
+from test_util import eprint
 
 _tracemin_method = compile('^tracemin(?:_(.*))?$')
 
@@ -248,13 +249,13 @@ def _get_fiedler_func(method):
                                  return_eigenvectors=True)
                 return sigma[0] - a, X[:, 0]
             elif method == 'lanczos_susics':
-                dead = get_spec_upd(L, sep=True)
-                L, b, v1, a = get_spec_upd(L, sep=True)
-                solver = get_chol_ops(L, b, v1)
+                a, b, v1 = get_spec_upd(L, sep=True)
+                solver = get_chol_ops(L, a, b, v1)
                 sigma, X = eigsh(L, 1, tol=1e-7,
                                  sigma=0, which='LM',
                                  OPinv=solver,
                                  return_eigenvectors=True)
+                eprint("chol solve time = %10.8f" % (solver.solve_time))
                 return sigma[0] - a, X[:, 0]
             elif method == 'lanczos_susicd':
                 L1, a = get_spec_upd(L)
