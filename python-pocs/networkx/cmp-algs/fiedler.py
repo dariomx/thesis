@@ -7,11 +7,11 @@ from numpy import (array, asmatrix, asarray, dot, matrix, ndarray, ones,
 from numpy.linalg import norm, qr
 from numpy.random import normal
 from scipy.linalg import eigh, inv
-from scipy.sparse import csc_matrix, spdiags
+from scipy.sparse import csc_matrix, spdiags, eye
 from scipy.sparse.linalg import eigsh, lobpcg
 from scipy.linalg.blas import dasum, ddot, daxpy
 from fiedler_power import get_spec_upd, get_lu_op
-from fiedler_power import get_chol_opd, get_chol_ops
+from fiedler_power import get_chol_opd, get_chol_ops, get_chol_suops
 from test_util import eprint
 
 _tracemin_method = compile('^tracemin(?:_(.*))?$')
@@ -231,9 +231,26 @@ def _get_fiedler_func(method):
                 return sigma[0], X[:, 0]            
             elif method == 'lanczos_si':
                 sigma, X = eigsh(L, k=2, tol=tol,
+                                 sigma=-a, which='LM',
+                                 return_eigenvectors=True)
+                return sigma[1], X[:, 1]
+            elif method == 'lanczos_sis':
+                n = L.shape[0]
+                a = 1e-2
+                sigma, X = eigsh(L + a*eye(n), k=2, tol=tol,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
-                return sigma[1], X[:, 1] 
+                return sigma[1] - a, X[:, 1]
+            elif method == 'lanczos_sic':
+                a = 1e-2
+                solver = get_chol_ops(L, a)
+                sigma, X = eigsh(L, k=2, tol=tol,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,               
+                                 return_eigenvectors=True)
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("chol solve time = %10.8f, sc=%d" % args)
+                return sigma[1] - a, X[:, 1]             
             elif method == 'lanczos_susi':
                 L1, a = get_spec_upd(L)
                 sigma, X = eigsh(L1, 1, tol=1e-7,
@@ -250,12 +267,13 @@ def _get_fiedler_func(method):
                 return sigma[0] - a, X[:, 0]
             elif method == 'lanczos_susics':
                 a, b, v1 = get_spec_upd(L, sep=True)
-                solver = get_chol_ops(L, a, b, v1)
+                solver = get_chol_suops(L, a, b, v1)
                 sigma, X = eigsh(L, 1, tol=1e-7,
                                  sigma=0, which='LM',
                                  OPinv=solver,
                                  return_eigenvectors=True)
-                eprint("chol solve time = %10.8f" % (solver.solve_time))
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("chol solve time = %10.8f, sc=%d" % args)
                 return sigma[0] - a, X[:, 0]
             elif method == 'lanczos_susicd':
                 L1, a = get_spec_upd(L)

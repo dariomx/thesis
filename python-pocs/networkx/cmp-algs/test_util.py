@@ -34,7 +34,7 @@ def conv_mat(M, fmt):
         Mc = method(M)
     return Mc
 
-def load_mat(fn, fmt):
+def load_mat(fn, fmt="csc"):
     eprint("loading matrix ... ")
     start = datetime.now()
     if fn.endswith(".mat"):

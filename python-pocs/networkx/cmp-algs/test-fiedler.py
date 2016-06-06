@@ -78,7 +78,7 @@ def test_methods(methods, fmt, fns):
                 valstr = validate(ac, fv, gac, gfv)
             args = (fn, met, time, ac, res, valstr)
             if not (met == "mr3" and verif):
-                print("%-30s %-10s %10.8f  %.3E  %.3E %s" % args)
+                print("%-30s %-10s %10.8f  %.14f  %.3E %s" % args)
     
 # main
 if __name__ == '__main__':

@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
   FV = create_vec(n);
   set_vec(fv, FV);
   save_vec(FV, argv[2]);
-  printf("arpack+su took %10.8f (iter=%d), ac=%.3E\n",
+  printf("arpack+su took %10.8f (iter=%d), ac=%.14f\n",
          tot_time, iter, ac);
   printf("solve stats: %.2f, %d, %10.8f, %10.8f, %10.8f, %10.8f\n",
          solve_time / tot_time,

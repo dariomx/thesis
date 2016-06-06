@@ -120,7 +120,6 @@ class MatSolverOp(LinearOperator):
         solve = lambda: self.solver(x)
         result, time = take_time(solve)
         self.solve_iter += 1
-        args = (self.solve_iter, time)
         self.solve_time += time
         return result
 
@@ -138,7 +137,14 @@ def get_chol_opd(A):
     eprint("cholesky factorization took %10.8f" % time)
     return MatSolverOp(A, lambda b: cho_solve(cholf, b))
 
-def get_chol_ops(A, a, b, v):
+def get_chol_ops(A, a):
+    eprint("A is sparse? %s" % (issparse(A)))
+    fact = lambda: cholesky(A, beta=a)
+    solver, time = take_time(fact)
+    eprint("cholesky factorization took %10.8f" % time)
+    return MatSolverOp(A, solver)
+
+def get_chol_suops(A, a, b, v):
     eprint("A is sparse? %s" % (issparse(A)))
     fact = lambda: cholesky(A, beta=a)
     solver, time = take_time(fact)
@@ -150,7 +156,7 @@ def get_chol_ops(A, a, b, v):
     _, time = take_time(upd)
     eprint("spectral update took %10.8f" % time)
     return MatSolverOp(A, solver)
-    
+
 def get_spec_upd(L, c=1, sep=False):
     n = L.shape[0]
     a = 1e-2

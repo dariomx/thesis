@@ -181,7 +181,7 @@ cholmod_factor * spec_upd_prec(cholmod_sparse * L, double * a_out)
   int ret;
   double start, end, mytime;
   double a = 1e-2;  
-  cholmod_factor * factor = chol_factor(L, a);      
+  cholmod_factor * factor = chol_factor(L, a);
   start = cputime();
   double n = (double) L->nrow;
   double dmin = min_diag(L) + 1 + a;
