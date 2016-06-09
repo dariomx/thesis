@@ -68,6 +68,11 @@ def fiedler_rsuip(L, tol=1e-3):
         tol *= 1e-1        
     return ac, fv
 
+def fiedler_suipc(L, tol=1e-7):
+    a, b, v1 = get_spec_upd(L, sep=True)
+    fv = rand_vec(L.shape[0])
+    return invpow(L, fv, get_chol_solver(L, a, b, v1), tol)
+
 def rqi(A, v, solve, tol):
     i = 0
     rr = 1
@@ -106,6 +111,12 @@ def get_lu_solver2(A):
         return spsolve
     else:
         return solve
+
+def get_chol_solver(A, a, b, v):
+    if issparse(A):
+        return get_chol_suops(A, a, b, v).solver
+    else:
+        raise ValueError("dense matrix not supported for now")
     
 class MatSolverOp(LinearOperator):
     def __init__(self, A, solver):

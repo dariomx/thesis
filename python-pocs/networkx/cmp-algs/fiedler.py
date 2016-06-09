@@ -69,7 +69,8 @@ class _CholeskySolver(object):
         return self._chol(B)
 
     try:
-        from scikits.sparse.cholmod import cholesky
+        from sksparse.cholmod import cholesky
+        #from scikits.sparse.cholmod import cholesky
         _cholesky = cholesky
     except ImportError:
         _cholesky = None
@@ -210,7 +211,7 @@ def _get_fiedler_func(method):
             X = asmatrix(normal(size=(q, L.shape[0]))).T
             sigma, X = _tracemin_fiedler(L, X, normalized, tol, method)
             return sigma[0], X[:, 0]
-    elif method.startswith('lanczos') or method == 'lobpcg':
+    elif method.startswith('lanczos') or method.startswith('lobpcg'):
         def find_fiedler(L, x, normalized, tol):
             L = csc_matrix(L, dtype=float)
             n = L.shape[0]
@@ -230,33 +231,47 @@ def _get_fiedler_func(method):
                                  return_eigenvectors=True)
                 return sigma[0], X[:, 0]            
             elif method == 'lanczos_si':
-                sigma, X = eigsh(L, k=2, tol=tol,
+                a = 1e-2
+                sigma, X = eigsh(L, k=10, tol=tol,
                                  sigma=-a, which='LM',
                                  return_eigenvectors=True)
-                return sigma[1], X[:, 1]
+                return sigma[1] + a, X[:, 1]
+            elif method == 'lanczos_sin':
+                sigma, X = eigsh(-L, k=2, tol=tol,
+                                 sigma=None, which='LA',
+                                 return_eigenvectors=True)
+                return sigma[1], X[:, 1]            
+            elif method == 'lanczos_sic':
+                a = 1e-2
+                solver = get_chol_ops(L, a)
+                n = L.shape[0]
+                nev = max(2, 10)
+                sigma, X = eigsh(L, k=nev, tol=tol,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,               
+                                 return_eigenvectors=True)
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("chol solve time = %10.8f, sc=%d" % args)
+                return sigma[1] - a, X[:, 1]
             elif method == 'lanczos_sis':
                 n = L.shape[0]
                 a = 1e-2
                 sigma, X = eigsh(L + a*eye(n), k=2, tol=tol,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
-                return sigma[1] - a, X[:, 1]
-            elif method == 'lanczos_sic':
-                a = 1e-2
-                solver = get_chol_ops(L, a)
-                sigma, X = eigsh(L, k=2, tol=tol,
-                                 sigma=0, which='LM',
-                                 OPinv=solver,               
-                                 return_eigenvectors=True)
-                args = (solver.solve_time, solver.solve_iter)
-                eprint("chol solve time = %10.8f, sc=%d" % args)
-                return sigma[1] - a, X[:, 1]             
+                return sigma[1] - a, X[:, 1]            
             elif method == 'lanczos_susi':
                 L1, a = get_spec_upd(L)
                 sigma, X = eigsh(L1, 1, tol=1e-7,
                                  sigma=0, which='LM',
                                  return_eigenvectors=True)
                 return sigma[0], X[:, 0]
+            elif method == 'lanczos_sun':
+                L1, a = get_spec_upd(L)
+                sigma, X = eigsh(L1, 1, tol=1e-7,
+                                 sigma=None, which='LA',
+                                 return_eigenvectors=True)
+                return -sigma[0], X[:, 0]            
             elif method == 'lanczos_susilu':
                 L1, a = get_spec_upd(L)
                 solver = get_lu_op(L1)
@@ -268,13 +283,14 @@ def _get_fiedler_func(method):
             elif method == 'lanczos_susics':
                 a, b, v1 = get_spec_upd(L, sep=True)
                 solver = get_chol_suops(L, a, b, v1)
-                sigma, X = eigsh(L, 1, tol=1e-7,
+                nev = 10
+                sigma, X = eigsh(L, nev, tol=1e-7,
                                  sigma=0, which='LM',
                                  OPinv=solver,
                                  return_eigenvectors=True)
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("chol solve time = %10.8f, sc=%d" % args)
-                return sigma[0] - a, X[:, 0]
+                return sigma[1] - a, X[:, 0]
             elif method == 'lanczos_susicd':
                 L1, a = get_spec_upd(L)
                 solver = get_chol_opd(L1)
@@ -283,6 +299,17 @@ def _get_fiedler_func(method):
                                  OPinv=solver,
                                  return_eigenvectors=True)
                 return sigma[0] - a, X[:, 0]     
+            elif method == "lobpcg_s" :
+                a = 1e-2
+                Ls = L + a*eye(n)
+                X = asarray(asmatrix(x).T)                
+                M = spdiags(1. / Ls.diagonal(), [0], n, n)
+                Y = ones(n)
+                if normalized:
+                    Y /= D.diagonal()
+                sigma, X = lobpcg(Ls, X, M=M, Y=asmatrix(Y).T, tol=tol,
+                                  maxiter=n, largest=False)
+                return sigma[0] - a, X[:, 0]
             else:
                 X = asarray(asmatrix(x).T)
                 M = spdiags(1. / L.diagonal(), [0], n, n)
@@ -299,5 +326,5 @@ def _get_fiedler_func(method):
 
 def fiedler_vector(L, normalized=False, tol=1e-7, method='tracemin'):
     find_fiedler = _get_fiedler_func(method)
-    x = None if method != 'lobpcg' else random.rand(L.shape[0])
+    x = None if not method.startswith('lobpcg') else random.rand(L.shape[0])
     return find_fiedler(L, x, normalized, tol)

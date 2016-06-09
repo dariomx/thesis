@@ -168,11 +168,20 @@ def get_pdf_dist(dist_name, dist_params):
 # returns random matrix with given eigenvalues
 # assumes that rand_dist produces non-singular matrices
 def rand_mat_eigv(rand_dist, n, eigv):
-    D = np.diag(eigv)
-    Q = orth(rand_dist((n,n)))
+    eprint("cooking diagonal D ... ");
+    d = np.sort(rand_dist(n))
+    m = eigv.shape[0]
+    d[0:m] = eigv
+    d[m:] += d[m-1]
+    D = np.diag(d)
+    eprint("computing Q ... ");    
+    Q = orth(rand_dist((n,n))) 
+    eprint("computing Q * D * Q.T ... ");   
     M = np.dot(Q, np.dot(D, Q.T))
+    eprint("enforcing symmetry ...");        
     M = (M + M.T)/2
-    return csc_matrix(M)
+    eprint("all done")
+    return M
 
 # tells if the matrix represents a laplacian base on file name convention
 def is_lap(fn):

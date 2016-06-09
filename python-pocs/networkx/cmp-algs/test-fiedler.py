@@ -8,7 +8,8 @@ from test_util import relres, parse_bool, eprint, get_lap, conv_mat
 from test_util import get_ac_upbound, is_nearly_zero, invsign
 from test_util import take_time
 from fiedler_power import fiedler_pm, fiedler_invpow, fiedler_ship
-from fiedler_power import fiedler_suip, fiedler_surqi, fiedler_rsuip 
+from fiedler_power import fiedler_suip, fiedler_surqi, fiedler_rsuip
+from fiedler_power import fiedler_suipc
 from numpy import sign
 
 def calc_fiedler(L, method):
@@ -26,6 +27,8 @@ def calc_fiedler(L, method):
         return fiedler_ship(L)    
     elif method == "suip":
         return fiedler_suip(L)
+    elif method == "suipc":
+        return fiedler_suipc(L)    
     elif method == "rsuip":
         return fiedler_rsuip(L)    
     elif method == "surqi":
@@ -78,7 +81,7 @@ def test_methods(methods, fmt, fns):
                 valstr = validate(ac, fv, gac, gfv)
             args = (fn, met, time, ac, res, valstr)
             if not (met == "mr3" and verif):
-                print("%-30s %-10s %10.8f  %.14f  %.3E %s" % args)
+                print("%-30s %-10s %10.8f  %.16f  %.3E %s" % args)
     
 # main
 if __name__ == '__main__':

@@ -22,6 +22,7 @@ if __name__ == '__main__':
     eprint("setting eigenvalues on random matrix (dist %s) ... " % dist_name)
     rand_dist = get_rand_dist(dist_name, dist_params)    
     out_file = str(n) + "-lap.mtx"
-    print("saving matrix to " + out_file)
-    mmwrite(out_file, rand_mat_eigv(rand_dist, n, eigv))
+    M = rand_mat_eigv(rand_dist, n, eigv)
+    eprint("saving matrix to " + out_file)
+    mmwrite(out_file, M)
 
