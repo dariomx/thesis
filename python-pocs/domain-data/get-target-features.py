@@ -77,14 +77,14 @@ def print_all_features(pid, db_url, mid, start, end,
     out.close()
     con.close()    
     
-def calc_ranges(target_ids, numth):
+def calc_ranges(target_ids, numprocs):
     n = len(target_ids)
-    eprint("Will split %d targets into %d processes" % (n, numth))
-    work = n / numth
+    eprint("Will split %d targets into %d processes" % (n, numprocs))
+    work = n / numprocs
     tid_starts = xrange(0, n, work)
     tid_ends = map(lambda x: x+work-1, tid_starts)
     tid_ranges = zip(tid_starts, tid_ends)
-    last_work = n % numth
+    last_work = n % numprocs
     if last_work != 0:
         ts = tid_ranges[-1][0]
         tid_ranges[-1] = (ts, ts+last_work-1)
@@ -93,9 +93,9 @@ def calc_ranges(target_ids, numth):
     eprint("target ranges: %s" % str(tid_ranges))
     return tid_ranges
 
-def split_work(db_url, target_ids, numth, mid, start, end):
+def split_work(db_url, target_ids, numprocs, mid, start, end):
     procs = []
-    for tid_range in calc_ranges(target_ids, numth):
+    for tid_range in calc_ranges(target_ids, numprocs):
         pid = "process %d-%d" % tid_range
         fname = "target-features-%05d-%05d.csv" % tid_range
         args = (pid, db_url, mid, start, end,
@@ -112,18 +112,18 @@ if __name__ == '__main__':
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
     db_url = argv[1]
-    numth = int(argv[2])
+    numprocs = int(argv[2])
     metric_name = "load"
     column_name = "cpuUtil"
     start = "2015-01-01 00:00:00"
     end = "2015-12-31 23:59:59"
     eprint("Range for metric data is [%s, %s]" % (start, end))    
-    eprint("Number of processes to use %d (+1)" % numth)
+    eprint("Number of processes to use %d (+1)" % numprocs)
     con = cx_Oracle.connect(db_url, threaded=False)
     mid = get_mid(con, metric_name, column_name)
     args = (mid, metric_name, column_name)
     eprint("Got metric id %d for %s.%s" % args)
     target_ids = get_target_ids(con)
     eprint("Got %d targets" % len(target_ids))
-    split_work(db_url, target_ids, numth, mid, start, end)
+    split_work(db_url, target_ids, numprocs, mid, start, end)
     con.close()
