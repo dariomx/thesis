@@ -1,5 +1,6 @@
 from __future__ import print_function
 from sys import stderr
+import re
 from datetime import datetime
 from itertools import izip
 from numpy import loadtxt, sign, ndarray, concatenate, inf
@@ -134,6 +135,7 @@ def get_lap(fn, fmt):
     if is_lap(fn):
         L = W
     else:
+        eprint("matrix is not laplacian, will calculate")
         L = lap(W, fmt)
     return L
 
@@ -185,7 +187,7 @@ def rand_mat_eigv(rand_dist, n, eigv):
 
 # tells if the matrix represents a laplacian base on file name convention
 def is_lap(fn):
-    return fn.endswith("-lap.mtx")
+    return re.search(r"-lap\.", fn) is not None
 
 def load_weights(fn):
     L = get_lap(fn, fmt="csc")

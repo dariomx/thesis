@@ -12,6 +12,7 @@ from scipy.sparse.linalg import eigsh, lobpcg
 from scipy.linalg.blas import dasum, ddot, daxpy
 from fiedler_power import get_spec_upd, get_lu_op
 from fiedler_power import get_chol_opd, get_chol_ops, get_chol_suops
+from fiedler_power import get_iter_op
 from test_util import eprint
 
 _tracemin_method = compile('^tracemin(?:_(.*))?$')
@@ -245,7 +246,7 @@ def _get_fiedler_func(method):
                 a = 1e-2
                 solver = get_chol_ops(L, a)
                 n = L.shape[0]
-                nev = max(2, 10)
+                nev = 2
                 sigma, X = eigsh(L, k=nev, tol=tol,
                                  sigma=0, which='LM',
                                  OPinv=solver,               
@@ -253,6 +254,15 @@ def _get_fiedler_func(method):
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("chol solve time = %10.8f, sc=%d" % args)
                 return sigma[1] - a, X[:, 1]
+            elif method == 'lanczos_siter':
+                nev = 2
+                sigma, X = eigsh(L, k=nev, tol=tol,
+                                 sigma=0, which='LM',
+                                 OPinv=get_iter_op(L),
+                                 return_eigenvectors=True)
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("iter solve time = %10.8f, sc=%d" % args)
+                return sigma[1], X[:, 1]
             elif method == 'lanczos_sis':
                 n = L.shape[0]
                 a = 1e-2
