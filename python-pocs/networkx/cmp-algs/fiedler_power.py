@@ -1,5 +1,7 @@
 from scipy.linalg import norm
-from scipy.sparse.linalg import factorized, spsolve, minres
+from scipy.sparse.linalg import factorized, spsolve
+from scipy.sparse.linalg import bicg, cg, bicgstab, cgs
+from scipy.sparse.linalg import gmres, lgmres, minres, qmr
 from scipy.linalg import lu_factor, lu_solve, solve
 from scipy.sparse import eye, issparse, csc_matrix
 from numpy import dot, ones
@@ -168,10 +170,11 @@ def get_chol_suops(A, a, b, v):
     eprint("spectral update took %10.8f" % time)
     return MatSolverOp(A, solver)
 
-def get_iter_op(A):
+def get_iter_op(A, M=None):
     eprint("A is sparse? %s" % (issparse(A)))
     def solve_iter(b):
-        x, info = minres(A,b,tol=1e-5,maxiter=10)
+        x, info = minres(A,b,tol=1e-7,maxiter=10,M=M)
+        return x
     return MatSolverOp(A, solve_iter)
 
 def get_spec_upd(L, c=1, sep=False):

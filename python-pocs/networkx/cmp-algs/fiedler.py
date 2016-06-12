@@ -3,7 +3,7 @@
 from re import compile
 from functools import partial
 from numpy import (array, asmatrix, asarray, dot, matrix, ndarray, ones,
-                   reshape, sqrt, zeros, random)
+                   reshape, sqrt, zeros, random, concatenate)
 from numpy.linalg import norm, qr
 from numpy.random import normal
 from scipy.linalg import eigh, inv
@@ -246,23 +246,42 @@ def _get_fiedler_func(method):
                 a = 1e-2
                 solver = get_chol_ops(L, a)
                 n = L.shape[0]
-                nev = 2
+                nev = 3
                 sigma, X = eigsh(L, k=nev, tol=tol,
                                  sigma=0, which='LM',
                                  OPinv=solver,               
                                  return_eigenvectors=True)
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("chol solve time = %10.8f, sc=%d" % args)
+                #eprint("calc spectrum = %s" % sigma)
                 return sigma[1] - a, X[:, 1]
             elif method == 'lanczos_siter':
-                nev = 2
-                sigma, X = eigsh(L, k=nev, tol=tol,
+                n = L.shape[0]
+                a = 1e-2
+                La = L + a*eye(n)
+                nev = 3
+                solver = get_iter_op(La)
+                sigma, X = eigsh(La, k=nev, tol=tol,
                                  sigma=0, which='LM',
-                                 OPinv=get_iter_op(L),
+                                 OPinv=solver,
                                  return_eigenvectors=True)
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("iter solve time = %10.8f, sc=%d" % args)
-                return sigma[1], X[:, 1]
+                return sigma[1] - a, X[:, 1]
+            elif method == 'lanczos_siterp':
+                n = L.shape[0]
+                a = 1e-2
+                La = L + a*eye(n)
+                nev = 3
+                M = spdiags(1. / La.diagonal(), [0], n, n)
+                solver = get_iter_op(La, M)
+                sigma, X = eigsh(La, k=nev, tol=tol,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,
+                                 return_eigenvectors=True)
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("iter solve time = %10.8f, sc=%d" % args)
+                return sigma[1] - a, X[:, 1]
             elif method == 'lanczos_sis':
                 n = L.shape[0]
                 a = 1e-2
@@ -310,7 +329,7 @@ def _get_fiedler_func(method):
                                  return_eigenvectors=True)
                 return sigma[0] - a, X[:, 0]     
             elif method == "lobpcg_s" :
-                a = 1e-2
+                a = 0.01
                 Ls = L + a*eye(n)
                 X = asarray(asmatrix(x).T)                
                 M = spdiags(1. / Ls.diagonal(), [0], n, n)
@@ -336,5 +355,9 @@ def _get_fiedler_func(method):
 
 def fiedler_vector(L, normalized=False, tol=1e-7, method='tracemin'):
     find_fiedler = _get_fiedler_func(method)
-    x = None if not method.startswith('lobpcg') else random.rand(L.shape[0])
-    return find_fiedler(L, x, normalized, tol)
+    if not method.startswith('lobpcg'):
+        X = None
+    else:
+        n = L.shape[0]
+        X = random.rand(n)
+    return find_fiedler(L, X, normalized, tol)

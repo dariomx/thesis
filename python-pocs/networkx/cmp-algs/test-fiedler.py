@@ -50,7 +50,7 @@ def test_fiedler(L, method):
 def relname(fn):
     return fn.split("/")[-1]
 
-def validate(ac, fv, gac, gfv):
+def validate_fv(ac, fv, gac, gfv):
     ac_ok = (sign(ac) == sign(gac) and
              is_nearly_zero(ac) ==
              is_nearly_zero(gac))
@@ -65,6 +65,11 @@ def validate(ac, fv, gac, gfv):
     args = (ac_ok, fv_signok, fv_ok)
     return "ac_ok=%s fv_signok=%d,fv_ok=%.7f" % args
 
+def validate_cc(L, fv):
+    ncc, cclab = cc(L)
+    eprint("ncc = %d" % ncc)        
+    
+
 def test_methods(methods, fmt, fns):
     gac, gfv, valstr = None, None, ""
     for fn in fns:
@@ -78,7 +83,7 @@ def test_methods(methods, fmt, fns):
                 gac, gfv = ac, fv
                 valstr = ""
             elif gac is not None and gfv is not None:
-                valstr = validate(ac, fv, gac, gfv)
+                valstr = validate_fv(ac, fv, gac, gfv)
             args = (fn, met, time, ac, res, valstr)
             if not (met == "mr3" and verif):
                 print("%-30s %-10s %10.8f  %.16f  %.3E %s" % args)
