@@ -13,12 +13,18 @@ from fiedler_power import fiedler_suipc
 from numpy import sign
 
 def calc_fiedler(L, method):
+    if method == "mr3a":
+        Ld = conv_mat(L, "dense")
+        ls, vs = eigh(Ld, eigvals=(0,L.shape[0]-1), overwrite_a=True)
+        ac = ls[1]
+        fv = vs[:,1]
+        return ac, fv
     if method == "mr3":
         Ld = conv_mat(L, "dense")
         ls, vs = eigh(Ld, eigvals=(1,1), overwrite_a=True)
         ac = ls[0]
         fv = vs[:,0]
-        return ac, fv
+        return ac, fv    
     elif method == "pm":
         return fiedler_pm(L)
     elif method == "invpow":

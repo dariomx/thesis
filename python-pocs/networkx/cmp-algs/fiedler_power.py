@@ -11,6 +11,7 @@ from scipy.linalg import cho_factor, cho_solve
 from sksparse.cholmod import cholesky
 from scipy.sparse.linalg.interface import LinearOperator
 import numpy as np
+from pyamg import smoothed_aggregation_solver, rootnode_solver
  
 def power_method(A, v, tol):
     i = 0
@@ -177,6 +178,18 @@ def get_iter_op(A, M=None):
         return x
     return MatSolverOp(A, solve_iter)
 
+def get_piter_op(A):
+    eprint("A is sparse? %s" % (issparse(A)))
+    def calc_prec():
+        return smoothed_aggregation_solver(A,
+                                           coarse_solver='pinv2',
+                                           max_coarse=10)
+    mls, time = take_time(calc_prec)
+    eprint("calc amg precond took %10.8f" % time)
+    def solve_iter(b):
+        return mls.solve(b, tol=1e-7, accel='cg')
+    return MatSolverOp(A, solve_iter)
+
 def get_spec_upd(L, c=1, sep=False):
     n = L.shape[0]
     a = 1e-2
@@ -204,3 +217,4 @@ def spa_cho_factor(A):
             else:
                 L[i, k] = (1.0 / L[k,k] * (A[i,k] - tmp_sum))
     return csc_matrix(L)
+

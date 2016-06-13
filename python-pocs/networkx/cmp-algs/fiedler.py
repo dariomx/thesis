@@ -14,7 +14,7 @@ from scipy.sparse.linalg import eigsh, lobpcg
 from scipy.linalg.blas import dasum, ddot, daxpy
 from fiedler_power import get_spec_upd, get_lu_op
 from fiedler_power import get_chol_opd, get_chol_ops, get_chol_suops
-from fiedler_power import get_iter_op
+from fiedler_power import get_iter_op, get_piter_op
 from test_util import eprint, take_time
 from pyamg import smoothed_aggregation_solver
 
@@ -285,6 +285,19 @@ def _get_fiedler_func(method):
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("iter solve time = %10.8f, sc=%d" % args)
                 return sigma[1] - a, X[:, 1]
+            elif method == 'lanczos_spiter':
+                n = L.shape[0]
+                a = 1e-2
+                La = L + a*eye(n)
+                nev = 2
+                solver = get_piter_op(La)
+                sigma, X = eigsh(La, k=nev, tol=tol,
+                                 sigma=0, which='LM',
+                                 OPinv=solver,
+                                 return_eigenvectors=True)
+                args = (solver.solve_time, solver.solve_iter)
+                eprint("iter solve time = %10.8f, sc=%d" % args)
+                return sigma[1] - a, X[:, 1]            
             elif method == 'lanczos_sis':
                 n = L.shape[0]
                 a = 1e-2
