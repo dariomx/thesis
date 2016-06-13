@@ -1,5 +1,7 @@
 # stolen from networkx (adjusted a bit)
 
+import scipy as sp
+import numpy as np
 from re import compile
 from functools import partial
 from numpy import (array, asmatrix, asarray, dot, matrix, ndarray, ones,
@@ -13,7 +15,8 @@ from scipy.linalg.blas import dasum, ddot, daxpy
 from fiedler_power import get_spec_upd, get_lu_op
 from fiedler_power import get_chol_opd, get_chol_ops, get_chol_suops
 from fiedler_power import get_iter_op
-from test_util import eprint
+from test_util import eprint, take_time
+from pyamg import smoothed_aggregation_solver
 
 _tracemin_method = compile('^tracemin(?:_(.*))?$')
 
@@ -214,7 +217,7 @@ def _get_fiedler_func(method):
             return sigma[0], X[:, 0]
     elif method.startswith('lanczos') or method.startswith('lobpcg'):
         def find_fiedler(L, x, normalized, tol):
-            L = csc_matrix(L, dtype=float)
+            #L = csc_matrix(L, dtype=float)
             n = L.shape[0]
             if normalized:
                 D = spdiags(1. / sqrt(L.diagonal()), [0], n, n, format='csc')
@@ -246,7 +249,7 @@ def _get_fiedler_func(method):
                 a = 1e-2
                 solver = get_chol_ops(L, a)
                 n = L.shape[0]
-                nev = 3
+                nev = 2
                 sigma, X = eigsh(L, k=nev, tol=tol,
                                  sigma=0, which='LM',
                                  OPinv=solver,               
@@ -312,14 +315,14 @@ def _get_fiedler_func(method):
             elif method == 'lanczos_susics':
                 a, b, v1 = get_spec_upd(L, sep=True)
                 solver = get_chol_suops(L, a, b, v1)
-                nev = 10
+                nev = 1
                 sigma, X = eigsh(L, nev, tol=1e-7,
                                  sigma=0, which='LM',
                                  OPinv=solver,
                                  return_eigenvectors=True)
                 args = (solver.solve_time, solver.solve_iter)
                 eprint("chol solve time = %10.8f, sc=%d" % args)
-                return sigma[1] - a, X[:, 0]
+                return sigma[0] - a, X[:, 0]
             elif method == 'lanczos_susicd':
                 L1, a = get_spec_upd(L)
                 solver = get_chol_opd(L1)
@@ -327,18 +330,58 @@ def _get_fiedler_func(method):
                                  sigma=0, which='LM',
                                  OPinv=solver,
                                  return_eigenvectors=True)
-                return sigma[0] - a, X[:, 0]     
-            elif method == "lobpcg_s" :
-                a = 0.01
-                Ls = L + a*eye(n)
-                X = asarray(asmatrix(x).T)                
-                M = spdiags(1. / Ls.diagonal(), [0], n, n)
+                return sigma[0] - a, X[:, 0]
+            elif method == "lobpcg_s" : 
+               a = 0.01
+               Ls = L + a*eye(n)
+               X = asarray(asmatrix(x).T)                
+               M = spdiags(1. / Ls.diagonal(), [0], n, n)
+               Y = ones(n)
+               sigma, X = lobpcg(Ls, X, M=M, Y=asmatrix(Y).T, tol=tol,
+                                 maxiter=n, largest=False)
+               return sigma[0] - a, X[:, 0]
+            elif method == "lobpcg_snoy" : 
+               s = 0.01
+               Ls = L + s*eye(n)
+               X = sp.rand(Ls.shape[0], 2)
+               X[:,0] = np.ones((Ls.shape[0],))
+               X = np.linalg.qr(X, mode='full')[0]
+               sigma, X = lobpcg(Ls, X, M=None, Y=None, tol=tol,
+                                 maxiter=n, largest=False)            
+               return sigma[1] - s, X[:, 1]            
+            elif method == "lobpcg_amg" : 
+               s = 0.01
+               Ls = L + s*eye(n)
+               def calc_prec():
+                   eprint("type of Ls = %s" % type(Ls))
+                   ml = smoothed_aggregation_solver(Ls,
+                                                    coarse_solver='pinv2',
+                                                    max_coarse=10)
+                   return ml.aspreconditioner()
+               M, time = take_time(calc_prec)
+               eprint("calc amg precond took %10.8f" % time)
+               X = sp.rand(Ls.shape[0], 2)
+               X[:,0] = np.ones((Ls.shape[0],))
+               X = np.linalg.qr(X, mode='full')[0]
+               sigma, X = lobpcg(Ls, X, M=M, Y=None, tol=tol,
+                                 maxiter=n, largest=False)            
+               return sigma[1] - s, X[:, 1]            
+            elif method == "lobpcg_amgy" :
+                s = 0.01
+                Ls = L + s*eye(n)
+                X = asarray(asmatrix(x).T)
+                def calc_prec():
+                    eprint("type of Ls = %s" % type(Ls))
+                    ml = smoothed_aggregation_solver(Ls,
+                                                     coarse_solver='pinv2',
+                                                     max_coarse=10)
+                    return ml.aspreconditioner()
+                M, time = take_time(calc_prec)
+                eprint("calc amg precond took %10.8f" % time)
                 Y = ones(n)
-                if normalized:
-                    Y /= D.diagonal()
                 sigma, X = lobpcg(Ls, X, M=M, Y=asmatrix(Y).T, tol=tol,
                                   maxiter=n, largest=False)
-                return sigma[0] - a, X[:, 0]
+                return sigma[0] - s, X[:, 0]
             else:
                 X = asarray(asmatrix(x).T)
                 M = spdiags(1. / L.diagonal(), [0], n, n)
