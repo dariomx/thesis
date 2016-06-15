@@ -38,9 +38,9 @@ def conv_mat(M, fmt):
 def load_mat(fn, fmt="csc"):
     eprint("loading matrix ... ")
     start = datetime.now()
-    if fn.endswith(".mat"):
+    if fn.endswith(".mat") or fn.endswith(".mat.gz"):
         M = loadtxt(fn)
-    elif fn.endswith(".mtx") or fn.endswith(".mtz.gz"):
+    elif fn.endswith(".mtx") or fn.endswith(".mtx.gz"):
         eprint("mm header:  " + str(mminfo(fn)))
         M = mmread(fn)
     end = datetime.now()
@@ -221,11 +221,13 @@ def save_plot(ax, title, img_file, bgcolor="black", fgcolor="white"):
     ax.set_title(title)
     plt.savefig(img_file, facecolor=bgcolor, edgecolor='none')
 
-def take_time(f):
-    start = datetime.now()
-    result = f()
-    end = datetime.now()
-    time = (end - start).total_seconds()
-    return result, time
+def take_time(f, navg=1):
+    time = 0
+    for i in xrange(navg):
+        start = datetime.now()
+        result = f()
+        end = datetime.now()
+        time += (end - start).total_seconds()
+    return result, time/navg
 
 parse_bool = lambda s: s == "true" or s == "True"

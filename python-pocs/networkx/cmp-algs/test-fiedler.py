@@ -45,7 +45,7 @@ def calc_fiedler(L, method):
 def test_fiedler(L, method):
     try:
         f = lambda: calc_fiedler(L, method) 
-        (ac, fv), time = take_time(f)
+        (ac, fv), time = take_time(f, navg=10)
         res = relres(L, ac, fv)
         return ac, fv, time, res        
     except:
