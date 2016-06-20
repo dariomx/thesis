@@ -1,0 +1,21 @@
+\begin{frame}
+  \frametitle{Problem restated}
+  \begin{block}{Given a Laplacian matrix}
+    \begin{itemize}
+    \item Sparse ($70\%$ zeros).
+    \item Symmetric.
+    \item Positive semi-definite (all eigenvalues positive except $\lambda_1=0$).
+    \end{itemize}
+  \end{block}
+  \begin{block}{Compute its Fiedler Vector}
+    \begin{itemize}
+    \item The eigenvector $\vec{fv}$ associated with $\lambda_2 \suchthat \vec{fv} \bot \vec{1}$. 
+    \item The signs of the elements of $fv$ can be used to perform the partition ($\vec{fv}_i > 0 \implies v_i \in C_1$, otherwise $v_i \in \stcomp{C_1}$).
+    \end{itemize}
+  \end{block}
+  \begin{block}{Strategy for the thesis}
+    \begin{itemize}
+    \item Seek for algorithms that exploit the properties of $L$.
+    \end{itemize}
+  \end{block}    
+\end{frame}

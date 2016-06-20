@@ -1,0 +1,15 @@
+\begin{frame}
+  \frametitle{What is the thesis about?}
+  \begin{block}{Data Clustering}
+    Grouping of $x \in \R{n}$ according to a similarity function $\func{f}: \R{n} \fromto \R{}$.
+  \end{block}
+  \begin{block}{Spectral Clustering}
+    Reduces the problem to Graph Partitioning. Determines the partitions using eigenvector(s) of the (unnormalized) Laplacian matrix $L = D - W \suchthat W_{ij} = \func{f}(x_i,x_j)$.
+  \end{block}
+  \begin{block}{The problem}
+    A real life application uses spectral clustering, but the calculation of the eigenvector(s) is a bottleneck. Main issue is the algorithm they use.
+  \end{block}
+  \begin{block}{The goal of this thesis}
+    Recommend a faster algorithm to compute the eigenvector(s) of $L$. Enter Numerical Linear Algebra.
+  \end{block}    
+\end{frame}

@@ -1,0 +1,38 @@
+\begin{frame}
+  \frametitle{The Laplacian opens the door to L.A.}
+  \begin{block}{Why the ratio is needed?}
+    The problem $\min\limits_{C_1 \ds{\subset} V} \func{cut}(C1,\stcomp{C1})$ can be solved in polynomial time but usually leads to extremely unbalanced partitions (eg \scriptsize
+    $\abs{C_1}=1 \land \abs{\stcomp{C1}}=n-1$
+    \normalsize).
+  \end{block}
+  \begin{block}{Balanced but hard}
+    The problem $\min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})$ leads to better balanced partitions but is NP-Hard.
+  \end{block}
+  \begin{block}{Enter the Laplacian (still hard but ...)}
+\setlength\abovedisplayskip{0pt}
+\[
+\min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})
+\ds{\equiv} \min\limits_{\vec{f} \in \R{n}}
+ \frac{1}{2\abs{V}}\sum\limits_{i=1}^{n} \sum\limits_{j=1}^n w_{ij} (f_i - f_j)^2
+\ds{\equiv} \min\limits_{\vec{f} \in \R{n}}
+  \underbrace{\trans{\vec{f}} L \ds{\vec{f}}}_{\text{???}}
+\]
+\[
+\setlength\abovedisplayskip{0pt}
+\ds{\suchthat}
+f_i =
+\scriptsize
+\begin{cases}
+  \sqrt{\abs{\stcomp{C_1}}/\abs{C_1}}, & \text{if } v_i \in C_1 \\
+  -\sqrt{\abs{C_1}/\abs{\stcomp{C_1}}}, & \text{if } v_i \in \stcomp{C_1}
+\end{cases}
+\normalsize
+\ds{\ds{\land}}
+L = D - W
+\ds{\ds{\text{,}}}
+\vec{f} \bot \vec{1}
+\ds{\land}
+\norm{\vec{f}} = \sqrt{n}
+\]
+  \end{block}    
+\end{frame}

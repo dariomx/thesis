@@ -12,6 +12,7 @@ from scipy.sparse.linalg import norm as snorm
 from scipy.sparse import issparse, lil_matrix, csc_matrix
 from scipy.sparse import eye
 import scipy.stats
+import scipy
 import numpy as np
 from scipy.io import mmread, mminfo, savemat, mmwrite
 import networkx as nx
@@ -23,16 +24,22 @@ vec_norm_ord = 2
 def eprint(*args, **kwargs):
     print(*args, file=stderr, **kwargs)
 
+def get_mat_cons(fmt):
+    return getattr(scipy.sparse, fmt + "_matrix")
+
 def conv_mat(M, fmt):
-    if fmt == "dense":
-        if type(M) == ndarray:
-            Mc = M
+    def do_conv():
+        if fmt == "dense":
+            if type(M) == ndarray:
+                Mc = M
+            else:
+                Mc = M.toarray()
         else:
-            Mc = M.toarray()
-    else:
-        import scipy
-        method = getattr(scipy.sparse, fmt + "_matrix")
-        Mc = method(M)
+            method = get_mat_cons(fmt)
+            Mc = method(M)
+        return Mc
+    Mc, time = take_time(do_conv)
+    eprint("converting to format %s took %10.8f" % (fmt, time))
     return Mc
 
 def load_mat(fn, fmt="csc"):
@@ -108,12 +115,16 @@ def cmp_ac_fv(L, cac, cfv, ac, fv):
 
 # calculates the (unormalized) laplacian from the weights matrix
 def lap(W, fmt):
-    d = W.sum(axis=1)
-    d = d if len(d.shape) == 1 else concatenate(d.A)
-    D = lil_matrix(W.shape)
-    D.setdiag(d)
-    L = csc_matrix(D) - csc_matrix(W)
-    return conv_mat(L, fmt)
+    def calc_lap():
+        d = W.sum(axis=1)
+        d = d if len(d.shape) == 1 else concatenate(d.A)    
+        D = lil_matrix(W.shape)
+        D.setdiag(d)
+        mat_cons = get_mat_cons(fmt)    
+        return mat_cons(D) - mat_cons(W)
+    L, time = take_time(calc_lap)
+    eprint("calculating laplacian took %10.8f" % time)
+    return L
 
 # upper bound of ac discovered by Fiedler, assumes similary (weight) graph 
 # had 1's on the diagonal (so they got lost while doing L = D - W, and

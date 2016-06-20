@@ -42,10 +42,10 @@ def calc_fiedler(L, method):
     else: 
         return fiedler_vector(L, method=method)
 
-def test_fiedler(L, method):
+def test_fiedler(L, method, navg):
     try:
         f = lambda: calc_fiedler(L, method) 
-        (ac, fv), time = take_time(f, navg=10)
+        (ac, fv), time = take_time(f, navg)
         res = relres(L, ac, fv)
         return ac, fv, time, res        
     except:
@@ -61,27 +61,29 @@ def validate_fv(ac, fv, gac, gfv):
              is_nearly_zero(ac) ==
              is_nearly_zero(gac))
     fv_signok = 0
+    fv_signpos = 0
     for x,y in zip(invsign(fv, gfv), gfv):
+        fv_signpos += 1 if sign(x)==1 else 0
         if sign(x) != sign(y):
             #eprint("fv diff: %f %f" % (x,y))
             None
         else:
             fv_signok += 1
-    fv_ok = fv_signok / float(fv.shape[0])
-    args = (ac_ok, fv_signok, fv_ok)
-    return "ac_ok=%s fv_signok=%d,fv_ok=%.7f" % args
+    n = float(fv.shape[0])
+    args = (ac_ok, fv_signok, fv_signok/n, fv_signpos, fv_signpos/n)
+    return "ac_ok=%s fv_signok=%d,fv_ok=%.7f,fv_signpos=%d,fv_pos=%.7f" % args
 
 def validate_cc(L, fv):
     ncc, cclab = cc(L)
     eprint("ncc = %d" % ncc)        
     
 
-def test_methods(methods, fmt, fns):
+def test_methods(methods, fmt, navg, fns):
     gac, gfv, valstr = None, None, ""
     for fn in fns:
         L = get_lap(fn, fmt)
         for met in methods:
-            ret = test_fiedler(L, met)
+            ret = test_fiedler(L, met, navg)
             if ret is None:
                 continue
             ac, fv, time, res = ret
@@ -96,19 +98,20 @@ def test_methods(methods, fmt, fns):
     
 # main
 if __name__ == '__main__':
-    if len(argv) < 5:
-        args = "<method> <fmt> <verif> <file1> [<file2> ... ]"
+    if len(argv) < 6:
+        args = "<method> <fmt> <nav> <verif> <file1> [<file2> ... ]"
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
     method_list = argv[1]
     fmt = argv[2]
-    verif = parse_bool(argv[3])
-    fns = argv[4:]
+    navg = int(argv[3])
+    verif = parse_bool(argv[4])
+    fns = argv[5:]
     if method_list == "all":
         methods = ["mr3", "lanczos_susi", "suip"]
     else:
         methods = method_list.split(",")
     if verif and "mr3" not in methods:
         methods = ["mr3"] + methods
-    test_methods(methods, fmt, fns)
+    test_methods(methods, fmt, navg, fns)
             

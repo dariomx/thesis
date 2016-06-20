@@ -1,0 +1,48 @@
+\begin{frame}
+  \frametitle{The Fiedler Vector (approximate soln.)}
+  \begin{block}{Remove the discrete constraint (but keep $\vec{f} \bot \vec{1}$)}
+    \[
+\setlength\abovedisplayskip{0pt}    
+\min\limits_{\norm{\vec{f}} = \sqrt{n}} \trans{\vec{f}} L \ds{\vec{f}}
+\ds{\ds{\equiv}}
+  \min\limits_{\norm{\vec{f}} = \sqrt{n}}
+  n \left[
+  \dfrac{\trans{\vec{f}} L \ds{\vec{f}}}{\trans{\vec{f}} \vec{f}}
+  \right]
+\ds{\ds{\equiv}}
+\min\limits_{\vec{f} \in \R{n}}
+  \underbrace{
+    \left(\dfrac{\trans{\vec{f}} L \ds{\vec{f}}}{\trans{\vec{f}} \vec{f}}\right)
+  }_{\text{Rayleigh-Quotient}}    
+\setlength\belowdisplayskip{0pt}  
+\]    
+  \end{block}
+  \begin{block}{Courant-Fischer Theorem (for $\lambda_2$ and $A$ real-symmetric)}
+\setlength\abovedisplayskip{0pt}
+\[
+\setlength\abovedisplayskip{0pt}
+\lambda_2(A) =
+\max\limits_{\func{dim}(U) = n-1}
+\left[
+\min\limits_{\vec{x} \in U \ds{\land} \norm{\vec{x}} \ne 0}
+\left(  
+\dfrac{\trans{\vec{x}} A \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+\right)
+\right]
+\]    
+  \end{block}
+
+  \begin{block}{Problem reduces to finding Fiedler Vector}
+\setlength\abovedisplayskip{0pt}
+\[
+L\vec{1} = 0 \vec{1} = \lambda_1 \vec{1}
+\ds{\implies}
+\min\limits_{\vec{x} \bot \vec{1} \ds{\land} \norm{\vec{x}} \ne 0}
+\left(  
+\dfrac{\trans{\vec{x}} L \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+\right)
+= \lambda_2
+\suchthat{L\vec{x} = \lambda_2\vec{x}}
+\]    
+  \end{block}
+\end{frame}
