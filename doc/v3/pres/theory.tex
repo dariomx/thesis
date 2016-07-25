@@ -1,0 +1,24 @@
+\begin{frame}
+  \frametitle{The Symmetric Eigenvalue Problem}
+  \begin{block}{The Spectral Theorem (symmetric version)}
+    If $A$ is a real symmetric matrix $\implies$ there exists a real orthogonal matrix $Q$ such that $\trans{Q}AQ$ is diagonal. 
+  \end{block}
+  \begin{block}{Conditioning (Bindel and Goodman)}
+    \joinabove{0}
+    \[
+    \kappa_{i}(A) = \dfrac{\abs{\lambda_{max}}}{\abs{\lambda_i}}
+    \ds{\ds{\land}}
+    \Delta \vec{v}_i \approx \sum\limits_{\tiny{i \ne j}}
+    \dfrac{\trans{\vec{v}_j} A \vec{v}_i}{\lambda_i - \lambda_j} 
+    \]
+  \end{block}
+  \begin{block}{Backward Stability \& Conditioning}
+    \[
+    \joinabove{0}    
+    \exists\,\Delta A \suchthat
+    (A + \Delta A)\apx{\vec{v}_i} = \apx{\lambda_i}\apx{\vec{v}_i}
+    \ds{\implies}
+    (\apx{\lambda_i},\apx{\vec{v}_i}) \text{ as good as conditioning}
+    \]
+    \end{block}
+\end{frame}

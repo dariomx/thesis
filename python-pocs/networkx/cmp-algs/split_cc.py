@@ -76,8 +76,9 @@ if __name__ == '__main__':
             time_split = 0
         eprint("recomputing laplacian ...")
         L, time_lap = take_time(lambda: lap(W, "csr"))
-        args = (mat_file, ncc, time_cc, time_split, time_lap)  
-        eprint("%s, %d, %10.8f, %10.8f, %10.8f" % args)
+        args = (mat_file, ncc, time_cc, time_split, time_lap,
+                time_cc + time_split + time_lap) 
+        eprint("%s, %d, %10.8f, %10.8f, %10.8f, %10.8f" % args)
         if save:
             _, time_save = take_time(lambda: save_lap(L, mat_file, out_dir))
             eprint("saving matrix took %10.8f" % time_save)
