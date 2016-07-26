@@ -26,4 +26,14 @@
     \joinbelow{0}      
     \]
   \end{block}
+  \begin{block}{Rayleigh-Ritz Method}
+    \begin{itemize}
+    \item Compute orthonormal basis $V$ of subspace
+      ($\func{dim}(V) \ll \func{dim}(A)$).
+    \item Solve (smaller) eigenproblem $R\vec{y} = \lambda\vec{y}
+      \ds{\suchthat} R = \trans{V} A V$
+    \item Compute the Ritz pairs
+      $(\apx{\lambda}_i,\apx{\vec{x}}_i) = (\lambda_i, V\vec{y}_i)$
+    \end{itemize}
+  \end{block}
 \end{frame}
