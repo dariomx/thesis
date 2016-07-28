@@ -11,6 +11,8 @@ from fiedler_power import fiedler_pm, fiedler_invpow, fiedler_ship
 from fiedler_power import fiedler_suip, fiedler_surqi, fiedler_rsuip
 from fiedler_power import fiedler_suipc
 from numpy import sign
+import matplotlib.pylab as plt
+from test_util import save_plot, get_plot_axis
 
 def calc_fiedler(L, method):
     if method == "mr3a":
@@ -77,16 +79,31 @@ def validate_cc(L, fv):
     ncc, cclab = cc(L)
     eprint("ncc = %d" % ncc)        
     
-
-def test_methods(methods, fmt, navg, fns):
+def plot_results(fmt, plot_file, methods, sizes, times):
+    if plot_file is not None:
+        ax = get_plot_axis()
+        for met in methods:
+            eprint("plotting performance of method %s" % met)
+            ax.plot(sizes, times[met], label=met)
+            ax.legend(loc='upper left')
+        eprint("saving plots into %s" % plot_file)
+        save_plot(ax, "Experiment Results (%s)" % fmt, plot_file)
+    
+def test_methods(methods, fmt, navg, plot_file, fns):
     gac, gfv, valstr = None, None, ""
+    times = {}
+    sizes = []
     for fn in fns:
         L = get_lap(fn, fmt)
+        sizes.append(L.shape[0])
         for met in methods:
             ret = test_fiedler(L, met, navg)
             if ret is None:
                 continue
             ac, fv, time, res = ret
+            if met not in times:
+                times[met] = []
+            times[met].append(time)
             if met == "mr3":
                 gac, gfv = ac, fv
                 valstr = ""
@@ -95,23 +112,25 @@ def test_methods(methods, fmt, navg, fns):
             args = (fn, met, time, ac, res, valstr)
             if not (met == "mr3" and verif):
                 print("%-30s %-10s %10.8f  %.16f  %.3E %s" % args)
+    plot_results(fmt, plot_file, methods, sizes, times)            
     
 # main
 if __name__ == '__main__':
-    if len(argv) < 6:
-        args = "<method> <fmt> <nav> <verif> <file1> [<file2> ... ]"
+    if len(argv) < 7:
+        args = "<method> <fmt> <nav> <verif> <plot_file> <file1> [<file2> ... ]"
         eprint (("\nUsage: %s " + args + "\n") % argv[0])
         exit(1)
     method_list = argv[1]
     fmt = argv[2]
     navg = int(argv[3])
     verif = parse_bool(argv[4])
-    fns = argv[5:]
+    plot_file = None if argv[5] == "None" else argv[5]
+    fns = argv[6:]
     if method_list == "all":
         methods = ["mr3", "lanczos_susi", "suip"]
     else:
         methods = method_list.split(",")
     if verif and "mr3" not in methods:
         methods = ["mr3"] + methods
-    test_methods(methods, fmt, navg, fns)
+    test_methods(methods, fmt, navg, plot_file, fns)
             

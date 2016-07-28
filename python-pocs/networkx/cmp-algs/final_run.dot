@@ -1,0 +1,2 @@
+rm -f final_run/*
+taskset -c 3 ./test-fiedler.py mr3,lanczos_si,lanczos_sic,lobpcg csc 100 true final_run/results-csc.png domain/*.mtx > final_run/aver.csc 2>&1; taskset -c 3 ./test-fiedler.py mr3,lanczos_si,lanczos_sic,lobpcg csr 100 true final_run/results-csr.png domain/*.mtx > final_run/aver.csr 2>&1

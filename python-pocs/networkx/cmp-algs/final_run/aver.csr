@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "./test-fiedler.py", line 6, in <module>
+    from fiedler import fiedler_vector
+  File "/home/dario/projects/master/thesis/eigen/gitlab/thesis/python-pocs/networkx/cmp-algs/fiedler.py", line 15, in <module>
+    from fiedler_power import get_spec_upd, get_lu_op
+  File "/home/dario/projects/master/thesis/eigen/gitlab/thesis/python-pocs/networkx/cmp-algs/fiedler_power.py", line 8, in <module>
+    from test_util import get_rand_dist, relres, eprint, mat_norm, get_ac_upbound, take_time
+  File "/home/dario/projects/master/thesis/eigen/gitlab/thesis/python-pocs/networkx/cmp-algs/test_util.py", line 19, in <module>
+    import matplotlib.pyplot as plt
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/pyplot.py", line 114, in <module>
+    _backend_mod, new_figure_manager, draw_if_interactive, _show = pylab_setup()
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/__init__.py", line 32, in pylab_setup
+    globals(),locals(),[backend_name],0)
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/backend_qt4agg.py", line 18, in <module>
+    from .backend_qt5agg import FigureCanvasQTAggBase as _FigureCanvasQTAggBase
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/backend_qt5agg.py", line 15, in <module>
+    from .backend_qt5 import QtCore
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/backend_qt5.py", line 27, in <module>
+    import matplotlib.backends.qt_editor.figureoptions as figureoptions
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/qt_editor/figureoptions.py", line 17, in <module>
+    import matplotlib.backends.qt_editor.formlayout as formlayout
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/qt_editor/formlayout.py", line 58, in <module>
+    from matplotlib.backends.qt_compat import QtGui, QtWidgets, QtCore
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/backends/qt_compat.py", line 124, in <module>
+    from PyQt4 import QtCore, QtGui
+KeyboardInterrupt
