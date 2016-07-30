@@ -235,7 +235,7 @@ def _get_fiedler_func(method):
                                  return_eigenvectors=True)
                 return sigma[0], X[:, 0]            
             elif method == 'lanczos_si':
-                a = 1e-2
+                a = 0.01
                 sigma, X = eigsh(L, k=10, tol=tol,
                                  sigma=-a, which='LM',
                                  return_eigenvectors=True)
@@ -246,7 +246,7 @@ def _get_fiedler_func(method):
                                  return_eigenvectors=True)
                 return sigma[1], X[:, 1]            
             elif method == 'lanczos_sic':
-                a = 1e-2
+                a = 0.01
                 solver = get_chol_ops(L, a)
                 n = L.shape[0]
                 nev = 2
