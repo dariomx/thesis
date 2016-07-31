@@ -87,7 +87,8 @@ def plot_results(fmt, plot_file, methods, sizes, times):
             ax.plot(sizes, times[met], label=met)
             ax.legend(loc='upper left')
         eprint("saving plots into %s" % plot_file)
-        save_plot(ax, "Experiment Results (%s)" % fmt, plot_file)
+        save_plot(ax, "Experiment Results (%s)" % fmt,
+                  plot_file, bgcolor="white", fgcolor="black")
     
 def test_methods(methods, fmt, navg, plot_file, fns):
     gac, gfv, valstr = None, None, ""
@@ -107,11 +108,10 @@ def test_methods(methods, fmt, navg, plot_file, fns):
             if met == "mr3":
                 gac, gfv = ac, fv
                 valstr = ""
-            elif gac is not None and gfv is not None:
+            elif met != "mr3" and gac is not None and gfv is not None:
                 valstr = validate_fv(ac, fv, gac, gfv)
             args = (fn, met, time, ac, res, valstr)
-            if not (met == "mr3" and verif):
-                print("%-30s %-10s %10.8f  %.16f  %.3E %s" % args)
+            print("%-30s %-10s %10.8f  %.16f  %.3E %s" % args) 
     plot_results(fmt, plot_file, methods, sizes, times)            
     
 # main
