@@ -1,0 +1,4085 @@
+loading matrix ... 
+mm header:  (500, 500, 38449, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.155508
+converting to format csc took 0.00275200
+converted to format csc in 0:00:00.002843
+converting to format dense took 0.00208600
+converting to format dense took 0.00223600
+converting to format dense took 0.00207800
+converting to format dense took 0.00215700
+converting to format dense took 0.00243000
+converting to format dense took 0.00209800
+converting to format dense took 0.00685200
+converting to format dense took 0.00211500
+converting to format dense took 0.00427000
+converting to format dense took 0.00221700
+converting to format dense took 0.00220200
+converting to format dense took 0.00210600
+converting to format dense took 0.00213400
+converting to format dense took 0.00218700
+converting to format dense took 0.00206900
+converting to format dense took 0.00218900
+converting to format dense took 0.00210100
+converting to format dense took 0.00220100
+converting to format dense took 0.00572900
+converting to format dense took 0.00211800
+converting to format dense took 0.00463900
+converting to format dense took 0.00216600
+converting to format dense took 0.00392300
+converting to format dense took 0.00219900
+converting to format dense took 0.00230700
+converting to format dense took 0.00226200
+converting to format dense took 0.00210800
+converting to format dense took 0.00221100
+converting to format dense took 0.00217700
+converting to format dense took 0.00219200
+converting to format dense took 0.00216300
+converting to format dense took 0.00213100
+converting to format dense took 0.00219900
+converting to format dense took 0.00957500
+converting to format dense took 0.00217100
+converting to format dense took 0.00724800
+converting to format dense took 0.00215900
+converting to format dense took 0.00226800
+converting to format dense took 0.00214100
+converting to format dense took 0.00216400
+converting to format dense took 0.00217200
+converting to format dense took 0.00218300
+converting to format dense took 0.00854300
+converting to format dense took 0.00226500
+converting to format dense took 0.00225000
+converting to format dense took 0.00214400
+converting to format dense took 0.00220600
+converting to format dense took 0.00208400
+converting to format dense took 0.00217000
+converting to format dense took 0.00230600
+converting to format dense took 0.00406400
+converting to format dense took 0.00222100
+converting to format dense took 0.00225400
+converting to format dense took 0.00211300
+converting to format dense took 0.00216600
+converting to format dense took 0.00209800
+converting to format dense took 0.00212800
+converting to format dense took 0.00740200
+converting to format dense took 0.00220600
+converting to format dense took 0.00436500
+converting to format dense took 0.00219300
+converting to format dense took 0.00212800
+converting to format dense took 0.00210900
+converting to format dense took 0.00217600
+converting to format dense took 0.00563500
+converting to format dense took 0.00217600
+converting to format dense took 0.00475600
+converting to format dense took 0.00219400
+converting to format dense took 0.00212500
+converting to format dense took 0.00223800
+converting to format dense took 0.00220900
+converting to format dense took 0.00213600
+converting to format dense took 0.00219800
+converting to format dense took 0.00638200
+converting to format dense took 0.00224300
+converting to format dense took 0.00213000
+converting to format dense took 0.00211000
+converting to format dense took 0.00220900
+converting to format dense took 0.00422200
+converting to format dense took 0.00227900
+converting to format dense took 0.00211800
+converting to format dense took 0.00220600
+converting to format dense took 0.00219400
+converting to format dense took 0.00213800
+converting to format dense took 0.00211000
+converting to format dense took 0.00218200
+converting to format dense took 0.00221400
+converting to format dense took 0.00211000
+converting to format dense took 0.00216200
+converting to format dense took 0.00212900
+converting to format dense took 0.00212700
+converting to format dense took 0.00221100
+converting to format dense took 0.00215400
+converting to format dense took 0.00210600
+converting to format dense took 0.00218900
+converting to format dense took 0.00209000
+converting to format dense took 0.00219800
+converting to format dense took 0.00952300
+converting to format dense took 0.00213200
+converting to format dense took 0.00829000
+A is sparse? True
+cholesky factorization took 0.06878500
+chol solve time = 0.00162400, sc=15
+A is sparse? True
+cholesky factorization took 0.04649600
+chol solve time = 0.00140800, sc=13
+A is sparse? True
+cholesky factorization took 0.02901000
+chol solve time = 0.00155900, sc=15
+A is sparse? True
+cholesky factorization took 0.02883000
+chol solve time = 0.00190500, sc=17
+A is sparse? True
+cholesky factorization took 0.02418600
+chol solve time = 0.00138700, sc=13
+A is sparse? True
+cholesky factorization took 0.01990300
+chol solve time = 0.00157600, sc=15
+A is sparse? True
+cholesky factorization took 0.03035000
+chol solve time = 0.00155900, sc=15
+A is sparse? True
+cholesky factorization took 0.02997100
+chol solve time = 0.00158700, sc=15
+A is sparse? True
+cholesky factorization took 0.03019600
+chol solve time = 0.00592500, sc=13
+A is sparse? True
+cholesky factorization took 0.02283100
+chol solve time = 0.00136800, sc=13
+A is sparse? True
+cholesky factorization took 0.02873800
+chol solve time = 0.00155400, sc=15
+A is sparse? True
+cholesky factorization took 0.03012500
+chol solve time = 0.00116400, sc=11
+A is sparse? True
+cholesky factorization took 0.02780400
+chol solve time = 0.00136900, sc=13
+A is sparse? True
+cholesky factorization took 0.02927700
+chol solve time = 0.00160900, sc=15
+A is sparse? True
+cholesky factorization took 0.03020200
+chol solve time = 0.00176700, sc=17
+A is sparse? True
+cholesky factorization took 0.03054400
+chol solve time = 0.00136400, sc=13
+A is sparse? True
+cholesky factorization took 0.02573100
+chol solve time = 0.00181500, sc=17
+A is sparse? True
+cholesky factorization took 0.03114400
+chol solve time = 0.00135800, sc=13
+A is sparse? True
+cholesky factorization took 0.02869200
+chol solve time = 0.00197000, sc=19
+A is sparse? True
+cholesky factorization took 0.03211800
+chol solve time = 0.00137600, sc=13
+A is sparse? True
+cholesky factorization took 0.02851800
+chol solve time = 0.00167000, sc=15
+A is sparse? True
+cholesky factorization took 0.02310200
+chol solve time = 0.00141200, sc=13
+A is sparse? True
+cholesky factorization took 0.02884300
+chol solve time = 0.00140400, sc=13
+A is sparse? True
+cholesky factorization took 0.02873700
+chol solve time = 0.00484600, sc=15
+A is sparse? True
+cholesky factorization took 0.02668700
+chol solve time = 0.00136200, sc=13
+A is sparse? True
+cholesky factorization took 0.02878300
+chol solve time = 0.00136300, sc=13
+A is sparse? True
+cholesky factorization took 0.02836600
+chol solve time = 0.00140200, sc=13
+A is sparse? True
+cholesky factorization took 0.02626400
+chol solve time = 0.00136200, sc=13
+A is sparse? True
+cholesky factorization took 0.02918300
+chol solve time = 0.00155000, sc=15
+A is sparse? True
+cholesky factorization took 0.03021700
+chol solve time = 0.00158700, sc=15
+A is sparse? True
+cholesky factorization took 0.02965200
+chol solve time = 0.00883300, sc=15
+A is sparse? True
+cholesky factorization took 0.02267200
+chol solve time = 0.00142000, sc=13
+A is sparse? True
+cholesky factorization took 0.02922400
+chol solve time = 0.00140600, sc=13
+A is sparse? True
+cholesky factorization took 0.02940400
+chol solve time = 0.00304200, sc=13
+A is sparse? True
+cholesky factorization took 0.02720500
+chol solve time = 0.00182800, sc=17
+A is sparse? True
+cholesky factorization took 0.03170300
+chol solve time = 0.00144100, sc=13
+A is sparse? True
+cholesky factorization took 0.02963800
+chol solve time = 0.00136400, sc=13
+A is sparse? True
+cholesky factorization took 0.02853500
+chol solve time = 0.00141400, sc=13
+A is sparse? True
+cholesky factorization took 0.02617700
+chol solve time = 0.00141700, sc=13
+A is sparse? True
+cholesky factorization took 0.02853900
+chol solve time = 0.00162100, sc=15
+A is sparse? True
+cholesky factorization took 0.02965200
+chol solve time = 0.00136000, sc=13
+A is sparse? True
+cholesky factorization took 0.02786800
+chol solve time = 0.00157300, sc=15
+A is sparse? True
+cholesky factorization took 0.03018000
+chol solve time = 0.00175700, sc=15
+A is sparse? True
+cholesky factorization took 0.03107700
+chol solve time = 0.00137800, sc=13
+A is sparse? True
+cholesky factorization took 0.02860200
+chol solve time = 0.00141400, sc=13
+A is sparse? True
+cholesky factorization took 0.02604600
+chol solve time = 0.00136500, sc=13
+A is sparse? True
+cholesky factorization took 0.02903700
+chol solve time = 0.00161900, sc=15
+A is sparse? True
+cholesky factorization took 0.03061500
+chol solve time = 0.00139100, sc=13
+A is sparse? True
+cholesky factorization took 0.02891800
+chol solve time = 0.00137700, sc=13
+A is sparse? True
+cholesky factorization took 0.02885700
+chol solve time = 0.00146600, sc=13
+A is sparse? True
+cholesky factorization took 0.02909000
+chol solve time = 0.00157000, sc=13
+A is sparse? True
+cholesky factorization took 0.02943500
+chol solve time = 0.00153100, sc=13
+A is sparse? True
+cholesky factorization took 0.02196100
+chol solve time = 0.00151500, sc=13
+A is sparse? True
+cholesky factorization took 0.02984700
+chol solve time = 0.00180700, sc=15
+A is sparse? True
+cholesky factorization took 0.03105100
+chol solve time = 0.00156500, sc=13
+A is sparse? True
+cholesky factorization took 0.02946300
+chol solve time = 0.00168300, sc=15
+A is sparse? True
+cholesky factorization took 0.02619400
+chol solve time = 0.00149400, sc=13
+A is sparse? True
+cholesky factorization took 0.02959100
+chol solve time = 0.00148600, sc=13
+A is sparse? True
+cholesky factorization took 0.02953200
+chol solve time = 0.00183800, sc=15
+A is sparse? True
+cholesky factorization took 0.03141800
+chol solve time = 0.00145200, sc=13
+A is sparse? True
+cholesky factorization took 0.02850000
+chol solve time = 0.00162000, sc=15
+A is sparse? True
+cholesky factorization took 0.03013900
+chol solve time = 0.00153100, sc=13
+A is sparse? True
+cholesky factorization took 0.03104600
+chol solve time = 0.00175300, sc=15
+A is sparse? True
+cholesky factorization took 0.03042100
+chol solve time = 0.00175700, sc=15
+A is sparse? True
+cholesky factorization took 0.03052900
+chol solve time = 0.00143100, sc=13
+A is sparse? True
+cholesky factorization took 0.02903100
+chol solve time = 0.00155000, sc=13
+A is sparse? True
+cholesky factorization took 0.03065100
+chol solve time = 0.00174100, sc=15
+A is sparse? True
+cholesky factorization took 0.03028200
+chol solve time = 0.00147300, sc=13
+A is sparse? True
+cholesky factorization took 0.02908900
+chol solve time = 0.00151200, sc=13
+A is sparse? True
+cholesky factorization took 0.02910200
+chol solve time = 0.00173000, sc=15
+A is sparse? True
+cholesky factorization took 0.02112500
+chol solve time = 0.00174500, sc=15
+A is sparse? True
+cholesky factorization took 0.03108800
+chol solve time = 0.00155600, sc=13
+A is sparse? True
+cholesky factorization took 0.02941300
+chol solve time = 0.00153500, sc=13
+A is sparse? True
+cholesky factorization took 0.02987300
+chol solve time = 0.00165900, sc=15
+A is sparse? True
+cholesky factorization took 0.02801400
+chol solve time = 0.00170000, sc=15
+A is sparse? True
+cholesky factorization took 0.02111400
+chol solve time = 0.00147300, sc=13
+A is sparse? True
+cholesky factorization took 0.02919300
+chol solve time = 0.00155600, sc=13
+A is sparse? True
+cholesky factorization took 0.02937600
+chol solve time = 0.00176300, sc=15
+A is sparse? True
+cholesky factorization took 0.03049600
+chol solve time = 0.00670100, sc=13
+A is sparse? True
+cholesky factorization took 0.02378700
+chol solve time = 0.00169500, sc=15
+A is sparse? True
+cholesky factorization took 0.03305500
+chol solve time = 0.00147600, sc=13
+A is sparse? True
+cholesky factorization took 0.02904600
+chol solve time = 0.00126500, sc=11
+A is sparse? True
+cholesky factorization took 0.02817100
+chol solve time = 0.00716400, sc=13
+A is sparse? True
+cholesky factorization took 0.02316700
+chol solve time = 0.00145500, sc=13
+A is sparse? True
+cholesky factorization took 0.02925500
+chol solve time = 0.00135200, sc=13
+A is sparse? True
+cholesky factorization took 0.02973200
+chol solve time = 0.00492700, sc=15
+A is sparse? True
+cholesky factorization took 0.02774500
+chol solve time = 0.00919900, sc=15
+A is sparse? True
+cholesky factorization took 0.02234900
+chol solve time = 0.00139600, sc=13
+A is sparse? True
+cholesky factorization took 0.02947200
+chol solve time = 0.00156700, sc=15
+A is sparse? True
+cholesky factorization took 0.03071300
+chol solve time = 0.00135900, sc=13
+A is sparse? True
+cholesky factorization took 0.02979300
+chol solve time = 0.00184000, sc=17
+A is sparse? True
+cholesky factorization took 0.02479000
+chol solve time = 0.00144200, sc=13
+A is sparse? True
+cholesky factorization took 0.02891600
+chol solve time = 0.00156400, sc=15
+A is sparse? True
+cholesky factorization took 0.03089000
+chol solve time = 0.00160200, sc=15
+A is sparse? True
+cholesky factorization took 0.03127300
+chol solve time = 0.00171300, sc=15
+A is sparse? True
+cholesky factorization took 0.03108000
+chol solve time = 0.00169600, sc=15
+A is sparse? True
+cholesky factorization took 0.03053300
+chol solve time = 0.00581000, sc=15
+A is sparse? True
+cholesky factorization took 0.02589500
+chol solve time = 0.00151600, sc=13
+A is sparse? True
+cholesky factorization took 0.02917100
+chol solve time = 0.00168600, sc=15
+A is sparse? True
+cholesky factorization took 0.03044600
+chol solve time = 0.00150000, sc=13
+loading matrix ... 
+mm header:  (867, 867, 116370, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.213654
+converting to format csc took 0.00900000
+converted to format csc in 0:00:00.009110
+converting to format dense took 0.00579500
+converting to format dense took 0.02098600
+converting to format dense took 0.00552800
+converting to format dense took 0.00932600
+converting to format dense took 0.00933800
+converting to format dense took 0.00747800
+converting to format dense took 0.01225900
+converting to format dense took 0.02327600
+converting to format dense took 0.00553800
+converting to format dense took 0.00608500
+converting to format dense took 0.00799500
+converting to format dense took 0.00550100
+converting to format dense took 0.00547700
+converting to format dense took 0.02277300
+converting to format dense took 0.00926600
+converting to format dense took 0.02141100
+converting to format dense took 0.01923100
+converting to format dense took 0.00551300
+converting to format dense took 0.01070900
+converting to format dense took 0.02270300
+converting to format dense took 0.00552000
+converting to format dense took 0.01213500
+converting to format dense took 0.02148900
+converting to format dense took 0.00551700
+converting to format dense took 0.02214500
+converting to format dense took 0.01343100
+converting to format dense took 0.01944800
+converting to format dense took 0.00550800
+converting to format dense took 0.01835900
+converting to format dense took 0.00555500
+converting to format dense took 0.00550400
+converting to format dense took 0.01470000
+converting to format dense took 0.00551100
+converting to format dense took 0.00992500
+converting to format dense took 0.01825000
+converting to format dense took 0.00549200
+converting to format dense took 0.00549300
+converting to format dense took 0.01973100
+converting to format dense took 0.00551800
+converting to format dense took 0.00550500
+converting to format dense took 0.01852000
+converting to format dense took 0.02263900
+converting to format dense took 0.00552100
+converting to format dense took 0.01274400
+converting to format dense took 0.01878000
+converting to format dense took 0.00550300
+converting to format dense took 0.00549400
+converting to format dense took 0.02118200
+converting to format dense took 0.00552900
+converting to format dense took 0.00549700
+converting to format dense took 0.02112900
+converting to format dense took 0.00550900
+converting to format dense took 0.00553700
+converting to format dense took 0.01839500
+converting to format dense took 0.00549700
+converting to format dense took 0.00816700
+converting to format dense took 0.02107200
+converting to format dense took 0.00549600
+converting to format dense took 0.01226100
+converting to format dense took 0.02132100
+converting to format dense took 0.00551000
+converting to format dense took 0.00551900
+converting to format dense took 0.01434600
+converting to format dense took 0.02223800
+converting to format dense took 0.00553500
+converting to format dense took 0.01056100
+converting to format dense took 0.00550900
+converting to format dense took 0.00551900
+converting to format dense took 0.00728700
+converting to format dense took 0.02189100
+converting to format dense took 0.02264500
+converting to format dense took 0.00549400
+converting to format dense took 0.00913300
+converting to format dense took 0.02042200
+converting to format dense took 0.00585800
+converting to format dense took 0.01945300
+converting to format dense took 0.02228100
+converting to format dense took 0.00915200
+converting to format dense took 0.00547100
+converting to format dense took 0.01257200
+converting to format dense took 0.00554400
+converting to format dense took 0.02260100
+converting to format dense took 0.00552000
+converting to format dense took 0.01873400
+converting to format dense took 0.01990000
+converting to format dense took 0.00550400
+converting to format dense took 0.01824800
+converting to format dense took 0.02269400
+converting to format dense took 0.00584300
+converting to format dense took 0.01277500
+converting to format dense took 0.02206000
+converting to format dense took 0.00551200
+converting to format dense took 0.00549800
+converting to format dense took 0.01810500
+converting to format dense took 0.00551500
+converting to format dense took 0.01951200
+converting to format dense took 0.00791500
+converting to format dense took 0.02273100
+converting to format dense took 0.02279400
+converting to format dense took 0.00551600
+A is sparse? True
+cholesky factorization took 0.08995900
+chol solve time = 0.01675500, sc=12
+A is sparse? True
+cholesky factorization took 0.05595400
+chol solve time = 0.01528200, sc=11
+A is sparse? True
+cholesky factorization took 0.05563600
+chol solve time = 0.01874700, sc=14
+A is sparse? True
+cholesky factorization took 0.05586300
+chol solve time = 0.01753200, sc=13
+A is sparse? True
+cholesky factorization took 0.05544400
+chol solve time = 0.01527500, sc=11
+A is sparse? True
+cholesky factorization took 0.05569200
+chol solve time = 0.01966100, sc=14
+A is sparse? True
+cholesky factorization took 0.05594800
+chol solve time = 0.01734600, sc=11
+A is sparse? True
+cholesky factorization took 0.05596900
+chol solve time = 0.01937300, sc=13
+A is sparse? True
+cholesky factorization took 0.05710700
+chol solve time = 0.01616400, sc=11
+A is sparse? True
+cholesky factorization took 0.05612000
+chol solve time = 0.01791100, sc=11
+A is sparse? True
+cholesky factorization took 0.05717800
+chol solve time = 0.01622300, sc=11
+A is sparse? True
+cholesky factorization took 0.05626500
+chol solve time = 0.01595000, sc=11
+A is sparse? True
+cholesky factorization took 0.05687200
+chol solve time = 0.01974000, sc=14
+A is sparse? True
+cholesky factorization took 0.05723600
+chol solve time = 0.02069600, sc=14
+A is sparse? True
+cholesky factorization took 0.05749600
+chol solve time = 0.01745000, sc=12
+A is sparse? True
+cholesky factorization took 0.05699700
+chol solve time = 0.02053600, sc=14
+A is sparse? True
+cholesky factorization took 0.05739700
+chol solve time = 0.01638000, sc=11
+A is sparse? True
+cholesky factorization took 0.05674100
+chol solve time = 0.01870100, sc=14
+A is sparse? True
+cholesky factorization took 0.05542900
+chol solve time = 0.01536000, sc=11
+A is sparse? True
+cholesky factorization took 0.05537600
+chol solve time = 0.01531300, sc=11
+A is sparse? True
+cholesky factorization took 0.05567000
+chol solve time = 0.01783600, sc=13
+A is sparse? True
+cholesky factorization took 0.05543200
+chol solve time = 0.01565700, sc=11
+A is sparse? True
+cholesky factorization took 0.05592900
+chol solve time = 0.01610900, sc=11
+A is sparse? True
+cholesky factorization took 0.05546400
+chol solve time = 0.01524700, sc=11
+A is sparse? True
+cholesky factorization took 0.05561600
+chol solve time = 0.01520800, sc=11
+A is sparse? True
+cholesky factorization took 0.05588600
+chol solve time = 0.01620400, sc=12
+A is sparse? True
+cholesky factorization took 0.05602100
+chol solve time = 0.01680000, sc=11
+A is sparse? True
+cholesky factorization took 0.05558500
+chol solve time = 0.01791200, sc=11
+A is sparse? True
+cholesky factorization took 0.05581800
+chol solve time = 0.01529400, sc=11
+A is sparse? True
+cholesky factorization took 0.05581600
+chol solve time = 0.01948600, sc=14
+A is sparse? True
+cholesky factorization took 0.05563900
+chol solve time = 0.01728900, sc=13
+A is sparse? True
+cholesky factorization took 0.05591200
+chol solve time = 0.01531200, sc=11
+A is sparse? True
+cholesky factorization took 0.05545500
+chol solve time = 0.01521500, sc=11
+A is sparse? True
+cholesky factorization took 0.05591600
+chol solve time = 0.01524400, sc=11
+A is sparse? True
+cholesky factorization took 0.05592300
+chol solve time = 0.01890800, sc=14
+A is sparse? True
+cholesky factorization took 0.05557700
+chol solve time = 0.01519900, sc=11
+A is sparse? True
+cholesky factorization took 0.05576000
+chol solve time = 0.01741300, sc=13
+A is sparse? True
+cholesky factorization took 0.05583300
+chol solve time = 0.01579200, sc=11
+A is sparse? True
+cholesky factorization took 0.05601600
+chol solve time = 0.01550300, sc=11
+A is sparse? True
+cholesky factorization took 0.05541600
+chol solve time = 0.01621100, sc=12
+A is sparse? True
+cholesky factorization took 0.05599400
+chol solve time = 0.01515000, sc=11
+A is sparse? True
+cholesky factorization took 0.05726400
+chol solve time = 0.01722100, sc=11
+A is sparse? True
+cholesky factorization took 0.05689600
+chol solve time = 0.01777400, sc=12
+A is sparse? True
+cholesky factorization took 0.05753900
+chol solve time = 0.01668300, sc=11
+A is sparse? True
+cholesky factorization took 0.05658900
+chol solve time = 0.01635400, sc=12
+A is sparse? True
+cholesky factorization took 0.05546300
+chol solve time = 0.01515900, sc=11
+A is sparse? True
+cholesky factorization took 0.05531500
+chol solve time = 0.01658300, sc=12
+A is sparse? True
+cholesky factorization took 0.05590100
+chol solve time = 0.01764100, sc=13
+A is sparse? True
+cholesky factorization took 0.05554500
+chol solve time = 0.01579800, sc=11
+A is sparse? True
+cholesky factorization took 0.05670600
+chol solve time = 0.01554600, sc=11
+A is sparse? True
+cholesky factorization took 0.05569900
+chol solve time = 0.01592500, sc=11
+A is sparse? True
+cholesky factorization took 0.05579700
+chol solve time = 0.01499100, sc=11
+A is sparse? True
+cholesky factorization took 0.05596500
+chol solve time = 0.01514100, sc=11
+A is sparse? True
+cholesky factorization took 0.05520200
+chol solve time = 0.01991800, sc=13
+A is sparse? True
+cholesky factorization took 0.05574200
+chol solve time = 0.01672400, sc=11
+A is sparse? True
+cholesky factorization took 0.05540900
+chol solve time = 0.01620600, sc=12
+A is sparse? True
+cholesky factorization took 0.05541200
+chol solve time = 0.01539200, sc=11
+A is sparse? True
+cholesky factorization took 0.05564700
+chol solve time = 0.01658200, sc=12
+A is sparse? True
+cholesky factorization took 0.05541400
+chol solve time = 0.01545600, sc=11
+A is sparse? True
+cholesky factorization took 0.05566700
+chol solve time = 0.01498600, sc=11
+A is sparse? True
+cholesky factorization took 0.05568000
+chol solve time = 0.01847800, sc=13
+A is sparse? True
+cholesky factorization took 0.05543000
+chol solve time = 0.01910700, sc=14
+A is sparse? True
+cholesky factorization took 0.05599700
+chol solve time = 0.01509900, sc=11
+A is sparse? True
+cholesky factorization took 0.05604800
+chol solve time = 0.01530600, sc=11
+A is sparse? True
+cholesky factorization took 0.05537700
+chol solve time = 0.01684300, sc=12
+A is sparse? True
+cholesky factorization took 0.05589100
+chol solve time = 0.01509100, sc=11
+A is sparse? True
+cholesky factorization took 0.05597800
+chol solve time = 0.01545000, sc=11
+A is sparse? True
+cholesky factorization took 0.05631700
+chol solve time = 0.01772100, sc=13
+A is sparse? True
+cholesky factorization took 0.05658000
+chol solve time = 0.01811200, sc=13
+A is sparse? True
+cholesky factorization took 0.05576800
+chol solve time = 0.01809900, sc=13
+A is sparse? True
+cholesky factorization took 0.05595300
+chol solve time = 0.01527000, sc=11
+A is sparse? True
+cholesky factorization took 0.05595500
+chol solve time = 0.01924700, sc=14
+A is sparse? True
+cholesky factorization took 0.05585800
+chol solve time = 0.01536200, sc=11
+A is sparse? True
+cholesky factorization took 0.05561700
+chol solve time = 0.01840900, sc=13
+A is sparse? True
+cholesky factorization took 0.05573600
+chol solve time = 0.01627700, sc=12
+A is sparse? True
+cholesky factorization took 0.05663000
+chol solve time = 0.01565400, sc=11
+A is sparse? True
+cholesky factorization took 0.05548500
+chol solve time = 0.01757800, sc=13
+A is sparse? True
+cholesky factorization took 0.05552700
+chol solve time = 0.01530200, sc=11
+A is sparse? True
+cholesky factorization took 0.05575900
+chol solve time = 0.01898900, sc=14
+A is sparse? True
+cholesky factorization took 0.05567100
+chol solve time = 0.01472400, sc=11
+A is sparse? True
+cholesky factorization took 0.05667000
+chol solve time = 0.01914800, sc=14
+A is sparse? True
+cholesky factorization took 0.05534000
+chol solve time = 0.01878300, sc=13
+A is sparse? True
+cholesky factorization took 0.05535700
+chol solve time = 0.01542400, sc=11
+A is sparse? True
+cholesky factorization took 0.05568100
+chol solve time = 0.01867000, sc=14
+A is sparse? True
+cholesky factorization took 0.05568700
+chol solve time = 0.01546200, sc=11
+A is sparse? True
+cholesky factorization took 0.05586200
+chol solve time = 0.01778800, sc=13
+A is sparse? True
+cholesky factorization took 0.05530300
+chol solve time = 0.01815200, sc=13
+A is sparse? True
+cholesky factorization took 0.05629000
+chol solve time = 0.01636400, sc=12
+A is sparse? True
+cholesky factorization took 0.05555200
+chol solve time = 0.01523600, sc=11
+A is sparse? True
+cholesky factorization took 0.05581700
+chol solve time = 0.01523000, sc=11
+A is sparse? True
+cholesky factorization took 0.05563000
+chol solve time = 0.01554200, sc=11
+A is sparse? True
+cholesky factorization took 0.05616500
+chol solve time = 0.01530500, sc=11
+A is sparse? True
+cholesky factorization took 0.05582700
+chol solve time = 0.01756900, sc=13
+A is sparse? True
+cholesky factorization took 0.05562600
+chol solve time = 0.01553200, sc=11
+A is sparse? True
+cholesky factorization took 0.05622600
+chol solve time = 0.01512000, sc=11
+A is sparse? True
+cholesky factorization took 0.05831200
+chol solve time = 0.01520000, sc=11
+A is sparse? True
+cholesky factorization took 0.05589600
+chol solve time = 0.01775900, sc=13
+A is sparse? True
+cholesky factorization took 0.05542300
+chol solve time = 0.01763800, sc=13
+A is sparse? True
+cholesky factorization took 0.05592400
+chol solve time = 0.01548900, sc=11
+A is sparse? True
+cholesky factorization took 0.05639000
+chol solve time = 0.01633400, sc=12
+loading matrix ... 
+mm header:  (1000, 1000, 152262, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.273727
+converting to format csc took 0.01165900
+converted to format csc in 0:00:00.011774
+converting to format dense took 0.00727000
+converting to format dense took 0.00676200
+converting to format dense took 0.02818500
+converting to format dense took 0.00683800
+converting to format dense took 0.02713300
+converting to format dense took 0.02719900
+converting to format dense took 0.01184100
+converting to format dense took 0.02428600
+converting to format dense took 0.02705900
+converting to format dense took 0.02411000
+converting to format dense took 0.02645900
+converting to format dense took 0.02058100
+converting to format dense took 0.00678000
+converting to format dense took 0.02388200
+converting to format dense took 0.02730100
+converting to format dense took 0.01145500
+converting to format dense took 0.02039500
+converting to format dense took 0.00680200
+converting to format dense took 0.02736400
+converting to format dense took 0.00778800
+converting to format dense took 0.02682400
+converting to format dense took 0.02113000
+converting to format dense took 0.02625400
+converting to format dense took 0.00676500
+converting to format dense took 0.00675700
+converting to format dense took 0.00674100
+converting to format dense took 0.01067700
+converting to format dense took 0.01400400
+converting to format dense took 0.02081800
+converting to format dense took 0.02694400
+converting to format dense took 0.00675300
+converting to format dense took 0.00675300
+converting to format dense took 0.01414800
+converting to format dense took 0.02161500
+converting to format dense took 0.00668800
+converting to format dense took 0.02332800
+converting to format dense took 0.02731800
+converting to format dense took 0.02600000
+converting to format dense took 0.02082300
+converting to format dense took 0.02120400
+converting to format dense took 0.02331300
+converting to format dense took 0.02604700
+converting to format dense took 0.02752200
+converting to format dense took 0.02757100
+converting to format dense took 0.02666100
+converting to format dense took 0.02716600
+converting to format dense took 0.02671000
+converting to format dense took 0.02571700
+converting to format dense took 0.02597300
+converting to format dense took 0.02730200
+converting to format dense took 0.02455900
+converting to format dense took 0.00676800
+converting to format dense took 0.02607700
+converting to format dense took 0.02598200
+converting to format dense took 0.02460300
+converting to format dense took 0.02182400
+converting to format dense took 0.00680800
+converting to format dense took 0.02663000
+converting to format dense took 0.01138800
+converting to format dense took 0.02174100
+converting to format dense took 0.00676500
+converting to format dense took 0.01376900
+converting to format dense took 0.02033300
+converting to format dense took 0.00674000
+converting to format dense took 0.02712800
+converting to format dense took 0.02650000
+converting to format dense took 0.02317900
+converting to format dense took 0.01414600
+converting to format dense took 0.02297000
+converting to format dense took 0.02330900
+converting to format dense took 0.02748300
+converting to format dense took 0.02761100
+converting to format dense took 0.02795000
+converting to format dense took 0.02126700
+converting to format dense took 0.02076500
+converting to format dense took 0.02718700
+converting to format dense took 0.02714100
+converting to format dense took 0.02595000
+converting to format dense took 0.01042900
+converting to format dense took 0.01229600
+converting to format dense took 0.02066700
+converting to format dense took 0.02304300
+converting to format dense took 0.00684900
+converting to format dense took 0.02310000
+converting to format dense took 0.02757500
+converting to format dense took 0.01414600
+converting to format dense took 0.02718600
+converting to format dense took 0.02727700
+converting to format dense took 0.02318900
+converting to format dense took 0.02332200
+converting to format dense took 0.02685900
+converting to format dense took 0.02291000
+converting to format dense took 0.02706800
+converting to format dense took 0.00674600
+converting to format dense took 0.02592500
+converting to format dense took 0.02037100
+converting to format dense took 0.02740800
+converting to format dense took 0.00680700
+converting to format dense took 0.02606800
+converting to format dense took 0.02607500
+A is sparse? True
+cholesky factorization took 0.14138900
+chol solve time = 0.03848600, sc=11
+A is sparse? True
+cholesky factorization took 0.10122200
+chol solve time = 0.03801700, sc=11
+A is sparse? True
+cholesky factorization took 0.10117400
+chol solve time = 0.03873000, sc=11
+A is sparse? True
+cholesky factorization took 0.10081000
+chol solve time = 0.03775700, sc=11
+A is sparse? True
+cholesky factorization took 0.10079100
+chol solve time = 0.03829500, sc=11
+A is sparse? True
+cholesky factorization took 0.10141200
+chol solve time = 0.03802300, sc=11
+A is sparse? True
+cholesky factorization took 0.10339100
+chol solve time = 0.03809600, sc=11
+A is sparse? True
+cholesky factorization took 0.10106800
+chol solve time = 0.03824900, sc=11
+A is sparse? True
+cholesky factorization took 0.10255600
+chol solve time = 0.03852900, sc=11
+A is sparse? True
+cholesky factorization took 0.10237800
+chol solve time = 0.03898200, sc=11
+A is sparse? True
+cholesky factorization took 0.10119200
+chol solve time = 0.03847400, sc=11
+A is sparse? True
+cholesky factorization took 0.10339300
+chol solve time = 0.03878400, sc=11
+A is sparse? True
+cholesky factorization took 0.10134100
+chol solve time = 0.03772800, sc=11
+A is sparse? True
+cholesky factorization took 0.10082700
+chol solve time = 0.03827400, sc=11
+A is sparse? True
+cholesky factorization took 0.10085700
+chol solve time = 0.03844200, sc=11
+A is sparse? True
+cholesky factorization took 0.10578600
+chol solve time = 0.03894300, sc=11
+A is sparse? True
+cholesky factorization took 0.10235700
+chol solve time = 0.03904400, sc=11
+A is sparse? True
+cholesky factorization took 0.10091300
+chol solve time = 0.03928400, sc=11
+A is sparse? True
+cholesky factorization took 0.10135200
+chol solve time = 0.04073800, sc=11
+A is sparse? True
+cholesky factorization took 0.10138300
+chol solve time = 0.03708400, sc=11
+A is sparse? True
+cholesky factorization took 0.10102300
+chol solve time = 0.04556600, sc=13
+A is sparse? True
+cholesky factorization took 0.10075500
+chol solve time = 0.03861400, sc=11
+A is sparse? True
+cholesky factorization took 0.10607500
+chol solve time = 0.03909100, sc=11
+A is sparse? True
+cholesky factorization took 0.10127700
+chol solve time = 0.03930700, sc=11
+A is sparse? True
+cholesky factorization took 0.10181100
+chol solve time = 0.03856300, sc=11
+A is sparse? True
+cholesky factorization took 0.10102500
+chol solve time = 0.03796000, sc=11
+A is sparse? True
+cholesky factorization took 0.10187900
+chol solve time = 0.03839100, sc=11
+A is sparse? True
+cholesky factorization took 0.10032500
+chol solve time = 0.03874600, sc=11
+A is sparse? True
+cholesky factorization took 0.10103300
+chol solve time = 0.03838800, sc=11
+A is sparse? True
+cholesky factorization took 0.10132500
+chol solve time = 0.03890300, sc=11
+A is sparse? True
+cholesky factorization took 0.10199500
+chol solve time = 0.03874700, sc=11
+A is sparse? True
+cholesky factorization took 0.10156800
+chol solve time = 0.03863800, sc=11
+A is sparse? True
+cholesky factorization took 0.10095400
+chol solve time = 0.03819000, sc=11
+A is sparse? True
+cholesky factorization took 0.10097300
+chol solve time = 0.03753700, sc=11
+A is sparse? True
+cholesky factorization took 0.10148800
+chol solve time = 0.03860400, sc=11
+A is sparse? True
+cholesky factorization took 0.10320100
+chol solve time = 0.03912400, sc=11
+A is sparse? True
+cholesky factorization took 0.10131000
+chol solve time = 0.03905700, sc=11
+A is sparse? True
+cholesky factorization took 0.10160300
+chol solve time = 0.03860500, sc=11
+A is sparse? True
+cholesky factorization took 0.10203000
+chol solve time = 0.03764400, sc=11
+A is sparse? True
+cholesky factorization took 0.10115400
+chol solve time = 0.03832000, sc=11
+A is sparse? True
+cholesky factorization took 0.10386300
+chol solve time = 0.03739600, sc=11
+A is sparse? True
+cholesky factorization took 0.10154300
+chol solve time = 0.03865900, sc=11
+A is sparse? True
+cholesky factorization took 0.10172700
+chol solve time = 0.03980900, sc=11
+A is sparse? True
+cholesky factorization took 0.10118700
+chol solve time = 0.03999900, sc=11
+A is sparse? True
+cholesky factorization took 0.10671000
+chol solve time = 0.03915300, sc=11
+A is sparse? True
+cholesky factorization took 0.10131100
+chol solve time = 0.03870700, sc=11
+A is sparse? True
+cholesky factorization took 0.10237800
+chol solve time = 0.03851600, sc=11
+A is sparse? True
+cholesky factorization took 0.10093900
+chol solve time = 0.03752600, sc=11
+A is sparse? True
+cholesky factorization took 0.10111200
+chol solve time = 0.03866700, sc=11
+A is sparse? True
+cholesky factorization took 0.10099300
+chol solve time = 0.03848100, sc=11
+A is sparse? True
+cholesky factorization took 0.10097500
+chol solve time = 0.03858800, sc=11
+A is sparse? True
+cholesky factorization took 0.10114500
+chol solve time = 0.03836500, sc=11
+A is sparse? True
+cholesky factorization took 0.10142800
+chol solve time = 0.04100700, sc=11
+A is sparse? True
+cholesky factorization took 0.10476500
+chol solve time = 0.04130900, sc=11
+A is sparse? True
+cholesky factorization took 0.10510000
+chol solve time = 0.04119800, sc=11
+A is sparse? True
+cholesky factorization took 0.10676200
+chol solve time = 0.04079500, sc=11
+A is sparse? True
+cholesky factorization took 0.10392400
+chol solve time = 0.04463800, sc=12
+A is sparse? True
+cholesky factorization took 0.10322300
+chol solve time = 0.04074300, sc=11
+A is sparse? True
+cholesky factorization took 0.10147500
+chol solve time = 0.03863900, sc=11
+A is sparse? True
+cholesky factorization took 0.10099800
+chol solve time = 0.03821500, sc=11
+A is sparse? True
+cholesky factorization took 0.10167500
+chol solve time = 0.03780800, sc=11
+A is sparse? True
+cholesky factorization took 0.10085800
+chol solve time = 0.03857700, sc=11
+A is sparse? True
+cholesky factorization took 0.10093000
+chol solve time = 0.04880400, sc=14
+A is sparse? True
+cholesky factorization took 0.10068300
+chol solve time = 0.04082400, sc=12
+A is sparse? True
+cholesky factorization took 0.10148600
+chol solve time = 0.03891200, sc=11
+A is sparse? True
+cholesky factorization took 0.10354400
+chol solve time = 0.03820500, sc=11
+A is sparse? True
+cholesky factorization took 0.10109100
+chol solve time = 0.03829800, sc=11
+A is sparse? True
+cholesky factorization took 0.10123400
+chol solve time = 0.04224400, sc=12
+A is sparse? True
+cholesky factorization took 0.10212000
+chol solve time = 0.03748800, sc=11
+A is sparse? True
+cholesky factorization took 0.10057700
+chol solve time = 0.03946400, sc=11
+A is sparse? True
+cholesky factorization took 0.10212000
+chol solve time = 0.04486000, sc=13
+A is sparse? True
+cholesky factorization took 0.10140800
+chol solve time = 0.03978400, sc=11
+A is sparse? True
+cholesky factorization took 0.10184200
+chol solve time = 0.03871600, sc=11
+A is sparse? True
+cholesky factorization took 0.10134600
+chol solve time = 0.03808500, sc=11
+A is sparse? True
+cholesky factorization took 0.10338100
+chol solve time = 0.03843200, sc=11
+A is sparse? True
+cholesky factorization took 0.10138500
+chol solve time = 0.03886000, sc=11
+A is sparse? True
+cholesky factorization took 0.10166200
+chol solve time = 0.03838600, sc=11
+A is sparse? True
+cholesky factorization took 0.10289300
+chol solve time = 0.03859600, sc=11
+A is sparse? True
+cholesky factorization took 0.10206500
+chol solve time = 0.03982300, sc=11
+A is sparse? True
+cholesky factorization took 0.10134100
+chol solve time = 0.03902400, sc=11
+A is sparse? True
+cholesky factorization took 0.10153300
+chol solve time = 0.03800800, sc=11
+A is sparse? True
+cholesky factorization took 0.10218300
+chol solve time = 0.03882900, sc=11
+A is sparse? True
+cholesky factorization took 0.10213600
+chol solve time = 0.03885500, sc=11
+A is sparse? True
+cholesky factorization took 0.10197000
+chol solve time = 0.03871200, sc=11
+A is sparse? True
+cholesky factorization took 0.10295600
+chol solve time = 0.03851100, sc=11
+A is sparse? True
+cholesky factorization took 0.10192100
+chol solve time = 0.03911800, sc=11
+A is sparse? True
+cholesky factorization took 0.10125700
+chol solve time = 0.03890900, sc=11
+A is sparse? True
+cholesky factorization took 0.10280100
+chol solve time = 0.03868100, sc=11
+A is sparse? True
+cholesky factorization took 0.10144600
+chol solve time = 0.03861100, sc=11
+A is sparse? True
+cholesky factorization took 0.10245600
+chol solve time = 0.03905000, sc=11
+A is sparse? True
+cholesky factorization took 0.10139100
+chol solve time = 0.03805600, sc=11
+A is sparse? True
+cholesky factorization took 0.10343200
+chol solve time = 0.03795000, sc=11
+A is sparse? True
+cholesky factorization took 0.10157200
+chol solve time = 0.03963400, sc=11
+A is sparse? True
+cholesky factorization took 0.10084500
+chol solve time = 0.03867800, sc=11
+A is sparse? True
+cholesky factorization took 0.10174100
+chol solve time = 0.03838400, sc=11
+A is sparse? True
+cholesky factorization took 0.10115300
+chol solve time = 0.03830300, sc=11
+A is sparse? True
+cholesky factorization took 0.10065500
+chol solve time = 0.03823100, sc=11
+A is sparse? True
+cholesky factorization took 0.10063300
+chol solve time = 0.03747300, sc=11
+A is sparse? True
+cholesky factorization took 0.10080000
+chol solve time = 0.03830000, sc=11
+A is sparse? True
+cholesky factorization took 0.10185900
+chol solve time = 0.03993000, sc=11
+loading matrix ... 
+mm header:  (1500, 1500, 336946, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:00.606138
+converting to format csc took 0.02753700
+converted to format csc in 0:00:00.027651
+converting to format dense took 0.01550400
+converting to format dense took 0.04676100
+converting to format dense took 0.05869900
+converting to format dense took 0.05476900
+converting to format dense took 0.06200500
+converting to format dense took 0.04675100
+converting to format dense took 0.06077000
+converting to format dense took 0.05308600
+converting to format dense took 0.05663700
+converting to format dense took 0.05156000
+converting to format dense took 0.05004400
+converting to format dense took 0.06183100
+converting to format dense took 0.04276900
+converting to format dense took 0.06184600
+converting to format dense took 0.06368500
+converting to format dense took 0.05690200
+converting to format dense took 0.05037200
+converting to format dense took 0.04932500
+converting to format dense took 0.06360400
+converting to format dense took 0.06137300
+converting to format dense took 0.05460800
+converting to format dense took 0.05256100
+converting to format dense took 0.05038300
+converting to format dense took 0.04836300
+converting to format dense took 0.05160000
+converting to format dense took 0.06122000
+converting to format dense took 0.05137900
+converting to format dense took 0.06171000
+converting to format dense took 0.04795000
+converting to format dense took 0.04727200
+converting to format dense took 0.05819300
+converting to format dense took 0.05752100
+converting to format dense took 0.05685800
+converting to format dense took 0.06396100
+converting to format dense took 0.04872700
+converting to format dense took 0.04780400
+converting to format dense took 0.05337900
+converting to format dense took 0.06224900
+converting to format dense took 0.05202800
+converting to format dense took 0.06090000
+converting to format dense took 0.05726700
+converting to format dense took 0.05634100
+converting to format dense took 0.06336200
+converting to format dense took 0.06010600
+converting to format dense took 0.06222400
+converting to format dense took 0.04956700
+converting to format dense took 0.05869100
+converting to format dense took 0.04663600
+converting to format dense took 0.04707500
+converting to format dense took 0.05735100
+converting to format dense took 0.04247900
+converting to format dense took 0.05566700
+converting to format dense took 0.05469200
+converting to format dense took 0.05890800
+converting to format dense took 0.05401700
+converting to format dense took 0.05347100
+converting to format dense took 0.05202100
+converting to format dense took 0.05166500
+converting to format dense took 0.05555200
+converting to format dense took 0.05929400
+converting to format dense took 0.04938800
+converting to format dense took 0.05753700
+converting to format dense took 0.06131800
+converting to format dense took 0.05554200
+converting to format dense took 0.05742700
+converting to format dense took 0.05228000
+converting to format dense took 0.05590600
+converting to format dense took 0.05998600
+converting to format dense took 0.05785800
+converting to format dense took 0.05566500
+converting to format dense took 0.05995000
+converting to format dense took 0.05778900
+converting to format dense took 0.05531500
+converting to format dense took 0.05582500
+converting to format dense took 0.04627100
+converting to format dense took 0.06253800
+converting to format dense took 0.06073200
+converting to format dense took 0.06147700
+converting to format dense took 0.04954500
+converting to format dense took 0.05972100
+converting to format dense took 0.06044800
+converting to format dense took 0.07310200
+converting to format dense took 0.04878200
+converting to format dense took 0.06264000
+converting to format dense took 0.05863600
+converting to format dense took 0.06285400
+converting to format dense took 0.05876600
+converting to format dense took 0.06322900
+converting to format dense took 0.05989500
+converting to format dense took 0.05786600
+converting to format dense took 0.05756700
+converting to format dense took 0.05981100
+converting to format dense took 0.05087800
+converting to format dense took 0.04264100
+converting to format dense took 0.06091900
+converting to format dense took 0.05665900
+converting to format dense took 0.06037800
+converting to format dense took 0.05005900
+converting to format dense took 0.05002800
+converting to format dense took 0.06049700
+A is sparse? True
+cholesky factorization took 0.16657200
+chol solve time = 0.06417900, sc=9
+A is sparse? True
+cholesky factorization took 0.22433100
+chol solve time = 0.06452400, sc=9
+A is sparse? True
+cholesky factorization took 0.21991700
+chol solve time = 0.06510600, sc=9
+A is sparse? True
+cholesky factorization took 0.22056000
+chol solve time = 0.06393100, sc=9
+A is sparse? True
+cholesky factorization took 0.22026500
+chol solve time = 0.06429000, sc=9
+A is sparse? True
+cholesky factorization took 0.22281500
+chol solve time = 0.06470700, sc=9
+A is sparse? True
+cholesky factorization took 0.22068500
+chol solve time = 0.06428400, sc=9
+A is sparse? True
+cholesky factorization took 0.22063600
+chol solve time = 0.06462100, sc=9
+A is sparse? True
+cholesky factorization took 0.22055200
+chol solve time = 0.06443700, sc=9
+A is sparse? True
+cholesky factorization took 0.22059700
+chol solve time = 0.06455100, sc=9
+A is sparse? True
+cholesky factorization took 0.22103500
+chol solve time = 0.06499000, sc=9
+A is sparse? True
+cholesky factorization took 0.22068200
+chol solve time = 0.06433800, sc=9
+A is sparse? True
+cholesky factorization took 0.22805400
+chol solve time = 0.07812700, sc=11
+A is sparse? True
+cholesky factorization took 0.22091700
+chol solve time = 0.06397500, sc=9
+A is sparse? True
+cholesky factorization took 0.22108800
+chol solve time = 0.06397800, sc=9
+A is sparse? True
+cholesky factorization took 0.22226500
+chol solve time = 0.06443300, sc=9
+A is sparse? True
+cholesky factorization took 0.22888200
+chol solve time = 0.07865200, sc=11
+A is sparse? True
+cholesky factorization took 0.22138000
+chol solve time = 0.06514000, sc=9
+A is sparse? True
+cholesky factorization took 0.22037000
+chol solve time = 0.06444700, sc=9
+A is sparse? True
+cholesky factorization took 0.22249000
+chol solve time = 0.06414800, sc=9
+A is sparse? True
+cholesky factorization took 0.22040000
+chol solve time = 0.06406700, sc=9
+A is sparse? True
+cholesky factorization took 0.21971100
+chol solve time = 0.06457300, sc=9
+A is sparse? True
+cholesky factorization took 0.22598700
+chol solve time = 0.06486500, sc=9
+A is sparse? True
+cholesky factorization took 0.22428700
+chol solve time = 0.06275100, sc=9
+A is sparse? True
+cholesky factorization took 0.21939500
+chol solve time = 0.06510600, sc=9
+A is sparse? True
+cholesky factorization took 0.22029300
+chol solve time = 0.06433000, sc=9
+A is sparse? True
+cholesky factorization took 0.21953200
+chol solve time = 0.06479500, sc=9
+A is sparse? True
+cholesky factorization took 0.22228500
+chol solve time = 0.06399200, sc=9
+A is sparse? True
+cholesky factorization took 0.22089700
+chol solve time = 0.06425400, sc=9
+A is sparse? True
+cholesky factorization took 0.22163200
+chol solve time = 0.06476600, sc=9
+A is sparse? True
+cholesky factorization took 0.22071000
+chol solve time = 0.06437300, sc=9
+A is sparse? True
+cholesky factorization took 0.22157100
+chol solve time = 0.06452500, sc=9
+A is sparse? True
+cholesky factorization took 0.22150100
+chol solve time = 0.06504000, sc=9
+A is sparse? True
+cholesky factorization took 0.22894200
+chol solve time = 0.06380100, sc=9
+A is sparse? True
+cholesky factorization took 0.22130900
+chol solve time = 0.06403800, sc=9
+A is sparse? True
+cholesky factorization took 0.22219700
+chol solve time = 0.06499100, sc=9
+A is sparse? True
+cholesky factorization took 0.22115400
+chol solve time = 0.06417100, sc=9
+A is sparse? True
+cholesky factorization took 0.22199800
+chol solve time = 0.06295800, sc=9
+A is sparse? True
+cholesky factorization took 0.21975100
+chol solve time = 0.07126100, sc=10
+A is sparse? True
+cholesky factorization took 0.22200400
+chol solve time = 0.06399600, sc=9
+A is sparse? True
+cholesky factorization took 0.22011100
+chol solve time = 0.06476300, sc=9
+A is sparse? True
+cholesky factorization took 0.21995400
+chol solve time = 0.06390800, sc=9
+A is sparse? True
+cholesky factorization took 0.22100000
+chol solve time = 0.06536100, sc=9
+A is sparse? True
+cholesky factorization took 0.22046900
+chol solve time = 0.06384900, sc=9
+A is sparse? True
+cholesky factorization took 0.22067700
+chol solve time = 0.06373200, sc=9
+A is sparse? True
+cholesky factorization took 0.22019200
+chol solve time = 0.06416500, sc=9
+A is sparse? True
+cholesky factorization took 0.21959400
+chol solve time = 0.06454200, sc=9
+A is sparse? True
+cholesky factorization took 0.22020400
+chol solve time = 0.06434700, sc=9
+A is sparse? True
+cholesky factorization took 0.22040800
+chol solve time = 0.06397000, sc=9
+A is sparse? True
+cholesky factorization took 0.22154800
+chol solve time = 0.06399600, sc=9
+A is sparse? True
+cholesky factorization took 0.23063900
+chol solve time = 0.06457400, sc=9
+A is sparse? True
+cholesky factorization took 0.22104800
+chol solve time = 0.06400600, sc=9
+A is sparse? True
+cholesky factorization took 0.22141500
+chol solve time = 0.06416600, sc=9
+A is sparse? True
+cholesky factorization took 0.22133100
+chol solve time = 0.06553900, sc=9
+A is sparse? True
+cholesky factorization took 0.22006800
+chol solve time = 0.07870200, sc=11
+A is sparse? True
+cholesky factorization took 0.22027000
+chol solve time = 0.06434100, sc=9
+A is sparse? True
+cholesky factorization took 0.22825800
+chol solve time = 0.07696600, sc=11
+A is sparse? True
+cholesky factorization took 0.22086000
+chol solve time = 0.06444300, sc=9
+A is sparse? True
+cholesky factorization took 0.22095900
+chol solve time = 0.06409800, sc=9
+A is sparse? True
+cholesky factorization took 0.22024100
+chol solve time = 0.06412600, sc=9
+A is sparse? True
+cholesky factorization took 0.22080900
+chol solve time = 0.06432600, sc=9
+A is sparse? True
+cholesky factorization took 0.22047100
+chol solve time = 0.06436300, sc=9
+A is sparse? True
+cholesky factorization took 0.22079000
+chol solve time = 0.06376100, sc=9
+A is sparse? True
+cholesky factorization took 0.22171900
+chol solve time = 0.06390300, sc=9
+A is sparse? True
+cholesky factorization took 0.22172400
+chol solve time = 0.06510500, sc=9
+A is sparse? True
+cholesky factorization took 0.22013800
+chol solve time = 0.06484800, sc=9
+A is sparse? True
+cholesky factorization took 0.22048700
+chol solve time = 0.06444300, sc=9
+A is sparse? True
+cholesky factorization took 0.22077800
+chol solve time = 0.06430600, sc=9
+A is sparse? True
+cholesky factorization took 0.22206500
+chol solve time = 0.07800500, sc=11
+A is sparse? True
+cholesky factorization took 0.22157800
+chol solve time = 0.06521700, sc=9
+A is sparse? True
+cholesky factorization took 0.22225300
+chol solve time = 0.06607200, sc=9
+A is sparse? True
+cholesky factorization took 0.22261100
+chol solve time = 0.06534400, sc=9
+A is sparse? True
+cholesky factorization took 0.21999700
+chol solve time = 0.06475900, sc=9
+A is sparse? True
+cholesky factorization took 0.22045700
+chol solve time = 0.06506700, sc=9
+A is sparse? True
+cholesky factorization took 0.22140100
+chol solve time = 0.06460500, sc=9
+A is sparse? True
+cholesky factorization took 0.22094900
+chol solve time = 0.06449600, sc=9
+A is sparse? True
+cholesky factorization took 0.22589800
+chol solve time = 0.06260400, sc=9
+A is sparse? True
+cholesky factorization took 0.22221200
+chol solve time = 0.06447800, sc=9
+A is sparse? True
+cholesky factorization took 0.22191000
+chol solve time = 0.06405400, sc=9
+A is sparse? True
+cholesky factorization took 0.22053900
+chol solve time = 0.06386300, sc=9
+A is sparse? True
+cholesky factorization took 0.22029100
+chol solve time = 0.06434200, sc=9
+A is sparse? True
+cholesky factorization took 0.22182900
+chol solve time = 0.06418600, sc=9
+A is sparse? True
+cholesky factorization took 0.22100600
+chol solve time = 0.06404500, sc=9
+A is sparse? True
+cholesky factorization took 0.22084200
+chol solve time = 0.06424400, sc=9
+A is sparse? True
+cholesky factorization took 0.22141300
+chol solve time = 0.06399800, sc=9
+A is sparse? True
+cholesky factorization took 0.22033300
+chol solve time = 0.06423100, sc=9
+A is sparse? True
+cholesky factorization took 0.22051700
+chol solve time = 0.06514600, sc=9
+A is sparse? True
+cholesky factorization took 0.22049400
+chol solve time = 0.06997200, sc=10
+A is sparse? True
+cholesky factorization took 0.22261800
+chol solve time = 0.06468600, sc=9
+A is sparse? True
+cholesky factorization took 0.21926800
+chol solve time = 0.06406300, sc=9
+A is sparse? True
+cholesky factorization took 0.22083200
+chol solve time = 0.06470000, sc=9
+A is sparse? True
+cholesky factorization took 0.21933100
+chol solve time = 0.06518400, sc=9
+A is sparse? True
+cholesky factorization took 0.22207000
+chol solve time = 0.06414600, sc=9
+A is sparse? True
+cholesky factorization took 0.22148900
+chol solve time = 0.06444500, sc=9
+A is sparse? True
+cholesky factorization took 0.22032700
+chol solve time = 0.07868700, sc=11
+A is sparse? True
+cholesky factorization took 0.22269400
+chol solve time = 0.06391800, sc=9
+A is sparse? True
+cholesky factorization took 0.22655600
+chol solve time = 0.07827500, sc=11
+A is sparse? True
+cholesky factorization took 0.22144600
+chol solve time = 0.06498200, sc=9
+A is sparse? True
+cholesky factorization took 0.22730900
+chol solve time = 0.06414700, sc=9
+A is sparse? True
+cholesky factorization took 0.22109400
+chol solve time = 0.06457400, sc=9
+loading matrix ... 
+mm header:  (1999, 1999, 600775, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:01.092635
+converting to format csc took 0.05068100
+converted to format csc in 0:00:00.050795
+converting to format dense took 0.02838600
+converting to format dense took 0.09805600
+converting to format dense took 0.10624100
+converting to format dense took 0.10990600
+converting to format dense took 0.11148100
+converting to format dense took 0.11091000
+converting to format dense took 0.10392300
+converting to format dense took 0.10735900
+converting to format dense took 0.10893700
+converting to format dense took 0.10371100
+converting to format dense took 0.09934800
+converting to format dense took 0.11111300
+converting to format dense took 0.09852900
+converting to format dense took 0.10182000
+converting to format dense took 0.10406000
+converting to format dense took 0.11023900
+converting to format dense took 0.10319500
+converting to format dense took 0.09943000
+converting to format dense took 0.10377700
+converting to format dense took 0.11098600
+converting to format dense took 0.10722000
+converting to format dense took 0.09610300
+converting to format dense took 0.10294400
+converting to format dense took 0.10962800
+converting to format dense took 0.10324200
+converting to format dense took 0.09966000
+converting to format dense took 0.10939800
+converting to format dense took 0.11178100
+converting to format dense took 0.10995300
+converting to format dense took 0.10972900
+converting to format dense took 0.10377900
+converting to format dense took 0.10727700
+converting to format dense took 0.09551700
+converting to format dense took 0.10602500
+converting to format dense took 0.10293200
+converting to format dense took 0.10543200
+converting to format dense took 0.11100700
+converting to format dense took 0.11041300
+converting to format dense took 0.11186000
+converting to format dense took 0.11211800
+converting to format dense took 0.10307200
+converting to format dense took 0.10300400
+converting to format dense took 0.10979800
+converting to format dense took 0.09519500
+converting to format dense took 0.11067700
+converting to format dense took 0.11137100
+converting to format dense took 0.09945600
+converting to format dense took 0.10939500
+converting to format dense took 0.10582800
+converting to format dense took 0.10397000
+converting to format dense took 0.10659500
+converting to format dense took 0.11191200
+converting to format dense took 0.11209600
+converting to format dense took 0.10130100
+converting to format dense took 0.09940200
+converting to format dense took 0.11248200
+converting to format dense took 0.10636500
+converting to format dense took 0.10027500
+converting to format dense took 0.11265100
+converting to format dense took 0.11267800
+converting to format dense took 0.10356200
+converting to format dense took 0.09319800
+converting to format dense took 0.10023800
+converting to format dense took 0.10583800
+converting to format dense took 0.11283600
+converting to format dense took 0.11263500
+converting to format dense took 0.10606500
+converting to format dense took 0.10639400
+converting to format dense took 0.11135700
+converting to format dense took 0.11289500
+converting to format dense took 0.11195100
+converting to format dense took 0.11278000
+converting to format dense took 0.10786000
+converting to format dense took 0.10797300
+converting to format dense took 0.10215000
+converting to format dense took 0.10503800
+converting to format dense took 0.10281600
+converting to format dense took 0.10139900
+converting to format dense took 0.10350600
+converting to format dense took 0.09616900
+converting to format dense took 0.11186700
+converting to format dense took 0.10783100
+converting to format dense took 0.10873100
+converting to format dense took 0.10755400
+converting to format dense took 0.09716600
+converting to format dense took 0.10608600
+converting to format dense took 0.11004100
+converting to format dense took 0.10984100
+converting to format dense took 0.10189600
+converting to format dense took 0.10685000
+converting to format dense took 0.10484000
+converting to format dense took 0.10628400
+converting to format dense took 0.11028400
+converting to format dense took 0.11258700
+converting to format dense took 0.10630300
+converting to format dense took 0.10895100
+converting to format dense took 0.09487500
+converting to format dense took 0.10506700
+converting to format dense took 0.11242300
+converting to format dense took 0.10525700
+A is sparse? True
+cholesky factorization took 0.32093300
+chol solve time = 0.12756800, sc=7
+A is sparse? True
+cholesky factorization took 0.41815600
+chol solve time = 0.12703700, sc=7
+A is sparse? True
+cholesky factorization took 0.41765500
+chol solve time = 0.12804100, sc=7
+A is sparse? True
+cholesky factorization took 0.42169100
+chol solve time = 0.12843200, sc=7
+A is sparse? True
+cholesky factorization took 0.42097200
+chol solve time = 0.12721200, sc=7
+A is sparse? True
+cholesky factorization took 0.41640600
+chol solve time = 0.12747100, sc=7
+A is sparse? True
+cholesky factorization took 0.42084100
+chol solve time = 0.12632800, sc=7
+A is sparse? True
+cholesky factorization took 0.41969300
+chol solve time = 0.12725600, sc=7
+A is sparse? True
+cholesky factorization took 0.42200900
+chol solve time = 0.12758800, sc=7
+A is sparse? True
+cholesky factorization took 0.41453800
+chol solve time = 0.12904500, sc=7
+A is sparse? True
+cholesky factorization took 0.41926100
+chol solve time = 0.12959500, sc=7
+A is sparse? True
+cholesky factorization took 0.42280700
+chol solve time = 0.12714400, sc=7
+A is sparse? True
+cholesky factorization took 0.42042100
+chol solve time = 0.12729500, sc=7
+A is sparse? True
+cholesky factorization took 0.42056500
+chol solve time = 0.12624800, sc=7
+A is sparse? True
+cholesky factorization took 0.41651000
+chol solve time = 0.12678300, sc=7
+A is sparse? True
+cholesky factorization took 0.42288700
+chol solve time = 0.12603300, sc=7
+A is sparse? True
+cholesky factorization took 0.41474100
+chol solve time = 0.12700800, sc=7
+A is sparse? True
+cholesky factorization took 0.41821100
+chol solve time = 0.13010000, sc=7
+A is sparse? True
+cholesky factorization took 0.41645200
+chol solve time = 0.12691700, sc=7
+A is sparse? True
+cholesky factorization took 0.41862100
+chol solve time = 0.12645000, sc=7
+A is sparse? True
+cholesky factorization took 0.42132800
+chol solve time = 0.12573100, sc=7
+A is sparse? True
+cholesky factorization took 0.41810100
+chol solve time = 0.12512500, sc=7
+A is sparse? True
+cholesky factorization took 0.41512600
+chol solve time = 0.12707800, sc=7
+A is sparse? True
+cholesky factorization took 0.42027800
+chol solve time = 0.12642700, sc=7
+A is sparse? True
+cholesky factorization took 0.42419000
+chol solve time = 0.12620500, sc=7
+A is sparse? True
+cholesky factorization took 0.41495100
+chol solve time = 0.12651400, sc=7
+A is sparse? True
+cholesky factorization took 0.41952800
+chol solve time = 0.12703200, sc=7
+A is sparse? True
+cholesky factorization took 0.41868200
+chol solve time = 0.12635200, sc=7
+A is sparse? True
+cholesky factorization took 0.41987700
+chol solve time = 0.12661600, sc=7
+A is sparse? True
+cholesky factorization took 0.42241700
+chol solve time = 0.12691400, sc=7
+A is sparse? True
+cholesky factorization took 0.41573500
+chol solve time = 0.12710300, sc=7
+A is sparse? True
+cholesky factorization took 0.41999200
+chol solve time = 0.12822500, sc=7
+A is sparse? True
+cholesky factorization took 0.41643200
+chol solve time = 0.12671800, sc=7
+A is sparse? True
+cholesky factorization took 0.42207100
+chol solve time = 0.12644400, sc=7
+A is sparse? True
+cholesky factorization took 0.41645300
+chol solve time = 0.12644400, sc=7
+A is sparse? True
+cholesky factorization took 0.42098900
+chol solve time = 0.12775000, sc=7
+A is sparse? True
+cholesky factorization took 0.41678500
+chol solve time = 0.13534100, sc=7
+A is sparse? True
+cholesky factorization took 0.41426300
+chol solve time = 0.12728400, sc=7
+A is sparse? True
+cholesky factorization took 0.41739200
+chol solve time = 0.12653200, sc=7
+A is sparse? True
+cholesky factorization took 0.41509400
+chol solve time = 0.12695500, sc=7
+A is sparse? True
+cholesky factorization took 0.41934900
+chol solve time = 0.12657900, sc=7
+A is sparse? True
+cholesky factorization took 0.42247300
+chol solve time = 0.12607100, sc=7
+A is sparse? True
+cholesky factorization took 0.41700200
+chol solve time = 0.12691200, sc=7
+A is sparse? True
+cholesky factorization took 0.42245800
+chol solve time = 0.12693400, sc=7
+A is sparse? True
+cholesky factorization took 0.41422600
+chol solve time = 0.12797300, sc=7
+A is sparse? True
+cholesky factorization took 0.41896500
+chol solve time = 0.12732800, sc=7
+A is sparse? True
+cholesky factorization took 0.41986900
+chol solve time = 0.12710200, sc=7
+A is sparse? True
+cholesky factorization took 0.41769200
+chol solve time = 0.12696300, sc=7
+A is sparse? True
+cholesky factorization took 0.42165300
+chol solve time = 0.12666800, sc=7
+A is sparse? True
+cholesky factorization took 0.41735600
+chol solve time = 0.12729500, sc=7
+A is sparse? True
+cholesky factorization took 0.41721700
+chol solve time = 0.12791100, sc=7
+A is sparse? True
+cholesky factorization took 0.41728100
+chol solve time = 0.12630900, sc=7
+A is sparse? True
+cholesky factorization took 0.41365000
+chol solve time = 0.12794300, sc=7
+A is sparse? True
+cholesky factorization took 0.41617500
+chol solve time = 0.12795800, sc=7
+A is sparse? True
+cholesky factorization took 0.41770300
+chol solve time = 0.12604400, sc=7
+A is sparse? True
+cholesky factorization took 0.41574500
+chol solve time = 0.12706700, sc=7
+A is sparse? True
+cholesky factorization took 0.41794100
+chol solve time = 0.12716100, sc=7
+A is sparse? True
+cholesky factorization took 0.42307500
+chol solve time = 0.12824500, sc=7
+A is sparse? True
+cholesky factorization took 0.41355700
+chol solve time = 0.12642300, sc=7
+A is sparse? True
+cholesky factorization took 0.41860600
+chol solve time = 0.12846700, sc=7
+A is sparse? True
+cholesky factorization took 0.42142500
+chol solve time = 0.12635800, sc=7
+A is sparse? True
+cholesky factorization took 0.41711000
+chol solve time = 0.12745900, sc=7
+A is sparse? True
+cholesky factorization took 0.42224300
+chol solve time = 0.12934400, sc=7
+A is sparse? True
+cholesky factorization took 0.41642300
+chol solve time = 0.12651500, sc=7
+A is sparse? True
+cholesky factorization took 0.41380300
+chol solve time = 0.12861000, sc=7
+A is sparse? True
+cholesky factorization took 0.41968600
+chol solve time = 0.12618600, sc=7
+A is sparse? True
+cholesky factorization took 0.41900400
+chol solve time = 0.12703500, sc=7
+A is sparse? True
+cholesky factorization took 0.42202600
+chol solve time = 0.12655500, sc=7
+A is sparse? True
+cholesky factorization took 0.41425400
+chol solve time = 0.12708100, sc=7
+A is sparse? True
+cholesky factorization took 0.42030300
+chol solve time = 0.12969900, sc=7
+A is sparse? True
+cholesky factorization took 0.41596900
+chol solve time = 0.12613600, sc=7
+A is sparse? True
+cholesky factorization took 0.42018500
+chol solve time = 0.12688600, sc=7
+A is sparse? True
+cholesky factorization took 0.41943600
+chol solve time = 0.12708400, sc=7
+A is sparse? True
+cholesky factorization took 0.41418300
+chol solve time = 0.12770300, sc=7
+A is sparse? True
+cholesky factorization took 0.41286800
+chol solve time = 0.12774800, sc=7
+A is sparse? True
+cholesky factorization took 0.41854800
+chol solve time = 0.12693300, sc=7
+A is sparse? True
+cholesky factorization took 0.41382900
+chol solve time = 0.12724300, sc=7
+A is sparse? True
+cholesky factorization took 0.41823400
+chol solve time = 0.12619500, sc=7
+A is sparse? True
+cholesky factorization took 0.42427900
+chol solve time = 0.12783400, sc=7
+A is sparse? True
+cholesky factorization took 0.42253900
+chol solve time = 0.12745800, sc=7
+A is sparse? True
+cholesky factorization took 0.42467000
+chol solve time = 0.12612400, sc=7
+A is sparse? True
+cholesky factorization took 0.41898800
+chol solve time = 0.12587100, sc=7
+A is sparse? True
+cholesky factorization took 0.41851500
+chol solve time = 0.12691900, sc=7
+A is sparse? True
+cholesky factorization took 0.41544900
+chol solve time = 0.12815400, sc=7
+A is sparse? True
+cholesky factorization took 0.42102000
+chol solve time = 0.12728500, sc=7
+A is sparse? True
+cholesky factorization took 0.41595800
+chol solve time = 0.12695400, sc=7
+A is sparse? True
+cholesky factorization took 0.42003700
+chol solve time = 0.12654000, sc=7
+A is sparse? True
+cholesky factorization took 0.42385700
+chol solve time = 0.12905600, sc=7
+A is sparse? True
+cholesky factorization took 0.41637600
+chol solve time = 0.12698000, sc=7
+A is sparse? True
+cholesky factorization took 0.41639900
+chol solve time = 0.12797400, sc=7
+A is sparse? True
+cholesky factorization took 0.41698700
+chol solve time = 0.12848400, sc=7
+A is sparse? True
+cholesky factorization took 0.41717100
+chol solve time = 0.12711100, sc=7
+A is sparse? True
+cholesky factorization took 0.41780900
+chol solve time = 0.12714900, sc=7
+A is sparse? True
+cholesky factorization took 0.41227600
+chol solve time = 0.12770300, sc=7
+A is sparse? True
+cholesky factorization took 0.42090700
+chol solve time = 0.12697200, sc=7
+A is sparse? True
+cholesky factorization took 0.41553300
+chol solve time = 0.12773400, sc=7
+A is sparse? True
+cholesky factorization took 0.41412200
+chol solve time = 0.12615500, sc=7
+A is sparse? True
+cholesky factorization took 0.41637900
+chol solve time = 0.12952800, sc=7
+A is sparse? True
+cholesky factorization took 0.42248900
+chol solve time = 0.12597600, sc=7
+A is sparse? True
+cholesky factorization took 0.41632700
+chol solve time = 0.12658200, sc=7
+loading matrix ... 
+mm header:  (2499, 2499, 942309, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:01.701636
+converting to format csc took 0.08294100
+converted to format csc in 0:00:00.083055
+converting to format dense took 0.04433700
+converting to format dense took 0.12661200
+converting to format dense took 0.12464600
+converting to format dense took 0.12480800
+converting to format dense took 0.12856200
+converting to format dense took 0.12434700
+converting to format dense took 0.12463100
+converting to format dense took 0.12693700
+converting to format dense took 0.12670000
+converting to format dense took 0.12710300
+converting to format dense took 0.12819400
+converting to format dense took 0.12780400
+converting to format dense took 0.12633200
+converting to format dense took 0.12636600
+converting to format dense took 0.12497600
+converting to format dense took 0.12642800
+converting to format dense took 0.12787000
+converting to format dense took 0.12782400
+converting to format dense took 0.12754400
+converting to format dense took 0.12795300
+converting to format dense took 0.12638100
+converting to format dense took 0.12536700
+converting to format dense took 0.12866900
+converting to format dense took 0.12395900
+converting to format dense took 0.12577900
+converting to format dense took 0.12786900
+converting to format dense took 0.12387000
+converting to format dense took 0.12831800
+converting to format dense took 0.12493000
+converting to format dense took 0.12652600
+converting to format dense took 0.12632500
+converting to format dense took 0.12843500
+converting to format dense took 0.12872900
+converting to format dense took 0.12624800
+converting to format dense took 0.12887800
+converting to format dense took 0.12425000
+converting to format dense took 0.12826900
+converting to format dense took 0.12564800
+converting to format dense took 0.12411700
+converting to format dense took 0.12783700
+converting to format dense took 0.12541900
+converting to format dense took 0.12804500
+converting to format dense took 0.12580600
+converting to format dense took 0.12805400
+converting to format dense took 0.12588200
+converting to format dense took 0.12836900
+converting to format dense took 0.12514200
+converting to format dense took 0.12699200
+converting to format dense took 0.12774900
+converting to format dense took 0.12570200
+converting to format dense took 0.12848000
+converting to format dense took 0.12550600
+converting to format dense took 0.12655800
+converting to format dense took 0.12702700
+converting to format dense took 0.12603100
+converting to format dense took 0.12835900
+converting to format dense took 0.12410200
+converting to format dense took 0.12472200
+converting to format dense took 0.12514600
+converting to format dense took 0.12531200
+converting to format dense took 0.12647300
+converting to format dense took 0.12830500
+converting to format dense took 0.12797900
+converting to format dense took 0.12832500
+converting to format dense took 0.12863600
+converting to format dense took 0.12615900
+converting to format dense took 0.12479300
+converting to format dense took 0.12536500
+converting to format dense took 0.12845100
+converting to format dense took 0.12632700
+converting to format dense took 0.12864200
+converting to format dense took 0.12649900
+converting to format dense took 0.12653700
+converting to format dense took 0.12715900
+converting to format dense took 0.12559900
+converting to format dense took 0.12715800
+converting to format dense took 0.12718800
+converting to format dense took 0.12642100
+converting to format dense took 0.12660500
+converting to format dense took 0.12598300
+converting to format dense took 0.12864500
+converting to format dense took 0.12412800
+converting to format dense took 0.12854200
+converting to format dense took 0.12508100
+converting to format dense took 0.12490800
+converting to format dense took 0.12718800
+converting to format dense took 0.12687100
+converting to format dense took 0.12508300
+converting to format dense took 0.12434700
+converting to format dense took 0.12749800
+converting to format dense took 0.12643400
+converting to format dense took 0.12806800
+converting to format dense took 0.12666800
+converting to format dense took 0.12785900
+converting to format dense took 0.12558400
+converting to format dense took 0.12573300
+converting to format dense took 0.12796200
+converting to format dense took 0.12430000
+converting to format dense took 0.12480900
+converting to format dense took 0.12416000
+A is sparse? True
+cholesky factorization took 0.73114300
+chol solve time = 0.32292600, sc=9
+A is sparse? True
+cholesky factorization took 0.81978100
+chol solve time = 0.31868800, sc=9
+A is sparse? True
+cholesky factorization took 0.81700200
+chol solve time = 0.32127600, sc=9
+A is sparse? True
+cholesky factorization took 0.82289300
+chol solve time = 0.32170600, sc=9
+A is sparse? True
+cholesky factorization took 0.82123800
+chol solve time = 0.32137700, sc=9
+A is sparse? True
+cholesky factorization took 0.81795200
+chol solve time = 0.32409400, sc=9
+A is sparse? True
+cholesky factorization took 0.83379800
+chol solve time = 0.32115100, sc=9
+A is sparse? True
+cholesky factorization took 0.82352100
+chol solve time = 0.32170600, sc=9
+A is sparse? True
+cholesky factorization took 0.82659700
+chol solve time = 0.31967300, sc=9
+A is sparse? True
+cholesky factorization took 0.80857400
+chol solve time = 0.32035600, sc=9
+A is sparse? True
+cholesky factorization took 0.83071200
+chol solve time = 0.32218800, sc=9
+A is sparse? True
+cholesky factorization took 0.82202600
+chol solve time = 0.32188800, sc=9
+A is sparse? True
+cholesky factorization took 0.81443500
+chol solve time = 0.32029300, sc=9
+A is sparse? True
+cholesky factorization took 0.82267600
+chol solve time = 0.32019300, sc=9
+A is sparse? True
+cholesky factorization took 0.81504900
+chol solve time = 0.32086100, sc=9
+A is sparse? True
+cholesky factorization took 0.81584000
+chol solve time = 0.32063900, sc=9
+A is sparse? True
+cholesky factorization took 0.83122000
+chol solve time = 0.32183200, sc=9
+A is sparse? True
+cholesky factorization took 0.82863000
+chol solve time = 0.32102300, sc=9
+A is sparse? True
+cholesky factorization took 0.81314800
+chol solve time = 0.32135000, sc=9
+A is sparse? True
+cholesky factorization took 0.83230500
+chol solve time = 0.31975300, sc=9
+A is sparse? True
+cholesky factorization took 0.83513200
+chol solve time = 0.32040900, sc=9
+A is sparse? True
+cholesky factorization took 0.82116500
+chol solve time = 0.32026600, sc=9
+A is sparse? True
+cholesky factorization took 0.81840500
+chol solve time = 0.32167200, sc=9
+A is sparse? True
+cholesky factorization took 0.82551100
+chol solve time = 0.31929100, sc=9
+A is sparse? True
+cholesky factorization took 0.82809900
+chol solve time = 0.32077700, sc=9
+A is sparse? True
+cholesky factorization took 0.82989400
+chol solve time = 0.32163200, sc=9
+A is sparse? True
+cholesky factorization took 0.81560600
+chol solve time = 0.32183600, sc=9
+A is sparse? True
+cholesky factorization took 0.81886800
+chol solve time = 0.32284700, sc=9
+A is sparse? True
+cholesky factorization took 0.82406500
+chol solve time = 0.32047800, sc=9
+A is sparse? True
+cholesky factorization took 0.81490300
+chol solve time = 0.40553900, sc=11
+A is sparse? True
+cholesky factorization took 0.82094800
+chol solve time = 0.31889400, sc=9
+A is sparse? True
+cholesky factorization took 0.82260500
+chol solve time = 0.32123600, sc=9
+A is sparse? True
+cholesky factorization took 0.82150700
+chol solve time = 0.32326200, sc=9
+A is sparse? True
+cholesky factorization took 0.82916700
+chol solve time = 0.32219000, sc=9
+A is sparse? True
+cholesky factorization took 0.81473100
+chol solve time = 0.32179900, sc=9
+A is sparse? True
+cholesky factorization took 0.82071700
+chol solve time = 0.32096400, sc=9
+A is sparse? True
+cholesky factorization took 0.82398600
+chol solve time = 0.32298600, sc=9
+A is sparse? True
+cholesky factorization took 0.81656000
+chol solve time = 0.32167800, sc=9
+A is sparse? True
+cholesky factorization took 0.84519000
+chol solve time = 0.31886700, sc=9
+A is sparse? True
+cholesky factorization took 0.83776800
+chol solve time = 0.32019000, sc=9
+A is sparse? True
+cholesky factorization took 0.81832500
+chol solve time = 0.32211000, sc=9
+A is sparse? True
+cholesky factorization took 0.83311800
+chol solve time = 0.32058000, sc=9
+A is sparse? True
+cholesky factorization took 0.83074200
+chol solve time = 0.32256100, sc=9
+A is sparse? True
+cholesky factorization took 0.82621600
+chol solve time = 0.32067900, sc=9
+A is sparse? True
+cholesky factorization took 0.81647300
+chol solve time = 0.32143000, sc=9
+A is sparse? True
+cholesky factorization took 0.82164800
+chol solve time = 0.32067300, sc=9
+A is sparse? True
+cholesky factorization took 0.81749800
+chol solve time = 0.32017800, sc=9
+A is sparse? True
+cholesky factorization took 0.82163700
+chol solve time = 0.31721600, sc=9
+A is sparse? True
+cholesky factorization took 0.82037000
+chol solve time = 0.32005500, sc=9
+A is sparse? True
+cholesky factorization took 0.82381000
+chol solve time = 0.32132300, sc=9
+A is sparse? True
+cholesky factorization took 0.83035000
+chol solve time = 0.31957100, sc=9
+A is sparse? True
+cholesky factorization took 0.82959100
+chol solve time = 0.32016800, sc=9
+A is sparse? True
+cholesky factorization took 0.81495800
+chol solve time = 0.32086500, sc=9
+A is sparse? True
+cholesky factorization took 0.81566200
+chol solve time = 0.32268800, sc=9
+A is sparse? True
+cholesky factorization took 0.81810400
+chol solve time = 0.40826300, sc=11
+A is sparse? True
+cholesky factorization took 0.82394100
+chol solve time = 0.32083400, sc=9
+A is sparse? True
+cholesky factorization took 0.81429300
+chol solve time = 0.32146900, sc=9
+A is sparse? True
+cholesky factorization took 0.83269200
+chol solve time = 0.40808700, sc=11
+A is sparse? True
+cholesky factorization took 0.81911500
+chol solve time = 0.32197100, sc=9
+A is sparse? True
+cholesky factorization took 0.81920600
+chol solve time = 0.32401800, sc=9
+A is sparse? True
+cholesky factorization took 0.81559000
+chol solve time = 0.32035100, sc=9
+A is sparse? True
+cholesky factorization took 0.81820600
+chol solve time = 0.31962100, sc=9
+A is sparse? True
+cholesky factorization took 0.82689400
+chol solve time = 0.32166700, sc=9
+A is sparse? True
+cholesky factorization took 0.81977400
+chol solve time = 0.32090000, sc=9
+A is sparse? True
+cholesky factorization took 0.81531700
+chol solve time = 0.32129400, sc=9
+A is sparse? True
+cholesky factorization took 0.82082400
+chol solve time = 0.32046000, sc=9
+A is sparse? True
+cholesky factorization took 0.83303600
+chol solve time = 0.32116700, sc=9
+A is sparse? True
+cholesky factorization took 0.82817700
+chol solve time = 0.32037900, sc=9
+A is sparse? True
+cholesky factorization took 0.81369900
+chol solve time = 0.32126700, sc=9
+A is sparse? True
+cholesky factorization took 0.82950700
+chol solve time = 0.40764500, sc=11
+A is sparse? True
+cholesky factorization took 0.82481000
+chol solve time = 0.32075500, sc=9
+A is sparse? True
+cholesky factorization took 0.83053100
+chol solve time = 0.32181900, sc=9
+A is sparse? True
+cholesky factorization took 0.83369100
+chol solve time = 0.31978500, sc=9
+A is sparse? True
+cholesky factorization took 0.81645000
+chol solve time = 0.32005100, sc=9
+A is sparse? True
+cholesky factorization took 0.80791100
+chol solve time = 0.32183400, sc=9
+A is sparse? True
+cholesky factorization took 0.82145500
+chol solve time = 0.32346900, sc=9
+A is sparse? True
+cholesky factorization took 0.81244900
+chol solve time = 0.31998600, sc=9
+A is sparse? True
+cholesky factorization took 0.81659800
+chol solve time = 0.32119100, sc=9
+A is sparse? True
+cholesky factorization took 0.82716600
+chol solve time = 0.32127200, sc=9
+A is sparse? True
+cholesky factorization took 0.81477800
+chol solve time = 0.31965500, sc=9
+A is sparse? True
+cholesky factorization took 0.81246400
+chol solve time = 0.32301800, sc=9
+A is sparse? True
+cholesky factorization took 0.81956700
+chol solve time = 0.32146700, sc=9
+A is sparse? True
+cholesky factorization took 0.82565100
+chol solve time = 0.32210900, sc=9
+A is sparse? True
+cholesky factorization took 0.81382500
+chol solve time = 0.31868100, sc=9
+A is sparse? True
+cholesky factorization took 0.82340000
+chol solve time = 0.31957600, sc=9
+A is sparse? True
+cholesky factorization took 0.82047900
+chol solve time = 0.32379700, sc=9
+A is sparse? True
+cholesky factorization took 0.82794900
+chol solve time = 0.32176700, sc=9
+A is sparse? True
+cholesky factorization took 0.82767700
+chol solve time = 0.32024600, sc=9
+A is sparse? True
+cholesky factorization took 0.82467100
+chol solve time = 0.32093600, sc=9
+A is sparse? True
+cholesky factorization took 0.82632300
+chol solve time = 0.32184700, sc=9
+A is sparse? True
+cholesky factorization took 0.82785200
+chol solve time = 0.32152900, sc=9
+A is sparse? True
+cholesky factorization took 0.82782000
+chol solve time = 0.32184700, sc=9
+A is sparse? True
+cholesky factorization took 0.82950400
+chol solve time = 0.32129000, sc=9
+A is sparse? True
+cholesky factorization took 0.81764900
+chol solve time = 0.31969800, sc=9
+A is sparse? True
+cholesky factorization took 0.81865700
+chol solve time = 0.32071000, sc=9
+A is sparse? True
+cholesky factorization took 0.82134900
+chol solve time = 0.32139500, sc=9
+A is sparse? True
+cholesky factorization took 0.82812300
+chol solve time = 0.32039500, sc=9
+A is sparse? True
+cholesky factorization took 0.81537000
+chol solve time = 0.32184800, sc=9
+A is sparse? True
+cholesky factorization took 0.81410000
+chol solve time = 0.32143800, sc=9
+A is sparse? True
+cholesky factorization took 0.82185300
+chol solve time = 0.31992000, sc=9
+loading matrix ... 
+mm header:  (2998, 2998, 1355912, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:02.474777
+converting to format csc took 0.12221100
+converted to format csc in 0:00:00.122327
+converting to format dense took 0.06412600
+converting to format dense took 0.14310600
+converting to format dense took 0.14499100
+converting to format dense took 0.14623900
+converting to format dense took 0.14777900
+converting to format dense took 0.14689600
+converting to format dense took 0.14691300
+converting to format dense took 0.14599400
+converting to format dense took 0.14712800
+converting to format dense took 0.14424800
+converting to format dense took 0.14713800
+converting to format dense took 0.14711400
+converting to format dense took 0.14254000
+converting to format dense took 0.14465700
+converting to format dense took 0.14646000
+converting to format dense took 0.14514400
+converting to format dense took 0.14756100
+converting to format dense took 0.14278100
+converting to format dense took 0.14136500
+converting to format dense took 0.14420900
+converting to format dense took 0.14593200
+converting to format dense took 0.14736500
+converting to format dense took 0.14668900
+converting to format dense took 0.14483100
+converting to format dense took 0.14560800
+converting to format dense took 0.14212300
+converting to format dense took 0.14470900
+converting to format dense took 0.14537800
+converting to format dense took 0.14394000
+converting to format dense took 0.14792100
+converting to format dense took 0.14784900
+converting to format dense took 0.14677000
+converting to format dense took 0.14855500
+converting to format dense took 0.14774100
+converting to format dense took 0.14821900
+converting to format dense took 0.14349000
+converting to format dense took 0.14757000
+converting to format dense took 0.14455200
+converting to format dense took 0.14435700
+converting to format dense took 0.14640800
+converting to format dense took 0.14320700
+converting to format dense took 0.14771300
+converting to format dense took 0.14672300
+converting to format dense took 0.14640600
+converting to format dense took 0.14665400
+converting to format dense took 0.14600400
+converting to format dense took 0.14317600
+converting to format dense took 0.14741700
+converting to format dense took 0.14286300
+converting to format dense took 0.14786600
+converting to format dense took 0.14535400
+converting to format dense took 0.14535400
+converting to format dense took 0.14560900
+converting to format dense took 0.14626500
+converting to format dense took 0.14604300
+converting to format dense took 0.14643600
+converting to format dense took 0.14648600
+converting to format dense took 0.14588700
+converting to format dense took 0.14485200
+converting to format dense took 0.14625700
+converting to format dense took 0.14468400
+converting to format dense took 0.14513600
+converting to format dense took 0.14245600
+converting to format dense took 0.14394800
+converting to format dense took 0.14651800
+converting to format dense took 0.14684900
+converting to format dense took 0.14409600
+converting to format dense took 0.14202100
+converting to format dense took 0.14561400
+converting to format dense took 0.14678700
+converting to format dense took 0.14537400
+converting to format dense took 0.14274300
+converting to format dense took 0.14630800
+converting to format dense took 0.14581100
+converting to format dense took 0.14106900
+converting to format dense took 0.14807300
+converting to format dense took 0.14432400
+converting to format dense took 0.14628500
+converting to format dense took 0.14670300
+converting to format dense took 0.14665100
+converting to format dense took 0.14522900
+converting to format dense took 0.14814000
+converting to format dense took 0.14263700
+converting to format dense took 0.14554100
+converting to format dense took 0.14779100
+converting to format dense took 0.14544600
+converting to format dense took 0.14740100
+converting to format dense took 0.14609900
+converting to format dense took 0.14652400
+converting to format dense took 0.14688000
+converting to format dense took 0.14733100
+converting to format dense took 0.14511600
+converting to format dense took 0.14405300
+converting to format dense took 0.14942700
+converting to format dense took 0.14595100
+converting to format dense took 0.14839200
+converting to format dense took 0.14735700
+converting to format dense took 0.14233100
+converting to format dense took 0.14508200
+converting to format dense took 0.14770300
+A is sparse? True
+cholesky factorization took 1.20935100
+chol solve time = 0.26032800, sc=9
+A is sparse? True
+cholesky factorization took 1.32405700
+chol solve time = 0.30840500, sc=9
+A is sparse? True
+cholesky factorization took 1.31474300
+chol solve time = 0.32565700, sc=11
+A is sparse? True
+cholesky factorization took 1.33002800
+chol solve time = 0.27714600, sc=9
+A is sparse? True
+cholesky factorization took 1.30148400
+chol solve time = 0.29876200, sc=9
+A is sparse? True
+cholesky factorization took 1.31605600
+chol solve time = 0.25816700, sc=9
+A is sparse? True
+cholesky factorization took 1.31111200
+chol solve time = 0.28595000, sc=9
+A is sparse? True
+cholesky factorization took 1.31464800
+chol solve time = 0.38685800, sc=11
+A is sparse? True
+cholesky factorization took 1.27858500
+chol solve time = 0.29395500, sc=9
+A is sparse? True
+cholesky factorization took 1.31224600
+chol solve time = 0.25858900, sc=9
+A is sparse? True
+cholesky factorization took 1.30598800
+chol solve time = 0.31223200, sc=9
+A is sparse? True
+cholesky factorization took 1.30803300
+chol solve time = 0.28863600, sc=9
+A is sparse? True
+cholesky factorization took 1.30013300
+chol solve time = 0.31811200, sc=9
+A is sparse? True
+cholesky factorization took 1.30153700
+chol solve time = 0.30036000, sc=9
+A is sparse? True
+cholesky factorization took 1.29735900
+chol solve time = 0.29951700, sc=9
+A is sparse? True
+cholesky factorization took 1.30237500
+chol solve time = 0.29318900, sc=9
+A is sparse? True
+cholesky factorization took 1.30974400
+chol solve time = 0.29235100, sc=9
+A is sparse? True
+cholesky factorization took 1.30182200
+chol solve time = 0.27786400, sc=9
+A is sparse? True
+cholesky factorization took 1.28286700
+chol solve time = 0.25470000, sc=9
+A is sparse? True
+cholesky factorization took 1.30591100
+chol solve time = 0.28959400, sc=9
+A is sparse? True
+cholesky factorization took 1.30419300
+chol solve time = 0.27224400, sc=9
+A is sparse? True
+cholesky factorization took 1.32603000
+chol solve time = 0.25631100, sc=9
+A is sparse? True
+cholesky factorization took 1.31771900
+chol solve time = 0.28985600, sc=9
+A is sparse? True
+cholesky factorization took 1.31069300
+chol solve time = 0.25825000, sc=9
+A is sparse? True
+cholesky factorization took 1.30368700
+chol solve time = 0.29420100, sc=9
+A is sparse? True
+cholesky factorization took 1.31722500
+chol solve time = 0.30078300, sc=9
+A is sparse? True
+cholesky factorization took 1.28470500
+chol solve time = 0.25857000, sc=9
+A is sparse? True
+cholesky factorization took 1.31110000
+chol solve time = 0.28691900, sc=9
+A is sparse? True
+cholesky factorization took 1.30816300
+chol solve time = 0.29977700, sc=9
+A is sparse? True
+cholesky factorization took 1.32117300
+chol solve time = 0.28622100, sc=9
+A is sparse? True
+cholesky factorization took 1.31693000
+chol solve time = 0.27078900, sc=9
+A is sparse? True
+cholesky factorization took 1.31828200
+chol solve time = 0.33409500, sc=11
+A is sparse? True
+cholesky factorization took 1.31216100
+chol solve time = 0.31629800, sc=9
+A is sparse? True
+cholesky factorization took 1.31396500
+chol solve time = 0.29694000, sc=9
+A is sparse? True
+cholesky factorization took 1.28013300
+chol solve time = 0.29882300, sc=9
+A is sparse? True
+cholesky factorization took 1.29089400
+chol solve time = 0.28751800, sc=9
+A is sparse? True
+cholesky factorization took 1.32548100
+chol solve time = 0.28403200, sc=9
+A is sparse? True
+cholesky factorization took 1.31910400
+chol solve time = 0.28530300, sc=9
+A is sparse? True
+cholesky factorization took 1.32097200
+chol solve time = 0.27692900, sc=9
+A is sparse? True
+cholesky factorization took 1.29885200
+chol solve time = 0.31773400, sc=9
+A is sparse? True
+cholesky factorization took 1.30201700
+chol solve time = 0.27572800, sc=9
+A is sparse? True
+cholesky factorization took 1.31385700
+chol solve time = 0.28520400, sc=9
+A is sparse? True
+cholesky factorization took 1.30698800
+chol solve time = 0.28224700, sc=9
+A is sparse? True
+cholesky factorization took 1.31043700
+chol solve time = 0.28662700, sc=9
+A is sparse? True
+cholesky factorization took 1.31092500
+chol solve time = 0.30337900, sc=9
+A is sparse? True
+cholesky factorization took 1.29005600
+chol solve time = 0.26251400, sc=9
+A is sparse? True
+cholesky factorization took 1.30759600
+chol solve time = 0.28948400, sc=9
+A is sparse? True
+cholesky factorization took 1.28885900
+chol solve time = 0.38031600, sc=11
+A is sparse? True
+cholesky factorization took 1.31589800
+chol solve time = 0.28839400, sc=9
+A is sparse? True
+cholesky factorization took 1.30035500
+chol solve time = 0.32189500, sc=11
+A is sparse? True
+cholesky factorization took 1.30106800
+chol solve time = 0.36264400, sc=11
+A is sparse? True
+cholesky factorization took 1.31468500
+chol solve time = 0.28070400, sc=9
+A is sparse? True
+cholesky factorization took 1.30685100
+chol solve time = 0.27187000, sc=9
+A is sparse? True
+cholesky factorization took 1.30541800
+chol solve time = 0.32139700, sc=11
+A is sparse? True
+cholesky factorization took 1.30602400
+chol solve time = 0.35245600, sc=11
+A is sparse? True
+cholesky factorization took 1.29240700
+chol solve time = 0.34694000, sc=11
+A is sparse? True
+cholesky factorization took 1.32693100
+chol solve time = 0.26828200, sc=9
+A is sparse? True
+cholesky factorization took 1.31441100
+chol solve time = 0.29114000, sc=9
+A is sparse? True
+cholesky factorization took 1.29812400
+chol solve time = 0.30485400, sc=9
+A is sparse? True
+cholesky factorization took 1.29133900
+chol solve time = 0.27831700, sc=9
+A is sparse? True
+cholesky factorization took 1.31745600
+chol solve time = 0.25000600, sc=9
+A is sparse? True
+cholesky factorization took 1.31208200
+chol solve time = 0.28621000, sc=9
+A is sparse? True
+cholesky factorization took 1.28803700
+chol solve time = 0.30869400, sc=9
+A is sparse? True
+cholesky factorization took 1.29764600
+chol solve time = 0.25932300, sc=9
+A is sparse? True
+cholesky factorization took 1.29558500
+chol solve time = 0.34619400, sc=11
+A is sparse? True
+cholesky factorization took 1.31054100
+chol solve time = 0.28512300, sc=9
+A is sparse? True
+cholesky factorization took 1.31964900
+chol solve time = 0.25724600, sc=9
+A is sparse? True
+cholesky factorization took 1.29861400
+chol solve time = 0.35379400, sc=11
+A is sparse? True
+cholesky factorization took 1.30266500
+chol solve time = 0.25277600, sc=9
+A is sparse? True
+cholesky factorization took 1.30140100
+chol solve time = 0.24897000, sc=9
+A is sparse? True
+cholesky factorization took 1.31260400
+chol solve time = 0.28004100, sc=9
+A is sparse? True
+cholesky factorization took 1.30938800
+chol solve time = 0.30131500, sc=9
+A is sparse? True
+cholesky factorization took 1.30439900
+chol solve time = 0.30994900, sc=9
+A is sparse? True
+cholesky factorization took 1.31344800
+chol solve time = 0.31180900, sc=9
+A is sparse? True
+cholesky factorization took 1.30953400
+chol solve time = 0.27192800, sc=9
+A is sparse? True
+cholesky factorization took 1.32364400
+chol solve time = 0.29593400, sc=9
+A is sparse? True
+cholesky factorization took 1.29849100
+chol solve time = 0.27740700, sc=9
+A is sparse? True
+cholesky factorization took 1.29899600
+chol solve time = 0.29542600, sc=9
+A is sparse? True
+cholesky factorization took 1.31603800
+chol solve time = 0.30163000, sc=9
+A is sparse? True
+cholesky factorization took 1.32064400
+chol solve time = 0.26041200, sc=9
+A is sparse? True
+cholesky factorization took 1.30466600
+chol solve time = 0.26276000, sc=9
+A is sparse? True
+cholesky factorization took 1.32335100
+chol solve time = 0.29438700, sc=9
+A is sparse? True
+cholesky factorization took 1.29319300
+chol solve time = 0.37264600, sc=11
+A is sparse? True
+cholesky factorization took 1.30630300
+chol solve time = 0.28304400, sc=9
+A is sparse? True
+cholesky factorization took 1.31192700
+chol solve time = 0.29654900, sc=9
+A is sparse? True
+cholesky factorization took 1.31866500
+chol solve time = 0.26283700, sc=9
+A is sparse? True
+cholesky factorization took 1.31580000
+chol solve time = 0.25180400, sc=9
+A is sparse? True
+cholesky factorization took 1.28886600
+chol solve time = 0.29798100, sc=9
+A is sparse? True
+cholesky factorization took 1.31003500
+chol solve time = 0.27370600, sc=9
+A is sparse? True
+cholesky factorization took 1.30626800
+chol solve time = 0.27777400, sc=9
+A is sparse? True
+cholesky factorization took 1.31291700
+chol solve time = 0.25501300, sc=9
+A is sparse? True
+cholesky factorization took 1.30426100
+chol solve time = 0.26711300, sc=9
+A is sparse? True
+cholesky factorization took 1.32036000
+chol solve time = 0.30149400, sc=9
+A is sparse? True
+cholesky factorization took 1.30388300
+chol solve time = 0.26404600, sc=9
+A is sparse? True
+cholesky factorization took 1.30022000
+chol solve time = 0.29663500, sc=9
+A is sparse? True
+cholesky factorization took 1.31489800
+chol solve time = 0.27184700, sc=9
+A is sparse? True
+cholesky factorization took 1.32416500
+chol solve time = 0.28508900, sc=9
+A is sparse? True
+cholesky factorization took 1.29516000
+chol solve time = 0.27410700, sc=9
+A is sparse? True
+cholesky factorization took 1.28713600
+chol solve time = 0.30910600, sc=9
+A is sparse? True
+cholesky factorization took 1.29786100
+chol solve time = 0.27543400, sc=9
+loading matrix ... 
+mm header:  (3498, 3498, 1843477, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:03.347511
+converting to format csc took 0.16965900
+converted to format csc in 0:00:00.169777
+converting to format dense took 0.08743100
+converting to format dense took 0.16858200
+converting to format dense took 0.17148300
+converting to format dense took 0.16758700
+converting to format dense took 0.17070600
+converting to format dense took 0.16890900
+converting to format dense took 0.16809700
+converting to format dense took 0.16775800
+converting to format dense took 0.16989900
+converting to format dense took 0.17197200
+converting to format dense took 0.17068500
+converting to format dense took 0.17184400
+converting to format dense took 0.16664500
+converting to format dense took 0.17133700
+converting to format dense took 0.16821000
+converting to format dense took 0.16808300
+converting to format dense took 0.17203500
+converting to format dense took 0.17176400
+converting to format dense took 0.17161400
+converting to format dense took 0.17032600
+converting to format dense took 0.16787200
+converting to format dense took 0.17082100
+converting to format dense took 0.16995700
+converting to format dense took 0.17051100
+converting to format dense took 0.17044800
+converting to format dense took 0.16440500
+converting to format dense took 0.17152100
+converting to format dense took 0.17094900
+converting to format dense took 0.17188300
+converting to format dense took 0.16637900
+converting to format dense took 0.17085600
+converting to format dense took 0.16679900
+converting to format dense took 0.16974400
+converting to format dense took 0.17061300
+converting to format dense took 0.17182900
+converting to format dense took 0.16785800
+converting to format dense took 0.16862000
+converting to format dense took 0.16971500
+converting to format dense took 0.17157800
+converting to format dense took 0.17105000
+converting to format dense took 0.16828700
+converting to format dense took 0.17039000
+converting to format dense took 0.16924100
+converting to format dense took 0.17106400
+converting to format dense took 0.16427700
+converting to format dense took 0.17037000
+converting to format dense took 0.17220700
+converting to format dense took 0.16695700
+converting to format dense took 0.16674300
+converting to format dense took 0.17022700
+converting to format dense took 0.17191900
+converting to format dense took 0.16932300
+converting to format dense took 0.16821100
+converting to format dense took 0.17128700
+converting to format dense took 0.17046600
+converting to format dense took 0.16877500
+converting to format dense took 0.16732200
+converting to format dense took 0.17184600
+converting to format dense took 0.16870200
+converting to format dense took 0.16842100
+converting to format dense took 0.17015700
+converting to format dense took 0.17118100
+converting to format dense took 0.17150300
+converting to format dense took 0.16727100
+converting to format dense took 0.16467500
+converting to format dense took 0.17149200
+converting to format dense took 0.16632500
+converting to format dense took 0.16942000
+converting to format dense took 0.16640400
+converting to format dense took 0.17188200
+converting to format dense took 0.16989300
+converting to format dense took 0.17136500
+converting to format dense took 0.16841900
+converting to format dense took 0.17104900
+converting to format dense took 0.16884300
+converting to format dense took 0.17083200
+converting to format dense took 0.16745700
+converting to format dense took 0.17027200
+converting to format dense took 0.16818500
+converting to format dense took 0.17134200
+converting to format dense took 0.17163800
+converting to format dense took 0.16884400
+converting to format dense took 0.16961400
+converting to format dense took 0.16636600
+converting to format dense took 0.17004200
+converting to format dense took 0.16981900
+converting to format dense took 0.16938300
+converting to format dense took 0.17141400
+converting to format dense took 0.17172100
+converting to format dense took 0.17158500
+converting to format dense took 0.17005300
+converting to format dense took 0.16730700
+converting to format dense took 0.16969700
+converting to format dense took 0.16953000
+converting to format dense took 0.16864100
+converting to format dense took 0.17162400
+converting to format dense took 0.17126100
+converting to format dense took 0.16902800
+converting to format dense took 0.16869300
+converting to format dense took 0.17081100
+A is sparse? True
+cholesky factorization took 1.88402800
+chol solve time = 0.57969000, sc=13
+A is sparse? True
+cholesky factorization took 1.95998200
+chol solve time = 0.48720300, sc=11
+A is sparse? True
+cholesky factorization took 1.96509200
+chol solve time = 0.59262500, sc=13
+A is sparse? True
+cholesky factorization took 1.94921700
+chol solve time = 0.51258700, sc=11
+A is sparse? True
+cholesky factorization took 1.94416600
+chol solve time = 0.52906400, sc=11
+A is sparse? True
+cholesky factorization took 1.94806100
+chol solve time = 0.49268400, sc=11
+A is sparse? True
+cholesky factorization took 1.95668800
+chol solve time = 0.49069800, sc=11
+A is sparse? True
+cholesky factorization took 1.97552200
+chol solve time = 0.50295400, sc=11
+A is sparse? True
+cholesky factorization took 1.97188800
+chol solve time = 0.52136600, sc=11
+A is sparse? True
+cholesky factorization took 1.93978400
+chol solve time = 0.51454600, sc=11
+A is sparse? True
+cholesky factorization took 1.95388600
+chol solve time = 0.49154900, sc=11
+A is sparse? True
+cholesky factorization took 1.97784200
+chol solve time = 0.58982000, sc=13
+A is sparse? True
+cholesky factorization took 1.97205300
+chol solve time = 0.49759300, sc=11
+A is sparse? True
+cholesky factorization took 1.95957600
+chol solve time = 0.48210400, sc=11
+A is sparse? True
+cholesky factorization took 1.97250900
+chol solve time = 0.48717200, sc=11
+A is sparse? True
+cholesky factorization took 1.98242700
+chol solve time = 0.51955700, sc=11
+A is sparse? True
+cholesky factorization took 1.97256100
+chol solve time = 0.49425800, sc=11
+A is sparse? True
+cholesky factorization took 1.95862000
+chol solve time = 0.61163200, sc=13
+A is sparse? True
+cholesky factorization took 1.96034500
+chol solve time = 0.48906200, sc=11
+A is sparse? True
+cholesky factorization took 1.96425800
+chol solve time = 0.52540000, sc=11
+A is sparse? True
+cholesky factorization took 1.94708300
+chol solve time = 0.51253100, sc=11
+A is sparse? True
+cholesky factorization took 1.97798900
+chol solve time = 0.50777700, sc=11
+A is sparse? True
+cholesky factorization took 1.98000500
+chol solve time = 0.50261800, sc=11
+A is sparse? True
+cholesky factorization took 1.96617700
+chol solve time = 0.51722500, sc=11
+A is sparse? True
+cholesky factorization took 1.97630200
+chol solve time = 0.48143000, sc=11
+A is sparse? True
+cholesky factorization took 1.97913800
+chol solve time = 0.50607100, sc=11
+A is sparse? True
+cholesky factorization took 1.96832200
+chol solve time = 0.52567600, sc=11
+A is sparse? True
+cholesky factorization took 1.98433200
+chol solve time = 0.50537100, sc=11
+A is sparse? True
+cholesky factorization took 1.96032000
+chol solve time = 0.48140200, sc=11
+A is sparse? True
+cholesky factorization took 1.94699500
+chol solve time = 0.51361000, sc=11
+A is sparse? True
+cholesky factorization took 1.97773400
+chol solve time = 0.49734500, sc=11
+A is sparse? True
+cholesky factorization took 1.95797200
+chol solve time = 0.50738500, sc=11
+A is sparse? True
+cholesky factorization took 1.95054000
+chol solve time = 0.52057100, sc=11
+A is sparse? True
+cholesky factorization took 1.95311800
+chol solve time = 0.51366200, sc=11
+A is sparse? True
+cholesky factorization took 1.94693800
+chol solve time = 0.51307800, sc=11
+A is sparse? True
+cholesky factorization took 1.96715100
+chol solve time = 0.49237400, sc=11
+A is sparse? True
+cholesky factorization took 1.97113900
+chol solve time = 0.54779200, sc=11
+A is sparse? True
+cholesky factorization took 1.96535500
+chol solve time = 0.50074800, sc=11
+A is sparse? True
+cholesky factorization took 1.96587400
+chol solve time = 0.48767400, sc=11
+A is sparse? True
+cholesky factorization took 1.97406900
+chol solve time = 0.48667000, sc=11
+A is sparse? True
+cholesky factorization took 1.93530900
+chol solve time = 0.50087600, sc=11
+A is sparse? True
+cholesky factorization took 1.97049200
+chol solve time = 0.48045000, sc=11
+A is sparse? True
+cholesky factorization took 1.96019600
+chol solve time = 0.53317200, sc=11
+A is sparse? True
+cholesky factorization took 1.95551000
+chol solve time = 0.53568300, sc=11
+A is sparse? True
+cholesky factorization took 1.95681700
+chol solve time = 0.52117600, sc=11
+A is sparse? True
+cholesky factorization took 1.95876700
+chol solve time = 0.49580900, sc=11
+A is sparse? True
+cholesky factorization took 1.96815400
+chol solve time = 0.59921500, sc=13
+A is sparse? True
+cholesky factorization took 1.93821400
+chol solve time = 0.53718400, sc=11
+A is sparse? True
+cholesky factorization took 1.95469500
+chol solve time = 0.49801800, sc=11
+A is sparse? True
+cholesky factorization took 1.97547300
+chol solve time = 0.48082600, sc=11
+A is sparse? True
+cholesky factorization took 1.94391900
+chol solve time = 0.49641000, sc=11
+A is sparse? True
+cholesky factorization took 1.94817800
+chol solve time = 0.47941800, sc=11
+A is sparse? True
+cholesky factorization took 1.95396500
+chol solve time = 0.52720100, sc=11
+A is sparse? True
+cholesky factorization took 1.97071200
+chol solve time = 0.53067100, sc=11
+A is sparse? True
+cholesky factorization took 1.97544900
+chol solve time = 0.62593500, sc=13
+A is sparse? True
+cholesky factorization took 1.96622500
+chol solve time = 0.51727700, sc=11
+A is sparse? True
+cholesky factorization took 1.97251300
+chol solve time = 0.49632800, sc=11
+A is sparse? True
+cholesky factorization took 1.96370800
+chol solve time = 0.51366500, sc=11
+A is sparse? True
+cholesky factorization took 1.96986000
+chol solve time = 0.62763300, sc=13
+A is sparse? True
+cholesky factorization took 1.97492000
+chol solve time = 0.57776200, sc=13
+A is sparse? True
+cholesky factorization took 1.96461600
+chol solve time = 0.51758300, sc=11
+A is sparse? True
+cholesky factorization took 1.94401400
+chol solve time = 0.49866300, sc=11
+A is sparse? True
+cholesky factorization took 1.95109200
+chol solve time = 0.49038700, sc=11
+A is sparse? True
+cholesky factorization took 1.95640400
+chol solve time = 0.48035500, sc=11
+A is sparse? True
+cholesky factorization took 1.96631700
+chol solve time = 0.50232900, sc=11
+A is sparse? True
+cholesky factorization took 1.94864900
+chol solve time = 0.53826000, sc=11
+A is sparse? True
+cholesky factorization took 1.97080600
+chol solve time = 0.51634800, sc=11
+A is sparse? True
+cholesky factorization took 1.96109200
+chol solve time = 0.49923000, sc=11
+A is sparse? True
+cholesky factorization took 1.98250900
+chol solve time = 0.49831200, sc=11
+A is sparse? True
+cholesky factorization took 1.95176600
+chol solve time = 0.58710100, sc=13
+A is sparse? True
+cholesky factorization took 1.94697000
+chol solve time = 0.52754700, sc=11
+A is sparse? True
+cholesky factorization took 1.94160800
+chol solve time = 0.48409500, sc=11
+A is sparse? True
+cholesky factorization took 1.97769900
+chol solve time = 0.48333600, sc=11
+A is sparse? True
+cholesky factorization took 1.95939000
+chol solve time = 0.52737000, sc=11
+A is sparse? True
+cholesky factorization took 1.95584000
+chol solve time = 0.48997600, sc=11
+A is sparse? True
+cholesky factorization took 1.96715500
+chol solve time = 0.50769300, sc=11
+A is sparse? True
+cholesky factorization took 1.96506300
+chol solve time = 0.51771600, sc=11
+A is sparse? True
+cholesky factorization took 1.97525800
+chol solve time = 0.49892300, sc=11
+A is sparse? True
+cholesky factorization took 1.94327200
+chol solve time = 0.48991900, sc=11
+A is sparse? True
+cholesky factorization took 1.95354800
+chol solve time = 0.50424100, sc=11
+A is sparse? True
+cholesky factorization took 1.99280700
+chol solve time = 0.52143800, sc=11
+A is sparse? True
+cholesky factorization took 1.97644200
+chol solve time = 0.52642100, sc=11
+A is sparse? True
+cholesky factorization took 1.96037700
+chol solve time = 0.52970100, sc=11
+A is sparse? True
+cholesky factorization took 1.96721700
+chol solve time = 0.51369400, sc=11
+A is sparse? True
+cholesky factorization took 1.99142800
+chol solve time = 0.48513500, sc=11
+A is sparse? True
+cholesky factorization took 1.98538700
+chol solve time = 0.51244600, sc=11
+A is sparse? True
+cholesky factorization took 1.96413000
+chol solve time = 0.50327600, sc=11
+A is sparse? True
+cholesky factorization took 1.97174100
+chol solve time = 0.51271300, sc=11
+A is sparse? True
+cholesky factorization took 1.95658100
+chol solve time = 0.49175600, sc=11
+A is sparse? True
+cholesky factorization took 1.93713700
+chol solve time = 0.61549400, sc=13
+A is sparse? True
+cholesky factorization took 1.97821300
+chol solve time = 0.50276700, sc=11
+A is sparse? True
+cholesky factorization took 1.97202700
+chol solve time = 0.50561100, sc=11
+A is sparse? True
+cholesky factorization took 1.96541600
+chol solve time = 0.49363000, sc=11
+A is sparse? True
+cholesky factorization took 1.95365200
+chol solve time = 0.49375700, sc=11
+A is sparse? True
+cholesky factorization took 1.98099300
+chol solve time = 0.46434300, sc=11
+A is sparse? True
+cholesky factorization took 1.95383300
+chol solve time = 0.51472200, sc=11
+A is sparse? True
+cholesky factorization took 1.96677200
+chol solve time = 0.51809700, sc=11
+A is sparse? True
+cholesky factorization took 1.96612300
+chol solve time = 0.50312800, sc=11
+A is sparse? True
+cholesky factorization took 1.95001700
+chol solve time = 0.50275800, sc=11
+A is sparse? True
+cholesky factorization took 1.96531300
+chol solve time = 0.52048600, sc=11
+loading matrix ... 
+mm header:  (3999, 3999, 2407634, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:04.416907
+converting to format csc took 0.23382100
+converted to format csc in 0:00:00.233934
+converting to format dense took 0.11562400
+converting to format dense took 0.19670800
+converting to format dense took 0.19821800
+converting to format dense took 0.19609300
+converting to format dense took 0.19991000
+converting to format dense took 0.19900400
+converting to format dense took 0.19659500
+converting to format dense took 0.19553800
+converting to format dense took 0.19999900
+converting to format dense took 0.19916300
+converting to format dense took 0.19751600
+converting to format dense took 0.20028300
+converting to format dense took 0.19913300
+converting to format dense took 0.19753500
+converting to format dense took 0.20145800
+converting to format dense took 0.19720000
+converting to format dense took 0.19994300
+converting to format dense took 0.19759600
+converting to format dense took 0.19941800
+converting to format dense took 0.19421800
+converting to format dense took 0.19743800
+converting to format dense took 0.19446100
+converting to format dense took 0.19628500
+converting to format dense took 0.19797100
+converting to format dense took 0.19732300
+converting to format dense took 0.19967000
+converting to format dense took 0.19768900
+converting to format dense took 0.19175200
+converting to format dense took 0.20041100
+converting to format dense took 0.19657100
+converting to format dense took 0.19873900
+converting to format dense took 0.19709700
+converting to format dense took 0.19510900
+converting to format dense took 0.19695800
+converting to format dense took 0.19681600
+converting to format dense took 0.19914400
+converting to format dense took 0.19622000
+converting to format dense took 0.19852500
+converting to format dense took 0.19693600
+converting to format dense took 0.19776100
+converting to format dense took 0.19587100
+converting to format dense took 0.19726100
+converting to format dense took 0.19678900
+converting to format dense took 0.19618300
+converting to format dense took 0.19653800
+converting to format dense took 0.20588800
+converting to format dense took 0.20647600
+converting to format dense took 0.20361900
+converting to format dense took 0.20496900
+converting to format dense took 0.20272200
+converting to format dense took 0.20659100
+converting to format dense took 0.20588700
+converting to format dense took 0.20609500
+converting to format dense took 0.20565900
+converting to format dense took 0.20628700
+converting to format dense took 0.20361000
+converting to format dense took 0.20295100
+converting to format dense took 0.20581400
+converting to format dense took 0.20474800
+converting to format dense took 0.20622300
+converting to format dense took 0.19701600
+converting to format dense took 0.19642400
+converting to format dense took 0.20053600
+converting to format dense took 0.19915000
+converting to format dense took 0.19864700
+converting to format dense took 0.19581700
+converting to format dense took 0.19919200
+converting to format dense took 0.19992300
+converting to format dense took 0.19686300
+converting to format dense took 0.19963900
+converting to format dense took 0.19965500
+converting to format dense took 0.19532200
+converting to format dense took 0.19996400
+converting to format dense took 0.19499300
+converting to format dense took 0.19968300
+converting to format dense took 0.19794900
+converting to format dense took 0.19672700
+converting to format dense took 0.19839500
+converting to format dense took 0.19763400
+converting to format dense took 0.20098200
+converting to format dense took 0.19748600
+converting to format dense took 0.19720300
+converting to format dense took 0.19643900
+converting to format dense took 0.19787400
+converting to format dense took 0.19745200
+converting to format dense took 0.19888300
+converting to format dense took 0.19787300
+converting to format dense took 0.20644900
+converting to format dense took 0.20716600
+converting to format dense took 0.20581700
+converting to format dense took 0.20774300
+converting to format dense took 0.20316100
+converting to format dense took 0.20930000
+converting to format dense took 0.21107200
+converting to format dense took 0.20663500
+converting to format dense took 0.21037000
+converting to format dense took 0.20679600
+converting to format dense took 0.20389200
+converting to format dense took 0.20654600
+converting to format dense took 0.19607300
+A is sparse? True
+cholesky factorization took 2.72672300
+chol solve time = 0.53435900, sc=9
+A is sparse? True
+cholesky factorization took 2.80187200
+chol solve time = 0.64789200, sc=11
+A is sparse? True
+cholesky factorization took 2.79144200
+chol solve time = 0.66350200, sc=11
+A is sparse? True
+cholesky factorization took 2.78420900
+chol solve time = 0.66187700, sc=11
+A is sparse? True
+cholesky factorization took 2.80569900
+chol solve time = 0.61023200, sc=11
+A is sparse? True
+cholesky factorization took 2.81577500
+chol solve time = 0.65805900, sc=11
+A is sparse? True
+cholesky factorization took 2.78692400
+chol solve time = 0.65531500, sc=11
+A is sparse? True
+cholesky factorization took 2.79640500
+chol solve time = 0.66444600, sc=11
+A is sparse? True
+cholesky factorization took 2.82746300
+chol solve time = 0.66365100, sc=11
+A is sparse? True
+cholesky factorization took 2.80598100
+chol solve time = 0.54281200, sc=9
+A is sparse? True
+cholesky factorization took 2.77688000
+chol solve time = 0.63272900, sc=11
+A is sparse? True
+cholesky factorization took 2.79677800
+chol solve time = 0.66136100, sc=11
+A is sparse? True
+cholesky factorization took 2.80999500
+chol solve time = 0.65851700, sc=11
+A is sparse? True
+cholesky factorization took 2.81526400
+chol solve time = 0.65092000, sc=11
+A is sparse? True
+cholesky factorization took 2.80378900
+chol solve time = 0.66250400, sc=11
+A is sparse? True
+cholesky factorization took 2.79516100
+chol solve time = 0.64686400, sc=11
+A is sparse? True
+cholesky factorization took 2.80375100
+chol solve time = 0.63469000, sc=11
+A is sparse? True
+cholesky factorization took 2.80250600
+chol solve time = 0.63119300, sc=11
+A is sparse? True
+cholesky factorization took 2.79702300
+chol solve time = 0.65827000, sc=11
+A is sparse? True
+cholesky factorization took 2.79269000
+chol solve time = 0.63377200, sc=11
+A is sparse? True
+cholesky factorization took 2.80415400
+chol solve time = 0.64614100, sc=11
+A is sparse? True
+cholesky factorization took 2.82817500
+chol solve time = 0.64838400, sc=11
+A is sparse? True
+cholesky factorization took 2.80617800
+chol solve time = 0.67832600, sc=11
+A is sparse? True
+cholesky factorization took 2.79692200
+chol solve time = 0.63915200, sc=11
+A is sparse? True
+cholesky factorization took 2.79390300
+chol solve time = 0.65157800, sc=11
+A is sparse? True
+cholesky factorization took 2.82200600
+chol solve time = 0.60897000, sc=11
+A is sparse? True
+cholesky factorization took 2.79748500
+chol solve time = 0.64290800, sc=11
+A is sparse? True
+cholesky factorization took 2.78009900
+chol solve time = 0.68273700, sc=11
+A is sparse? True
+cholesky factorization took 2.80724500
+chol solve time = 0.50816500, sc=9
+A is sparse? True
+cholesky factorization took 2.79184000
+chol solve time = 0.63416000, sc=11
+A is sparse? True
+cholesky factorization took 2.79473200
+chol solve time = 0.61449600, sc=11
+A is sparse? True
+cholesky factorization took 2.81726900
+chol solve time = 0.67467500, sc=11
+A is sparse? True
+cholesky factorization took 2.82530400
+chol solve time = 0.66185400, sc=11
+A is sparse? True
+cholesky factorization took 2.79403900
+chol solve time = 0.62074200, sc=11
+A is sparse? True
+cholesky factorization took 2.79766200
+chol solve time = 0.63633500, sc=11
+A is sparse? True
+cholesky factorization took 2.81506600
+chol solve time = 0.64545800, sc=11
+A is sparse? True
+cholesky factorization took 2.80091200
+chol solve time = 0.64959200, sc=11
+A is sparse? True
+cholesky factorization took 2.81589700
+chol solve time = 0.68770300, sc=11
+A is sparse? True
+cholesky factorization took 2.81801300
+chol solve time = 0.62847600, sc=11
+A is sparse? True
+cholesky factorization took 2.78406100
+chol solve time = 0.62602800, sc=11
+A is sparse? True
+cholesky factorization took 2.80273500
+chol solve time = 0.65430900, sc=11
+A is sparse? True
+cholesky factorization took 2.79516000
+chol solve time = 0.64901200, sc=11
+A is sparse? True
+cholesky factorization took 2.81168000
+chol solve time = 0.61721200, sc=11
+A is sparse? True
+cholesky factorization took 2.83418000
+chol solve time = 0.52007100, sc=9
+A is sparse? True
+cholesky factorization took 2.82633600
+chol solve time = 0.63598000, sc=11
+A is sparse? True
+cholesky factorization took 2.79138500
+chol solve time = 0.63119400, sc=11
+A is sparse? True
+cholesky factorization took 2.79115800
+chol solve time = 0.64619800, sc=11
+A is sparse? True
+cholesky factorization took 2.78187400
+chol solve time = 0.63478600, sc=11
+A is sparse? True
+cholesky factorization took 2.79867200
+chol solve time = 0.62658200, sc=11
+A is sparse? True
+cholesky factorization took 2.80393900
+chol solve time = 0.68438800, sc=11
+A is sparse? True
+cholesky factorization took 2.80266900
+chol solve time = 0.65820400, sc=11
+A is sparse? True
+cholesky factorization took 2.80655900
+chol solve time = 0.61076900, sc=11
+A is sparse? True
+cholesky factorization took 2.80695100
+chol solve time = 0.61527300, sc=11
+A is sparse? True
+cholesky factorization took 2.81610700
+chol solve time = 0.66374400, sc=11
+A is sparse? True
+cholesky factorization took 2.82211100
+chol solve time = 0.64760300, sc=11
+A is sparse? True
+cholesky factorization took 2.80435700
+chol solve time = 0.64680000, sc=11
+A is sparse? True
+cholesky factorization took 2.79408300
+chol solve time = 0.67208400, sc=11
+A is sparse? True
+cholesky factorization took 2.82779800
+chol solve time = 0.64269700, sc=11
+A is sparse? True
+cholesky factorization took 2.80442600
+chol solve time = 0.64903000, sc=11
+A is sparse? True
+cholesky factorization took 2.81298800
+chol solve time = 0.60766900, sc=11
+A is sparse? True
+cholesky factorization took 2.80910900
+chol solve time = 0.62872700, sc=11
+A is sparse? True
+cholesky factorization took 2.81032700
+chol solve time = 0.68125400, sc=11
+A is sparse? True
+cholesky factorization took 2.81584400
+chol solve time = 0.64157300, sc=11
+A is sparse? True
+cholesky factorization took 2.80553300
+chol solve time = 0.66658400, sc=11
+A is sparse? True
+cholesky factorization took 2.81263700
+chol solve time = 0.64097700, sc=11
+A is sparse? True
+cholesky factorization took 2.78716800
+chol solve time = 0.65571600, sc=11
+A is sparse? True
+cholesky factorization took 2.81631200
+chol solve time = 0.61944000, sc=11
+A is sparse? True
+cholesky factorization took 2.79656200
+chol solve time = 0.63429200, sc=11
+A is sparse? True
+cholesky factorization took 2.80612400
+chol solve time = 0.53538200, sc=9
+A is sparse? True
+cholesky factorization took 2.79668600
+chol solve time = 0.64085200, sc=11
+A is sparse? True
+cholesky factorization took 2.80427400
+chol solve time = 0.63766200, sc=11
+A is sparse? True
+cholesky factorization took 2.81318400
+chol solve time = 0.64207000, sc=11
+A is sparse? True
+cholesky factorization took 2.80824100
+chol solve time = 0.64606900, sc=11
+A is sparse? True
+cholesky factorization took 2.81998100
+chol solve time = 0.67929800, sc=11
+A is sparse? True
+cholesky factorization took 2.78223100
+chol solve time = 0.62599300, sc=11
+A is sparse? True
+cholesky factorization took 2.79975800
+chol solve time = 0.61373100, sc=11
+A is sparse? True
+cholesky factorization took 2.82764500
+chol solve time = 0.68128300, sc=11
+A is sparse? True
+cholesky factorization took 2.80409500
+chol solve time = 0.64994500, sc=11
+A is sparse? True
+cholesky factorization took 2.80117800
+chol solve time = 0.66049700, sc=11
+A is sparse? True
+cholesky factorization took 2.79609800
+chol solve time = 0.67822200, sc=11
+A is sparse? True
+cholesky factorization took 2.80713700
+chol solve time = 0.63037300, sc=11
+A is sparse? True
+cholesky factorization took 2.80158500
+chol solve time = 0.53846800, sc=9
+A is sparse? True
+cholesky factorization took 2.80995900
+chol solve time = 0.66959600, sc=11
+A is sparse? True
+cholesky factorization took 2.79428600
+chol solve time = 0.67590500, sc=11
+A is sparse? True
+cholesky factorization took 2.80409400
+chol solve time = 0.62144500, sc=11
+A is sparse? True
+cholesky factorization took 2.79443200
+chol solve time = 0.64592900, sc=11
+A is sparse? True
+cholesky factorization took 2.82678900
+chol solve time = 0.64297000, sc=11
+A is sparse? True
+cholesky factorization took 2.81471100
+chol solve time = 0.64360900, sc=11
+A is sparse? True
+cholesky factorization took 2.82213200
+chol solve time = 0.61274000, sc=11
+A is sparse? True
+cholesky factorization took 2.81290200
+chol solve time = 0.66202500, sc=11
+A is sparse? True
+cholesky factorization took 2.80323100
+chol solve time = 0.63284600, sc=11
+A is sparse? True
+cholesky factorization took 2.82629600
+chol solve time = 0.63644600, sc=11
+A is sparse? True
+cholesky factorization took 2.81990900
+chol solve time = 0.61220000, sc=11
+A is sparse? True
+cholesky factorization took 2.79001700
+chol solve time = 0.64456200, sc=11
+A is sparse? True
+cholesky factorization took 2.78433200
+chol solve time = 0.64864300, sc=11
+A is sparse? True
+cholesky factorization took 2.81159900
+chol solve time = 0.63290500, sc=11
+A is sparse? True
+cholesky factorization took 2.81268800
+chol solve time = 0.65417000, sc=11
+A is sparse? True
+cholesky factorization took 2.80965800
+chol solve time = 0.62266800, sc=11
+A is sparse? True
+cholesky factorization took 2.80995500
+chol solve time = 0.62653900, sc=11
+A is sparse? True
+cholesky factorization took 2.79796400
+chol solve time = 0.65315000, sc=11
+domain/0500-0500-000-lap.mtx   lanczos_si 0.10955990  0.8682101961142082  6.892E-06 ac_ok=True fv_signok=500,fv_ok=1.0000000,fv_signpos=295,fv_pos=0.5900000
+domain/0500-0500-000-lap.mtx   lanczos_sic 0.03360004  0.8582101961142060  7.949E-12 ac_ok=True fv_signok=500,fv_ok=1.0000000,fv_signpos=295,fv_pos=0.5900000
+domain/0500-0500-000-lap.mtx   lobpcg_s   0.06451919  0.8582101961142077  4.012E-11 ac_ok=True fv_signok=500,fv_ok=1.0000000,fv_signpos=295,fv_pos=0.5900000
+domain/0867-lap.mtx            lanczos_si 0.32249318  0.2440044131955178  2.920E-06 ac_ok=True fv_signok=867,fv_ok=1.0000000,fv_signpos=570,fv_pos=0.6574394
+domain/0867-lap.mtx            lanczos_sic 0.07497330  0.2340044131955180  2.748E-12 ac_ok=True fv_signok=867,fv_ok=1.0000000,fv_signpos=570,fv_pos=0.6574394
+domain/0867-lap.mtx            lobpcg_s   0.11775697  0.2340044131955178  1.622E-11 ac_ok=True fv_signok=867,fv_ok=1.0000000,fv_signpos=570,fv_pos=0.6574394
+domain/1000-1000-000-lap.mtx   lanczos_si 0.50235958  0.4187626179190491  2.481E-06 ac_ok=True fv_signok=1000,fv_ok=1.0000000,fv_signpos=981,fv_pos=0.9810000
+domain/1000-1000-000-lap.mtx   lanczos_sic 0.14475616  0.4087626179190496  3.345E-12 ac_ok=True fv_signok=1000,fv_ok=1.0000000,fv_signpos=981,fv_pos=0.9810000
+domain/1000-1000-000-lap.mtx   lobpcg_s   0.08992485  0.4087626179190494  1.824E-11 ac_ok=True fv_signok=1000,fv_ok=1.0000000,fv_signpos=981,fv_pos=0.9810000
+domain/1500-1500-000-lap.mtx   lanczos_si 1.28243833  0.3161176093946070  1.379E-06 ac_ok=True fv_signok=1500,fv_ok=1.0000000,fv_signpos=21,fv_pos=0.0140000
+domain/1500-1500-000-lap.mtx   lanczos_sic 0.28975997  0.3061176093946072  3.219E-13 ac_ok=True fv_signok=1500,fv_ok=1.0000000,fv_signpos=21,fv_pos=0.0140000
+domain/1500-1500-000-lap.mtx   lobpcg_s   0.11105973  0.3061176093946071  7.035E-12 ac_ok=True fv_signok=1500,fv_ok=1.0000000,fv_signpos=21,fv_pos=0.0140000
+domain/1999-2000-000-lap.mtx   lanczos_si 2.32191876  0.1001626426748029  8.810E-07 ac_ok=True fv_signok=1999,fv_ok=1.0000000,fv_signpos=1990,fv_pos=0.9954977
+domain/1999-2000-000-lap.mtx   lanczos_sic 0.57496200  0.0901626426748030  6.414E-16 ac_ok=True fv_signok=1999,fv_ok=1.0000000,fv_signpos=1990,fv_pos=0.9954977
+domain/1999-2000-000-lap.mtx   lobpcg_s   0.12512114  0.0901626426748039  6.428E-12 ac_ok=True fv_signok=1999,fv_ok=1.0000000,fv_signpos=1990,fv_pos=0.9954977
+domain/2499-2500-000-lap.mtx   lanczos_si 4.15667848  0.7545382967108079  6.316E-07 ac_ok=True fv_signok=2499,fv_ok=1.0000000,fv_signpos=33,fv_pos=0.0132053
+domain/2499-2500-000-lap.mtx   lanczos_sic 1.18653900  0.7445382967108091  9.055E-14 ac_ok=True fv_signok=2499,fv_ok=1.0000000,fv_signpos=33,fv_pos=0.0132053
+domain/2499-2500-000-lap.mtx   lobpcg_s   0.19465331  0.7445382967108085  3.423E-12 ac_ok=True fv_signok=2499,fv_ok=1.0000000,fv_signpos=33,fv_pos=0.0132053
+domain/2998-3000-000-lap.mtx   lanczos_si 6.01068939  0.7000535889825078  4.806E-07 ac_ok=True fv_signok=2998,fv_ok=1.0000000,fv_signpos=2971,fv_pos=0.9909940
+domain/2998-3000-000-lap.mtx   lanczos_sic 1.68115736  0.6900535889825083  8.057E-13 ac_ok=True fv_signok=2998,fv_ok=1.0000000,fv_signpos=2971,fv_pos=0.9909940
+domain/2998-3000-000-lap.mtx   lobpcg_s   0.25970987  0.6900535889825072  4.143E-12 ac_ok=True fv_signok=2998,fv_ok=1.0000000,fv_signpos=2971,fv_pos=0.9909940
+domain/3498-3500-000-lap.mtx   lanczos_si 8.88734739  1.2424928316382962  3.821E-07 ac_ok=True fv_signok=3498,fv_ok=1.0000000,fv_signpos=47,fv_pos=0.0134362
+domain/3498-3500-000-lap.mtx   lanczos_sic 2.58139203  1.2324928316383033  3.303E-12 ac_ok=True fv_signok=3498,fv_ok=1.0000000,fv_signpos=47,fv_pos=0.0134362
+domain/3498-3500-000-lap.mtx   lobpcg_s   0.34919097  1.2324928316382957  2.192E-12 ac_ok=True fv_signok=3498,fv_ok=1.0000000,fv_signpos=47,fv_pos=0.0134362
+domain/3999-4000-000-lap.mtx   lanczos_si 11.98950571  0.9486449312836784  3.131E-07 ac_ok=True fv_signok=3999,fv_ok=1.0000000,fv_signpos=54,fv_pos=0.0135034
+domain/3999-4000-000-lap.mtx   lanczos_sic 3.55270198  0.9386449312836773  3.864E-14 ac_ok=True fv_signok=3999,fv_ok=1.0000000,fv_signpos=54,fv_posloading matrix ... 
+mm header:  (4497, 4497, 3047800, 'coordinate', 'real', 'symmetric')
+loaded in 0:00:05.568685
+converting to format csc took 0.29274200
+converted to format csc in 0:00:00.292857
+converting to format dense took 0.14582500
+converting to format dense took 0.23016700
+converting to format dense took 0.22717000
+converting to format dense took 0.22704600
+converting to format dense took 0.23018600
+converting to format dense took 0.22709400
+converting to format dense took 0.22533100
+converting to format dense took 0.23017800
+converting to format dense took 0.22984800
+converting to format dense took 0.22992800
+converting to format dense took 0.22657300
+converting to format dense took 0.22938900
+converting to format dense took 0.22500300
+converting to format dense took 0.22948200
+converting to format dense took 0.22885000
+converting to format dense took 0.23033500
+converting to format dense took 0.22769500
+converting to format dense took 0.22747900
+converting to format dense took 0.23750200
+converting to format dense took 0.23880400
+converting to format dense took 0.23488500
+converting to format dense took 0.23380100
+converting to format dense took 0.23481100
+converting to format dense took 0.23881200
+converting to format dense took 0.23694600
+converting to format dense took 0.23678100
+converting to format dense took 0.23814900
+converting to format dense took 0.23836700
+converting to format dense took 0.23534900
+converting to format dense took 0.22818500
+converting to format dense took 0.22591700
+converting to format dense took 0.22873100
+converting to format dense took 0.22509600
+converting to format dense took 0.22961900
+converting to format dense took 0.22908400
+converting to format dense took 0.22876400
+converting to format dense took 0.22846300
+converting to format dense took 0.22753500
+converting to format dense took 0.23049300
+converting to format dense took 0.22657700
+converting to format dense took 0.23027900
+converting to format dense took 0.22964800
+converting to format dense took 0.22624100
+converting to format dense took 0.23193600
+converting to format dense took 0.23869900
+converting to format dense took 0.24157300
+converting to format dense took 0.24038800
+converting to format dense took 0.24373900
+converting to format dense took 0.24473900
+converting to format dense took 0.24050100
+converting to format dense took 0.23607700
+converting to format dense took 0.23401800
+converting to format dense took 0.22661900
+converting to format dense took 0.22604700
+converting to format dense took 0.22869800
+converting to format dense took 0.22915500
+converting to format dense took 0.22595500
+converting to format dense took 0.22684300
+converting to format dense took 0.22861300
+converting to format dense took 0.22806500
+converting to format dense took 0.22592000
+converting to format dense took 0.22638800
+converting to format dense took 0.22925700
+converting to format dense took 0.22638500
+converting to format dense took 0.22104900
+converting to format dense took 0.22722100
+converting to format dense took 0.22895300
+converting to format dense took 0.23311300
+converting to format dense took 0.23793500
+converting to format dense took 0.24153800
+converting to format dense took 0.24380400
+converting to format dense took 0.23855700
+converting to format dense took 0.24105500
+converting to format dense took 0.24160200
+converting to format dense took 0.23862500
+converting to format dense took 0.23847700
+converting to format dense took 0.23679900
+converting to format dense took 0.22893000
+converting to format dense took 0.22897300
+converting to format dense took 0.22372900
+converting to format dense took 0.23009500
+converting to format dense took 0.22805600
+converting to format dense took 0.22474400
+converting to format dense took 0.22947600
+converting to format dense took 0.22706100
+converting to format dense took 0.22868400
+converting to format dense took 0.22989400
+converting to format dense took 0.22708600
+converting to format dense took 0.22990500
+converting to format dense took 0.23010200
+converting to format dense took 0.23113500
+converting to format dense took 0.22733600
+converting to format dense took 0.24037600
+converting to format dense took 0.24405900
+converting to format dense took 0.24104900
+converting to format dense took 0.24135600
+converting to format dense took 0.24032900
+converting to format dense took 0.23787600
+converting to format dense took 0.24176300
+converting to format dense took 0.24010000
+A is sparse? True
+cholesky factorization took 3.83335500
+chol solve time = 0.81377800, sc=11
+A is sparse? True
+cholesky factorization took 3.92119400
+chol solve time = 0.98395300, sc=13
+A is sparse? True
+cholesky factorization took 3.92447600
+chol solve time = 0.97239400, sc=13
+A is sparse? True
+cholesky factorization took 3.90638700
+chol solve time = 0.82272400, sc=11
+A is sparse? True
+cholesky factorization took 3.90574100
+chol solve time = 0.82863900, sc=11
+A is sparse? True
+cholesky factorization took 3.90603600
+chol solve time = 0.80523200, sc=11
+A is sparse? True
+cholesky factorization took 3.89416200
+chol solve time = 0.96049900, sc=13
+A is sparse? True
+cholesky factorization took 3.90619700
+chol solve time = 0.96059700, sc=13
+A is sparse? True
+cholesky factorization took 3.89226600
+chol solve time = 0.97672200, sc=13
+A is sparse? True
+cholesky factorization took 3.90237200
+chol solve time = 0.82394600, sc=11
+A is sparse? True
+cholesky factorization took 3.93014900
+chol solve time = 0.82589000, sc=11
+A is sparse? True
+cholesky factorization took 3.89850100
+chol solve time = 0.80298500, sc=11
+A is sparse? True
+cholesky factorization took 3.90136600
+chol solve time = 0.81580400, sc=11
+A is sparse? True
+cholesky factorization took 3.89282800
+chol solve time = 0.99378100, sc=13
+A is sparse? True
+cholesky factorization took 3.89514100
+chol solve time = 0.97441700, sc=13
+A is sparse? True
+cholesky factorization took 3.91270900
+chol solve time = 0.93175700, sc=13
+A is sparse? True
+cholesky factorization took 3.92421500
+chol solve time = 1.13014500, sc=15
+A is sparse? True
+cholesky factorization took 3.88639900
+chol solve time = 0.83410700, sc=11
+A is sparse? True
+cholesky factorization took 3.90403200
+chol solve time = 0.97468200, sc=13
+A is sparse? True
+cholesky factorization took 3.91734800
+chol solve time = 0.95663700, sc=13
+A is sparse? True
+cholesky factorization took 3.92239000
+chol solve time = 0.81609600, sc=11
+A is sparse? True
+cholesky factorization took 3.89036200
+chol solve time = 0.83734600, sc=11
+A is sparse? True
+cholesky factorization took 3.91187900
+chol solve time = 0.96810500, sc=13
+A is sparse? True
+cholesky factorization took 3.91850000
+chol solve time = 0.82762100, sc=11
+A is sparse? True
+cholesky factorization took 3.89553300
+chol solve time = 0.99687900, sc=13
+A is sparse? True
+cholesky factorization took 3.94214800
+chol solve time = 0.81051000, sc=11
+A is sparse? True
+cholesky factorization took 3.92022700
+chol solve time = 0.81603400, sc=11
+A is sparse? True
+cholesky factorization took 3.93117000
+chol solve time = 0.95591900, sc=13
+A is sparse? True
+cholesky factorization took 3.89468800
+chol solve time = 1.00641400, sc=13
+A is sparse? True
+cholesky factorization took 3.89684200
+chol solve time = 0.98071000, sc=13
+A is sparse? True
+cholesky factorization took 3.88612900
+chol solve time = 0.81335500, sc=11
+A is sparse? True
+cholesky factorization took 3.88959200
+chol solve time = 0.81050200, sc=11
+A is sparse? True
+cholesky factorization took 3.91813800
+chol solve time = 0.98546600, sc=13
+A is sparse? True
+cholesky factorization took 3.90722600
+chol solve time = 0.81518400, sc=11
+A is sparse? True
+cholesky factorization took 3.91360900
+chol solve time = 0.99451600, sc=13
+A is sparse? True
+cholesky factorization took 3.87772200
+chol solve time = 0.97831700, sc=13
+A is sparse? True
+cholesky factorization took 3.92221300
+chol solve time = 0.85983200, sc=11
+A is sparse? True
+cholesky factorization took 3.90512000
+chol solve time = 0.79601500, sc=11
+A is sparse? True
+cholesky factorization took 3.88727400
+chol solve time = 0.96992100, sc=13
+A is sparse? True
+cholesky factorization took 3.91268000
+chol solve time = 0.97307000, sc=13
+A is sparse? True
+cholesky factorization took 3.91053400
+chol solve time = 0.81640900, sc=11
+A is sparse? True
+cholesky factorization took 3.92660400
+chol solve time = 0.81454600, sc=11
+A is sparse? True
+cholesky factorization took 3.91585800
+chol solve time = 0.82401700, sc=11
+A is sparse? True
+cholesky factorization took 3.92310600
+chol solve time = 0.80255000, sc=11
+A is sparse? True
+cholesky factorization took 3.90114100
+chol solve time = 0.97611600, sc=13
+A is sparse? True
+cholesky factorization took 3.87459300
+chol solve time = 0.79436500, sc=11
+A is sparse? True
+cholesky factorization took 3.94032900
+chol solve time = 0.81666100, sc=11
+A is sparse? True
+cholesky factorization took 3.91974100
+chol solve time = 0.96754300, sc=13
+A is sparse? True
+cholesky factorization took 3.87344000
+chol solve time = 0.97131100, sc=13
+A is sparse? True
+cholesky factorization took 3.90844800
+chol solve time = 0.80102700, sc=11
+A is sparse? True
+cholesky factorization took 3.94443800
+chol solve time = 0.97497100, sc=13
+A is sparse? True
+cholesky factorization took 3.89325700
+chol solve time = 0.81110300, sc=11
+A is sparse? True
+cholesky factorization took 3.91311700
+chol solve time = 0.95087100, sc=13
+A is sparse? True
+cholesky factorization took 3.90504600
+chol solve time = 0.98192400, sc=13
+A is sparse? True
+cholesky factorization took 3.91463600
+chol solve time = 0.81636000, sc=11
+A is sparse? True
+cholesky factorization took 3.92145600
+chol solve time = 0.95333700, sc=13
+A is sparse? True
+cholesky factorization took 3.89556500
+chol solve time = 0.96120900, sc=13
+A is sparse? True
+cholesky factorization took 3.92573100
+chol solve time = 0.82863500, sc=11
+A is sparse? True
+cholesky factorization took 3.87758200
+chol solve time = 0.97647100, sc=13
+A is sparse? True
+cholesky factorization took 3.89655100
+chol solve time = 0.97372500, sc=13
+A is sparse? True
+cholesky factorization took 3.91485500
+chol solve time = 0.78630900, sc=11
+A is sparse? True
+cholesky factorization took 3.91639900
+chol solve time = 0.95035400, sc=13
+A is sparse? True
+cholesky factorization took 3.89428000
+chol solve time = 0.95177100, sc=13
+A is sparse? True
+cholesky factorization took 3.89582500
+chol solve time = 0.81093200, sc=11
+A is sparse? True
+cholesky factorization took 3.87871300
+chol solve time = 0.99212800, sc=13
+A is sparse? True
+cholesky factorization took 3.90861400
+chol solve time = 0.94607100, sc=13
+A is sparse? True
+cholesky factorization took 3.89468400
+chol solve time = 0.79506300, sc=11
+A is sparse? True
+cholesky factorization took 3.91764000
+chol solve time = 0.96404100, sc=13
+A is sparse? True
+cholesky factorization took 3.90671900
+chol solve time = 0.78266200, sc=11
+A is sparse? True
+cholesky factorization took 3.95123300
+chol solve time = 0.98605900, sc=13
+A is sparse? True
+cholesky factorization took 3.90555600
+chol solve time = 0.80485000, sc=11
+A is sparse? True
+cholesky factorization took 3.90634600
+chol solve time = 0.83363200, sc=11
+A is sparse? True
+cholesky factorization took 3.91373300
+chol solve time = 0.98101200, sc=13
+A is sparse? True
+cholesky factorization took 3.90195700
+chol solve time = 1.10856100, sc=15
+A is sparse? True
+cholesky factorization took 3.88095700
+chol solve time = 0.96291500, sc=13
+A is sparse? True
+cholesky factorization took 3.94356600
+chol solve time = 0.80913700, sc=11
+A is sparse? True
+cholesky factorization took 3.92131600
+chol solve time = 0.97225000, sc=13
+A is sparse? True
+cholesky factorization took 3.97711300
+chol solve time = 1.03087700, sc=13
+A is sparse? True
+cholesky factorization took 3.94236300
+chol solve time = 0.97339800, sc=13
+A is sparse? True
+cholesky factorization took 3.91907700
+chol solve time = 0.96440200, sc=13
+A is sparse? True
+cholesky factorization took 3.91490800
+chol solve time = 0.77758600, sc=11
+A is sparse? True
+cholesky factorization took 3.93380600
+chol solve time = 0.98658200, sc=13
+A is sparse? True
+cholesky factorization took 3.88578700
+chol solve time = 0.78913400, sc=11
+A is sparse? True
+cholesky factorization took 3.93858200
+chol solve time = 0.97189300, sc=13
+A is sparse? True
+cholesky factorization took 3.93594100
+chol solve time = 0.82990700, sc=11
+A is sparse? True
+cholesky factorization took 3.91314000
+chol solve time = 0.99658000, sc=13
+A is sparse? True
+cholesky factorization took 3.88710600
+chol solve time = 0.98990100, sc=13
+A is sparse? True
+cholesky factorization took 3.94181400
+chol solve time = 0.83045200, sc=11
+A is sparse? True
+cholesky factorization took 3.90883800
+chol solve time = 1.00728400, sc=13
+A is sparse? True
+cholesky factorization took 3.91781800
+chol solve time = 0.93339500, sc=13
+A is sparse? True
+cholesky factorization took 3.91408400
+chol solve time = 0.80785700, sc=11
+A is sparse? True
+cholesky factorization took 3.89668800
+chol solve time = 0.98327300, sc=13
+A is sparse? True
+cholesky factorization took 3.92574700
+chol solve time = 0.79376900, sc=11
+A is sparse? True
+cholesky factorization took 3.89106900
+chol solve time = 0.83854000, sc=11
+A is sparse? True
+cholesky factorization took 3.91062500
+chol solve time = 0.82703400, sc=11
+A is sparse? True
+cholesky factorization took 3.93858600
+chol solve time = 0.97976800, sc=13
+A is sparse? True
+cholesky factorization took 3.91495200
+chol solve time = 1.11211900, sc=15
+A is sparse? True
+cholesky factorization took 3.89686100
+chol solve time = 0.97371100, sc=13
+A is sparse? True
+cholesky factorization took 3.92467900
+chol solve time = 0.95648100, sc=13
+A is sparse? True
+cholesky factorization took 3.93183000
+chol solve time = 0.97608300, sc=13
+plotting performance of method mr3
+plotting performance of method lanczos_si
+plotting performance of method lanczos_sic
+plotting performance of method lobpcg_s
+saving plots into final_run/results-csc-wa.png
+=0.0135034
+domain/3999-4000-000-lap.mtx   lobpcg_s   0.44416326  0.9386449312836773  1.293E-12 ac_ok=True fv_signok=3999,fv_ok=1.0000000,fv_signpos=54,fv_pos=0.0135034
+domain/4497-4500-000-lap.mtx   lanczos_si 16.50739565  0.9583373142001567  2.622E-07 ac_ok=True fv_signok=4497,fv_ok=1.0000000,fv_signpos=4439,fv_pos=0.9871025
+domain/4497-4500-000-lap.mtx   lanczos_sic 4.94440314  0.9483373142001547  1.306E-13 ac_ok=True fv_signok=4497,fv_ok=1.0000000,fv_signpos=4439,fv_pos=0.9871025
+domain/4497-4500-000-lap.mtx   lobpcg_s   0.57603961  0.9483373142001561  2.286E-12 ac_ok=True fv_signok=4497,fv_ok=1.0000000,fv_signpos=4439,fv_pos=0.9871025
