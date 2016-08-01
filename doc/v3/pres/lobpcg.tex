@@ -2,7 +2,8 @@
   \frametitle{LOBPCG}
   \begin{block}{Antecessor (dense eigensolver $2 \times 2$)}
     Preconditioned Steepest Descent Algorithm applied Rayleigh-Ritz
-    against $\{\vec{x}_i, T\vec{r}_i\}$ ($T$ is a preconditioner) $\suchthat$
+    against $\func{span} \{\vec{x}_i, T\vec{r}_i\}$
+    ($T$ is a preconditioner) $\suchthat$
     \[
     \joinabove{0}
     \vec{r}_i = A\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i
@@ -12,7 +13,7 @@
     \]
   \end{block}
   \begin{block}{Main ideas (dense eigensolver $3 \times 3$)}
-    Uses subspace $\{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ to
+    Uses subspace $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ to
     accelerate convergence (in practice $x_{i} - \beta x_{i-1}$). Also
     proved that $T$ must be SPD to guarantee convergence, and defined
     constraints $Y$ (search occurs in $\ortc{Y}$).
