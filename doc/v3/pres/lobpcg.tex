@@ -1,7 +1,7 @@
  \begin{frame}
   \frametitle{LOBPCG}
-  \begin{block}{Antecessor (dense eigensolver $2 \times 2$)}
-    Preconditioned Steepest Descent Algorithm applied Rayleigh-Ritz
+  \begin{block}{Ancestor (dense eigensolver $2 \times 2$)}
+    Preconditioned Steepest Descent Algorithm applies Rayleigh-Ritz
     against $\func{span} \{\vec{x}_i, T\vec{r}_i\}$
     ($T$ is a preconditioner) $\suchthat$
     \[
@@ -14,9 +14,8 @@
   \end{block}
   \begin{block}{Main ideas (dense eigensolver $3 \times 3$)}
     Uses subspace $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ to
-    accelerate convergence (in practice $x_{i} - \beta x_{i-1}$). Also
-    proved that $T$ must be SPD to guarantee convergence, and defined
-    constraints $Y$ (search occurs in $\ortc{Y}$).
+    accelerate convergence (in practice $x_{i} - \beta x_{i-1}$); Knyazev also
+    proved that $T$ must be SPD to guarantee convergence. His algorithm also features constraints $Y$ (search in $\ortc{Y}$).
   \end{block}
   \begin{block}{Practical considerations (NetworkX)}
     \begin{itemize}
@@ -26,3 +25,5 @@
     \end{itemize}
   \end{block}
 \end{frame}
+
+%%  LocalWords:  Antecessor
