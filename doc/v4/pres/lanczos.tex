@@ -1,0 +1,25 @@
+ \begin{frame}
+  \frametitle{Lanczos Algorithm (ARPACK/IRLM)}
+  \begin{block}{Main idea}
+    Apply Rayleigh-Ritz against
+    $\Krylov{A}{\vec{x_0}}{m} \suchthat m > k$. Uses dense
+    eigen-solver for $m \times m$ symmetric matrix $H$.
+  \end{block}
+  \begin{block}{Restarting (avoid $m$ to grow indefinitely)}
+    Implicitly Restarted QR Algorithm to apply $p$ shifts against $H$:
+    \[
+    j=1 \ldots p:\, QR = \func{qr}(H - \lambda_j I) \land H = \trans{Q}HQ
+    \ds{\suchthat}
+    m = k + p
+    \joinbelow{0}
+    \]    
+  \end{block}
+  \begin{block}{Practical considerations}
+    \begin{itemize}
+    \item We set $k=2$ and by default $m=2k+1$.
+    \item Used shift-invert mode with $\sigma=0$, and one linear sparse
+      solver (SuperLU or Cholmod); which accounts for $\approx \%80$ of time.
+    \item Slow convergence for clustered eigenvalues (eg disconn. graph).
+    \end{itemize}
+  \end{block}
+\end{frame}

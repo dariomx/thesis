@@ -1,0 +1,21 @@
+ \begin{frame}
+  \frametitle{Algorithms Outline (serial usage)}
+  \begin{block}{Scope}
+    Main ideas for current and sparse algorithms, practical
+    considerations. 
+  \end{block}
+  \begin{block}{For dense matrices}
+    \begin{itemize}
+      \item Tridiagonalization as pre-processing
+      \item QL Algorithm: $A_k = QL \ds{\land} A_{k+1} = L Q$
+      \item MRRR: Quite sophisticated, independent eigenvector computation.
+    \end{itemize}
+  \end{block}
+  \begin{block}{For sparse matrices}
+    \begin{itemize}
+      \item Compute small side of spectra, no explicit $A$ (just $A\vec{x}$).
+    \item Lanczos (L. 1950) in ARPACK/IRLM ($\sim$ 1998).
+    \item LOBPCG (Knyazev 2001) in SciPy/NetworkX ($\sim$ 2008).
+    \end{itemize}
+  \end{block}
+\end{frame}

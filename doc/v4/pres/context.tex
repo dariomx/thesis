@@ -1,0 +1,12 @@
+\begin{frame}
+  \frametitle{A little bit of context: Spectral Clustering}
+  \begin{block}{Basic operation: Minimal Bi-Partitional RatioCut}
+    \begin{itemize}
+    \item Spectral clustering: undirected graph partitions as clusters.
+    \item Nodes represent data ($\vec{x} \in \R{n}$), edges similarity.
+    \item Basic operation: $\min \func{RatioCut(C_1,\stcomp{C_1})}$.
+    \item Let $L = D - W$ (Unnormalized Laplacian); the signs of its second eigenvector (Fiedler Vector) taken as an indicator function, can approximate the solution.
+    \item Basic operation becomes a Numerical Linear Algebra problem.
+    \end{itemize}
+  \end{block}  
+\end{frame}
