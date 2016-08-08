@@ -1,0 +1,57 @@
+\begin{frame}
+  \frametitle{Lanczos vs LOBPCG}
+  \begin{table}
+    \begin{tabular}{l | c | c | }
+      Feature/Issue & Lanczos(IRLM) & LOBPCG (single) \\
+      \hline \hline
+      Iterative &
+      Yes  &
+      Yes  \\
+      \hline
+      Uses Rayleigh-Ritz &
+      Yes ($5 \times 5$) &
+      Yes ($3 \times 3$) \\
+      \hline      
+      Approx. subspace &
+       $\Krylov{\inv{L}}{\vec{x}_0}{m}$ &
+      $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ \\      
+      \hline
+      Restarting technique &
+      Yes, with IRQR ($m$) &
+      NA (fixed size) \\
+      \hline
+      Uses Krylov-subspace &
+      Yes &
+      Ind. $r_i = L\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i$\\
+      \hline
+      Search strategy &
+      Plain search &
+      Gradient direction \\
+      \hline
+      Matrix operation &
+      solve $L\vec{x} = \vec{b}$ &
+      $L\vec{x}$ \\
+      \hline
+      Linear solver &
+      SuperLU and Cholmod &
+      Not needed \\
+      \hline
+      Uses Preconditioning &
+      Only with iter solvers &
+      Yes $\left(T = \dfrac{1}{\func{diag}(L)} \right)$ \\
+      \hline
+      Search Constraints &
+      No &
+      Yes ($\ortc{Y} = \ortc{\vec{1}}$) \\
+      \hline
+      Requested spectra &
+      $k=2$ &
+      $k=1$ \\      
+      \hline
+      Clustered eigenvalues &
+      Inherited from PM &
+      Bug? \\      
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
