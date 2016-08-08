@@ -1,0 +1,21 @@
+\begin{frame}
+  \frametitle{Abstract}
+  \begin{block}{}
+    On the context of a real-life application doing spectral
+    clustering; the objective of this thesis is to emit an algorithm
+    recommendation, for efficient 
+    computation of the the Fiedler Vector on a single processor
+    (application requirement). The algorithms considered were
+    MRRR, Lanczos and LOBPCG; the first one is designed for dense
+    matrices, hence not really a competitor here; but was 
+    included for the sake of comparison (as the application currently
+    uses a procedure of such kind). The algorithms were put into
+    a competition through a series of tests on a commodity laptop, 
+    using matrices generated from the application's domain. Even with
+    an optimized Cholesky linear solver, the best known Lanczos
+    implementation (ARPACK) failed to compete with LOBPCG, which comes
+    as the clear winner of the experiment. The results suggest that
+    for the biggest matrices considered (size $\approx$ 4500), the application can
+    move from the minute into the subsecond scale. 
+  \end{block}
+\end{frame}
