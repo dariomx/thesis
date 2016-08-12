@@ -1,0 +1,19 @@
+\frametitle{Recomputing $W$ after removal of small CC}
+  \begin{block}{Adapted from an stackoverflow.com post (COO format)}
+    \begin{lstlisting}
+def split_cc_sparse2(W, cclab):
+    idx_del = np.nonzero(cclab)[0]
+    eprint("removing non-zero-group nodes %s ..." % str(idx_del))
+    keep_row = np.logical_not(np.in1d(W.row, idx_del))
+    keep_col = np.logical_not(np.in1d(W.col, idx_del))
+    keep = np.logical_and(keep_row, keep_col)
+    W.data = W.data[keep]
+    W.row = W.row[keep]
+    W.col = W.col[keep]
+    W.row -= np.less.outer(idx_del, W.row).sum(0)
+    W.col -= np.less.outer(idx_del, W.col).sum(0)
+    k = len(idx_del)
+    W._shape = (W.shape[0] - k, W.shape[1] - k)
+    return W
+    \end{lstlisting}
+  \end{block}

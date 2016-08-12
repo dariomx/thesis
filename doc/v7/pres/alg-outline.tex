@@ -1,0 +1,20 @@
+ \begin{frame}
+  \frametitle{Algorithms Outline (serial usage)}
+  \begin{block}{Scope}
+    Just cover main ideas, usage and try to leverage Laplacian (SSPSD).
+  \end{block}
+  \begin{block}{For symmetric dense matrices}
+    \begin{itemize}
+      \item Convert into tridiagonal form first.
+      \item Symmetric Tridiagonal QL Algorithm (all or nothing).
+      \item MRRR: Quite sophisticated, independent eigen-pairs computation.
+    \end{itemize}
+  \end{block}
+  \begin{block}{For symmetric sparse matrices}
+    \begin{itemize}
+      \item Compute small side of spectra, no explicit $A$ (just $A\vec{x}$).
+    \item Lanczos (L. 1950) in ARPACK/IRLM ($\sim$ 1998).
+    \item LOBPCG (Knyazev 2001) in SciPy/NetworkX ($\sim$ 2008).
+    \end{itemize}
+  \end{block}
+\end{frame}

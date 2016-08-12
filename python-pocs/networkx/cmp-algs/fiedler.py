@@ -359,9 +359,27 @@ def _get_fiedler_func(method):
                X = sp.rand(Ls.shape[0], 2)
                X[:,0] = np.ones((Ls.shape[0],))
                X = np.linalg.qr(X, mode='full')[0]
+               M = spdiags(1. / Ls.diagonal(), [0], n, n)               
+               sigma, X = lobpcg(Ls, X, M=M, Y=None, tol=tol,
+                                 maxiter=n, largest=False)            
+               return sigma[1] - s, X[:, 1]
+            elif method == "lobpcg_snot" : 
+               a = 0.01
+               Ls = L + a*eye(n)
+               X = asarray(asmatrix(x).T)                
+               Y = ones(n)
+               sigma, X = lobpcg(Ls, X, M=None, Y=asmatrix(Y).T, tol=tol,
+                                 maxiter=n, largest=False)
+               return sigma[0] - a, X[:, 0]           
+            elif method == "lobpcg_snoyt" : 
+               s = 0.01
+               Ls = L + s*eye(n)
+               X = sp.rand(Ls.shape[0], 2)
+               X[:,0] = np.ones((Ls.shape[0],))
+               X = np.linalg.qr(X, mode='full')[0]
                sigma, X = lobpcg(Ls, X, M=None, Y=None, tol=tol,
                                  maxiter=n, largest=False)            
-               return sigma[1] - s, X[:, 1]            
+               return sigma[1] - s, X[:, 1]           
             elif method == "lobpcg_amg" : 
                s = 0.01
                Ls = L + s*eye(n)

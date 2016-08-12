@@ -32,7 +32,7 @@ def split_cc_sparse1(W, cclab):
     W.data, W.row, W.col = np.array(dd), np.array(ii), np.array(jj)
     return W
 
-# stolen http://stackoverflow.com/questions/23966923/delete-columns-of-matrix-of-csr-format-in-python
+# adapted from http://stackoverflow.com/questions/23966923/delete-columns-of-matrix-of-csr-format-in-python
 def split_cc_sparse2(W, cclab):
     idx_del = np.nonzero(cclab)[0]
     eprint("removing non-zero-group nodes %s ..." % str(idx_del))
