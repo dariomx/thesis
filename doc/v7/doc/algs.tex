@@ -1,0 +1,140 @@
+\chapter{The Algorithms}
+
+In this chapter we deal with explaining the algorithms that we
+compared, aiming to provide our recommentation for the
+application. The theory behind these algorithms is dense and hard to
+grasp for the non-initiated in Numerical Linear Algebra; hence, given
+the time constraints we had for making this thesis project, we focused
+on the following points only:
+
+\begin{itemize}
+\item Main ideas of the algorithms, seeking to compare them.
+\item How to use their implementations in practice.
+\item Restrict the search to serial versions of the algorithms
+  (application requirement).
+\item Look for algorithms that leverage the Laplacian's properties
+  (Symmetric, Sparse, Positive-Semi-Definite and with first eigenpair
+  $(0,\vec{1})$). The more the algorithms took into account these, the
+  better they performed in practice. 
+\end{itemize}
+
+\section{Preliminaries}
+
+This section introduces the common mathematical tools used by the
+algorithms.
+
+\subsection{Power Method (for Symmetric Matrices)}
+
+The most primitive algorithm for computing eigenvectors, is the so
+called Power Method; which compensates its limitations with its
+extremely easy to understand definition. It can be summarized by the
+two steps below (where $\vec{x}$ is the initial approximation to the
+wanted eigenvector):
+
+\begin{equation*}
+    \vec{x}_0 = \vec{x} \ds{\ds{\land}}
+    \vec{x}_{k+1} = A\vec{x}_k  
+\end{equation*}
+\joinbelow{1cm}
+
+The above iteration, surprisingly, converges to the eigenvector
+associated to the biggest eigenvalue of the matrix $A$ (or to the one
+associated with the smallest eigenvalue, if one uses $\inv{A}$ instead
+\footnote{The presence of the inverse matrix $\inv{A}$ is mostly due
+  notation, in practice we do not compute $\inv{A}x$; instead we solve the
+  associated linear system $A\vec{y} = \vec{x}$.}). There is a
+generic proof of this on \cite{saad92}, but a more accesible argument
+is presented below for the particular of symmetric matrices. The vectors
+$\vec{v}_i$ are the eigenvectors of the matrix:
+
+\begin{align*}
+  \vec{x}_k &= A^{k}\vec{x_0} \\
+  &= A^{k}\left(\sum\limits_{\tiny{i=1}}^{n} \alpha_i\vec{v}_i \right) \\
+  &= \sum\limits_{\tiny{i=1}}^{n} \alpha_i A^{k} \vec{v}_i  \\
+  &= \sum\limits_{\tiny{i=1}}^{n} \alpha_i \lambda_i^{k} \vec{v}_i \\
+  &= \alpha_n \lambda_n^{k} \vec{v}_n +
+  \sum\limits_{\tiny{i=1}}^{n-1} \alpha_i \lambda_i^{k} \vec{v}_i \\
+  & \overbrace{\approx}^{k \to \infty} \beta \vec{v}_n  
+\end{align*}
+\joinbelow{cm}
+
+The key argument for the development above is that we assumed the
+matrix was symmetric, which implies its eigenvectors form a full
+basis; this means any vector, including $x_0$, can be expressed as a
+linear combination of them (see \cite{strang88} or \cite{golub13} for
+more details). \\
+
+The Power Method does not always converge, but here we focus on its
+more commonly found limitation: slow convergence. This is because it
+relies on the eigengap (distance between the desired eigenvalue and
+the next one on that side of the spectra\footnote{Spectra is a
+  commonly found name for the set of eigenvalues of a matrix.}). To be
+more concrete, the convergence is Power Method is proportional to
+$\dfrac{\lambda_{n-1}}{\lambda_n}$ or $\dfrac{\lambda_1}{\lambda_2}$;
+depending on whether we are seeking the smallest or biggest
+eigenvector \footnote{This is an abuse of the language of course, when
+we say the smallest or biggest eigenvector or eigenpair, we actually refer to
+the property of the associated eigenvalue.}. This limitation will appear
+later, when comparing the algorithms.
+
+\subsection{Krylov Subspaces}
+
+The next tool is Krylov Subspaces, which are used to search for
+approximations of the desired eigenvectors. A Krylov subspace of
+dimension $m$, for a given matrix $A$ and generating vector
+$\vec{x_0}$, is defined as follows: 
+
+\begin{equation*}
+    \Krylov{A}{\vec{x}_0}{m} =
+    \func{span}
+    \left\{
+      A^0\vec{x}_0\ds{,} A^1\vec{x}_0\ds{,} \ldots \ds{,}  A^{(m-1)}\vec{x}_0
+      \right\}  
+\end{equation*}
+\joinbelow{1cm}
+
+Both \cite{parlett80} and \cite{saad92} have chapters with more
+properties about Krylov Subspaces; but the intuitive idea is that the
+Power Method kind of wastes a lot of information: the iteration
+produces the vectors $A^k\vec{x_0}$, but only the last one is actually
+used. Krylov Subspaces keeps all these vectors, and use them to
+generate a subspace where there are more changes to find good
+approximations for the eigenvectors.
+
+\subsection{Rayleigh-Ritz Method}
+
+This is another way for extracting eigenvectors. Assuming that you
+already have a subspace where you want to search for the
+approximations, then the high level algorithm looks like this:
+
+\begin{itemize}
+  \item Compute orthonormal basis $V$ of subspace. 
+  \item Solve (smaller) eigenproblem $R\vec{y} = \lambda\vec{y}
+    \ds{\suchthat} R = \trans{V} A V$. 
+  \item Compute the Ritz pairs
+      $(\apx{\lambda}_i,\apx{\vec{x}}_i) = (\lambda_i, V\vec{y}_i)$
+\end{itemize}
+
+As you can see on the above steps, in order for this method to work,
+the dimension of this subspace  needs to be much smaller than
+$\func{dim}(A)$; because you are ultimately solving an small
+eigenproblem anyway.  The rationale is that it becomes easier to
+solve the eigenproblem on a much smaller dimension \footnote{As we
+  will see later, algorithms targetting large sparse matrices can
+  ultimately rely on dense matrix algorithms; with the premise that
+  they do so at a much smaller scale.}. \\
+
+Another interesting detail to note, is that the
+matrix $R$ is something like a projection of the original matrix $A$
+on the approximating subspace; the two matrices are pretty much the
+same thing (similar) expect for a change of 
+basis. This implies the spectra of $R$ is a subset of the spectra of
+$A$, so the eigenvalues obtained with Rayleigh-Ritz method can be used
+directly as the desired approximations. The eigenvectors need a change
+of basis though ($V\vec{y_i}$), which takes them from the coordinates
+used on the approximating subspace to the canonical coordinates where
+the matrix $A$ operates. More details about the theory behind this
+method, can be found in \cite{saad92}.
+
+\section{Dense Matrix Algorithms}
+
