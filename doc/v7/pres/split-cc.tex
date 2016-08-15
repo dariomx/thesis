@@ -4,7 +4,6 @@
     \begin{lstlisting}
 def split_cc_sparse2(W, cclab):
     idx_del = np.nonzero(cclab)[0]
-    eprint("removing non-zero-group nodes %s ..." % str(idx_del))
     keep_row = np.logical_not(np.in1d(W.row, idx_del))
     keep_col = np.logical_not(np.in1d(W.col, idx_del))
     keep = np.logical_and(keep_row, keep_col)
