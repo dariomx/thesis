@@ -138,3 +138,206 @@ method, can be found in \cite{saad92}.
 
 \section{Dense Matrix Algorithms}
 
+Although the Laplacian is an sparse matrix (70\% of zeros for our
+target application), we still consider the family of algorithms that
+care about dense matrix representations. This is mostly due comparison
+purposes, as the current implementation the application uses today is
+based on a method from this family. This will allow us to know how
+much we improved the execution time, with the new sparse matrix
+algorithms; but we just provide references for 
+algorithms in this section, as their details fall out of the scope of
+this thesis (our focus is on sparse matrix methods). \\
+
+\subsection{Symmetric Tridiagonal QL Algorithm}
+The application currently uses the Symmetric Tridiagonal QL
+Algorithm. Like other algorithms from same family, this method
+converts first the input matrix into tridiagonal form; as is easier to
+compute from there the eigenpairs. Once in this reduced form, the
+simplest version of the algorithm could be thought as a block
+version of the Power Method; on each iteration we need to
+orthogonalize with some matrix factorization (QL) and to multiply the
+resulting orthogonal vectors by the matrix in a possibly different
+basis. \\
+
+Above is is just the basic idea, practical implementations have far
+more points to consider; the reader interested in more details about
+this QL Algorithms or its cousins the QR Algorithms, can consult
+standard literature on the topic like \cite{golub13} or
+\cite{parlett80}. The only additional detail that we want to mention
+here, is that this algorithm has an inherent limitation for our
+application: it is designed to compute all the eigenpairs. This sounds
+like a waste of resources, given that we just one a particular
+eigenpair (the second smallest). 
+
+\subsection{The MRRR Algorithm}
+
+The MRRR Algorithm (Multiple Relatively Robust Representations or
+$MR^3$), is a more suitable option for computing the second
+eigenpair. Is a quite sophisticated procedure, and the reader
+can consult the available literature about it like \cite{dhillon97},
+\cite{dhillon04}, \cite{dhillon06} or \cite{parlett04}. The only
+detail we will mention here, is that this algorithm is capable of
+computing eigenpairs in isolation; so it has a considerable advantage
+over the previous one. Actually, this algorithm is perhaps the best
+the application can do, in terms of dense matrix methods.
+
+
+\section{Sparse Matrix Algorithms}
+
+If we really want to leverage the properties of the Laplacian, we need
+to consider algorithms which are suitable for sparse matrix
+representations. They are usually designed to calculate an small
+portion of the spectra (smallest or biggest), and the reason why they
+work better with sparse representations is because they do not require
+an explicit representation of the matrix at any moment. Instead, these
+algorithms only require a callback mechanism to perform an operation
+involving the matrix (eg $A\vec{x}$); therefore, the internals of
+those operations can be optimized to take advantage of the sparse
+format in question (instead of using a generic logic that assumes a
+dense representation). We will present a couple of algorithms from
+this family, a variant of Lanzos and LOBPCG.
+
+\subsection{Lanczos (IRLM)}
+
+Lanczos algorithm is actually a family of them, and the particular
+variant we are presenting here is called Implicitly Restarted Lanczos
+Method (IRLM). The algorithm is iterative (it progressively approximates the
+desired eigenpairs), and the main idea is to apply the Rayleigh-Ritz
+method against a Krylov subspace $\Krylov{A}{\vec{x_0}}{m} \suchthat m
+> k$. This implies that it needs to solve on each iteration, an small
+eigenproblemfor an $m \times m$ matrix $H$; the $m$ is a bit bigger
+than the number of desired eigenpairs but still much smaller than the
+dimension of the matrix. \\
+
+One of the issues with Krylov Subspaces is that we do not know in
+advance, how big the dimension $m$ needs to be in order to contain
+interesting approximations to the sought eigenvectors; since such
+dimension is in function of the number of vectors $A^k \vec{x_0}$ that
+we keep in memory, this can be a serious problem. In order to tackle
+this issue, the IRLM uses a tool called Implicitly Restarted QR
+Algorithm to apply $p$ shifts against the matrix $H$:
+
+\begin{equation*}
+    j=1 \ldots p:\, QR = \func{qr}(H - \lambda_j I) \land H = \trans{Q}HQ
+    \ds{\suchthat}
+    m = k + p
+\end{equation*}
+\joinbelow{1cm}
+
+After the shift above a truncation of $k \times k$ takes place, and on
+next iteration the matrix $H$ is filled up again to a size $m$ (using
+powers of the matrix, among other stuff). The intuitive idea is that
+at any iteration we have $m = k + p$ eigenpairs from matrix $H$, where
+$k$ is the actual number requested by the user and $p$ is the number
+of extra eigenpairs we have. The purpose of the procedure above is to 
+discard the p vectors from $H$ that do not contribute to the
+interesting eigenvectors. The definite reference for all the gory
+details of this variant of the Lanczos algorithm can be found at
+\cite{arpack}. \\
+
+As far as practical usage of the IRLM routine, we took the following
+considerations:
+
+\begin{itemize}
+\item We set $k=2$ and by default the implementation sets $m=2k+1$.
+\item Used shift-invert mode with $\sigma=0$ (as we want the smallest
+  eigenpairs), and one linear sparse solver; we tested two, SuperLU
+  (\cite{superlu97}, \cite{superlu05}) and  Cholmod (\cite{cholmod08},
+  \cite{cholmod08a}). These solvers use respectively the LU and
+  Cholesky factorizations, hence are considered direct methods; while
+  both are specialized for sparse matrices only Cholmod leverages
+  Laplacian properties (we will see in the results chapter, how much
+  that affects the performance). The linear solver we pass when invoking the
+  routine is quite important, as it accounts for $\approx \%80$ of
+  the execution time.
+\item We observed slow convergence for clustered eigenvalues, but this
+  was expected (is a known limitation inherited from the Power
+  Method).
+\end{itemize}
+
+Last thing to mention about this variant of Lanczos, is that it
+usually appears in Spectral Clustering literature as the mainstream
+option to choose when computing eigenvectors or eigenpairs out of the
+Laplacian matrix (see \cite{luxburg07} for example). 
+
+\subsection{LOBPCG}
+
+The second algorithm we considered is the so called Locally Optimal
+Block Preconditioned Conjugate Gradient (LOBPCG), and is also an
+iterative method that applies Rayleigh-Ritz Method every time (for
+simplicity we focus on the single vector version). The main difference
+with Lanczos is the subspace where it searches for the eigenvector
+approximations, which for LOBPCG is $\func{span} \{\vec{x}_i,
+T\vec{r}_i, \vec{x}_{i-1}\}$. This is a fixed size set of 3 vectors,
+containing respectively the current and previous approximations
+($x_i$, $x_{i-1}$ \footnote{In practice $x_{i} - \beta x_{i-1}$ is used
+  instead of the previous approximation $x_{i-1}$; as it tends to
+  loose orthogonality respect to $x_i$.}) plus the preconditioned
+residual $T\vec{r_i}$. The residual vector $r_i$ measures how well
+$x_i$ approximates the desired eigenvector and is defined below:
+
+\begin{equation*}
+    \joinabove{0}
+    \vec{r}_i = A\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i
+    \ds{\land}
+    \func{\rho}(\vec{x}) = \dfrac{\trans{\vec{x}}A\vec{x}}{\trans{\vec{x}}\vec{x}}
+\end{equation*}
+\joinbelow{1cm}
+
+The function $\func{\rho}(\vec{x})$ is nothing more than the
+Rayleigh-Quotient again; and another of its properties justifies the
+inclusion of the residual $r_i$. It turns out that
+$\func{\rho}(\vec{x})$ has as critical point precisely the smallest
+eigenpair $(\vec{v_1},\lambda_1)$; furthermore, its gradient is
+proportional to $r_i$. This means that $r_i$ is proportional to the
+direction where the Rayleigh-Quotient Function approximantes better
+the smallest eigenpair; hence, it kind of makes sense to include such
+direction when cooking the linear combinations that will approximate
+the desired eigenpair. The details of this algorithms are quite
+technical, but the brave reader can consult the original article from
+its creator Knyazev (\cite{knyazev01}). A more digested version
+appears on the PhD thesis of one of Knyazev's students (see
+\cite{lashuk07}).  \\ 
+
+The reader may have noticed a little inconsistency; above we talked about
+the smallest eigenpair but was not the Fiedler Vector part of the
+second one instead? That is still the case, but LOBPCG has a nice
+feature that allow us to focus on the smallest eigenpair indeed. When
+invoking the routine the user can pass a matrix $Y$ (called
+constraints matrix) whose columns
+generate certain subspace; then the algorithm seaches for the
+approximations only in the orthogonal subspace $\ortc{Y}$. This fits
+perfectly our problem, as we know that the first eigenvector of the
+Laplacian is the vector $\vec{1}$; since we are dealing with a
+symmetric matrix we know that the rest of the eigenvectors (in
+particular the Fiedler Vector) are going to live inside
+$\ortc{\vec{1}}$. Thus, we set $Y = \vec{1}$ when calling the LOBPCG
+routine; as that makes the search of the smallest eigenpair in
+$\ortc{\vec{1}}$ equivalent to the search of the second smallest on
+the original space. \\
+
+Let us summarize now all the practical considerations taken when
+calling the LOBPCG implementation (which were actually taken from the
+Python Package NetworkX):
+
+\begin{itemize}
+\item As mentioned, given we set the constraints matrix $Y = \vec{1}$,
+  we only need to request the smallest eigenpair (set $k=1$). 
+\item The matrix $T$ multiplying the residual vector $\vec{r_i}$ is called
+  the preconditioner; and its purpose is to accelerate
+  convergence \footnote{Going into the theory behind is out of
+    our scope; but again,  the interested reader can consult \cite{knyazev01}
+    or the more digested \cite{lashuk07}}. In practice, and for the
+  data involved with our application, setting $T =
+  \dfrac{1}{\func{diag}(A)}$ worked pretty well (actually, this is
+  perhaps the most important input parameter for our case; without
+  this preconditioner, LOBPCG was even slower than Lanczos). 
+\item Rather than slow convergence, the implementation showed
+  numerical errors on clustered eigenvalues (for some reason, the
+  dense $3 \times 3$ matrix produced at each iteration eventually
+  looses the properties the code expects). We did not dig further into
+  this problem, but just assumed that we needed to do something to
+  avoid clustered eigenvalues on the data; given that both sparse
+  algorithms have problems with them.
+\end{itemize}
+
