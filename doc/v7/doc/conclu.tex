@@ -1,0 +1,137 @@
+\chapter{Conclusions}
+
+\section{Recommendations}
+
+\subsection{Prefer Sparse Matrix Algorithms}
+
+This is perhaps the most obvious recommendation that comes out of this
+work; even if the data fits in memory (as it happens here), it makes
+no sense to compute against zero values.
+
+\subsection{If dense, go with MRRR}
+
+If for some reason (like a prohibition to perform drastic code
+chages), the application needs to go with dense matrices; at least
+they could use the best algorithm available, which is MRRR. This can
+be obtained from opensource implementations of LAPACK \footnote{There
+  are also commercial, hardware optimized versions like Intel's; which
+  could be considered.}, though Java
+Native Interface (JNI) will be needed to call the routines from Java (which
+is the applications' language). Alternatively, they can try the
+Java-Netlib opensource project \cite{jnetlib}; which offers Java
+wrappers against BLAS, LAPACK and other native libraries.
+
+\subsection{If development time is a constraint, consider Lanczos}
+
+If they can invest a bit of time (probably some weeks), and assuming
+they are allowed to introduce more drastic changes like the usage of
+sparse matrices, then Lanczos/IRLM is the way to go. Its ARPACK
+implementation is also opensource, and also readily available through
+the Java Netlib project. Of course the recommendation would be to use
+the Cholmod linear solver, though that may add more time (in case JNI
+wrappers do not exist yet).
+
+\subsection{If speed is a concern, go with LOBPCG}
+
+Finally, if they are willing to invest some months and if speed is the
+main concern; then they can explore the winner of the competition,
+LOBPCG. Porting the Python code from Scipy into Java \footnote{An
+  interesting note about this code, is that the algorithm creator
+  himself (Knyazev), helped with its development. This speaks about
+  its quality.} may certainly be a non trivial task; but the impact
+could be minimized if they restrict their attention to the single
+vector version, which all we need to compute the Fiedler vector (the
+actual code implements a block version that can approximate multiple
+vectors, but we do not need that).
+
+\section{Additional considerations}
+
+\subsection{Need sparse format}
+
+As explained in previous chapters, for the sake of the algorithms we
+could have used either CSR or CSC formats; but the need to compute the
+SCC of the graph behind the Laplacian, make us pick CSR
+format. If they are going with either Lanczos or LOBPCG, this is the
+format we recommend to use. \\
+
+The format may not come for free though; the application currently
+uses a serial version of the Colt library \cite{colt}, which does not
+seem to offer any sparse format. Thus, additional effort will be
+needed to research which libraries support CSR in Java. \\
+
+Let us recall the sparse algorithms will not care if the caller uses
+CSR or not; as they do not require explicit representation of the
+matrix. However, while implementing the callback mechanisms that do
+compute on the Laplacian (either $L\vec{x}$ or solving $L\vec{y} =
+\vec{x}$), we should definite use the sparse format; otherwise the
+promised gains will not show up.
+
+\subsection{Algorithm for computing the SCC}
+
+The algorithm used for efficiently computing the SCC, along with the
+code to recalculate the weights matrix; is all in Python (probably
+using other native libraries). Assuming we manage to make the CSR
+format available to Java, another task to include will be to look for
+a port of this algorithm (or to implement it using the article
+\cite{pearce05}). While this task may look non trivial, at least does
+not require deep knowledge of Numerical Analysis; which should make it
+at least tractable by regular programmers.
+
+\section{Challenges found during this thesis}
+
+Finally, we would like to dedicate a few lines about some challenges
+that were found during the elaboration of this 6 months thesis
+project.
+
+\subsection{Numerical Linear Algebra is hard}
+
+For the non initiated, meaning students who have not taken advanced
+courses in Linear Algebra,  Numerical Linear Algebra and Numerical
+Analysis in general; is quite a challenge to grasp the algorithms
+explanations found in literature. There seems to be a tradition to
+assume that the reader has this immense background, as many details
+are omitted. Therefore, one needs to go back to more elementary
+material to try filling some of the gaps. This makes the overall
+progress a bit slow, and that is the reason why only 3 algorithms were
+presented (more on this below). \\
+
+We dared to embrace this topic thinking naively that a previous
+course project would provide the required context; but this was
+true just partially. The specialization required to fully grasp the
+theory behind the 3 algorithms compared in this work, goes far beyond
+the context acquired during the last year. That is why we reduced the
+scope to understand only the main ideas, and to learn how to use in
+practice the implementations.
+
+
+\subsection{There is zoo of algorithms out there}
+
+The 3 algorithms compared in this thesis, definitely do not represent
+the entire set of options available. Even if we restrict ourselves to
+the properties of the Laplacian, and to serial execution; there are
+several more that offer an opensource implementations to
+explore. Just to give an idea of the diversity available online, the
+following is a partial list of additional options we also considered
+(meaning that we read a bit about the algorithms, that we installed
+the software and tried at least once):
+
+\begin{itemize}
+  \item Anasazi: Software for the numerical solution of large-scale
+    eigenvalue problems \cite{anasazi}.
+  \item Slepc: Scalable and flexible toolkit for the solution of
+    eigenvalue problems \cite{slepc}.
+  \item Primme: preconditioned iterative multimethod
+    eigensolver-methods and software description \cite{primme}.
+  \item Lanczos/IRLM from ARPACK, but using iterative linear solvers
+    (like those reported in \cite{martinez16}). 
+\end{itemize}
+
+All the options from the above list are quite interesting to explore, 
+along with solid publications about their theoretical
+fundations. Except for the last one (for which we did not find an
+available implementation), the rest were tried indeed; but we just did
+not have enough time to research more about their inner workings, nor
+to understand how to use the in practice to compute the Fiedler
+Vector. If more time becomes available, this would be an interesting
+follow up for this thesis, to explore the options listed above.
+

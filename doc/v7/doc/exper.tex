@@ -13,6 +13,51 @@ when low level libraries attempted multi-threading, we used the Linux
 were used on each experiment (and only for dense matrix algorithms;
 sparse ones used much less). \\
 
+\subsection{Software}
+
+The implementations used for the algorithms were basically Python
+wrappers against native libraries. These packages were SciPy
+\cite{scipy} and NetworkX \cite{networkx}. On the other hand, the
+native libraries actually offering the algorithm implementations were:
+
+\begin{itemize}
+  \item LAPACK \cite{lapack}, which provides (among many other things)
+    the MRRR implementation. LAPACK is actually the industrial
+    standard for dense matrix computations. LAPACK is implemented in
+    Fortran90 \footnote{At least the opensource version we used, as
+      there are other commercial implementations as well.}.
+
+  \item ARPACK \cite{arpack}, which provides the variant of the
+    Lanczos algorithm that we tested (IRLM). It also relies on LAPACK
+    as a lower layer. ARPACK is implemented in Fortran77.
+
+  \item Scipy \cite{scipy}, which delivers the implementation of
+    LOBPCG that we tested. While Scipy may also use LAPACK for several
+    operations, is interesting that LOBPCG is the only algorithm that
+    is implemented in Python. This makes reading its code a much
+    easier task, than say, reading it from the Fortran77 ARPACK. 
+\end{itemize}
+
+As it can be perceived, all the algorithm implementations ultimately
+rely on LAPACK; and this in turn, relies on BLAS \cite{blas}. All
+those libraries were installed on the laptop, of course. Finally, the
+SCC algorithm is offered by the Scipy package as well 
+(\emph{scipy.sparse.csgraph.connected\_component}); not to mention that
+same package make available as well, the sparse formats CSR and
+CSC. \\
+
+Overall, Scipy makes quite accessible a lot of scientific
+software; it feels like a new generation MATLAB that is becoming more
+and more popular \footnote{A new competitor entered the arena
+  recently, namely the Julia Programming language; specifically
+  designed for scientific computing. We tried this language as well,
+  for some of the experiments; but ended up preferring the maturity
+  and wider repertoire of the SciPy package}. Another merit of Scipy,
+is that its performance is quite close to that of native code (we
+also tested calling the libraries, like ARPACK, from low level C
+code). The little penalty in performance by using the Python wrappers,
+is definitely worth it in terms of development productivity. 
+
 \section{Data Preparation}
 
 \subsection{The actual data}
@@ -98,7 +143,18 @@ columns/rows); lines $9-10$ eliminate the potential gaps on the
 indices and finally lines $11-12$ truncate the $W$ to the new
 size. The key idea is to do all the operations in terms of the NumPy
 array primitives, which are quite efficient. 
-    
+
+\subsection{Shifting the spectra}
+
+The Cholmod linear solver mentioned on the previous chapter, requires
+that the matrix is Positive Definite; and the Laplacian is not (it has
+one zero eigenvalue). Doing a little shift on the eigenvalues ($L +
+0.01I$), makes the Laplacian Positive-Definite as required; and at the
+end of the algorithm execution we can just substract the same shift to
+the obtained eigenvalue to get the actual answer (which is not really
+that relevant, as we mostly want the eigenvector; the eigenvalues are
+just side products that the algorithms also produce). 
+
 \section{Results}
 
 Though the laptop was idle at the time of the experiments, we captured
@@ -112,6 +168,43 @@ and the Y-axis the average execution time in seconds.
   \centering
   \includegraphics[width=11cm,height=8cm]{results-csr}
 \end{figure}
+
+Let us review each line in more detail (we talk mainly about the times
+for the biggest matrix):
+
+\begin{itemize}
+\item The green line (label \emph{mr3a}) represents the times for the
+  MRRR algorithm, for 
+  for computing all the eigenpairs. This is not exactly the same time
+  the application will get today, as the algorithm is different; but
+  it could be considered as a lower bound (given that MRRR is the
+  state of the art for dense matrices). We can see that the time for
+  the biggest matrix goes a bit higher than 70 seconds.
+\item The blue line (label \emph{mr3}) is the MRRR algorithm, but
+  taking advantage of its main feature: the ability to compute in
+  isolation just the eigenpair we need. We can see that doing so,
+  reduces the time to a bit less than 30 secods (for the biggest
+  matrix).
+\item The orange line (label \emph{lanzos\_si}) is the first sparse
+  matrix algorithm; it consists in the Lanczos variant using SuperLU
+  as the linear solver. Even when such solver is not specialized for
+  the Laplacian matrix, it can reduce the time to 17 seconds
+  approximately.
+  \item The sky blue line (label \emph{lanzos\_sic}) is the very same
+    Lanczos variant, but this time using the Cholmod linear solver. We
+    can see that using a more specialized solver, that is optimized
+    for Symmetric Positide Definite matrices, pays off; to biggest
+    time does down to 5 seconds, approximately.
+  \item The Lanczos variant (IRLM), combined with Cholmod linear
+    solver, was going to be our best time; until we discovered how to
+    avoid the exceptions that the LOBPCG implementation was raising on
+    the presence of clustered eigenvalues. That brought this purple
+    line (label \emph{lobpcg}), which by far beats them all; the time
+    goes into subsecond scale even for the biggest matrix (the actual
+    average time is around half a seconf!). This makes LOBPCG the
+    definite winner of the experiment. 
+    experiment. 
+\end{itemize}
 
 The CSC results are basically the same, except for a sharp increment of 300
 seconds for the $mr3a$ line (MRRR algorithm against biggest matrix):
@@ -128,3 +221,9 @@ same, as the following graph shows:
   \centering
   \includegraphics[width=11cm,height=8cm]{results-csc-wa}
 \end{figure}
+
+Then, using the CSR format should not be considered an advantage for
+the algorithms; as the total speedup is actually higher for CSC
+format. But again, given the need to run the SCC algorithm, we prefer
+CSR.
+

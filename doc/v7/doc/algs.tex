@@ -244,7 +244,8 @@ considerations:
   eigenpairs), and one linear sparse solver; we tested two, SuperLU
   (\cite{superlu97}, \cite{superlu05}) and  Cholmod (\cite{cholmod08},
   \cite{cholmod08a}). These solvers use respectively the LU and
-  Cholesky factorizations, hence are considered direct methods; while
+  Cholesky factorizations, hence are considered direct
+  methods (as opposed to iterative linear solvers); while
   both are specialized for sparse matrices only Cholmod leverages
   Laplacian properties (we will see in the results chapter, how much
   that affects the performance). The linear solver we pass when invoking the
