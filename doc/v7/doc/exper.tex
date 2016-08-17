@@ -6,16 +6,17 @@
 
 All the tests were conducted on a laptop with a commodity processor
 (Intel\textregistered Core\texttrademark $\,i5$ at $2.40$GHz). In
-order to enforce serial execution \footnote{We are talking about BLAS
-  or LAPACK; as the high level algorithms used were serial.}, even
-when low level libraries attempted multi-threading, we used the Linux
-\emph{taskset} command. The laptop has $8$Gb of RAM, but only 512Mb
+order to enforce serial execution, even
+when low level libraries attempted multi-threading \footnote{We are talking about BLAS 
+  or LAPACK; as the high level algorithms used were serial.}, we used
+the Linux  
+\emph{taskset} command. The laptop has $8$Gb of RAM, but no more than 512Mb
 were used on each experiment (and only for dense matrix algorithms;
 sparse ones used much less). \\
 
 \subsection{Software}
 
-The implementations used for the algorithms were basically Python
+The implementations of the algorithms we used, were basically Python
 wrappers against native libraries. These packages were SciPy
 \cite{scipy} and NetworkX \cite{networkx}. On the other hand, the
 native libraries actually offering the algorithm implementations were:
@@ -42,9 +43,7 @@ As it can be perceived, all the algorithm implementations ultimately
 rely on LAPACK; and this in turn, relies on BLAS \cite{blas}. All
 those libraries were installed on the laptop, of course. Finally, the
 SCC algorithm is offered by the Scipy package as well 
-(\emph{scipy.sparse.csgraph.connected\_component}); not to mention that
-same package make available as well, the sparse formats CSR and
-CSC. \\
+(\emph{scipy.sparse.csgraph.connected\_component}). Last but not least, same SciPy also provides the sparse formats tested (CSR and CSC). \\
 
 Overall, Scipy makes quite accessible a lot of scientific
 software; it feels like a new generation MATLAB that is becoming more
@@ -52,7 +51,7 @@ and more popular \footnote{A new competitor entered the arena
   recently, namely the Julia Programming language; specifically
   designed for scientific computing. We tried this language as well,
   for some of the experiments; but ended up preferring the maturity
-  and wider repertoire of the SciPy package}. Another merit of Scipy,
+  and wider repertoire of the Python + SciPy combo.}. Another merit of Scipy,
 is that its performance is quite close to that of native code (we
 also tested calling the libraries, like ARPACK, from low level C
 code). The little penalty in performance by using the Python wrappers,
@@ -62,7 +61,7 @@ is definitely worth it in terms of development productivity.
 
 \subsection{The actual data}
 We created 10 random matrices from application's domain data, using
-the same encoding techniques they use in production; the sizes of such
+the same encoding techniques they use in production. The sizes of such
 matrices are in the range $[867,4500]$, so they fit in memory without
 problem. \\
 
@@ -73,12 +72,12 @@ Sparse Column (CSC) formats. For an overview of these and related
 formats, in the actual context where we experimented with them, the
 reader can consult \cite{johansson15}. While both formats showed
 similar performance results, we prefer CSR because is the preferred
-format used for the clustered eigenvalues removal pre-processing (see
+format to use with the clustered eigenvalues removal pre-processing (see
 below). 
 
 \subsection{Avoiding clustered eigenvalues}
 
-As we mentioned on previous chaper, clustered eigenvalues were a
+As we mentioned on previous chapter, clustered eigenvalues were a
 headache for both Lanczos and LOBPCG; so we needed to do something
 about them. By researching deeper why they were occurring, we found
 that for the graphs behind the Laplacians produced by the
@@ -96,17 +95,18 @@ approximate zero. \\
 The solution for this issue was to simply remove the already
 disconnected small component; it makes sense given that ultimately,
 the high level operation we want to perform on the graph is a
-bipartition (thus, expectation is that the graph is connected). The
+bi-partition (thus, expectation is that the graph is connected). The
 caveat was to compute the Strongly Connected Components (SCC) and the
 new weights matrix quite efficiently, such that this pre-processing
 did not become a performance penalty. The SCC computation can be done
-efficiently (subsecond) with algorithm documented in \cite{pearce05},
-for which we used the implementation available in SciPy; this
+efficiently (sub-second) with algorithm documented in \cite{pearce05},
+for which we did not dig its internals but just used the
+implementation available in SciPy. This  
 algorithm/implementation actually, is the reason why we prefer CSR
 format over CSC (if the weights matrix is not passed in CSR format,
 the routine takes much more time). \\
 
-The recomputation of the weights matrix $W$ though, required bit more
+The re-computation of the weights matrix $W$ though, required bit more
 of thought. It turned out that the CSR format is not very friendly
 with row/column removal operations (which we need to do, in order to
 simulate that nodes got removed from the graph). Based on an
@@ -133,24 +133,26 @@ def split_cc_sparse2(W, cclab):
     W._shape = (W.shape[0] - k, W.shape[1] - k)
     return W
     \end{lstlisting}
-
-The snipet above works as follows: the argument
+    \joinbelow{1cm}
+    
+The snippet above works as follows: the argument
 \emph{cclab} contains the node labels for the components, namely $0$ and $1$
-for the big and small ones. Our goal is to eliminate the nodes with
-label $1$ from the weights graph $W$. For that, that lines $1-8$
-shrink first the index and data arrays (after removal of unwanted
-columns/rows); lines $9-10$ eliminate the potential gaps on the
-indices and finally lines $11-12$ truncate the $W$ to the new
+for the big and small ones respectively. Our goal is to eliminate the nodes with
+label $1$ from the weights matrix $W$. For that, that lines $2-8$
+begin by shrinking the index and data arrays (after removal of unwanted
+columns/rows); then lines $9-10$ eliminate the potential gaps on the
+indices and finally lines $11-12$ truncate the $W$ matrix to the new
 size. The key idea is to do all the operations in terms of the NumPy
 array primitives, which are quite efficient. 
 
 \subsection{Shifting the spectra}
 
 The Cholmod linear solver mentioned on the previous chapter, requires
-that the matrix is Positive Definite; and the Laplacian is not (it has
+that the matrix is Symmetric Positive Definite; and the Laplacian is
+not (it is symmetric, but has
 one zero eigenvalue). Doing a little shift on the eigenvalues ($L +
 0.01I$), makes the Laplacian Positive-Definite as required; and at the
-end of the algorithm execution we can just substract the same shift to
+end of the algorithm execution, we can just subtract the same shift to
 the obtained eigenvalue to get the actual answer (which is not really
 that relevant, as we mostly want the eigenvector; the eigenvalues are
 just side products that the algorithms also produce). 
@@ -175,55 +177,54 @@ for the biggest matrix):
 \begin{itemize}
 \item The green line (label \emph{mr3a}) represents the times for the
   MRRR algorithm, for 
-  for computing all the eigenpairs. This is not exactly the same time
+  computing all the eigenpairs. This is not exactly the same time
   the application will get today, as the algorithm is different; but
   it could be considered as a lower bound (given that MRRR is the
   state of the art for dense matrices). We can see that the time for
   the biggest matrix goes a bit higher than 70 seconds.
-\item The blue line (label \emph{mr3}) is the MRRR algorithm, but
+\item The blue line (label \emph{mr3}) is also the MRRR algorithm, but
   taking advantage of its main feature: the ability to compute in
   isolation just the eigenpair we need. We can see that doing so,
-  reduces the time to a bit less than 30 secods (for the biggest
+  reduces the time to a bit less than 30 seconds (for the biggest
   matrix).
-\item The orange line (label \emph{lanzos\_si}) is the first sparse
+\item The orange line (label \emph{lanczos\_si}) is the first sparse
   matrix algorithm; it consists in the Lanczos variant using SuperLU
   as the linear solver. Even when such solver is not specialized for
-  the Laplacian matrix, it can reduce the time to 17 seconds
-  approximately.
-  \item The sky blue line (label \emph{lanzos\_sic}) is the very same
+  the Laplacian matrix, it can reduce the time to a bit less than 20
+  seconds.
+  \item The sky blue line (label \emph{lanczos\_sic}) is the very same
     Lanczos variant, but this time using the Cholmod linear solver. We
     can see that using a more specialized solver, that is optimized
-    for Symmetric Positide Definite matrices, pays off; to biggest
+    for Symmetric Positive Definite matrices, pays off; to biggest
     time does down to 5 seconds, approximately.
   \item The Lanczos variant (IRLM), combined with Cholmod linear
     solver, was going to be our best time; until we discovered how to
     avoid the exceptions that the LOBPCG implementation was raising on
     the presence of clustered eigenvalues. That brought this purple
-    line (label \emph{lobpcg}), which by far beats them all; the time
-    goes into subsecond scale even for the biggest matrix (the actual
-    average time is around half a seconf!). This makes LOBPCG the
-    definite winner of the experiment. 
-    experiment. 
+    line (label \emph{lobpcg\_s}), which by far beats them all; the time
+    goes into sub-second scale even for the biggest matrix (the actual
+    average time is around half a second, sometimes a bit bigger but
+    still within a second). This makes LOBPCG the definite winner of
+    the experiment. 
 \end{itemize}
 
-The CSC results are basically the same, except for a sharp increment of 300
-seconds for the $mr3a$ line (MRRR algorithm against biggest matrix):
+Even with an apparent idle laptop,
+  and with \emph{taskset} command, there were still variations on the
+  average times; a more precise mechanism could be to boot the laptop
+  into an special mode where there are less admin tasks running on the
+background. This was not considered critical for our experiment, as
+the pattern in the execution times was consistent; only difference was
+a shift of the whole pattern (but LOBPCG times remained in sub-second
+scale). \\ 
+
+Putting aside the fluctuations mentioned above; the CSC results are
+basically the same than the CSR ones. A sample execution is shown
+below: 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=11cm,height=8cm]{results-csc}
 \end{figure}
 
-We can perceive though, that the rest of the lines behave quite the
-same, as the following graph shows:
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=11cm,height=8cm]{results-csc-wa}
-\end{figure}
-
-Then, using the CSR format should not be considered an advantage for
-the algorithms; as the total speedup is actually higher for CSC
-format. But again, given the need to run the SCC algorithm, we prefer
-CSR.
-
+Even when both formats behave well with the sparse algorithms, we
+prefer CSR for reasons explained already on this chapter.

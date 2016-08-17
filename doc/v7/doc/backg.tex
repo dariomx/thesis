@@ -6,6 +6,9 @@ It is convenient to set a little context, in order to appreciate
 better what is the operation that this thesis tries to optimize; for
 this we enter a bit into the Spectral Clustering world. In such
 context the Laplacian Matrix and its second smallest eigenvector
+\footnote{This is an abuse of the language of course, when
+we say the smallest or biggest eigenvector or eigenpair, we actually refer to
+the property of the associated eigenvalue.}
 (Fiedler Vector) will emerge; and it will become clearer why computing
 an eigenvector can serve data clustering. The original merit of
 finding the value of the Fiedler Vector goes to Fiedler
@@ -13,8 +16,8 @@ finding the value of the Fiedler Vector goes to Fiedler
 the stuff we briefly discuss on this chapter could be considered part
 of one its branches, Spectral Graph Theory (\cite{brouwer12}). In
 practical terms, the material exposed here comes mainly from the
-standard introductory book to Spectral Clustering by \cite{luxburg07},
-and from the excellent lecture that Profr. Gao gives about the topic on
+standard introductory book to Spectral Clustering by Luxburg \cite{luxburg07},
+and from the excellent lecture that Prof. Gao gives about the topic on
 its Data Mining Course at the University of Buffalo \cite{gao13}.
 
 \subsection{Minimal Bi-Partitional RatioCut}
@@ -31,8 +34,8 @@ of a similarity function defined for the given problem. \\
 The work of this thesis lies around the basic operation of
 bi-partitioning such graph (removing certain edges such that we
 disconnect the vertices set). This is to be done in such way that the
-\emph{cut} function ($\func{cut}(A,B) = \sum\limits_{\tiny{i \in A
-    \ds{,} j \in B}} w_{ij}$) is minimized. This will bring as result
+\emph{cut} function $\left(\func{cut}(A,B) = \sum\limits_{\tiny{i \in A
+    \ds{,} j \in B}} w_{ij}\right)$ is minimized. This will bring as result
 two partitions with quite similar nodes (according to the similarity
 function defined); and then, they could be thought as clusters. The
 following figure (adapted from \cite{gao13}) illustrates the
@@ -41,14 +44,14 @@ operation:
 \begin{figure}[H]
   \label{min-bip-cut}
   \centering
-  \includegraphics[width=10cm,height=5.5cm]{min-bip-cut}
+  \includegraphics[width=10cm,height=5.5cm]{min-bip-cut-doc}
 \end{figure}
 
-The blue edges are the minimal \emph{cut} for this example; resulting
+The sky blue edges are the minimal \emph{cut} for this example; resulting
 in two partitions $C_1$ and $\stcomp{C_1}$. While there is more than
 one way of formalizing this problem, the way we care about is the one
-using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut);
-which imposes favors the solutions which have partitions of roughly
+using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut Problem);
+which favors the solutions which have partitions of roughly
 the same size: 
 
 \begin{equation*}
@@ -74,11 +77,11 @@ above.
 
 \subsection{The Laplacian and its Fiedler Vector}
 The details can be consulted at \cite{luxburg07} or
-\cite{gao13}, but it turns out that if we define (unnormalized)
+\cite{gao13}, but it turns out that if we define the (unnormalized)
 Laplacian Matrix as $L = D - W$ (where $D$ is the diagonal containing
 the nodes' degrees and $W$ is the weights matrix of the graph); then
 the Minimal Bi-Partitional RatioCut Problem reduces to that of minimizing the
-Rayleigh Quotient Function:
+Rayleigh-Quotient Function:
 
 \begin{equation*}
 \min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})
@@ -125,7 +128,7 @@ throughout all the subspaces of dimension $n-1$ (where $n$ is the
 dimension of the Laplacian matrix), then we would know that the answer
 to our problem is the eigenvector associated to the second-smallest
 eigenvalue of the Laplacian (called Fiedler Vector). The only obstacle
-in applying this mighty result is the non practical task of iterating
+in applying this mighty result, is the non practical task of iterating
 over an infinite number of subspaces; but the previously stated
 property $\vec{f} \bot \vec{1}$ makes the trick. We do not need to
 explore all those subspaces, because we know where to look for: in
@@ -137,10 +140,10 @@ orthogonal subspace to \vec{1}.
 \section{The Symmetric Eigenproblem}
 
 The previous sections showed that our Minimal Bi-Partitional RatioCut
-problem can be reduced to minimize the Rayleigh-Quotient function;
+Problem can be reduced to minimize the Rayleigh-Quotient function;
 which in turn can be solved by computing the Fiedler Vector of the
 Laplacian matrix (or in general, to that of computing the second
-eigenpair): 
+eigenpair\footnote{By eigenpair we mean a certain eigenvalue and its associated eigenvector.}): 
 
 \begin{equation*}
 \min\limits_{\vec{x} \bot \vec{1} \ds{\land} \norm{\vec{x}} \ne 0}
@@ -154,7 +157,7 @@ eigenpair):
 
 This section provides minimal background theory about such new problem
 (Symmetric Eigenproblem); needed before moving on with the algorithm
-details of further chapters. Concious that this fascinating branch of
+details of further chapters. Conscious that this fascinating branch of
 Numerical Linear Algebra is huge, and that we can provide here just a
 little taste, we suggest the authoritative references of
 \cite{parlett80} and \cite{saad92} for a deeper dive. 
@@ -179,24 +182,26 @@ recommend for its originality and amusement is \cite{wilf81}.
 \subsection{Numerical Considerations}
 
 Having the guarantee of a theoretical solution, does not imply that we
-will not face problems while trying to approximate it numerically with
-a computer. Numerical Analysis, and in particular Linear Numerical
-Algebra and immense fields; and the amount of context required to grasp
-their theory is usually abundant. But here we focus on a couple of
-aspects that we should at least mention, before moving on to the more
-practical chapters: conditioning and numerical stability. The
-information mentioned below was taken from \cite{bindel09}. \\
+can approximate it numerically without problems. Numerical Analysis,
+and in particular Linear Numerical 
+Algebra, are immense fields; and the amount of context required to grasp
+their theory is usually abundant. But here we just briefly focus on a couple of
+aspects that are the bare minimum required, before moving on to the more
+practical chapters: we are talking about conditioning and numerical
+stability. The information mentioned below was taken from
+\cite{bindel09}. \\ 
 
 \subsubsection{Conditioning}
 Regardless of the algorithm that we employ to solve the Symmetric
 Eigenproblem, is worth to note that the problem itself has a property
-called well-conditioning; which in essence aims to measure whether small
-perturbations on the input also produce small perturbations on the
+called conditioning; which in essence aims to measure whether small
+perturbations on the input will produce small or big perturbations on the
 answer (problems are called ill-conditioned if the answer perturbation
-is big). For our problem here we need to split in two subproblems:
-that of computing eigenvalues and that of computing eigenvectors (\footnote{We
-just need the later, but software routines typically compute both the
-eigenvalue and the eigenvector; which we call an eigenpair}. The
+is big, and well-conditioned otherwise). For our problem here we need
+to split in two subproblems: 
+that of computing eigenvalues and that of computing eigenvectors \footnote{We
+just need the eigenvector, but software routines typically compute both the
+eigenvalue and the eigenvector; which we call an eigenpair.}. The
 following formulas summarize the conditioning of both subproblems:
 
 \begin{equation*}
@@ -213,8 +218,9 @@ particular application we care about. But above also says that
 eigenvectors could be ill-conditioned even if eigenvalues are not;
 which happens when these are clustered (quite close to each
 other). This is a situation we faced in practice for this project, but
-later chapters will mention the workaround that we found for clustered
-eigenvalues (plus the actual, more practical reasons, we had to avoid them).
+later chapters will mention the workaround that we found for this
+scenario (plus the actual, more practical reasons, we had to avoid
+it). 
 
 \subsubsection{Numerical Stability}
 
@@ -229,7 +235,7 @@ close problem (in our case $L + \Delta L$). The algorithms we explored
 in this thesis, are considered Backward Stable; hence safe to
 use \footnote{Is not like the literature labels them explicitly as Backward
   Stable; but is rather an expected standard in Numerical Linear
-  Algebra community; specially given the renown names of the algorithm
+  Algebra community; specially given the renown of the algorithm
 creators and the prestige of the software that implements them.}. \\
 
 Backward stable algorithms are
