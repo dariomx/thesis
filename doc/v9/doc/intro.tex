@@ -1,0 +1,69 @@
+\chapter{Introduction}
+
+\section{Motivation}
+
+Spectral Clustering \cite{luxburg07} is an important branch of Data Clustering,
+and there is a particular real life application that needed
+help \footnote{The application is proprietary code, hence we can not
+  reveal further details about it.}. They  
+compute an eigenvector called \gls{FiedlerVector} (see more
+details in \cref{cha:backg}), but were looking for better performing
+algorithms.
+
+\section{Objective}
+
+The main objective of this thesis, is to emit an algorithm
+recommendation for the mentioned application; that is, to suggest
+an algorithm for computing the \gls{FiedlerVector} that outperforms
+the one they are using today. For this goal, we restrict our attention
+to the matrices produced by the application.
+
+\section{Scope}
+
+The field of Numerical Analysis, and in particular Linear Numerical
+Algebra; is as interesting as immense. There are plenty of algorithms
+out there that solve the Eigenproblem. Furthermore, the theory behind
+these algorithms is dense and hard to 
+grasp for the non-initiated in these topics; hence, given
+the time constraints we had for making this thesis project, we focused
+on the following points only:
+
+\begin{itemize}
+\item Main ideas of the algorithms, seeking to compare them.
+\item How to use their implementations in practice.
+\item Restrict the search to serial versions of the algorithms
+  (application requirement).
+\item Look for algorithms that leverage the \gls{Laplacian}'s properties
+  (Symmetric, Sparse, Positive-Semi-Definite and with first eigenpair
+  $(0,\vec{1})$). The more the algorithms took into account these, the
+  better they performed in practice. 
+\end{itemize}
+
+Using the above criteria, we focused only on three algorithms: \gls{MRRR},
+\gls{IRLM} and \gls{LOBPCG} (see \cref{cha:algs} for more details
+about this selection). Still, entire books could be written with the 
+details of any of these, but again we restrict ourselves to the points
+stated above. One additional point we paid 
+special attention to, was how to avoid the issues observed on the
+presence of \gls{ClusteredEigenvalues} (see
+\cref{sub:avoid-clust-eigv} for more details about the used
+technique). 
+
+\section{Outline}
+
+The rest of this work is organized as follows. In \cref{cha:backg} we
+provide more details about the particular problem we are attacking
+(computing the \gls{FiedlerVector}, by setting a bit of context about
+its origin). Then on \cref{cha:algs} we explain, within
+our stated scope, the details of the chosen algorithms (both
+theoretical and practical). After that, \cref{cha:exper} describes the
+experiments we did and the results of them; they are basically a
+comparison between the chosen algorithms for some selected
+matrices \footnote{Taken
+  from the application domain.}, though we also make an attempt to
+explain the outcome of 
+the results, based on the theory from \cref{cha:algs}. Finally, based 
+on the results we present the conclusions in \cref{cha:conclu}; where
+the main contribution of course, is the set of recommendations for the
+real-life application.
+

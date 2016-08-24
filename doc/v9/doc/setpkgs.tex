@@ -1,0 +1,29 @@
+\graphicspath{{./images/}}
+\DeclareGraphicsExtensions{.png}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  breaklines=false,
+  numbers=left,
+  belowskip=20pt
+}
+
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem*{theorem*}{Theorem}
+
+% not sure why cref now refers to algs as ``line''
+\crefname{line}{algorithm}{algorithms}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+\makeglossaries
+\newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
