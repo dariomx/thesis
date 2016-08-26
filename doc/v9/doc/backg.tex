@@ -8,7 +8,7 @@ better what is the operation that this thesis tries to optimize; for
 this we enter a bit into the Spectral Clustering world. In such
 context the \gls{Laplacian} Matrix and its second smallest eigenvector
 \footnote{This is an abuse of the language of course, when
-we say the smallest or biggest eigenvector or eigenpair, we actually refer to
+we say the smallest or biggest eigenvector/eigenpair, we actually refer to
 the property of the associated eigenvalue.}
 (\gls{FiedlerVector}) will emerge; and it will become clearer why computing
 an eigenvector can serve data clustering. The original merit of
@@ -51,7 +51,7 @@ operation:
 
 The sky blue edges are the minimal \emph{cut} for this example; resulting
 in two partitions $C_1$ and $\stcomp{C_1}$. While there is more than
-one way of formalizing this problem, the way we care about is the one
+one way of formalizing this problem, we care about the one
 using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut Problem);
 which favors the solutions which have partitions of roughly
 the same size: 
@@ -70,9 +70,11 @@ the same size:
 \end{equation*}
 \joinbelow{1cm}
 
-Asking for the partitions to have similar sizes avoids the non
-interesting solutions which include singleton partitions; but it also
-has the side effect of making the optimization problem NP-Hard. This
+Asking for the partitions to have similar sizes, avoids the non
+interesting solutions which include singletons\footnote{That is,
+  solutions which include a partition with a single node.}; but it also  
+has the side effect of making the optimization problem NP-Hard (see
+\cite{wagner93}). This 
 is where Spectral Clustering comes to rescue us; by using Linear
 Algebra techniques, it can approximate the solutions to the problem
 above.
@@ -101,9 +103,8 @@ The solution given by the vector $\vec{f}$ is an approximation, and it acts
 as an indicator function; each one of its cells represents one node in
 the graph, and its sign tells whether the associated node belongs to
 partition $C_1$ or its complement $\stcomp{C_1}$. The property of $f$
-being orthogonal to the vector $\vec{1}$ is a consequence of the
-\gls{Laplacian} matrix ($L$) and the Rayleigh-Quotient function
-properties. \\
+being orthogonal to the vector $\vec{1}$, is a consequence of the
+\gls{Laplacian} matrix ($L$) properties. \\
 
 The advantage of having formulated the problem in terms of the
 Rayleigh-Quotient function, allows us to use the immense arsenal that
@@ -111,7 +112,8 @@ Linear Algebra has at our disposal. This step is usually skip in
 literature, but here we include a more explicit argument; the concrete
 theorem that clearly gives a solution to the above problem is the
 Courant-Fischer Theorem (specialized for the case of the second
-smallest eigenvalue of a real-symmetric matrix $A$):
+smallest eigenvalue of a real-symmetric matrix $A$, see \cite{golub13}
+for its general formulation):
 
 \begin{equation*}
 \lambda_2(A) =
@@ -126,7 +128,19 @@ smallest eigenvalue of a real-symmetric matrix $A$):
 \joinbelow{1cm}
 
 The above result basically tells us that, if we were able to navigate
-throughout all the subspaces of dimension $n-1$ (where $n$ is the
+throughout all the subspaces of dimension $n-1$
+\footnote{Beware that the formulation of the theorem by Golub in
+  \cite{golub13}, may look different on the surface; because it
+  mentions that the dimension of the subspaces is $k$ for $\lambda_k$. But
+this difference is just cosmetic, because Golub likes to sort the
+eigenvalues on descending order; contrary to our convention here
+(ascending). Thus for him, $\lambda_2$ is actually
+the second biggest eigenvalue. Therefore, the dimension of the
+subspaces where we need to search is actually $k$, because $k$ happens
+to be $n-1$ for the second smallest eigenvalue in Golub's notation (we
+used $n-1$ in the theorem statement due consistency with our ascending
+convention for eigenvalues).} 
+(where $n$ is the
 dimension of the \gls{Laplacian} matrix), then we would know that the answer
 to our problem is the eigenvector associated to the second-smallest
 eigenvalue of the \gls{Laplacian} (called \gls{FiedlerVector}). The only obstacle
@@ -219,10 +233,11 @@ trouble if we target quite small ones; which is not the case for the
 particular application we care about. But above also says that
 eigenvectors could be ill-conditioned even if eigenvalues are not;
 which happens when these are clustered (quite close to each
-other). This is a situation we faced in practice for this project, but
+other, and from now on referred as \gls{ClusteredEigenvalues}). This
+is a situation we faced in practice for this project, but 
 later chapters will mention the workaround that we found for this
-scenario (plus the actual, more practical reasons, we had to avoid
-it). 
+scenario (plus the actual, more practical reasons, that we had to avoid
+it; the details are in \cref{sub:avoid-clust-eigv}). 
 
 \subsubsection{Numerical Stability}
 
@@ -231,7 +246,8 @@ short it tells how much additional ``numerical noise'' the computation
 adds to the solution (in addition to the perturbation inherent to the
 problem conditioning). There is more than one definition of what it
 means to be numerically stable, but a common situation in Numerical
-Linear Algebra seems to have Backward Numerical Stability; this means
+Linear Algebra is to prefer Backward Numerical Stability. This
+flavor of stability means
 in essence, that the algorithms compute the exact answer of a very
 close problem (in our case $L + \Delta L$). The algorithms we explored 
 in this thesis, are considered Backward Stable; hence safe to
@@ -245,5 +261,6 @@ nice, in the sense that they do not add
 a significant error to the answer; pretty much we will be dealing with
 the perturbations given by the problem conditioning. In our concrete
 case of the Symmetric Eigenproblem, and the type of matrices our
-application produce, this reduces to avoiding clustered
-eigenvalues. 
+application produces, this reduces to avoiding
+\gls{ClusteredEigenvalues}.
+

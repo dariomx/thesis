@@ -26,5 +26,8 @@
     an optimized Cholesky linear solver, the best known Lanczos/IRLM
     implementation (ARPACK) failed to compete with LOBPCG, which comes
     as the clear winner of the experiment. The results suggest that
-    for the biggest matrices considered (size $\approx$ 4500), the application can
-    move from the minute into the sub-second scale; and a couple of seconds if we include the pre-processing to eliminate clustered eigenvalues.
+    for the biggest matrices considered (size $\approx$ 4500), the
+    execution times can 
+    move from the minute into the sub-second scale; and to a couple of
+    seconds, if we include the time of the pre-processing to eliminate
+    clustered eigenvalues. 

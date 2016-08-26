@@ -1,33 +1,43 @@
 \chapter{The Algorithms}
 \label{cha:algs}
 
-In this chapter we deal with explaining the algorithms that we
-compared, aiming to provide our recommendation for the
-application. We also provide a brief explanation about why we chose
-those algorithms; whose selection and comparison is the main
-contribution of this work. \\ 
-
 \section{Proposal}
-
+\label{sec:propo}
 There is an immense zoo of algorithms out there, for solving the
 Symmetric Eigenproblem; actually, considering the symmetry is already
 a huge prune over an even bigger tree of algorithms (those for the
 Eigenproblem in general, for both symmetric and non-symmetric
 matrices). As mentioned already, the properties of the Laplacian drive
-our further pruning; as it calls for sparse and positive semi-definite 
+our further pruning; as it involves sparse and positive semi-definite 
 matrices. \\
+
+Our proposal is essentially to pick just three algorithms from that
+immense tree; and to evaluate their performance with a set of matrices
+generated from the application domain. From such experiment we will
+pick the winner and hence, emit our official recommendation for the
+application. While \cref{cha:exper} and \cref{cha:conclu} detail the
+experiment and its outcome; this chapter focuses on explaining the
+rationale behind this algorithms selection, along with a little
+background about their theory and practical usage aspects. \\
+
+Let us begin by saying that our intention with this selection, was to
+represent three families or approaches to the solution of the problem:
+current approach taken by the application (\gls{MRRR}), mainstream
+recommendation for Spectral Clustering (\gls{IRLM}) and a modern
+younger proposal (\gls{LOBPCG}). In the sub-sections below we provide
+further justification for each one of these algorithms.
 
 \subsection{\gls{MRRR}}
 Although the \gls{Laplacian} is an sparse matrix (70\% of zeros for our
 target application), we still consider the family of algorithms that
 care about dense matrix representations. This is mostly due comparison
-purposes, as the current implementation the application uses is
+purposes, as the current implementation the application uses, is
 based on a method from this family. This will allow us to know how
 much we improved the execution time, with the new sparse matrix
 algorithms. This is the argument behind the selection of the
 \gls{MRRR} algorithm; which is not exactly the one used today by the
 application, but can be considered as a lower bound in terms of its
-performance; whatever the application uses today is hardly better than
+performance. Whatever the application uses today is hardly better than
 \gls{MRRR}, which is considered the ``holy grail'' of Numerical Linear
 Algebra \cite{hogben06} (at least for dense matrices).\\ 
 
@@ -46,14 +56,13 @@ the most known and widely available variant; thanks to the
 ARPACK \cite{arpack} software package. This situation made us chose
 \gls{IRLM} then, as it represents the common practice
 against which we want to compare further algorithms (in reality we are
-also going to compare the current dense matrix algorithm, against the
-common practice \gls{IRLM}).
+also going to compare against a dense matrix algorithm).
 
 \subsection{\gls{LOBPCG}}
 
 The real proposal is to use \gls{LOBPCG}, which is a more modern
 algorithm for solving the Symmetric Eigenproblem for sparse
-matrices. The advantages it presents against \gls{IRLM} need the
+matrices. The advantages it presents against \gls{IRLM} relate to the
 information provided in this chapter, so it will be a bit premature to
 list them here; but the impatient reader can jump into
 \cref{sec:why-lobpcg} for more details. Here we will just mention that
@@ -63,7 +72,7 @@ for scenarios like ours (computation of the \gls{FiedlerVector}).
 \section{Preliminaries}
 
 This section introduces the common mathematical tools used by the
-algorithms.
+selected algorithms.
 
 \subsection{Power Method (for Symmetric Matrices)}
 
@@ -235,6 +244,7 @@ dense representation). We will present a couple of algorithms from
 this family, a variant of Lanczos and LOBPCG.
 
 \subsection{Lanczos (\gls{IRLM})}
+\label{sub:irlm}
 
 Lanczos algorithm is actually a family of them, and the particular
 variant we are presenting here is called Implicitly Restarted Lanczos
@@ -248,7 +258,7 @@ dimension of the matrix. \\
 
 One of the issues with Krylov Subspaces is that we do not know in
 advance, how big the dimension $m$ needs to be in order to contain
-interesting approximations to the sought eigenvectors; since such
+interesting approximations to the sought eigenvectors. Since such
 dimension is in function of the number of vectors $A^k \vec{x_0}$ that
 we keep in memory, this can be a serious problem. In order to tackle
 this issue, the \gls{IRLM} uses a tool called Implicitly Restarted QR
@@ -261,12 +271,12 @@ Algorithm to apply $p$ shifts against the matrix $H$:
 \end{equation*}
 \joinbelow{1cm}
 
-After the shift above a truncation of $k \times k$ takes place, and on
-next iteration the matrix $H$ is filled up again to a size $m$ (using
+After the shift above a truncation with a factor $k$ takes place, and on
+next iteration the matrix $H$ is filled up again to size $m$ (using
 powers of the input matrix, among other stuff). The intuitive idea is that,
 at any iteration we have $m = k + p$ eigenpairs from matrix $H$, where
 $k$ is the actual number requested by the user and $p$ is the number
-of extra eigenpairs we have. The purpose of the shift procedure above is to 
+of extra eigenpairs we have. The purpose of the shift procedure above, is to 
 discard the p vectors from $H$ that do not contribute to the
 interesting eigenvectors. The definite reference for all the gory
 details of this variant of the Lanczos algorithm, can be found at
@@ -328,9 +338,9 @@ $\func{\rho}(\vec{x})$ has as critical point precisely the smallest
 eigenpair $(\vec{v_1},\lambda_1)$; furthermore, its gradient is
 proportional to $r_i$. This means that $r_i$ is proportional to the
 direction where the Rayleigh-Quotient Function approximates better
-the smallest eigenpair; hence, it kind of makes sense to include such
+the smallest eigenpair; hence, it makes sense to include such
 direction when cooking the linear combinations that will approximate
-the desired eigenpair. The details of this algorithms are quite
+the eigenpair. The details of this algorithm are quite
 technical, but the brave reader can consult the original article from
 its creator Knyazev (\cite{knyazev01}). A more digested version
 appears on the PhD thesis of one of Knyazev's students (see
@@ -340,22 +350,22 @@ The reader may have noticed a little inconsistency; above we talked about
 the smallest eigenpair but was not the \gls{FiedlerVector} part of the
 second one instead? That is still the case, but \gls{LOBPCG} has a nice
 feature that allow us to focus on the smallest eigenpair indeed. When
-invoking the routine the user can pass a matrix $Y$ (called
+invoking the routine, the user can pass a matrix $Y$ (called
 constraints matrix) whose columns
 generate certain subspace; then the algorithm searches for the
 approximations only in the orthogonal subspace $\ortc{Y}$. This fits
 perfectly our problem, as we know that the first eigenvector of the
-\gls{Laplacian} is the vector $\vec{1}$; since we are dealing with a
+\gls{Laplacian} is the vector $\vec{1}$; and since we are dealing with a
 symmetric matrix we know that the rest of the eigenvectors (in
-particular the \gls{FiedlerVector}) are going to live inside
+particular the \gls{FiedlerVector}), are going to live inside
 $\ortc{\vec{1}}$. Thus, we set $Y = \vec{1}$ when calling the \gls{LOBPCG}
 routine; as that makes the search of the smallest eigenpair in
-$\ortc{\vec{1}}$ equivalent to the search of the second smallest on
+$\ortc{\vec{1}}$, equivalent to the search of the second smallest on
 the original space. \\
 
 Let us summarize now all the practical considerations taken when
-calling the \gls{LOBPCG} implementation (which were actually taken from the
-Python Package NetworkX):
+calling the \gls{LOBPCG} implementation (which were actually grabbed from the
+Python Package NetworkX \cite{networkx}):
 
 \begin{itemize}
 \item As mentioned, given we set the constraints matrix $Y = \vec{1}$,
@@ -366,9 +376,9 @@ Python Package NetworkX):
     our scope; but again,  the interested reader can consult \cite{knyazev01}
     or the more digested summary in \cite{lashuk07}.}. In practice, and for the
   data involved with our application, setting $T =
-  \dfrac{1}{\func{diag}(A)}$ worked pretty well (actually, this is
+  \dfrac{1}{\func{diag}(L)}$ worked pretty well (actually, this is
   perhaps the most important input parameter for our case; without
-  this preconditioner, \gls{LOBPCG} was even slower than Lanczos). 
+  this preconditioner, \gls{LOBPCG} was even slower than \gls{IRLM}). 
 \item Rather than slow convergence, the implementation showed
   numerical errors on \gls{ClusteredEigenvalues} (for some reason, the
   dense $3 \times 3$ matrix produced at each iteration eventually

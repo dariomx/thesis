@@ -6,7 +6,7 @@
 \subsection{Prefer Sparse Matrix Algorithms}
 
 This is perhaps the most obvious recommendation that comes out of this
-work; even if the data fits in memory (as it happens here), is a waste
+work: even if the data fits in memory (as it happens here), is a waste
 of CPU resources to compute against the zero values of the \gls{Laplacian}.
 
 \subsection{If dense, go with \gls{MRRR}}
@@ -22,13 +22,14 @@ is the applications' language). Alternatively, they can try the
 Java-Netlib opensource project \cite{jnetlib}; which offers Java
 wrappers against BLAS, LAPACK and other native libraries.
 
-\subsection{If development time is a constraint, consider Lanczos}
+\subsection{If development time is a constraint, consider Lanczos/\gls{IRLM}}
 
 If they can invest more time (probably some weeks), and assuming
 they are allowed to introduce more drastic changes like the usage of
 sparse matrices, then Lanczos/\gls{IRLM} is the way to go. Its ARPACK
 implementation is also opensource, and also readily available through
 the Java Netlib project. Of course the recommendation would be to use
+it in combination
 the \gls{Cholmod} linear solver, though that may add more time (in case JNI
 wrappers do not exist yet).
 
@@ -55,7 +56,7 @@ application already detects these cases, but it does so by using the
 byproducts of the eigenproblem it already solves. But if we want to
 leverage the more advanced sparse matrix algorithms, is better to use
 a more specialized method for detecting the disconnected graph; to
-be called before the eigensolvers. In
+be called before the eigensolver. In
 concrete, we propose the one documented in \cite{pearce05} (whose
 implementation performed good enough in our tests; offering sub-second
 times for the biggest matrices). 
@@ -67,32 +68,33 @@ times for the biggest matrices).
 As explained in previous chapters, for the sake of the sparse matrix
 algorithms we 
 could have used either CSR or CSC formats; but the need to compute the
-\gls{SCC} of the graph behind the \gls{Laplacian}, make us pick CSR
-format. If they are going with either Lanczos or \gls{LOBPCG}, this is the
-format we recommend to use. \\
+\gls{SCC} of the graph behind the \gls{Laplacian}, make us pick the CSR
+format (see \cref{sub:avoid-clust-eigv}). If they are going with
+either \gls{IRLM} or \gls{LOBPCG}, this is the format we recommend to use. \\
 
 The format may not come for free though; the application currently
 uses a serial version of the Colt library \cite{colt}, which does not
 seem to offer any sparse format. Thus, additional effort will be
 needed to research which libraries support CSR in Java. \\
 
-Let us recall that the sparse algorithms will not care if the caller uses
-CSR or not; as they do not require explicit representation of the
-matrix. However, while implementing the callback mechanisms that do
-compute on the \gls{Laplacian} (either $L\vec{x}$ or solving $L\vec{y} =
+Let us recall that the sparse matrix algorithms will not care if the caller uses
+CSR or not; as they do not require an explicit representation of the
+matrix. However, while implementing the callback mechanisms that 
+compute using the \gls{Laplacian} (either $L\vec{x}$ or solving $L\vec{y} =
 \vec{x}$), we should definitely use the sparse format; otherwise the
 promised gains will not show up.
 
 \subsection{Port of the algorithm for computing the \gls{SCC}}
 
 The algorithm used for efficiently computing the \gls{SCC}, along with the
-code to recalculate the weights matrix; is all in Python (probably
+code to recalculate the weights matrix (see
+\cref{sub:avoid-clust-eigv}); is all in Python (probably 
 using other underlying native libraries). Assuming we manage to make the CSR
 format available to Java, another task to include will be to look for
 a port of this algorithm (or to implement it using the article
 \cite{pearce05}). While this task may look non trivial, at least does
 not require deep knowledge of Numerical Analysis; which should make it
-at least tractable by regular programmers \footnote{We did not use the
+tractable by regular programmers \footnote{We did not use the
 word ``regular'' in a pejorative sense, of course; we just try to make
 the point that ``regularly'', programmers working in corporations do
 not know about Numerical Analysis but rather about more standard
@@ -102,24 +104,25 @@ Computer Science topics.}.
 
 Finally, we would like to dedicate a few lines about some challenges
 that were found during the elaboration of this 6 months thesis
-project.
+project (part time).
 
 \subsection{Numerical Linear Algebra is hard}
 
 For the non initiated, meaning students who have not taken advanced
-courses in Linear Algebra,  Numerical Linear Algebra and Numerical
+courses in Linear Algebra,  Numerical Linear Algebra or Numerical
 Analysis in general; is quite a challenge to grasp the algorithms
 explanations found in literature. There seems to be a tradition to
 assume that the reader has this immense background, as many details
 are omitted. Therefore, one needs to go back to more elementary
 material to try filling some of the gaps. This makes the overall
-progress a bit slow, and that is the reason why only 3 algorithms were
-presented (more on this below). \\
+progress a bit slow, and that is the reason why only three algorithms
+were presented (more on this below). \\
 
 We dared to embrace this topic, thinking naively that a previous
-course project would provide the required context; but this was
+course project (related to the SVD factorization), would provide
+the required context; but this was 
 true just partially. The specialization required to fully grasp the
-theory behind the 3 algorithms compared in this work, goes far beyond
+theory behind the three algorithms compared in this work, goes far beyond
 the context acquired during the last year (which includes the last
 Master's courses and the elaboration of this thesis). That is why we
 reduced the scope to understand only the main ideas, and to learn how
@@ -128,7 +131,7 @@ to use in practice the implementations.
 
 \subsection{There is a zoo of algorithms out there}
 
-The 3 algorithms compared in this thesis, definitely do not represent
+The three algorithms compared in this thesis, definitely do not represent
 the entire set of options available. Even if we restrict ourselves to
 the properties of the \gls{Laplacian}, and to serial execution; there are
 several more options that offer opensource implementations to
@@ -137,6 +140,7 @@ following is a partial list of additional options we also considered
 (meaning that we read a bit about the algorithms, that we installed
 the software and tried it at least once):
 
+\newpage
 \begin{itemize}
   \item TRACEMIN-fiedler: A parallel algorithm for computing the
     \gls{FiedlerVector} \cite{trminfiedler} \footnote{There is no
@@ -151,11 +155,11 @@ the software and tried it at least once):
   \item Lanczos/\gls{IRLM} from ARPACK, but using iterative linear solvers
     (like those reported in \cite{martinez16} \footnote{In practice we
   did not find an implementation for the preconditioners mentioned in
-  the article, but tried with PyAMG \cite{pyamg}}). 
+  the article \cite{martinez16}, but tried with PyAMG \cite{pyamg}}). 
 \end{itemize}
 
 All the options from the above list are quite interesting to explore, 
-along with solid publications about their theoretical
+along with the publications about their theoretical
 foundations. Except for the last one (for which we did not find an
 available implementation), the rest were tried indeed; but we just did
 not have enough time to research more about their inner workings, nor
