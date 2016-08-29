@@ -1,0 +1,23 @@
+ \begin{frame}
+  \frametitle{Conclusions}
+  \begin{block}{Recommendations}
+    \begin{itemize}
+    \item Prefer sparse algorithms (even if data fits in memory).
+    \item If forced to use dense-matrix alg., prefer MRRR (LAPACK / JNI).
+    \item Lanczos/ARPACK is available through Java Netlib.
+    \item If not urgent, worth it to port LOBPCG to Java (single vector).
+    \end{itemize}
+  \end{block}
+  \begin{block}{Additional considerations}
+    \begin{itemize}
+    \item Need to have efficient matrix representations (CSC/CSR) in Java.
+    \item Need to port to Java SCC Algorithm (CSR).
+    \end{itemize}
+  \end{block}
+  \begin{block}{Challenges found during thesis}
+    \begin{itemize}
+    \item Numerical Linear Algebra is usually a graduate topic. Hard to find accessible entry-point material.
+    \item Plenty of algorithms to explore (more time).
+    \end{itemize}
+  \end{block}  
+\end{frame}

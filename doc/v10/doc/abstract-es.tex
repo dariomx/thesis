@@ -1,0 +1,33 @@
+\thispagestyle{plain}
+\begin{center}
+  %\Large
+  %\textbf{Practical Computation of the Fiedler Vector in a Single Processor}
+
+  \vspace{0.4cm}
+
+  %\vspace{0.4cm}
+  %\textbf{Darío Bahena Tapia}
+
+  \vspace{0.9cm}
+  \textbf{Resumen}
+\end{center}
+
+    En el contexto de una aplicación de la vida real que usa Spectral, 
+    Clustering; el objetivo de esta tesis es emitir una recomendación
+    de algoritmo, para el cálculo eficiente del Fiedler Vector en un
+    solo procesador (requerimiento de la aplicación). Los algoritmos
+    considerados fueron MRRR, Lanczos/IRLM y LOBPCG; el primero está
+    diseñado para matrices densas, así que realmente no es un competidor;
+    pero fue incluido para efectos de comparación (dado que la aplicación
+    actualmente usa un procedimiento de ese tipo). Los algoritmos fueron
+    puestos a competir a través de una serie de pruebas en una
+    laptop estándar, usando matrices generadas del dominio de la aplicación. 
+    Aun con un solver lineal optimizado tipo Cholesky, la implementación
+    de Lanczos/IRLM más conocida (ARPACK) no pudo competir con LOBPCG,
+    quién se vuelve el claro  
+    ganador del experimento. Los resultados sugieren que para las matrices más
+    grandes consideradas (size $\approx$ 4500), los tiempos de cálculo
+    pueden moverse  
+    de la escala de minutos a sub-segundos; y a un par de segundos, si
+    agregamos el tiempo del pre-procesamiento para eliminar 
+    clustered eigenvalues.  

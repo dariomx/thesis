@@ -1,0 +1,29 @@
+ \begin{frame}
+  \frametitle{LOBPCG}
+  \begin{block}{Ancestor (dense eigensolver $2 \times 2$)}
+    Preconditioned Steepest Descent Algorithm applies Rayleigh-Ritz
+    against $\func{span} \{\vec{x}_i, T\vec{r}_i\}$
+    ($T$ is a preconditioner) $\suchthat$
+    \[
+    \joinabove{0}
+    \vec{r}_i = A\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i
+    \ds{\land}
+    \func{\rho}(\vec{x}) = \dfrac{\trans{\vec{x}}A\vec{x}}{\trans{\vec{x}}\vec{x}}
+    \joinbelow{0}
+    \]
+  \end{block}
+  \begin{block}{Main ideas (dense eigensolver $3 \times 3$)}
+    Uses subspace $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ to
+    accelerate convergence (in practice $x_{i} - \beta x_{i-1}$); Knyazev also
+    proved that $T$ must be SPD to guarantee convergence. His algorithm also features constraints $Y$ (search in $\ortc{Y}$).
+  \end{block}
+  \begin{block}{Practical considerations (NetworkX)}
+    \begin{itemize}
+    \item We set $k=1$ and $Y = \vec{1}$.
+    \item $T = \dfrac{1}{\func{diag}(A)}$ (SPD)
+    \item Numerical errors on clustered eigenvalues.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%  LocalWords:  Antecessor
