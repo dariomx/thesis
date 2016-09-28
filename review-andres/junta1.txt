@@ -1,0 +1,27 @@
+page13, comment1: one page at least.
+
+page13, emit -> give
+
+page13, expand objectives (steps)
+
+page13, merge motivation with scope
+
+page13, objective and outline are kinda similar
+
+refs between ()
+
+page13 motivation (includes scope) and then objectives
+
+page15, spec clust bg 2 pages additional to the min bipart ratiocut
+
+page16: avoid using semicolon (prefer comma o punto y seguido)
+
+page17: this means/..., suggested phrase insertion
+
+page19: el name et al only here (not in all refs), in general either number alone
+or with "et al"
+
+p19: address them as "eq. x and eq. y"... blah
+
+
+
