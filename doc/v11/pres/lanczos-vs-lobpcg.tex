@@ -1,0 +1,40 @@
+\begin{frame}
+  \frametitle{Lanczos vs LOBPCG}
+  \begin{table}
+    \begin{tabular}{l | c | c | }
+      Feature/Issue & Lanczos(IRLM) & LOBPCG (single) \\
+      \hline \hline
+      Need Restarting &
+      Yes, due $\Krylov{\inv{L}}{\vec{x}_0}{m}$ &
+      No, $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ \\
+      \hline
+      Search strategy &
+      Plain search &
+      $\nabla (\func{\rho}(\vec{x_i}))$ \\
+       &
+       &
+      $\suchthat \vec{r}_i = L\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i$\\
+      \hline
+      Search Constraints &
+      No &
+      Yes ($\ortc{Y} = \ortc{\vec{1}}$) \\
+      \hline
+      Requested spectra &
+      $k=2$ &
+      $k=1$ \\      
+      \hline
+      Matrix operation &
+      solve $L\vec{x} = \vec{b}$ &
+      $L\vec{x}$ \\
+      \hline      
+      Uses Preconditioning &
+      Only with iter solvers &
+      Yes $\left(T = \dfrac{1}{\func{diag}(L)} \right)$ \\
+      \hline
+      Clustered eigenvalues &
+      Inherited from PM &
+      Bug? \\      
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}

@@ -1,0 +1,46 @@
+\begin{frame}
+  \frametitle{The Laplacian and its Fiedler Vector}
+  \begin{block}{Approximate by removing discrete constraints (signs)}
+    \[
+\joinabove{0}
+\min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})
+\ds{\ds{\equiv}}
+\min\limits_{\vec{f} \in \R{n}}
+  \underbrace{
+    \left(\dfrac{\trans{\vec{f}} L \ds{\vec{f}}}{\trans{\vec{f}} \vec{f}}\right)
+  }_{\text{Rayleigh-Quotient}}    
+\ds{\suchthat}
+L = D - W
+\ds{\land}
+\vec{f} \bot \vec{1}
+\joinbelow{0}
+\]    
+  \end{block}
+  \begin{block}{Courant-Fischer Theorem (for $\lambda_2$ and $A$ real-symmetric)}
+\joinabove{0}
+\[
+\joinabove{0}
+\lambda_2(A) =
+\max\limits_{\func{dim}(U) = n-1}
+\left[
+\min\limits_{\vec{x} \in U \ds{\land} \norm{\vec{x}} \ne 0}
+\left(  
+\dfrac{\trans{\vec{x}} A \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+\right)
+\right]
+\]    
+  \end{block}
+
+  \begin{block}{Problem reduces to finding Fiedler Vector of $L$}
+\joinabove{0}
+\[
+\min\limits_{\vec{x} \bot \vec{1} \ds{\land} \norm{\vec{x}} \ne 0}
+\left(  
+\dfrac{\trans{\vec{x}} L \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+\right)
+= \lambda_2
+\suchthat{L\vec{x} = \lambda_2\vec{x}}
+\ds{\ds{\ds{\ds{\text{($L$ is SSPSD, leverage that!)}}}}}
+\]    
+  \end{block}
+\end{frame}
