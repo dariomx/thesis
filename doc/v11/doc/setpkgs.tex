@@ -27,3 +27,6 @@
 \makeglossaries
 \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
 }
+
+\let\oldcref\cref
+\renewcommand{\cref}[1]{(\oldcref{#1})}
