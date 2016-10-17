@@ -4,32 +4,32 @@
 \section{Spectral Clustering}
 
 It is convenient to set a little context, in order to appreciate
-better what is the operation that this thesis tries to optimize; for
+better what is the operation that this thesis tries to optimize. For
 this we enter a bit into the Spectral Clustering world. In such
 context the \gls{Laplacian} Matrix and its second smallest eigenvector
 \footnote{This is an abuse of the language of course, when
 we say the smallest or biggest eigenvector/eigenpair, we actually refer to
 the property of the associated eigenvalue.}
-(\gls{FiedlerVector}) will emerge; and it will become clearer why computing
+(\gls{FiedlerVector}) will emerge, and it will become clearer why computing
 an eigenvector can serve data clustering. The original merit of
 finding the value of the \gls{FiedlerVector} goes to Fiedler
-\cite{fiedler73}, considered the father of Algebraic Graph Theory; and
-the stuff we briefly discuss on this chapter could be considered part
-of one its branches, Spectral Graph Theory (\cite{brouwer12}). In
+\cite{fiedler73}, considered the father of Algebraic Graph Theory. 
+The stuff we briefly discuss on this chapter could be considered part
+of one its branches, Spectral Graph Theory \cite{brouwer12}. In
 practical terms, the material exposed here comes mainly from the
 standard introductory book to Spectral Clustering by Luxburg \cite{luxburg07},
-and from the excellent lecture that Prof. Gao gives about the topic on
+and from the excellent lecture that Gao gives about the topic on
 its Data Mining Course at the University of Buffalo \cite{gao13}.
 
 \subsection{Minimal Bi-Partitional RatioCut}
 
 If you are doing Data Clustering, you encode your applications' data
-into vectors $\vec{x} \in \R{n}$; but if you are aiming to do Spectral
+into vectors $\vec{x} \in \R{n}$, but if you are aiming to do Spectral
 Clustering you will also need to build an auxiliary graph. This is
 because in Spectral Clustering, the operation of computing clusters is
 reduced to that of computing graph partitions. To do that, you need to
 label your encoded data (vectors) as nodes in an undirected weighted graph $G =
-(V,W)$; where the edges between them will contain as weights the value 
+(V,W)$, where the edges between them will contain as weights the value 
 of a similarity function defined for the given problem. \\
 
 The work of this thesis lies around the basic operation of
@@ -38,7 +38,7 @@ disconnect the vertices set). This is to be done in such way that the
 \emph{cut} function $\left(\func{cut}(A,B) = \sum\limits_{\tiny{i \in A
     \ds{,} j \in B}} w_{ij}\right)$ is minimized. This will bring as result
 two partitions with quite similar nodes (according to the similarity
-function defined); and then, they could be thought as clusters. The
+function defined), and then, they could be thought as clusters. The
 following figure (adapted from \cite{gao13}) illustrates the
 operation:
 
@@ -49,14 +49,15 @@ operation:
   \includegraphics[width=10cm,height=5.5cm]{min-bip-cut-doc}
 \end{figure}
 
-The sky blue edges are the minimal \emph{cut} for this example; resulting
+The sky blue edges are the minimal \emph{cut} for this example. This results
 in two partitions $C_1$ and $\stcomp{C_1}$. While there is more than
 one way of formalizing this problem, we care about the one
-using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut Problem);
+using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut Problem),
 which favors the solutions which have partitions of roughly
-the same size: 
+the same size \cref{eq:min-bip-ratio-cut}.
 
-\begin{equation*}
+\begin{equation}
+  \label{eq:min-bip-ratio-cut}
   \min\limits_{\tiny{C_1 \ds{\subset} V}} \ds{}
   \underbrace{      
     \frac{1}{2}
@@ -67,41 +68,43 @@ the same size:
   }_{\func{RatioCut(C_1,\stcomp{C_1})}}
   \ds{\suchthat}
   \func{cut}(A,B) = \sum\limits_{\tiny{i \in A \ds{,} j \in B}} w_{ij}
-\end{equation*}
+\end{equation}
 \joinbelow{1cm}
 
 Asking for the partitions to have similar sizes, avoids the non
 interesting solutions which include singletons\footnote{That is,
-  solutions which include a partition with a single node.}; but it also  
-has the side effect of making the optimization problem NP-Hard (see
+  solutions which include a partition with a single node.}, but it also  
+makes the optimization problem NP-Hard (see
 \cite{wagner93}). This 
-is where Spectral Clustering comes to rescue us; by using Linear
+is where Spectral Clustering comes to rescue us, by using Linear
 Algebra techniques, it can approximate the solutions to the problem
 above.
 
 \subsection{The \gls{Laplacian} and its \gls{FiedlerVector}}
 The details can be consulted at \cite{luxburg07} or
-\cite{gao13}, but it turns out that if we define the (unnormalized)
+\cite{gao13}. But it turns out that if we define the (unnormalized)
 \gls{Laplacian} Matrix as $L = D - W$ (where $D$ is the diagonal containing
-the nodes' degrees and $W$ is the weights matrix of the graph); then
+the nodes' degrees and $W$ is the weights matrix of the graph), then
 the Minimal Bi-Partitional RatioCut Problem reduces to that of minimizing the
-Rayleigh-Quotient Function:
+Rayleigh-Quotient Function, see \cref{eq:ratio-cut-min-rayleigh-quo}.
 
-\begin{equation*}
-\min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})
-\ds{\ds{\equiv}}
-\min\limits_{\vec{f} \in \R{n}}
+\begin{equation}
+  \label{eq:ratio-cut-min-rayleigh-quo}
+  \min\limits_{C_1 \ds{\subset} V} \func{RatioCut}(C1,\stcomp{C1})
+  \ds{\ds{\equiv}}
+  \min\limits_{\vec{f} \in \R{n}}
   \underbrace{
     \left(\dfrac{\trans{\vec{f}} L \ds{\vec{f}}}{\trans{\vec{f}} \vec{f}}\right)
   }_{\text{Rayleigh-Quotient}}    
-\ds{\suchthat}
-\vec{f} \in \R{n} \ds{\land} \vec{f} \bot \vec{1}
-\end{equation*}
+  \ds{\suchthat}
+  \vec{f} \in \R{n} \ds{\land} \vec{f} \bot \vec{1}
+\end{equation}
 \joinbelow{1cm}
 
 The solution given by the vector $\vec{f}$ is an approximation, and it acts
-as an indicator function; each one of its cells represents one node in
-the graph, and its sign tells whether the associated node belongs to
+as an indicator function. This means that each one of its cells
+represents one node in the graph, and its sign tells whether the
+associated node belongs to 
 partition $C_1$ or its complement $\stcomp{C_1}$. The property of $f$
 being orthogonal to the vector $\vec{1}$, is a consequence of the
 \gls{Laplacian} matrix ($L$) properties. \\
@@ -109,31 +112,33 @@ being orthogonal to the vector $\vec{1}$, is a consequence of the
 The advantage of having formulated the problem in terms of the
 Rayleigh-Quotient function, allows us to use the immense arsenal that
 Linear Algebra has at our disposal. This step is usually skip in
-literature, but here we include a more explicit argument; the concrete
+literature, but here we include a more explicit argument. The concrete
 theorem that clearly gives a solution to the above problem is the
-Courant-Fischer Theorem (specialized for the case of the second
-smallest eigenvalue of a real-symmetric matrix $A$, see \cite{golub13}
-for its general formulation):
+Courant-Fischer Theorem. In \cref{eq:courant-fischer} we see an
+specialized version of such theorem, for the case of the second 
+smallest eigenvalue of a real-symmetric matrix $A$ (see \cite{golub13}
+for its general formulation).
 
-\begin{equation*}
-\lambda_2(A) =
-\max\limits_{\func{dim}(U) = n-1}
-\left[
-\min\limits_{\vec{x} \in U \ds{\land} \norm{\vec{x}} \ne 0}
-\left(  
-\dfrac{\trans{\vec{x}} A \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
-\right)
-\right]
-\end{equation*}
+\begin{equation}
+  \label{eq:courant-fischer}
+  \lambda_2(A) =
+  \max\limits_{\func{dim}(U) = n-1}
+  \left[
+    \min\limits_{\vec{x} \in U \ds{\land} \norm{\vec{x}} \ne 0}
+    \left(  
+    \dfrac{\trans{\vec{x}} A \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+    \right)
+    \right]
+\end{equation}
 \joinbelow{1cm}
 
 The above result basically tells us that, if we were able to navigate
-throughout all the subspaces of dimension $n-1$
+throughout all the subspaces of dimension $(n-1)$
 \footnote{Beware that the formulation of the theorem by Golub in
-  \cite{golub13}, may look different on the surface; because it
+  \cite{golub13}, may look different on the surface, because it
   mentions that the dimension of the subspaces is $k$ for $\lambda_k$. But
 this difference is just cosmetic, because Golub likes to sort the
-eigenvalues on descending order; contrary to our convention here
+eigenvalues on descending order, contrary to our convention here
 (ascending). Thus for him, $\lambda_2$ is actually
 the second biggest eigenvalue. Therefore, the dimension of the
 subspaces where we need to search is actually $k$, because $k$ happens
@@ -144,9 +149,10 @@ convention for eigenvalues).}
 dimension of the \gls{Laplacian} matrix), then we would know that the answer
 to our problem is the eigenvector associated to the second-smallest
 eigenvalue of the \gls{Laplacian} (called \gls{FiedlerVector}). The only obstacle
-in applying this mighty result, is the non practical task of iterating
-over an infinite number of subspaces; but the previously stated
-property $\vec{f} \bot \vec{1}$ makes the trick. We do not need to
+in applying this result, is the non practical task of iterating
+over an infinite number of subspaces, but the previously stated
+property of $\vec{f} \bot \vec{1}$ solves the problem (see
+\cite{luxburg07} for more details about this property). We do not need to
 explore all those subspaces, because we know where to look for: in
 $\ortc{1}$. This is because the \gls{Laplacian} is known to have $\vec{1}$ as first
 eigenvector, and by properties of symmetric matrices, the rest of the
@@ -156,27 +162,32 @@ orthogonal subspace to \vec{1}.
 \section{The Symmetric Eigenproblem}
 
 The previous sections showed that our Minimal Bi-Partitional RatioCut
-Problem can be reduced to minimize the Rayleigh-Quotient function;
+Problem can be reduced to minimize the Rayleigh-Quotient function,
 which in turn can be solved by computing the \gls{FiedlerVector} of the
 \gls{Laplacian} matrix (or in general, to that of computing the second
-eigenpair\footnote{By eigenpair we mean a certain eigenvalue and its associated eigenvector.}): 
+eigenpair\footnote{By eigenpair we mean a certain eigenvalue and its
+  associated eigenvector.}). Our restated problem appears in
+\cref{eq:min-rayleigh-quo-snd-eigpair}.
 
-\begin{equation*}
-\min\limits_{\vec{x} \bot \vec{1} \ds{\land} \norm{\vec{x}} \ne 0}
-\left(  
-\dfrac{\trans{\vec{x}} L \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
-\right)
-= \lambda_2
-\suchthat{L\vec{x} = \lambda_2\vec{x}}  
-\end{equation*}
+\begin{equation}
+  \label{eq:min-rayleigh-quo-snd-eigpair}.  
+  \min\limits_{\vec{x} \bot \vec{1} \ds{\land} \norm{\vec{x}} \ne 0}
+  \left(  
+  \dfrac{\trans{\vec{x}} L \ds{\vec{x}}}{\trans{\vec{x}} \vec{x}}
+  \right)
+  = \lambda_2
+  \suchthat{L\vec{x} = \lambda_2\vec{x}}  
+\end{equation}
 \joinbelow{1cm}
 
-This section provides minimal background theory about such new problem
-(Symmetric Eigenproblem); needed before moving on with the algorithm
-details of further chapters. Conscious that this fascinating branch of
+Before moving on with the algorithm
+details of further chapters, this section provides minimal background
+theory about such new problem (Symmetric Eigenproblem). Conscious
+that this fascinating branch of 
 Numerical Linear Algebra is huge, and that we can provide here just a
 little taste, we suggest the authoritative references of
-\cite{parlett80} and \cite{saad92} for a deeper dive. 
+\cite{parlett80}, \cite{saad92}, \cite{cullum02} or \cite{bai00} for a
+deeper dive. 
 
 \subsection{The Spectral Theorem}
 
@@ -185,22 +196,23 @@ we should ask ourselves is when it has a solution. For symmetric
 matrices like the \gls{Laplacian}, this question has a definite answer given
 by the Spectral Theorem (symmetric version):
 
-\begin{theorem*}
+\begin{theorem}[Spectral Theorem]
+\label{the:spec-theorem}
 If $A$ is a real symmetric matrix $\implies$ there exists a real orthogonal matrix $Q$ such that $\trans{Q}AQ$ is diagonal. 
-\end{theorem*}
+\end{theorem}
 \joinbelow{1cm}
 
-In the context of above statement, matrix $Q$ contains the
+In the context of \cref{the:spec-theorem}, matrix $Q$ contains the
 eigenvectors and matrix $\trans{Q}AQ$ contains the eigenvalues on its
 diagonal. There are several proofs of the above theorem, but the one we
-recommend for its originality and amusement is \cite{wilf81}.
+recommend for its originality is by Wilf \cite{wilf81}.
 
 \subsection{Numerical Considerations}
 
-Having the guarantee of a theoretical solution, does not imply that we
+Having the guarantee of a theoretical solution does not imply that we
 can approximate it numerically without problems. Numerical Analysis,
 and in particular Linear Numerical 
-Algebra, are immense fields; and the amount of context required to grasp
+Algebra, are immense fields, and the amount of context required to grasp
 their theory is usually abundant. But here we just briefly focus on a couple of
 aspects that are the bare minimum required, before moving on to the more
 practical chapters: we are talking about conditioning and numerical
@@ -210,34 +222,34 @@ stability. The information mentioned below was taken from
 \subsubsection{Conditioning}
 Regardless of the algorithm that we employ to solve the Symmetric
 Eigenproblem, is worth to note that the problem itself has a property
-called conditioning; which in essence aims to measure whether small
+called conditioning. In essence, it aims to measure whether small
 perturbations on the input will produce small or big perturbations on the
 answer (problems are called ill-conditioned if the answer perturbation
-is big, and well-conditioned otherwise). For our problem here we need
-to split in two subproblems: 
-that of computing eigenvalues and that of computing eigenvectors \footnote{We
+is big, and well-conditioned otherwise). For our problem there are two subproblems:
+computing eigenvalues and computing eigenvectors \footnote{We
 just need the eigenvector, but software routines typically compute both the
-eigenvalue and the eigenvector; which we call an eigenpair.}. The
-following formulas summarize the conditioning of both subproblems:
+eigenvalue and the eigenvector, which we call an eigenpair.}. The
+\cref{eq:cond-eigprob} summarizes the conditioning of both subproblems.
 
-\begin{equation*}
-    \kappa_{i}(A) = \dfrac{\abs{\lambda_{max}}}{\abs{\lambda_i}}
-    \ds{\ds{\land}}
-    \Delta \vec{v}_i \approx \sum\limits_{\tiny{i \ne j}}
-    \dfrac{\trans{\vec{v}_j} A \vec{v}_i}{\lambda_i - \lambda_j}  
-\end{equation*}
+\begin{equation}
+  \label{eq:cond-eigprob}
+  \kappa_{i}(A) = \dfrac{\abs{\lambda_{max}}}{\abs{\lambda_i}}
+  \ds{\ds{\land}}
+  \Delta \vec{v}_i \approx \sum\limits_{\tiny{i \ne j}}
+  \dfrac{\trans{\vec{v}_j} A \vec{v}_i}{\lambda_i - \lambda_j}  
+\end{equation}
 \joinbelow{1cm}
 
 The above statements basically say that for eigenvalues, we only face
-trouble if we target quite small ones; which is not the case for the
+trouble if we target quite small ones, which is not the case for the
 particular application we care about. But above also says that
-eigenvectors could be ill-conditioned even if eigenvalues are not;
+eigenvectors could be ill-conditioned even if eigenvalues are not,
 which happens when these are clustered (quite close to each
 other, and from now on referred as \gls{ClusteredEigenvalues}). This
 is a situation we faced in practice for this project, but 
 later chapters will mention the workaround that we found for this
 scenario (plus the actual, more practical reasons, that we had to avoid
-it; the details are in \cref{sub:avoid-clust-eigv}). 
+it, the details are in \cref{sub:avoid-clust-eigv}). 
 
 \subsubsection{Numerical Stability}
 
@@ -251,26 +263,26 @@ flavor of stability means
 in essence, that the algorithms compute the exact answer of a very
 close problem (in our case $L + \Delta L$). Backward stable algorithms are 
 nice, in the sense that they do not add a significant error to the
-answer; thus, they allow us to focus only on the
+answer. Thus, they allow us to focus only on the
 the perturbations given by the problem conditioning. In our concrete
 case of the Symmetric Eigenproblem, and the type of matrices our
 application produces, this would reduce to avoiding
 \gls{ClusteredEigenvalues}. \\
 
 When we initiated this thesis, we thought that it was a custom to have
-formal proofs regarding the overall numerical stability of algorithms;
+formal proofs regarding the overall numerical stability of algorithms,
 in particular for the case  of eigensolvers. But for the concrete
 algorithms we selected and experimented with, only \gls{MRRR} has some
 references to formal proofs about the numerical stability (and not
 precisely for the overall algorithm, but for some portions of the
 calculations \footnote{Which ultimately makes sense, as the numerical
-software is quite complex; built from a lot of subroutines and
+software is quite complex, built from a lot of subroutines and
 layers. In general, it should be easier to discuss numerical stability
-at a more granular level, rather than for the whole algorithm.}; see
+at a more granular level, rather than for the whole algorithm.}, see
 \cite{dhillon06}). \\   
 
 Above does not mean that \gls{IRLM} or \gls{LOBPCG} do not consider
-stability at all; the literature (see \cite{arpack} and
+stability at all, the literature (see \cite{arpack} and
 \cite{knyazev01}) does indeed mention concerns, precautions and 
 a general focus on achieving this property. Furthermore, all that
 work is reflected on the good quality of the results produced (when
@@ -278,10 +290,10 @@ comparing against \gls{MRRR}, the gold standard in accuracy). Is just
 that, the expectation of finding an explicit proof for the whole
 algorithm's stability, does not seem to be a
 common practice by Numerical Analysts. We contacted Knyazev
-himself, in order to ask about any proof of \gls{LOBPCG}; and he
+himself, in order to ask about any proof of \gls{LOBPCG}, and he
 kindly explained that this expectation of the proof was too
 high. Therefore, we are happy with claiming that
-\gls{IRLM} and \gls{LOBPCG} are stable in a ``practical sense'';
+\gls{IRLM} and \gls{LOBPCG} are stable in a ``practical sense'',
 and that the reputation of their authors, along with the good results
 seen in experiments, are enough for us to trust them.
 
