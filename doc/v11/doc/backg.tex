@@ -21,7 +21,7 @@ standard introductory book to Spectral Clustering by Luxburg \cite{luxburg07},
 and from the excellent lecture that Gao gives about the topic on
 its Data Mining Course at the University of Buffalo \cite{gao13}.
 
-\subsection{Minimal Bi-Partitional RatioCut}
+\subsection{Similarity Graphs}
 
 If you are doing Data Clustering, you encode your applications' data
 into vectors $\vec{x} \in \R{n}$, but if you are aiming to do Spectral
@@ -30,10 +30,48 @@ because in Spectral Clustering, the operation of computing clusters is
 reduced to that of computing graph partitions. To do that, you need to
 label your encoded data (vectors) as nodes in an undirected weighted graph $G =
 (V,W)$, where the edges between them will contain as weights the value 
-of a similarity function defined for the given problem. \\
+of a similarity function defined for the given problem. This graph is
+known as the \emph{Similarity Graph}. \\
+
+Besides the similarity function, which determines the weights on the
+graph, there are other sources of variation in the we de connect the
+nodes. Below some of the most popular constructions used in Spectral
+Clustering (see \cite{luxburg07}). \\
+
+\begin{itemize}
+  \item The $\epsilon-$neighborhood graph: In this graph we connect a
+    couple of nodes $x$ and $y$ only if the value of the similarity
+    function is smaller than certain ratio called $\epsilon$. As the
+    resulting edges will have values of roughly the same scale, there
+    is not much additional information in leaving the weights in this
+    graph. \\
+  \item The $k-$nearest neighbor graph: In this case a pair of
+    vertices $x$ and $y$ will be connected, only if $y$ is among the
+    $k-$nearest neighbors of $x$. This construction leads to a
+    directed graph, but there are ways to transform it further into an
+    undirected one (eg simply ignoring the direction of the edges, or
+    consider mutual neighborhood). \\
+  \item The fully connected graph: Here the only requirement for
+    connecting a couple of vertices $x$ and $y$ is that their
+    similarity function gives a positive value. This type of
+    construction usually requires a more sophisticated similarity
+    function than a mere euclidean distance, one that does consider
+    the local neighborhood of the underlying data. Otherwise, the
+    resulting graph will be fully connected and it will become
+    difficult to extract clusters from there. 
+\end{itemize}
+\joinbelow{1cm}
+
+In the case of this thesis project, the similarity graph was already
+given as input data; therefore, we did not need to deal with the
+question of what particular technique to use for its construction. The
+details of the similarity function and the graph itself, can not be
+disclosed here due patents involved.
+
+\subsection{Minimal Bi-Partitional RatioCut}
 
 The work of this thesis lies around the basic operation of
-bi-partitioning such graph (removing certain edges such that we
+bi-partitioning the similarity graph (removing certain edges such that we
 disconnect the vertices set). This is to be done in such way that the
 \emph{cut} function $\left(\func{cut}(A,B) = \sum\limits_{\tiny{i \in A
     \ds{,} j \in B}} w_{ij}\right)$ is minimized. This will bring as result
@@ -186,8 +224,8 @@ theory about such new problem (Symmetric Eigenproblem). Conscious
 that this fascinating branch of 
 Numerical Linear Algebra is huge, and that we can provide here just a
 little taste, we suggest the authoritative references of
-\cite{parlett80}, \cite{saad92}, \cite{cullum02} or \cite{bai00} for a
-deeper dive. 
+\cite{parlett80}, \cite{saad92}, \cite{cullum02}, \cite{demmel97} or
+\cite{bai00} for a deeper dive. 
 
 \subsection{The Spectral Theorem}
 
@@ -229,18 +267,34 @@ is big, and well-conditioned otherwise). For our problem there are two subproble
 computing eigenvalues and computing eigenvectors \footnote{We
 just need the eigenvector, but software routines typically compute both the
 eigenvalue and the eigenvector, which we call an eigenpair.}. The
-\cref{eq:cond-eigprob} summarizes the conditioning of both subproblems.
+\cref{eq:cond-eigval} and \cref{eq:cond-eigvec} summarize the
+conditioning of both subproblems (respectively).
 
 \begin{equation}
-  \label{eq:cond-eigprob}
+  \label{eq:cond-eigval}
   \kappa_{i}(A) = \dfrac{\abs{\lambda_{max}}}{\abs{\lambda_i}}
-  \ds{\ds{\land}}
+\end{equation}
+
+\begin{equation}
+  \label{eq:cond-eigvec}
   \Delta \vec{v}_i \approx \sum\limits_{\tiny{i \ne j}}
-  \dfrac{\trans{\vec{v}_j} A \vec{v}_i}{\lambda_i - \lambda_j}  
+  \dfrac{\trans{\vec{v}_j} \Delta A \vec{v}_i}{\lambda_i - \lambda_j}  
 \end{equation}
 \joinbelow{1cm}
 
-The above statements basically say that for eigenvalues, we only face
+The \cref{eq:cond-eigval} defines the condition number fo each
+eigenvalue $\lambda_j$ , and we can see that is a ratio between the maximum
+eigenvalue and the one in question. This means that the closer we get
+to the maximum (in magnitude), the smallest (better) our condition number will be. On
+the other hand, \cref{eq:cond-eigval} describes the perturbation of an
+eigenvector $\vec{v}_i$ of $A$ regarding an small perturbation on the
+matrix $A$ (called $\Delta A$). We can observe that the perturbation of
+$\vec{v}_i$ has a 
+contribution from every eigenpair, and the critical part is the
+denominator. The closer the eigenvalues are, the bigger the
+perturbation will be. \\
+
+The above paragraph basically says that for eigenvalues, we only face
 trouble if we target quite small ones, which is not the case for the
 particular application we care about. But above also says that
 eigenvectors could be ill-conditioned even if eigenvalues are not,
@@ -258,8 +312,20 @@ short it tells how much additional ``numerical noise'' the computation
 adds to the solution (in addition to the perturbation inherent to the
 problem conditioning). There is more than one definition of what it
 means to be numerically stable, but a particularly useful one in Numerical
-Linear Algebra is Backward Numerical Stability (see \cite{bindel09}). This
-flavor of stability means
+Linear Algebra is Backward Numerical Stability. The
+\cref{def:backw-stab} is taken from \cite{demmel97}. 
+
+\begin{definition}{Backward Numerical Stability}
+  \label{def:backw-stab}
+  If $\func{alg}(\vec{x})$ is our algorithm for computing $\func{f}(\vec{x})$,
+  including the effects of roundoff, we call $\func{alg}(\vec{x})$ a
+  \emph{backward stable algorithm} for $\func{f}(\vec{x})$ if for all
+  $\vec{x}$ there is a ``small'' $\Delta x$ such that $\func{alg}(x) =
+  \func{f}(\vec{x} + \Delta \vec{x})$. $\Delta x$ is called the
+  \emph{backward error}.
+\end{definition}
+
+Backward stability means
 in essence, that the algorithms compute the exact answer of a very
 close problem (in our case $L + \Delta L$). Backward stable algorithms are 
 nice, in the sense that they do not add a significant error to the
@@ -269,7 +335,7 @@ case of the Symmetric Eigenproblem, and the type of matrices our
 application produces, this would reduce to avoiding
 \gls{ClusteredEigenvalues}. \\
 
-When we initiated this thesis, we thought that it was a custom to have
+When we started this thesis, we thought that it was custom to have
 formal proofs regarding the overall numerical stability of algorithms,
 in particular for the case  of eigensolvers. But for the concrete
 algorithms we selected and experimented with, only \gls{MRRR} has some
@@ -282,15 +348,15 @@ at a more granular level, rather than for the whole algorithm.}, see
 \cite{dhillon06}). \\   
 
 Above does not mean that \gls{IRLM} or \gls{LOBPCG} do not consider
-stability at all, the literature (see \cite{arpack} and
+stability at all. The literature (see \cite{arpack} and
 \cite{knyazev01}) does indeed mention concerns, precautions and 
 a general focus on achieving this property. Furthermore, all that
 work is reflected on the good quality of the results produced (when
-comparing against \gls{MRRR}, the gold standard in accuracy). Is just
+comparing against \gls{MRRR}, the gold standard in accuracy). It is just
 that, the expectation of finding an explicit proof for the whole
 algorithm's stability, does not seem to be a
 common practice by Numerical Analysts. We contacted Knyazev
-himself, in order to ask about any proof of \gls{LOBPCG}, and he
+himself, in order to ask about any proof of \gls{LOBPCG}. He
 kindly explained that this expectation of the proof was too
 high. Therefore, we are happy with claiming that
 \gls{IRLM} and \gls{LOBPCG} are stable in a ``practical sense'',

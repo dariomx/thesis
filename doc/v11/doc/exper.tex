@@ -5,20 +5,49 @@
 
 \subsection{Hardware}
 
-All the tests were conducted on a laptop with a commodity processor
-(Intel\textregistered Core\texttrademark $\,i5$ at $2.40$GHz). In
-order to enforce serial execution, in case low level libraries attempted multi-threading \footnote{We are talking about BLAS 
-  or LAPACK; as the high level algorithms used were serial.}, we used
-the Linux  
-\emph{taskset} command. The laptop has $8$Gb of RAM, but no more than 512Mb
-were used on each experiment (and only for dense matrix algorithms;
-sparse ones used much less). \\
+All the tests were conducted on a laptop with hardware and utilities
+described in table \cref{tab:hardware}.
+
+\begin{table}[h]  
+  \caption{Hardware used on the experiment}\label{tab:hardware}
+  \begin{tabular}{| p{5cm} | p{10cm} |}
+    \hline
+    \emph{Processor} &
+    Intel\textregistered Core\texttrademark $\,i5$ at $2.40$GHz (
+    nowadays considered a commodity processor). \\
+    \hline
+    \emph{Serial execution enforcement} &
+    The Linux \emph{taskset} command (
+    needed in case low level libraries attempted
+    multi-threading \footnote{We are talking about BLAS 
+      or LAPACK, as the high level algorithms used were serial.}). \\
+    \hline
+    \emph{Memory} & $8$Gb of RAM  (no more than 512Mb
+were used on each experiment and only for dense matrix algorithms \footnote{Sparse ones used much less}). \\  
+    \hline
+  \end{tabular}
+\end{table}
 
 \subsection{Software}
 
 The implementations of the algorithms we used, were basically Python
-wrappers against native libraries. These packages were SciPy
-\cite{scipy} and NetworkX \cite{networkx}. On the other hand, the
+wrappers against native libraries. This is a common pattern found in
+scientific computing, and it tries to combine the best of two worlds: \\
+
+\begin{itemize}
+  \item On one side the high efficiency and quality of established native
+    libraries made in C or Fortran. \\
+  \item On the other side, the high flexibility and productivity of an
+    scripting language like Python.
+\end{itemize}
+
+The mechanism is basically to use the native interface of the high
+level language (Python in this case), and to bind high level APIs to
+the low level libraries. This approach should be familiar to the users
+of Matlab. \\
+
+The high level Python packages were SciPy \cite{scipy} and NetworkX
+\cite{networkx}. On the other hand, the 
 native libraries actually offering the algorithm implementations were:
 
 \begin{itemize}
@@ -40,7 +69,7 @@ native libraries actually offering the algorithm implementations were:
 \end{itemize}
 
 As it can be perceived, all the algorithm implementations ultimately
-rely on LAPACK; and this in turn, relies on BLAS \cite{blas}. All
+rely on LAPACK, and this in turn, relies on BLAS \cite{blas}. All
 those libraries were installed on the laptop, of course. The
 \gls{SCC} algorithm mentioned in \cref{sub:avoid-clust-eigv} is
 also offered by the Scipy package 
@@ -49,12 +78,12 @@ also offered by the Scipy package
 least, same SciPy also provides the sparse formats we tested (CSR and CSC). \\
 
 Overall, Scipy makes quite accessible a lot of scientific
-software; it feels like a new generation MATLAB that is becoming more
+software, it feels like a new generation MATLAB that is becoming more
 and more popular \footnote{A new competitor entered the arena
-  recently, the Julia Programming Language (see \cite{julia}); which
+  recently, the Julia Programming Language (see \cite{julia}), which
   was specifically
   designed for scientific computing. We tried this language as well,
-  for some of the experiments; but ended up preferring the maturity
+  for some of the experiments, but ended up preferring the maturity
   and wider repertoire of the Python + SciPy combo.}. Another merit of Scipy,
 is that its performance is quite close to that of native code (we
 also tested calling the libraries, like ARPACK, from low level C
@@ -72,7 +101,7 @@ problem. \\
 \subsection{Sparse formats}
 Two sparse matrix formats were tested with \gls{IRLM} and
 \gls{LOBPCG} 
-algorithms; namely the Compressed Sparse Row (CSR) and Compressed
+algorithms. Namely the Compressed Sparse Row (CSR) and Compressed
 Sparse Column (CSC) formats. For an overview of these and related
 formats, in the actual context where we experimented with them, the
 reader can consult \cite{johansson15}. While both formats showed
@@ -84,31 +113,31 @@ format to use with the \gls{ClusteredEigenvalues} removal pre-processing (see
 \label{sub:avoid-clust-eigv}
 
 As we mentioned on previous chapter, \gls{ClusteredEigenvalues} were a
-headache for both \gls{IRLM} and \gls{LOBPCG}; so we needed to do something
+headache for both \gls{IRLM} and \gls{LOBPCG}. Thus, we needed to do something
 about them. By researching deeper why they were occurring, we found
 that graphs behind the \gls{Laplacian}s produced by the
-application, presented a common pattern: a disconnected graph with an
+application, presented a common pattern: A disconnected graph with an
 small component (2-3 nodes), and a big component (the rest of the
 nodes). \\
 
 The theory says that for a disconnected graph of two components, the
 first and second eigenvalues of the \gls{Laplacian} will be zero (see
 \cite{luxburg07}). In practice, what you get instead are two very
-small numbers; and that is an extreme case of clustered
-eigenvalues. They are very close to each other, because both try to
+small numbersm, and that is an extreme case of clustered
+eigenvalues. Meaning, they are very close to each other, because both try to
 approximate zero. \\
 
 The solution for this issue was to simply remove the already
-disconnected small component; this makes sense given that ultimately,
+disconnected small component. This makes sense given that ultimately,
 the high level operation we want to perform on the graph is a
 bi-partition (thus, expectation is that the graph is connected). The
-caveat was to compute the Strongly Connected Components (\gls{SCC}) and the
+caveat was to compute the Strongly Connected Components (\gls{SCC}), and the
 new weights matrix quite efficiently, such that this pre-processing
 did not become a performance penalty. The \gls{SCC} computation can be done
-efficiently (sub-second) with algorithm documented in \cite{pearce05},
-for which we did not dig its internals but just used the
+efficiently (sub-second) with algorithm documented in \cite{pearce05}.
+For which we did not dig its internals but just used the
 implementation available in SciPy. This  
-algorithm/implementation actually, is the reason why we prefer CSR
+algorithm/implementation is actually the reason why we prefer CSR
 format over CSC (if the weights matrix is not passed in CSR format,
 the routine takes much more time). \\
 
@@ -141,16 +170,23 @@ def split_cc_sparse2(W, cclab):
     \end{lstlisting}
     \joinbelow{1cm}
     
-The snippet above works as follows: the argument
-\emph{cclab} contains the node labels for the components, namely $0$ and $1$,
-for the big and small components respectively. Our goal is to
-eliminate the nodes with 
-label $1$ from the weights matrix $W$. For that, that lines $2-8$
-begin by shrinking the index and data arrays (after removal of unwanted
-columns/rows); then lines $9-10$ eliminate the potential gaps on the
-indices and finally lines $11-12$ truncate the $W$ matrix to the new
-size. The key idea is to do all the operations in terms of the NumPy
-\cite{numpy} array primitives, which are quite efficient. \\
+The snippet above works as follows: \\
+
+\begin{itemize}
+  \item The argument \emph{cclab} contains the node labels for the
+    components, namely $0$ and $1$, for the big and small components
+    respectively. \\
+  \item  Our goal is to eliminate the nodes with label $1$ from the
+    weights matrix $W$. For that, that lines $2-8$ begin by shrinking
+    the index and data arrays (after removal of unwanted
+    columns/rows). \\
+  \item The lines $9-10$ eliminate the potential gaps on the
+    indices. \\
+  \item Finally lines $11-12$ truncate the $W$ matrix to the new
+    size. \\
+  \item The key idea is to do all the operations above in terms of the
+    NumPy \cite{numpy} array primitives, which are quite efficient. \\
+\end{itemize}
 
 The overall pre-processing to eliminate the \gls{ClusteredEigenvalues} 
 showed an average time of $1.2$ secs for the biggest
@@ -158,19 +194,19 @@ matrices, this includes: the \gls{SCC} computation, the routine above
 to calculate new weights matrix, its conversion from COO
 to CSR format and the recalculation of the \gls{Laplacian}. \\
 
-There is an alternate approach (at least for \gls{LOBPCG}), that we
-did not explore but that is worth mentioning (as it comes from Knyazev
+There is an alternate approach (at least for \gls{LOBPCG}) not
+explored, that is worth mentioning (as it comes from Knyazev 
 himself, the creator of \gls{LOBPCG}). Rather tha pre-processing the
 graphs to remove the disconnected component, one could simply
 increase the $k$ (see \cref{sub:lobpcg}) to something not less than
 the size of the eigenvalues cluster (which  
 seems 2 or 3 for our application). It will be interesting to 
 explore that option, and see how it compares in execution time
-with our current approach. Actually, a comment by Strang in
-\cite{strang88} (when talking about the convergence of the ``Block
+with our current approach. Actually, a comment, by Strang 
+\cite{strang88} (When talking about the convergence of the ``Block
 Power Method'' \footnote{A version of the Power Method that can
   approximate several eigenvectors.}), suggests that this may
-also help \gls{IRLM};this is 
+also help \gls{IRLM}. This is 
 just a quick thought, further research will be needed to confirm
 it. We did not have time to explore these ideas, but they could be part of
 a follow up of this thesis.
@@ -179,14 +215,14 @@ a follow up of this thesis.
 
 The \gls{Cholmod} linear solver (\cite{cholmod08},
   \cite{cholmod08a}) mentioned on \cref{sub:irlm}, requires
-that the matrix is Symmetric Positive Definite; and the \gls{Laplacian} is
-not (it is symmetric, but has
+that the matrix is Symmetric Positive Definite. However, the
+\gls{Laplacian} is not (It is symmetric, but has 
 one zero eigenvalue). Doing a little shift on the eigenvalues ($L +
 0.01I$), makes the \gls{Laplacian} Positive-Definite as required. At the
 end of the algorithm execution, we can just subtract the same shift from
-the obtained eigenvalue to get the actual answer (which is not really
-that relevant, as we mostly want the eigenvector; the eigenvalues are
-just side products that the algorithms also produce). 
+the obtained eigenvalue to get the actual answer, which is not really
+that relevant, as we mostly want the eigenvector. The eigenvalues are
+just side products that the algorithms also produces. 
 
 \section{Results}
 
@@ -283,8 +319,9 @@ this section will detail each point.
 
 \begin{table}[h]  
   \caption{Lanczos(IRLM) vs LOBPCG}\label{tab:lanczos-vs-lobpcg}
-  \begin{tabular}{l | c | c | }
-    Feature/Issue & Lanczos(IRLM) & LOBPCG (single) \\
+  \begin{tabular}{| l | c | c | }
+    \hline
+    \emph{Feature/Issue} & \emph{Lanczos(IRLM)} & \emph{LOBPCG (single)} \\
     \hline \hline
     Need Restarting &
     Yes, due $\Krylov{\inv{L}}{\vec{x}_0}{m}$ &
