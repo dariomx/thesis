@@ -81,9 +81,9 @@ following figure (adapted from \cite{gao13}) illustrates the
 operation:
 
 \begin{figure}[H]
-  \label{min-bip-cut}
   \centering
-  \caption{Minimal Bi-Partitional RatioCut}  
+  \caption{Minimal Bi-Partitional RatioCut}
+  \label{fig:min-bip-cut}  
   \includegraphics[width=10cm,height=5.5cm]{min-bip-cut-doc}
 \end{figure}
 
@@ -118,7 +118,7 @@ is where Spectral Clustering comes to rescue us, by using Linear
 Algebra techniques, it can approximate the solutions to the problem
 above.
 
-\subsection{The \gls{Laplacian} and its \gls{FiedlerVector}}
+\subsection{The \gls{Laplacian} and its \gls{FiedlerVector}}\label{sub:lap-fvec}
 The details can be consulted at \cite{luxburg07} or
 \cite{gao13}. But it turns out that if we define the (unnormalized)
 \gls{Laplacian} Matrix as $L = D - W$ (where $D$ is the diagonal containing
