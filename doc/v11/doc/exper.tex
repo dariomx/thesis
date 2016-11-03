@@ -197,7 +197,7 @@ to CSR format and the recalculation of the \gls{Laplacian}. \\
 
 There is an alternate approach for \gls{LOBPCG}, that we did not
 explore, but that is worth mentioning (as it comes from Knyazev 
-himself, the creator of \gls{LOBPCG}). Rather tha pre-processing the
+himself, the creator of \gls{LOBPCG}). Rather than pre-processing the
 graphs to remove the disconnected component, one could simply
 increase the $k$ (see \cref{sub:lobpcg}) to something not less than
 the size of the eigenvalues cluster (which  
@@ -414,7 +414,7 @@ sense to include such direction. This was mentioned already in
 
 \gls{LOBPCG} can focus on searching for the smallest eigenpair, while
 \gls{IRLM} needs to compute the first and the 
-second (because \gls{IRLM} is designed for computing ``continous''
+second (because \gls{IRLM} is designed for computing ``continuous''
 sections of the spectra, eg the $k$ smallest ones, see
 \cite{arpack}). Let us recall that 
 \gls{LOBPCG} routine, see \cref{sub:lobpcg}, allows the user to pass a
@@ -446,7 +446,7 @@ shift-invert mode: To solve the linear system $L\vec{x} =
 \vec{b}$. Even with an state of the art solver based on the Cholesky
 Factorization (\cite{cholmod08}, \cite{cholmod08a}), and even if
 the factorization is performed just once for all the \gls{IRLM}
-iterations, the time spent there is big enough to accomodate several
+iterations, the time spent there is big enough to accommodate several
 complete executions of \gls{LOBPCG}. As an example, for the biggest
 matrix of $4497$ entries the algorithm \gls{LOBPCG} finished in
 sub-second scale while the \gls{IRLM} computed the factorization in
