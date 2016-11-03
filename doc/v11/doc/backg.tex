@@ -10,33 +10,38 @@ context the \gls{Laplacian} Matrix and its second smallest eigenvector
 \footnote{This is an abuse of the language of course, when
 we say the smallest or biggest eigenvector/eigenpair, we actually refer to
 the property of the associated eigenvalue.}
-(\gls{FiedlerVector}) will emerge, and it will become clearer why computing
-an eigenvector can serve data clustering. The original merit of
+will emerge, and it will become clearer why computing
+an eigenvector can serve Data Clustering. The original merit of
 finding the value of the \gls{FiedlerVector} goes to Fiedler
-\cite{fiedler73}, considered the father of Algebraic Graph Theory. 
+\cite{fiedler73}, considered the father of Algebraic Graph Theory. But
+the further developments brought by Hagen et al \cite{hagen92} and
+Shi et al \cite{shi00}, are closer to the usage seen in our target
+application. \\
+
 The stuff we briefly discuss on this chapter could be considered part
-of one its branches, Spectral Graph Theory \cite{brouwer12}. In
+of the more theoretical area of Spectral Graph Theory
+\cite{brouwer12}. But in more
 practical terms, the material exposed here comes mainly from the
-standard introductory book to Spectral Clustering by Luxburg \cite{luxburg07},
+standard introductory tutorial to Spectral Clustering by Luxburg \cite{luxburg07},
 and from the excellent lecture that Gao gives about the topic on
 its Data Mining Course at the University of Buffalo \cite{gao13}.
 
-\subsection{Similarity Graphs}
+\subsection{Similarity Graphs}\label{sub:sim-graphs}
 
-If you are doing Data Clustering, you encode your applications' data
-into vectors $\vec{x} \in \R{n}$, but if you are aiming to do Spectral
-Clustering you will also need to build an auxiliary graph. This is
+If one is doing Data Clustering, one encodes the applications' data
+into vectors $\vec{x} \in \R{n}$, but if one is aiming to do Spectral
+Clustering we will also need to build an auxiliary graph. This is
 because in Spectral Clustering, the operation of computing clusters is
-reduced to that of computing graph partitions. To do that, you need to
-label your encoded data (vectors) as nodes in an undirected weighted graph $G =
-(V,W)$, where the edges between them will contain as weights the value 
-of a similarity function defined for the given problem. This graph is
+reduced to that of computing graph partitions. To do that, we need to
+label our encoded data (vectors) as nodes in an undirected weighted graph $G =
+(V,W)$, where the edges' weights will be given by 
+a similarity function defined for the problem. This graph is
 known as the \emph{Similarity Graph}. \\
 
 Besides the similarity function, which determines the weights on the
-graph, there are other sources of variation in the we de connect the
+graph, there are other sources of variation in the way we connect the
 nodes. Below some of the most popular constructions used in Spectral
-Clustering (see \cite{luxburg07}). \\
+Clustering, taken from \cite{luxburg07}. \\
 
 \begin{itemize}
   \item The $\epsilon-$neighborhood graph: In this graph we connect a
@@ -48,37 +53,112 @@ Clustering (see \cite{luxburg07}). \\
   \item The $k-$nearest neighbor graph: In this case a pair of
     vertices $x$ and $y$ will be connected, only if $y$ is among the
     $k-$nearest neighbors of $x$. This construction leads to a
-    directed graph, but there are ways to transform it further into an
-    undirected one (eg simply ignoring the direction of the edges, or
-    consider mutual neighborhood). \\
+    directed graph, but there are ways to transform it into an
+    undirected one (like simply ignoring the direction of the edges, or
+    considering mutual neighborhood). \\
   \item The fully connected graph: Here the only requirement for
     connecting a couple of vertices $x$ and $y$ is that their
     similarity function gives a positive value. This type of
     construction usually requires a more sophisticated similarity
     function than a mere euclidean distance, one that does consider
-    the local neighborhood of the underlying data. Otherwise, the
-    resulting graph will be fully connected and it will become
-    difficult to extract clusters from there. 
+    the local neighborhood of the underlying data. 
 \end{itemize}
-\joinbelow{1cm}
+
 
 In the case of this thesis project, the similarity graph was already
-given as input data; therefore, we did not need to deal with the
+given as input data. Therefore, we did not need to deal with the
 question of what particular technique to use for its construction. The
 details of the similarity function and the graph itself, can not be
-disclosed here due patents involved.
+disclosed here due patents involved. \\
 
-\subsection{Minimal Bi-Partitional RatioCut}
+\subsection{Computing partitions}
+Once the \emph{Similarity Graph} is built, the next task in Spectral
+Clustering is to use an algorithm to partition it, and from those
+partitions to derive the data clusters. This
+derivation could be immediate, if we assume that each node in the
+\emph{Similarity Graph} represents one vector from our data set.  \\
+
+While Luxburg presents more sophisticated and practical algorithms 
+\cite{luxburg07}, we prefer the simpler but more illustrative one
+presented by Shi and Malik \cite{shi00}. This is because such
+algorithm, allows one to see explicitly how the repetitive computation
+of the \gls{FiedlerVector} can produce a complete partition
+(clustering). The \cref{alg:rec-2way-cut} shows a template version
+of the method, where we can mention the variations related to our work.
+
+\begin{algorithm}
+  \label{alg:rec-2way-cut}
+  \caption{Recursive 2-way Cut Algorithm}
+  %
+  \setstretch{1.35}
+  \SetKwInOut{Input}{Input}
+  \SetKwInOut{Output}{Output}
+  \DontPrintSemicolon
+  %
+  \Input{Similarity matrix and number $k$ of maximum allowed bipartitions (cuts).}
+  \BlankLine
+  %
+  \Output{A partitioned graph, where each partition represents a cluster.}
+  \BlankLine
+  %
+  \textbf{1.} Construct a similarity graph, for example, with one of the
+  techniques mentioned in \cref{sub:sim-graphs}.
+  \BlankLine
+  \BlankLine
+  %
+  \textbf{2.} Compute the \gls{Laplacian} of the graph. There is more than one
+  type of Laplacian, but the one we will use later is the so called
+  Unnormalized \gls{Laplacian} (see \cref{sub:lap-fvec}). 
+  \BlankLine
+  \BlankLine
+  %
+  \textbf{3.} Compute the second eigenvector (\gls{FiedlerVector}) of the
+  \gls{Laplacian}, as it is the one optimizing the chosen
+  objective function. The purpose of this function is to seek for well
+  balanced partitions, and the most popular choices are Ncut
+  \cite{shi00} and RatioCut \cite{hagen92}. We focused on
+  RatioCut function in this thesis, as that was the version used by the
+  application (see \cref{sub:min-bip-rcut} for further details).
+  \BlankLine
+  \BlankLine
+  %
+  \textbf{4.} Using the computed \gls{FiedlerVector} proceed to calculate the
+  bi-partition of the \emph{Similarity Graph}. There is more than one
+  way of achieving this, and \cite{hagen92} presents several of them
+  for the RatioCut function. The one we used in the further sections
+  is simply the sign function (see \cref{sub:min-bip-rcut} for further details).
+  \BlankLine
+  \BlankLine
+  %
+  \textbf{5.} If the number of cuts has not exceeded the given parameter $k$, and
+  if the current partitions need further splitting (according to a
+  predefined criteria), then proceed to recursively bi-partition
+  the selected pieces.
+  \BlankLine
+  \BlankLine    
+\end{algorithm}
+\hfill
+
+Although the general application of Spectral Clustering is to produce
+a total partition of the graph, we could consider that the basic
+operation is the bi-partition. Given that we can not reveal the actual
+algorithm used by our application, let us just say that it also has as a
+basic block the bi-partition task. That is why, we focus this
+thesis on optimizing such single operation. The
+\cref{sub:min-bip-rcut} provides deeper details about it, and
+\cref{sub:lap-fvec} explains its relationship with the \gls{FiedlerVector}. 
+
+\subsection{Minimal Bi-Partitional RatioCut}\label{sub:min-bip-rcut}
 
 The work of this thesis lies around the basic operation of
 bi-partitioning the similarity graph (removing certain edges such that we
 disconnect the vertices set). This is to be done in such way that the
 \emph{cut} function $\left(\func{cut}(A,B) = \sum\limits_{\tiny{i \in A
     \ds{,} j \in B}} w_{ij}\right)$ is minimized. This will bring as result
-two partitions with quite similar nodes (according to the similarity
+two partitions containing quite similar nodes (according to the similarity
 function defined), and then, they could be thought as clusters. The
-following figure (adapted from \cite{gao13}) illustrates the
-operation:
+\cref{fig:min-bip-cut}, adapted from \cite{gao13}, illustrates this
+operation.
 
 \begin{figure}[H]
   \centering
@@ -91,7 +171,7 @@ The sky blue edges are the minimal \emph{cut} for this example. This results
 in two partitions $C_1$ and $\stcomp{C_1}$. While there is more than
 one way of formalizing this problem, we care about the one
 using the \emph{RatioCut} function (Minimal Bi-Partitional RatioCut Problem),
-which favors the solutions which have partitions of roughly
+which favors the solutions containing partitions of roughly
 the same size \cref{eq:min-bip-ratio-cut}.
 
 \begin{equation}
@@ -114,17 +194,18 @@ interesting solutions which include singletons\footnote{That is,
   solutions which include a partition with a single node.}, but it also  
 makes the optimization problem NP-Hard (see
 \cite{wagner93}). This 
-is where Spectral Clustering comes to rescue us, by using Linear
+is where Spectral Clustering comes to rescue us: By using Linear
 Algebra techniques, it can approximate the solutions to the problem
 above.
 
 \subsection{The \gls{Laplacian} and its \gls{FiedlerVector}}\label{sub:lap-fvec}
-The details can be consulted at \cite{luxburg07} or
-\cite{gao13}. But it turns out that if we define the (unnormalized)
-\gls{Laplacian} Matrix as $L = D - W$ (where $D$ is the diagonal containing
-the nodes' degrees and $W$ is the weights matrix of the graph), then
+It turns out that if we define the (unnormalized)
+\gls{Laplacian} Matrix as $L = D - W$ \footnote{Where $D$ is the diagonal containing
+the nodes' degrees and $W$ is the weights matrix of the graph.}, then
 the Minimal Bi-Partitional RatioCut Problem reduces to that of minimizing the
-Rayleigh-Quotient Function, see \cref{eq:ratio-cut-min-rayleigh-quo}.
+Rayleigh-Quotient Function (see
+\cref{eq:ratio-cut-min-rayleigh-quo}). The details can be consulted at
+\cite{luxburg07} or \cite{gao13}.
 
 \begin{equation}
   \label{eq:ratio-cut-min-rayleigh-quo}
@@ -145,9 +226,9 @@ represents one node in the graph, and its sign tells whether the
 associated node belongs to 
 partition $C_1$ or its complement $\stcomp{C_1}$. The property of $f$
 being orthogonal to the vector $\vec{1}$, is a consequence of the
-\gls{Laplacian} matrix ($L$) properties. \\
+\gls{Laplacian} matrix ($L$) properties (see \cite{luxburg07}). \\
 
-The advantage of having formulated the problem in terms of the
+Having formulated the problem in terms of the
 Rayleigh-Quotient function, allows us to use the immense arsenal that
 Linear Algebra has at our disposal. This step is usually skip in
 literature, but here we include a more explicit argument. The concrete
@@ -250,10 +331,10 @@ recommend for its originality is by Wilf \cite{wilf81}.
 Having the guarantee of a theoretical solution does not imply that we
 can approximate it numerically without problems. Numerical Analysis,
 and in particular Linear Numerical 
-Algebra, are immense fields, and the amount of context required to grasp
-their theory is usually abundant. But here we just briefly focus on a couple of
+Algebra, are immense fields and the amount of context required to grasp
+their theory is abundant. But here we just briefly focus on a couple of
 aspects that are the bare minimum required, before moving on to the more
-practical chapters: we are talking about conditioning and numerical
+practical chapters: We are talking about conditioning and numerical
 stability. The information mentioned below was taken from
 \cite{bindel09}. \\ 
 
@@ -295,23 +376,27 @@ denominator. The closer the eigenvalues are, the bigger the
 perturbation will be. \\
 
 The above paragraph basically says that for eigenvalues, we only face
-trouble if we target quite small ones, which is not the case for the
-particular application we care about. But above also says that
+trouble if we target quite small ones, which is not the case for our
+particular application \footnote{For our particular matrices, even if
+  we compute the
+  second smallest eigenvalue, it is still big enough to avoid spikes
+  on the condition 
+number $\kappa_{2}(A)$.}. But above also says that
 eigenvectors could be ill-conditioned even if eigenvalues are not,
 which happens when these are clustered (quite close to each
 other, and from now on referred as \gls{ClusteredEigenvalues}). This
 is a situation we faced in practice for this project, but 
 later chapters will mention the workaround that we found for this
 scenario (plus the actual, more practical reasons, that we had to avoid
-it, the details are in \cref{sub:avoid-clust-eigv}). 
+it, see \cref{sub:avoid-clust-eigv}). 
 
 \subsubsection{Numerical Stability}
 
 Numerical Stability is a property of the algorithms we use, and in
 short it tells how much additional ``numerical noise'' the computation
 adds to the solution (in addition to the perturbation inherent to the
-problem conditioning). There is more than one definition of what it
-means to be numerically stable, but a particularly useful one in Numerical
+problem conditioning). There is more than one way of formalizing this
+notion, but a particularly useful one in Numerical  
 Linear Algebra is Backward Numerical Stability. The
 \cref{def:backw-stab} is taken from \cite{demmel97}. 
 
@@ -338,8 +423,8 @@ application produces, this would reduce to avoiding
 When we started this thesis, we thought that it was custom to have
 formal proofs regarding the overall numerical stability of algorithms,
 in particular for the case  of eigensolvers. But for the concrete
-algorithms we selected and experimented with, only \gls{MRRR} has some
-references to formal proofs about the numerical stability (and not
+algorithms we selected and experimented with, only \gls{MRRR} has 
+references to formal proofs about its numerical stability (and not
 precisely for the overall algorithm, but for some portions of the
 calculations \footnote{Which ultimately makes sense, as the numerical
 software is quite complex, built from a lot of subroutines and

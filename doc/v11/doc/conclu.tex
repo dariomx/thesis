@@ -6,14 +6,14 @@
 \subsection{Prefer Sparse Matrix Algorithms}
 
 This is perhaps the most obvious recommendation that comes out of this
-work: even if the data fits in memory (as it happens here), is a waste
+work: Even if the data fits in memory (as it happens here), it is a waste
 of CPU resources to compute against the zero values of the \gls{Laplacian}.
 
 \subsection{If dense, go with \gls{MRRR}}
 
 If for some reason (like a prohibition to perform drastic code
 changes), the application needs to go with dense matrices, at least
-they could use the best algorithm available, which is \gls{MRRR}. This can
+they could use \gls{MRRR} (the best algorithm available). This can
 be obtained from opensource implementations of LAPACK \footnote{There
   are also commercial, hardware optimized versions like Intel's, which
   could be considered.}, though Java
@@ -37,13 +37,14 @@ wrappers do not exist yet).
 
 Finally, if they are willing to invest even more time (some months
 perhaps),  and if speed is the
-main concern then they can explore the winner of the competition:
+main concern, then they can explore the winner of the competition:
 \gls{LOBPCG}. Porting the Python code from Scipy into Java \footnote{An
   interesting note about this code, is that the algorithm creator
   himself (Knyazev), helped with its development. This speaks about
   its quality.} may certainly be a non trivial task, but the impact
 could be minimized if they restrict their attention to the single
-vector version. Ultimately, that is all we need to compute the \gls{FiedlerVector} (the 
+vector version. Ultimately, that version is all we need to compute the
+\gls{FiedlerVector} (the   
 actual code implements a block version that can approximate multiple
 vectors, but we do not need that). \\
 
@@ -75,10 +76,9 @@ times for the biggest matrices).
 
 \subsection{Need sparse format}
 
-As explained in previous chapters, for the sake of the sparse matrix
-algorithms we 
+As explained in previous chapters, we 
 could have used either CSR or CSC formats, but the need to compute the
-\gls{SCC} of the graph behind the \gls{Laplacian}, make us pick the CSR
+\gls{SCC} of the underlying graph, made us pick the CSR
 format (see \cref{sub:avoid-clust-eigv}). If they are going with
 either \gls{IRLM} or \gls{LOBPCG}, this is the format we recommend to use. \\
 
@@ -150,7 +150,6 @@ following is a partial list of additional options we also considered
 (meaning that we read a bit about the algorithms, that we installed
 the software and tried it at least once):
 
-\newpage
 \begin{itemize}
   \item TRACEMIN-fiedler: A parallel algorithm for computing the
     \gls{FiedlerVector} \cite{trminfiedler} \footnote{There is no
@@ -171,7 +170,7 @@ the software and tried it at least once):
 All the options from the above list are quite interesting to explore, 
 along with the publications about their theoretical
 foundations. Except for the last one (for which we did not find an
-available implementation), the rest were tried indeed, but we just did
+available implementation), the rest were tried indeed. But we did
 not have enough time to research more about their inner workings, nor
 to understand how to use them in practice to compute the
 \gls{FiedlerVector}. If more time becomes available, it would be an interesting

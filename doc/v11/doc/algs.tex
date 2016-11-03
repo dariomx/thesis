@@ -17,14 +17,14 @@ pick the winner and hence, emit our official recommendation for the
 application. While \cref{cha:exper} and \cref{cha:conclu} detail the
 experiment and its outcome. This chapter focuses on explaining the
 rationale behind this algorithms selection, along with a little
-background about their theory and practical usage aspects. \\
+background about their theory and practical usage. \\
 
-Let us begin by saying that our intention with this selection was to
+Let us begin by saying that our intention with this selection, was to
 represent three families or approaches to the solution of the problem:
 Current approach taken by the application (\gls{MRRR}), mainstream
 recommendation for Spectral Clustering (\gls{IRLM}) and a modern
- proposal (\gls{LOBPCG}). In the sub-sections below we provide
-further justification for each one of these algorithms.
+ proposal (\gls{LOBPCG}). In the subsequent sub-sections we provide
+further justification for the selection of these algorithms.
 
 \subsection{\gls{MRRR}}
 Although the \gls{Laplacian} is a sparse matrix (70\% of zeros for our
@@ -48,10 +48,10 @@ algorithms, and we justify our selection of \gls{IRLM} and
 
 Members of the Lanczos algorithms family, 
 usually appear in Spectral Clustering literature as the mainstream
-option to choose when computing the eigenpairs of the
-\gls{Laplacian} matrix (see \cite{luxburg07} for example). Among them,
+option for computing the eigenpairs of the
+\gls{Laplacian} (see \cite{luxburg07} for example). Among them,
 the Implicitly Restarted Lanczos Method (\gls{IRLM}), is perhaps
-the most known and widely available variant, Thanks to the
+the most known and widely available variant, thanks to the
 ARPACK \cite{arpack} software package. This situation made us chose
 \gls{IRLM} then, as it represents the common practice
 against which we want to compare further algorithms (In reality, we are
@@ -75,8 +75,8 @@ selected algorithms.
 The most primitive algorithm for computing eigenvectors is the so
 called Power Method. Although the slowest algorithm, it compensates
 its limitations with its extremely simple definition. It can be
-summarized by the two steps below (where $\vec{x}$ is the initial
-approximation to the wanted eigenvector):
+summarized by the two steps in \cref{eq:power-method-iter}, where
+$\vec{x}$ is the initial approximation to the wanted eigenvector.
 
 \begin{equation}
   \label{eq:power-method-iter}
@@ -118,8 +118,8 @@ more details). \\
 
 
 The Power Method does not always converge in exact
-arithmethic \footnote{It requires that the initial vector has a non
-  zero component coordinate regarding the dominant eigenvector}, but
+arithmethic \footnote{As it requires that the initial vector has a non
+  zero component coordinate, regarding the dominant eigenvector.}, but
 here we focus on its 
 more commonly found numeric limitation: slow convergence (the reader
 can consult further details about the Power Method in \cite{golub13}
@@ -130,8 +130,7 @@ the next one on that side of the spectra\footnote{Spectra is a
 more concrete, the convergence of the Power Method is proportional to
 $\dfrac{\lambda_{n-1}}{\lambda_n}$ or $\dfrac{\lambda_1}{\lambda_2}$,
 depending on whether we are seeking the  biggest or smallest
-eigenvector. This limitation will appear
-later, when comparing the algorithms.
+eigenvector. In our particular case, if $\lambda_2$ and $\lambda_1$ are very close to each other (\gls{ClusteredEigenvalues}), the ratio $\dfrac{\lambda_1}{\lambda_2}$ will be big, implying that we need a lot of iterations. This limitation will appear later, when comparing the algorithms.
 
 \subsection{Krylov Subspaces}
 
@@ -139,22 +138,23 @@ The next tool is Krylov Subspaces (see \cite{parlett80} or
 \cite{saad92}), which are used to search for 
 approximations of the desired eigenvectors. A Krylov subspace of
 dimension $m$, for a given matrix $A$ and generating vector
-$\vec{x_0}$, is defined as follows: 
+$\vec{x_0}$, is defined in \cref{eq:krylov-spc}.
 
-\begin{equation*}
+\begin{equation}
+  \label{eq:krylov-spc}
     \Krylov{A}{\vec{x}_0}{m} =
     \func{span}
     \left\{
       A^0\vec{x}_0\ds{,} A^1\vec{x}_0\ds{,} \ldots \ds{,}  A^{(m-1)}\vec{x}_0
       \right\}  
-\end{equation*}
+\end{equation}
 \joinbelow{1cm}
 
 Both \cite{parlett80} and \cite{saad92} have chapters with more
 properties about Krylov Subspaces, but the intuitive idea is that the
-Power Method wastes a lot of information: the iteration
+Power Method wastes a lot of information: The iteration
 produces the vectors $A^k\vec{x_0}$, but only the last one is actually
-used. Krylov Subspaces keeps all these vectors, and use them to
+used. Krylov Subspaces keep all these vectors, and use them to
 generate a subspace where there are more chances to find good
 approximations of the eigenvectors.
 
@@ -183,12 +183,12 @@ eigenproblem anyway.  The rationale is that it becomes easier to
 solve the eigenproblem on a much smaller dimension \footnote{As we
   will see later, algorithms targeting large sparse matrices can
   ultimately rely on dense matrix algorithms. This is with the premise that
-  they do so at a much smaller scale.}. \\
+  they do so, at a much smaller scale.}. \\
 
 Another interesting detail to note, is that the
 matrix $R$ is something like a projection of the original matrix $A$
-on the approximating subspace, the two matrices are pretty much the
-same thing (similar) except for a change of 
+on the approximating subspace. The two matrices are pretty much the
+same thing (similar), except for a change of 
 basis. This implies the spectra of $R$ is a subset of the spectra of
 $A$, so the eigenvalues obtained with Rayleigh-Ritz method can be used
 directly as the desired approximations. The eigenvectors need a change
@@ -204,8 +204,8 @@ algorithms is to have a reference point. But we just provide references for
 dense matrix algorithms in this section, as their details fall out of the scope of
 this thesis (our focus is on sparse matrix methods). The canonical
 encyclopedic reference for this family is \cite{golub13}, though each
-algorithm may have more dedicated resources. We mention some on the
-paragraphs below. \\
+algorithm may have more dedicated resources. We mention some of them on the following
+subsections. \\
 
 \subsection{Symmetric Tridiagonal QL Algorithm}
 The application currently uses the Symmetric Tridiagonal QL
@@ -220,7 +220,7 @@ different basis). \\
 
 Nevertheless, practical implementations have far
 more points to consider. The reader interested in more details about
-this QL Algorithms or its cousins the QR Algorithms, can consult
+this QL Algorithm or its cousin the QR Algorithm, can consult
 standard literature on the topic like \cite{golub13} or
 \cite{parlett80}. Additionally we want to mention
 here that this algorithm has an inherent limitation for our
@@ -230,8 +230,8 @@ eigenpair (the second smallest).
 
 \subsection{The \gls{MRRR} Algorithm}
 
-The Multiple Relatively Robust Representations Algorithm (\gls{MRRR}
-for short, or $MR^3$), is a more suitable option for computing the second
+The Multiple Relatively Robust Representations Algorithm (\gls{MRRR} or $MR^3$,
+for short), is a more suitable option for computing the second
 eigenpair \cite{dhillon97},
 \cite{dhillon04}, \cite{dhillon06} or \cite{parlett04}. Is a quite
 sophisticated procedure, but the only detail we will mention here, is
@@ -270,18 +270,21 @@ than the number of desired eigenpairs $k$, but still much smaller than the
 dimension of the matrix. \\
 
 One of the issues with Krylov Subspaces is that we do not know in
-advance, how big the dimension $m$ needs to be in order to contain
-interesting approximations to the sought eigenvectors. Since such
+advance, how big the dimension $m$ needs to be such that the associated
+subspace contains good eigenvectors approximations. Since such
 dimension is in function of the number of vectors $A^k \vec{x_0}$ that
-we keep in memory, this can be a serious problem. In order to tackle
+we keep in memory, this can be a serious problem (as we do not have
+infinite memory). In order to tackle
 this issue, the \gls{IRLM} uses a tool called Implicitly Restarted QR
-Algorithm to apply $p$ shifts against the matrix $H$:
+Algorithm to apply $p$ shifts against the matrix $H$. The algorithm is
+presented in compact form in \cref{eq:impl-rest-qr}.
 
-\begin{equation*}
+\begin{equation}
+  \label{eq:impl-rest-qr}
     j=1 \ldots p:\, QR = \func{qr}(H - \lambda_j I) \land H = \trans{Q}HQ
     \ds{\suchthat}
     m = k + p
-\end{equation*}
+\end{equation}
 \joinbelow{1cm}
 
 After the shift a truncation with a factor $k$ takes place, and on
@@ -331,8 +334,8 @@ iterative method that applies Rayleigh-Ritz Method every time (for
 simplicity we focus on the single vector version). The main difference
 with Lanczos is the subspace where it searches for the eigenvector
 approximations, which for \gls{LOBPCG} is $\func{span} \{\vec{x}_i,
-T\vec{r}_i, \vec{x}_{i-1}\}$. This is a fixed size set of 3 vectors,
-containing respectively the current and previous approximations
+T\vec{r}_i, \vec{x}_{i-1}\}$. The generating set has 3 vectors only,
+being respectively the current and previous approximations
 ($x_i$, $x_{i-1}$ \footnote{In practice $x_{i} - \beta x_{i-1}$ is used
   instead of the previous approximation $x_{i-1}$, as it tends to
   loose orthogonality respect to $x_i$.}) plus the preconditioned
@@ -353,8 +356,9 @@ The function $\func{\rho}(\vec{x})$ is the already familiar
 Rayleigh-Quotient, and another of its properties justifies the
 inclusion of the residual $r_i$. It turns out that
 $\func{\rho}(\vec{x})$ has as critical point precisely the smallest
-eigenpair $(\vec{v_1},\lambda_1)$. Furthermore, its gradient is
-proportional to $r_i$. This means that $r_i$ is proportional to the
+eigenpair $(\vec{v_1},\lambda_1)$. Furthermore, its gradient $\nabla
+(\func{\rho}\vec{x_i})$ is proportional to $r_i$. This means that
+$r_i$ is proportional to the 
 direction where the Rayleigh-Quotient Function approximates better
 the smallest eigenpair. Hence, it makes sense to include such
 direction when building the linear combinations that will approximate
@@ -401,7 +405,7 @@ Python Package NetworkX \cite{networkx}):
 \item Rather than slow convergence, the implementation showed
   numerical errors on \gls{ClusteredEigenvalues} (for some reason, the
   dense $3 \times 3$ matrix produced at each iteration eventually
-  looses the properties the code expects). We did not dig further into
+  looses the properties that the code expects). We did not dig further into
   this problem, but just assumed that we needed to do something to
   avoid \gls{ClusteredEigenvalues} on the data, given that both sparse
   algorithms have problems with them.

@@ -10,22 +10,27 @@ according to a given notion of similarity \cite{pang06}. According to
 Luxburg \cite{luxburg07} ``In virtually every  
 scientific field dealing with empirical data, people attempt to get a
 first impression on their data by
-trying to identify groups of <emph>similar behavior</emph> in their
+trying to identify groups of \emph{similar behavior} in their
 data''. \\
 
 Spectral Clustering is an important branch of Data Clustering, where
 those data groups (clusters) are found using Linear Algebra
 methods. To be more concrete, the usage of numerical algorithms for computing
-eigenvalues (spectra) or eigenvectors of special data-derived
-matrices, is what gives this branch of Data Clustering its distictive 
-name. The quality of the clusters obtained by Spectral Clustering 
+eigenvalues (aka spectra) or eigenvectors is what gives this branch of
+Data Clustering its distictive  name. The matrices used to compute the
+eigenpairs are special constructions, produced out of the domain
+data. In this thesis we focus entirely on the \gls{Laplacian} matrix
+$L$, an explanation of how we build the 
+\gls{Laplacian} matrix appears in \cref{sub:lap-fvec}. \\
+
+The quality of the clusters obtained by Spectral Clustering 
 is usually better than those coming from ``traditional algorithms''
 like k-means \cite{luxburg07}. Another potential advantage is the
 nowadays ubiquity of Numerical Linear Algebra libraries, in particular
 of the so called eigen-solvers. \\
 
-Like its parent broader area, Spectral Clustering has plenty of
-applications ranging from engineering to social sciences, but this
+Spectral Clustering has plenty of applications ranging from
+engineering to social sciences, but this  
 thesis revolves about a particular real-life cloud-based application
 that needed help \footnote{The application is proprietary code, hence
   we can not 
@@ -68,7 +73,7 @@ Using the above criteria, we focused only on three algorithms: \gls{MRRR},
 about this selection). Still, entire books could be written with the 
 details of any of these, but again we restrict ourselves to the points
 stated above. Additionally, we paid 
-special attention to, was how to avoid the issues observed on the
+special attention to avoid the issues observed on the
 presence of \gls{ClusteredEigenvalues} (see
 \cref{sub:avoid-clust-eigv} for more details about the used
 technique). 
