@@ -1,0 +1,35 @@
+\begin{frame}
+  \frametitle{Algorithms Preliminaries}
+  \begin{block}{(Symmetric) Power Method}
+    \[
+    \joinabove{0}
+    \vec{v}_0 = \vec{v} \ds{\land}
+    \vec{v}_{k+1} = A\vec{v}_k \left( \inv{A}\vec{v}_k \right)
+    \ds{\suchthat}
+    \func{convergence} \sim \dfrac{\lambda_{n-1}}{\lambda_n}
+    \left( \dfrac{\lambda_1}{\lambda_2} \right)
+    \joinbelow{0}
+    \]
+  \end{block}
+  \begin{block}{Krylov Subspaces}
+    \[
+    \joinabove{0}
+    \Krylov{A}{\vec{x}_0}{m} =
+    \func{span}
+    \left\{
+      A^0\vec{x}_0\ds{,} A^1\vec{x}_0\ds{,} \ldots \ds{,}  A^{(m-1)}\vec{x}_0
+      \right\}
+    \joinbelow{0}      
+    \]
+  \end{block}
+  \begin{block}{Rayleigh-Ritz Method}
+    \begin{itemize}
+    \item Compute orthonormal basis $V$ of subspace
+      ($\func{dim}(V) \ll \func{dim}(A)$).
+    \item Solve (smaller) eigenproblem $R\vec{y} = \lambda\vec{y}
+      \ds{\suchthat} R = \trans{V} A V$
+    \item Compute the Ritz pairs
+      $(\apx{\lambda}_i,\apx{\vec{x}}_i) = (\lambda_i, V\vec{y}_i)$
+    \end{itemize}
+  \end{block}
+\end{frame}

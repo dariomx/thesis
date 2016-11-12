@@ -1,0 +1,48 @@
+;; This logfile was generated automatically by `xindy'
+;; at 11.11.2016  18:34:54
+;; Indexstyle: "/tmp/b3cuHMbmXk", Rawindex: "/tmp/Q_Loj0usdJ", Output: "thesis.gls"
+
+
+Building indexentry-tree:
+Hierdepth of index is :TREE
+
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+
+Forming letter-groups:
+Letter-group: "»ËËË" -> "M"
+Letter-group: "¨Ë´»" -> "I"
+Letter-group: "´Ã„È†" -> "L"
+Letter-group: "Ð††" -> "S"
+Letter-group: "´€È´€†¨€¼" -> "L"
+Letter-group: "œ¨—´—Ë å—†ÚÃË" -> "F"
+Letter-group: "»à´Ú¨È´— Ë—´€Ú¨å—´í ËÃ„àÐÚ Ë—ÈË—Ð—¼Ú€Ú¨Ã¼Ð" -> "M"
+Letter-group: "¨»È´¨†¨Ú´í Ë—ÐÚ€ËÚ— ´€¼†ðÃÐ »—Ú¤Ã" -> "I"
+Letter-group: "´Ã†€´´í ÃÈÚ¨»€´ „´Ã†® ÈË—†Ã¼¨Ú¨Ã¼— †Ã¼¬à€Ú— Ë€¨—¼Ú" -> "L"
+Letter-group: "†´àÐÚ—Ë— —¨—¼å€´à—Ð" -> "C"
+Letter-group: "ÐàÈ—Ë´à" -> "S"
+Letter-group: "†¤Ã´»Ã" -> "C"
+Letter-group: "ÐÚËÃ¼´í †Ã¼¼—†Ú— †Ã»ÈÃ¼—¼ÚÐ" -> "S"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "†¤Ã´»Ã" -> "C"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "œ¨—´—Ë å—†ÚÃË" -> "F"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "¨»È´¨†¨Ú´í Ë—ÐÚ€ËÚ— ´€¼†ðÃÐ »—Ú¤Ã" -> "I"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "´€È´€†¨€¼" -> "L"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "»ËËË" -> "M"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "Ð††" -> "S"
