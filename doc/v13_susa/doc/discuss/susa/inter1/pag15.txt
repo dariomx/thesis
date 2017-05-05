@@ -1,0 +1,34 @@
+Dr. Susana: A mi parecer le faltaría una sección con el planteamiento
+del problema 
+
+Recuerdo que el Dr. Andrés y un servidor pasamos por varias
+iteraciones en estas secciones. Como que recuerdo que el
+planteamiento del problema quedó como que partido en dos
+secciones: 
+
+1. "Objective and Scope": aquí se da una descripción de alto
+nivel de cuál es el problema a resolver. Cito el enunciado
+principal:
+
+"The main objective of this thesis, is to give an algorithm
+recommendation for the mentioned application. That is, to suggest an
+algorithm for computing the Fiedler Vector that outperforms the one
+they are using today"
+
+2. "Background": aquí se explica de manera concreta por qué
+qué es el Fiedler Vector y para qué lo necesitamos calcular
+en el contexto de Spectral Clustering. Cito el comienzo del
+primer párrafo:
+
+"It is convenient to set a little context, in order to appreciate
+better what is the operation that this thesis tries to optimize. For
+this we enter a bit into the Spectral Clustering world. In such
+context the Laplacian Matrix and will emerge, and it will become
+clearer why computing an eigenvector can serve Data Clustering."
+
+¿Podría considerarse que estas dos secciones combinadas, dan un
+planteamiento del problema? Si no es así, favor de sugerir qué tipo de
+información deberíamos incluir en esa nueva sección (porque sospecho
+que se traslaparía en cierta medida con alguna de las dos secciones
+arriba mencionadas).
+
