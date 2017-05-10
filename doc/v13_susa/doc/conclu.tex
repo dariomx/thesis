@@ -2,6 +2,18 @@
 \label{cha:conclu}
 
 \section{Recommendations}
+Let us remember (see \cref{sec:objc}) that the objective of this
+thesis, is to recommend a 
+better algorithm for computing the \gls{FiedlerVector} (better in the
+sense of running faster than current option, on a single
+processor). The context is a real-life application that does Spectral
+Clustering. \\ 
+
+This section provides the actual recommendations, which take into
+account the potential costs of adopting each of the reviewed
+algorithms. In further subsections the titles contain the
+recommendation, summarized in a single statement, and the contents of
+the subsection detail the rationale behind it.
 
 \subsection{Prefer Sparse Matrix Algorithms}
 
@@ -117,11 +129,14 @@ the point that ``regularly'', programmers working in corporations do
 not know about Numerical Analysis but rather about more standard
 Computer Science topics.}.
 
-\section{Challenges found during this thesis}
+\section{Future Work}
 
 Finally, we would like to dedicate a few lines about some challenges
-that were found during the elaboration of this 6 months thesis
-project (part time).
+that were found during the elaboration of this project; specially
+regarding the deadlines we had for its completion. The total
+duration was 6 months (part-time), therefore, there were several areas
+that could not be explored due the time limitation. These areas could
+be further explored as future work. 
 
 \subsection{Numerical Linear Algebra is hard}
 
@@ -143,7 +158,11 @@ theory behind the three algorithms compared in this work, goes far beyond
 the context acquired during the last year (which includes the last
 Master's courses and the elaboration of this thesis). That is why we
 reduced the scope to understand only the main ideas, and to learn how
-to use in practice the implementations.
+to use in practice the implementations. But given more time, it would
+be beneficial to take some advanced courses in Numerical Linear
+Algebra. Then, with the enhanced understanding of the algorithms and its
+theory, we could review the recommendations and either expand them or
+better justify them from a theoretical perspective.
 
 
 \subsection{There is a zoo of algorithms out there}
@@ -182,4 +201,21 @@ not have enough time to research more about their inner workings, nor
 to understand how to use them in practice to compute the
 \gls{FiedlerVector}. If more time becomes available, it would be an interesting
 follow up for this thesis, to explore the options listed above.
+
+\subsection{Measure the error in the predictions vs real-life execution}
+
+On the recommendations section we mentioned some of the required work,
+for adopting the algorithms we suggested. This work may not be
+trivial, and actually require some months of effort. But
+once such stage gets done, it would be interesting to measure what was
+the real speedup of the application when computing the 
+\gls{FiedlerVector}. Actually, we could take those numbers and build an
+error graph, showing how good our predictions were regarding the
+speedup (we claimed for example, that \gls{LOBPCG} will have
+sub-second scale for the biggest matrices of 4.5k). \\
+
+These measurements, along with the related implementation and
+instrumentation efforts, will be another pending point that we would
+like to explore as future work.
+
 
