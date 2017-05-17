@@ -2,9 +2,9 @@
 .pydevproject
 python-pocs/.project
 python-pocs/.pydevproject
+*.nav
 *.aux
 *.log
-*.pdf
 *.out
 *.bbl
 *.blg
