@@ -1,0 +1,55 @@
+\newglossaryentry{ClusteredEigenvalues}
+                 {
+                   name=Clustered Eigenvalues,
+                   description={An scenario where certain eigenvalues of a matrix are very close to each other. It usually implies slow convergence on Power Method based algorithms},
+                   plural=clustered eigenvalues
+                 }
+
+\newglossaryentry{Laplacian}
+                 {
+                   name=Laplacian,
+                   description={Refers to the unnormalized version, which is matrix derived from the data graph as $D - W$, where $D$ is the diagonal of degrees and $W$ is the weights matrix},
+                   plural=Laplacians
+                 }
+
+\newglossaryentry{FiedlerVector}
+                 {
+                   name=Fiedler Vector,
+                   description={The eigenvector associated to the second smallest eigenvalue of the \gls{Laplacian} Matrix},
+                   plural=Fiedler Vectors
+                 }
+
+\newglossaryentry{SuperLU}
+                 {
+                   name=SuperLU,
+                   description={Software package implementing an sparse linear solver for general matrices. Used in this work along with \gls{IRLM} from ARPACK},
+                   plural=Fiedler Vectors
+                 }
+
+\newglossaryentry{Cholmod}
+                 {
+                   name=Cholmod,
+                   description={Software package implementing an sparse linear solver for symmetric positive definite matrices. Used in this work along with \gls{IRLM} from ARPACK},
+                   plural=Fiedler Vectors
+                 }
+
+\newdualentry{MRRR}
+  {MRRR}
+  {Multiple Relatively Robust Representations}
+  {A symmetric dense-matrix algorithm for solving the Eigenproblem}
+
+\newdualentry{IRLM}
+  {IRLM}
+  {Implicitly Restarted Lanczos Method}
+  {The variant of the Lanczos family of algorithms implemented by ARPACK, widely used for solving the Symmetric Eigenproblem of sparse matrices}
+
+\newdualentry{LOBPCG}
+  {LOBPCG}
+  {Locally Optimal Block Preconditioned Conjugate Gradient}
+  {Sparse matrix algorithm invented by A. Knyazev for solving the Symmetric Eigenproblem, it is also the winner on the comparison made on this thesis}
+
+\newdualentry{SCC}
+  {SCC}
+  {Strongly Connected Components}
+  {Refers to the Strongly Connected Components of the graph behind the \gls{Laplacian} matrix. Having more than one will imply a disconnected graph}
+

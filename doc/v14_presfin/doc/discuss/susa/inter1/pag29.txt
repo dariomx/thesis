@@ -1,0 +1,37 @@
+Dra. Susana: Explicaría mejor una tabla comparativa de los principales
+parámetros de lo trabajado por otros a autores y tu trabajo
+
+Quisiera un poco más de detalles de esta sugerencia.
+
+Lo primero que quisiera saber, es si únicamente aplica a la sección
+de "Proposal" del capítulo "The Algorithms"; o si aplica para todo
+el capítulo de "Algorithms".
+
+Lo segundo es sobre el contenido de esa tabla. Como se explica en la
+sección de "Proposal", sólo se incluyeron 3 algoritmos para el
+experimento. Las siguientes secciones dan algo de background para
+después proceder a explicar los algoritmos. 
+
+En realidad no encontré otros trabajos que compararan algorithmos
+para la ejecución serial del Fiedler Vector; ya que dicho caso de
+uso parece muy particular de la aplicación que estamos tratando
+de optimizar. Entonces, no estoy muy seguro de qué contenido iría
+en esa tabla, y qué otros trabajos usaría para contrastar con el
+mío.
+
+Revisando la bibliografía usada, lo más cercano que encontré fue
+este trabajo del inventor del algoritmo LOBPCG:
+
+Andrew V Knyazev.
+Modern preconditioned eigensolvers for spectral In Workshop on Clustering
+Large Data Sets Third IEEE International Conference on Data Mining
+(ICDM 2003) , 2003.
+
+donde se aplica el LOBPCG a un problema muy parecido (en esencia es el
+mismo problema, pero en contexto un poco diferente). Así no veo
+suficiente tela de dónde cortar para esa tabla, aparte que me gustaría
+saber qué serían los renglones y columnas de dicha tabla. Favor de
+explicar más este comentario.
+
+
+

@@ -1,0 +1,39 @@
+Dra. Susana: Recomendaría poner referencias mas actualizadas, solo hay
+una del 2015
+
+Generé un reporte de las referencias por año, y aunque ciertamente
+hay algunas antiguas, también hay algunas recientes (favor de ver
+reporte abajo).
+
+También hay que considerar que el trabajo no es investigación original,
+sólo es la aplicación de ciertos algoritmos para resolver un problema
+en concreto. Tal vez por eso no tuve necesidad de consultar artículos
+nuevos.
+
+dbahena@dbahena-VirtualBox:~/thesis/doc/latest/doc$ grep year= biblio.bib  | sed s/^.*([0-9]{4}).*/1/g | sort | uniq -c | sort -nr -k 2
+
+      1 2016
+      1 2015
+      1 2014
+      2 2012
+      1 2011
+      2 2010
+      2 2009
+      2 2008
+      1 2007
+      3 2006
+      4 2005
+      2 2004
+      1 2003
+      2 2002
+      1 2001
+      3 2000
+      3 1997
+      1 1993
+      2 1992
+      1 1988
+      1 1981
+      1 1980
+      1 1979
+      1 1973
+

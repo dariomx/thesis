@@ -1,0 +1,481 @@
+\chapter{The Experiment}
+\label{cha:exper}
+
+\section{Setup}
+
+\subsection{Hardware}
+
+All the tests were conducted on a laptop with hardware and utilities
+described in table \cref{tab:hardware}.
+
+\begin{table}[h]  
+  \caption{Hardware used on the experiment}\label{tab:hardware}
+  \begin{tabular}{| p{5cm} | p{10cm} |}
+    \hline
+    \emph{Processor} &
+    Intel\textregistered Core\texttrademark $\,i5$ at $2.40$GHz (
+    nowadays considered a commodity processor). \\
+    \hline
+    \emph{Serial execution enforcement} &
+    The Linux \emph{taskset} command, 
+    needed in case low level libraries attempted
+    multi-threading (we are talking about BLAS 
+      or LAPACK, as the high level algorithms used were serial). \\
+    \hline
+    \emph{Memory} & $8$Gb of RAM. No more than 512Mb
+    were used on each experiment, and only for dense matrix algorithms
+    (sparse ones used much less) . \\  
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Software}
+
+The implementations of the algorithms we used, were basically Python
+wrappers against native libraries. This is a common pattern found in
+scientific computing, and it tries to combine the best of two worlds: \\
+
+\begin{itemize}
+  \item On one side, the high efficiency and quality of established native
+    libraries (usually made in C or Fortran). \\
+  \item On the other side, the high flexibility and productivity of an
+    scripting language like Python.
+\end{itemize}
+
+The mechanism is basically to use the native interface of the high
+level language (Python in this case), and to bind high level APIs to
+the low level libraries. This approach should be familiar to the users
+of Matlab. \\
+
+The high level Python packages were SciPy \cite{scipy} and NetworkX
+\cite{networkx}. On the other hand, the 
+native libraries actually offering the algorithm implementations were:
+
+\begin{itemize}
+  \item LAPACK \cite{lapack}, which provides (among many other things)
+    the \gls{MRRR} implementation. LAPACK is actually the industrial
+    standard for dense matrix computations. LAPACK is implemented in
+    Fortran90 \footnote{At least the opensource version we used, as
+      there are other commercial implementations as well.}.
+
+  \item ARPACK \cite{arpack}, which provides the variant of the
+    Lanczos algorithm that we tested (\gls{IRLM}). It also relies on LAPACK
+    as a lower layer. ARPACK is implemented in Fortran77.
+
+  \item Scipy \cite{scipy}, which delivers the implementation of
+    \gls{LOBPCG} that we tested. While Scipy may also use LAPACK for several
+    lower level operations, is interesting that \gls{LOBPCG} is the only
+    algorithm that is implemented in Python. This makes reading its
+    code a much easier task, than say, reading the Fortran77 ARPACK. 
+\end{itemize}
+
+As it can be perceived, all the algorithm implementations ultimately
+rely on LAPACK \cite{lapack}, and this in turn, relies on BLAS \cite{blas}. All
+those libraries were installed on the laptop, of course. The
+\gls{SCC} algorithm mentioned in \cref{sub:avoid-clust-eigv} is
+also offered by the Scipy package 
+\footnote{The routine is
+  \emph{scipy.sparse.csgraph.connected\_component}}. Last but not 
+least, same SciPy also provides the sparse formats we tested (CSR and CSC). \\
+
+Overall, Scipy makes quite accessible a lot of scientific
+software, it feels like a new generation MATLAB that is becoming more
+and more popular \footnote{A new competitor entered the arena
+  recently, the Julia Programming Language (see \cite{julia}), which
+  was specifically
+  designed for scientific computing. We tried this language as well,
+  for some of the experiments, but ended up preferring the maturity
+  and wider repertoire of the Python + SciPy combo.}. Another merit of Scipy,
+is that its performance is quite close to that of native code (we
+also tested calling the libraries, like ARPACK, from low level C
+code). The little penalty in performance by using the Python wrappers,
+is definitely worth it in terms of development productivity. 
+
+\section{Data Preparation}
+
+\subsection{The actual data}
+We created 10 random matrices from application's domain data, using
+the same encoding techniques they use in production. The sizes of such
+matrices are in the range $[867,4500]$, so they fit in memory without
+problem. \\
+
+\subsection{Sparse formats}
+Two sparse matrix formats were tested with \gls{IRLM} and
+\gls{LOBPCG} 
+algorithms. Namely the Compressed Sparse Row (CSR) and Compressed
+Sparse Column (CSC) formats. For an overview of these and related
+formats, in the actual context where we experimented with them, the
+reader can consult \cite{johansson15}. While both formats showed
+similar performance results, we prefer CSR because is the proper
+format to use with the \gls{ClusteredEigenvalues} removal pre-processing (see
+\cref{sub:avoid-clust-eigv} below). 
+
+\subsection{Avoiding \gls{ClusteredEigenvalues}}
+\label{sub:avoid-clust-eigv}
+
+As we mentioned on previous chapter, \gls{ClusteredEigenvalues} were a
+headache for both \gls{IRLM} and \gls{LOBPCG}. Thus, we needed to do something
+about them. By researching deeper why they were occurring, we found
+that graphs behind the \gls{Laplacian}s produced by the
+application, presented a common pattern: A disconnected graph with an
+small component (2-3 nodes), and a big component (the rest of the
+nodes). \\
+
+The theory says that for a disconnected graph of two components, the
+first and second eigenvalues of the \gls{Laplacian} will be zero (see
+\cite{luxburg07}). In practice, what you get instead are two very
+small numbers, and that is an extreme case of clustered
+eigenvalues. Meaning, they are very close to each other, because both try to
+approximate zero. \\
+
+The solution for this issue was to simply remove the already
+disconnected small component. This makes sense given that ultimately,
+the high level operation we want to perform on the graph is a
+bi-partition (thus, expectation is that the graph is connected). The
+caveat was to compute the Strongly Connected Components (\gls{SCC}), and the
+new weights matrix quite efficiently, such that this pre-processing
+did not become a performance penalty. The \gls{SCC} computation can be done
+efficiently (sub-second) with algorithm documented in \cite{pearce05}.
+For which we did not dig its internals but just used the
+implementation available in SciPy. This  
+algorithm/implementation is actually the reason why we prefer CSR
+format over CSC (if the weights matrix is not passed in CSR format,
+the routine takes much more time). \\
+
+The re-computation of the weights matrix $W$ though, required a bit more
+of thought. It turned out that the CSR format is not very friendly
+with row/column removal operations (which we need to do, in order to
+simulate that nodes got removed from the graph). Based on an
+StackOverflow post \cite{alim15}, we took the idea of using an
+intermediate sparse sparse format (COO) which allows for faster
+column/row removals. But at the same time, COO format also allows for
+fast CSR conversion. The current StackOverflow post has an even faster option
+published now\footnote{This comment was written on 2016-08-25.}, but the
+Python code below was good enough for our experiments: 
+
+\newpage
+\begin{lstlisting}
+def split_cc_sparse2(W, cclab):
+    idx_del = np.nonzero(cclab)[0]
+    keep_row = np.logical_not(np.in1d(W.row, idx_del))
+    keep_col = np.logical_not(np.in1d(W.col, idx_del))
+    keep = np.logical_and(keep_row, keep_col)
+    W.data = W.data[keep]
+    W.row = W.row[keep]
+    W.col = W.col[keep]
+    W.row -= np.less.outer(idx_del, W.row).sum(0)
+    W.col -= np.less.outer(idx_del, W.col).sum(0)
+    k = len(idx_del)
+    W._shape = (W.shape[0] - k, W.shape[1] - k)
+    return W
+    \end{lstlisting}
+    \joinbelow{1cm}
+    
+The snippet above works as follows: \\
+
+\begin{itemize}
+  \item The argument \emph{cclab} contains the node labels for the
+    components, namely $0$ and $1$, for the big and small components
+    respectively. \\
+  \item  Our goal is to eliminate the nodes with label $1$ from the
+    weights matrix $W$. For that, that lines $2-8$ begin by shrinking
+    the index and data arrays (after removal of unwanted
+    columns/rows). \\
+  \item The lines $9-10$ eliminate the potential gaps on the
+    indices. \\
+  \item Finally lines $11-12$ truncate the $W$ matrix to the new
+    size. \\
+  \item The key idea is to do all the operations above in terms of the
+    NumPy \cite{numpy} array primitives, which are quite efficient. \\
+\end{itemize}
+
+The overall pre-processing to eliminate the \gls{ClusteredEigenvalues} 
+showed an average time of $1.2$ secs for the biggest
+matrices, this includes: the \gls{SCC} computation, the routine above
+to calculate new weights matrix, its conversion from COO
+to CSR format and the recalculation of the \gls{Laplacian}. \\
+
+There is an alternate approach for \gls{LOBPCG}, that we did not
+explore, but that is worth mentioning (as it comes from Knyazev 
+himself, the creator of \gls{LOBPCG}). Rather than pre-processing the
+graphs to remove the disconnected component, one could simply
+increase the $k$ (see \cref{sub:lobpcg}) to something not less than
+the size of the eigenvalues cluster (which  
+seems 2 or 3 for our application). It will be interesting to 
+explore that option, and see how it compares in execution time
+with our current approach. Actually, a comment, by Strang 
+\cite{strang88} (When talking about the convergence of the ``Block
+Power Method'' \footnote{A version of the Power Method that can
+  approximate several eigenvectors.}), suggests that this may
+also help \gls{IRLM}. This is 
+just a quick thought, further research will be needed to confirm
+it. We did not have time to explore these ideas, but they could be part of
+a follow up of this thesis.
+
+\subsection{Shifting the spectra}
+
+The \gls{Cholmod} linear solver (\cite{cholmod08},
+  \cite{cholmod08a}) mentioned on \cref{sub:irlm}, requires
+that the matrix is Symmetric Positive Definite. However, the
+\gls{Laplacian} is not (It is symmetric, but has 
+one zero eigenvalue). Doing a little shift on the eigenvalues ($L +
+0.01I$), makes the \gls{Laplacian} Positive-Definite as required. At the
+end of the algorithm execution, we can just subtract the same shift from
+the obtained eigenvalue to get the actual answer. This is not really
+that relevant, as we mostly want the eigenvector. The eigenvalues are
+just side products that the algorithm also produces. 
+
+\section{Results}
+
+During the time the tests were performed on the laptop, no other
+user processes were launched. However, as the laptop has a desktop OS
+(Ubuntu 15.04), there are still background 
+processes that may take resources sporadically during the 
+experiment. Let us remember that we are forcing serial execution
+of the test program, by launching with the Linux \emph{taskset}
+command. However, even if the test is ``attached'' to a single CPU
+core, other processes may still try compete for the same. Aiming to
+minimize the effect of those background 
+processes, we executed each test 100 times and took the average
+elapsed time out of them. Each test consists in running an specific
+algorithm against an specific matrix, as well as measuring its elapsed
+time. The total duration of a complete  
+run including all tests, was bigger than 24hrs (this was mainly due
+inclusion, for comparison reasons, of the slower dense-matrix algorithms). \\
+
+Even with the average times mentioned above and an apparently idle
+laptop, there were still minor
+variations on the results. A more precise mechanism could be to boot
+the laptop into an special mode where there are less OS admin tasks
+running on the background. This was not considered critical for our
+experiment, as the pattern in the execution times was consistent. Only
+difference detected among complete runs of the test, was a shift of
+the whole pattern (but \gls{LOBPCG}, the winner algorithm,
+consistently showed times in sub-second scale). \\ 
+
+The \cref{fig:exper-csr} shows the results
+obtained with the matrices encoded in CSR format. We present a
+two-dimensional graph, with the X-axis representing the matrix size
+and the Y-axis the average execution time in seconds. 
+
+\begin{figure}[H]
+  \centering
+  \caption{Experiment Results in CSR format}
+  \label{fig:exper-csr}  
+  \includegraphics[width=11cm,height=8cm]{results-csr}
+\end{figure}
+
+Let us review each line in more detail (we talk mainly about the times
+for the biggest matrix):
+
+\begin{itemize}
+\item The green line (label \emph{mr3a}) represents the times of the
+  \gls{MRRR} algorithm, for 
+  computing all the eigenpairs. This is not exactly the same time
+  the application will get today, as the algorithm is different, but
+  it could be considered as a lower bound (given that \gls{MRRR} is the
+  state of the art for dense matrices). We can see that the time for
+  the biggest matrix goes a bit higher than 70 seconds.
+\item The blue line (label \emph{mr3}) is also the \gls{MRRR} algorithm, but
+  taking advantage of its main feature \footnote{Main feature from the perspective
+    of our problem, as the literature may consider other features of
+    the algorithm, more relevant in a general context.}: The
+  ability to compute in 
+  isolation just the eigenpair we need. We can see that doing so,
+  reduces the time to a bit less than 30 seconds (for the biggest
+  matrix).
+\item The orange line (label \emph{lanczos\_si}) is the first sparse
+  matrix algorithm. It consists in the Lanczos variant \gls{IRLM}
+  using \gls{SuperLU} 
+  as the linear solver. Even when such solver is not specialized for
+  the \gls{Laplacian} matrix, it can reduce the time to a bit less than 20
+  seconds.
+  \item The sky blue line (label \emph{lanczos\_sic}) is the very same
+    \gls{IRLM} algorithm, but this time using the \gls{Cholmod} linear solver. We
+    can see that using a more specialized solver, that is optimized
+    for Symmetric Positive Definite matrices, pays off. The time for
+    the biggest matrix goes down to 5 seconds, approximately.
+  \item Putting aside \gls{LOBPCG}, the Lanczos variant \gls{IRLM}
+    combined with \gls{Cholmod} linear solver, has the best time. But
+    such title was taken by \gls{LOBPCG}, after we discovered how to
+    avoid the exceptions raised on the presence of
+    \gls{ClusteredEigenvalues} (see \cref{sub:avoid-clust-eigv}). The
+    absolute dominance of \gls{LOBPCG} can be seen in the  
+    purple  line (label \emph{lobpcg\_s}) of \cref{fig:exper-csr}. The time 
+    goes into sub-second scale even for the biggest matrix (the actual
+    average time is around half a second, sometimes a bit bigger but
+    still within a second). This makes \gls{LOBPCG} the definite winner of
+    the experiment. 
+\end{itemize}
+
+Putting aside the fluctuations mentioned already, the CSC results are
+basically the same than the CSR ones. A sample execution is
+\cref{fig:exper-csc}. 
+
+\begin{figure}[H]
+  \centering
+  \caption{Experiment Results in CSC format}
+  \label{fig:exper-csc}  
+  \includegraphics[width=11cm,height=8cm]{results-csc}
+\end{figure}
+
+Even when both formats behave well with the sparse algorithms, we
+prefer CSR for reasons explained already on this chapter (see
+\cref{sub:avoid-clust-eigv}). 
+
+\section{Why \gls{LOBPCG} beats \gls{IRLM}?}
+\label{sec:why-lobpcg}
+
+The dramatic advantage that \gls{LOBPCG} shows against
+Lanczos/\gls{IRLM} requires an explanation, and we will provide such
+based on the theory presented in \cref{cha:algs}. The
+\cref{tab:lanczos-vs-lobpcg} summarizes all the advangates 
+that we see in \gls{LOBPCG} over Lanczos/\gls{IRLM}, and the rest of
+this section will detail each point.
+
+\begin{table}[h]  
+  \caption{Lanczos(IRLM) vs LOBPCG}
+  \label{tab:lanczos-vs-lobpcg}
+  \begin{tabular}{| l | c | c | }
+    \hline
+    \emph{Feature/Issue} & \emph{Lanczos(IRLM)} & \emph{LOBPCG (single)} \\
+    \hline \hline
+    Need Restarting &
+    Yes, due $\Krylov{\inv{L}}{\vec{x}_0}{m}$ &
+    No, $\func{span} \{\vec{x}_i, T\vec{r}_i, \vec{x}_{i-1}\}$ \\
+    \hline
+    Search strategy &
+    Plain search &
+    $\nabla (\func{\rho}(\vec{x_i}))$ \\
+    &
+    &
+    $\suchthat \vec{r}_i = L\vec{x}_i - \func{\rho}(\vec{x}_i)\vec{x}_i$\\
+    \hline
+    Search Constraints &
+    No &
+    Yes ($\ortc{Y} = \ortc{\vec{1}}$) \\
+    \hline
+    Requested spectra &
+    $k=2$ &
+    $k=1$ \\      
+    \hline
+    Matrix operation &
+    solve $L\vec{x} = \vec{b}$ &
+    $L\vec{x}$ \\
+    \hline      
+    Uses Preconditioning &
+    Only with iter solvers &
+    Yes $\left(T = \dfrac{1}{\func{diag}(L)} \right)$ \\
+    \hline
+    Clustered eigenvalues &
+    Inherited from PM &
+    Bug? \\      
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{No need for restarting}
+
+Given that \gls{LOBPCG} uses a fixed-size generator set for the
+searching-subspace, $\func{span} \{\vec{x}_i, T\vec{r}_i,
+\vec{x}_{i-1}\}$, it does not need to invest extra time ensuring the
+size remains low. This is contrary to \gls{IRLM}, which needs to
+ensure the dimension of $\Krylov{\inv{L}}{\vec{x}_0}{m}$ does not grow
+too much (causing unbounded memory consumption).
+
+\subsection{Clever search strategy}
+
+While \gls{IRLM} does not seem to follow a particular search strategy,
+\gls{LOBPCG} leverages the gradient of the Rayleigh-Quotient, $\nabla
+(\func{\rho}(\vec{x_i}))$, on each iteration. Let us remember that the
+search space for \gls{LOBPCG} is $\func{span} \{\vec{x}_i, T\vec{r}_i,
+\vec{x}_{i-1}\}$, where $\vec{r}_i$ is the residual vector that measures
+how well is the current approximation $\vec{x}_i$. This residual vector
+is defined as $\vec{r}_i = L\vec{x}_i -
+\func{\rho}(\vec{x}_i)\vec{x}_i$, where $\func{\rho}(\vec{x}_i)$ is
+precisely the Rayleigh-Quotient function applied to $\vec{x}_i$. Thus,
+$\func{\rho}(\vec{x}_i)$ approximates the eigenvalue associated with
+$\vec{x}_i$ (thinking $\vec{x}_i$ itself as an approximated
+eigenvector), and the residual $\vec{r}_i$ measures how well
+$\left(\func{\rho}(\vec{x}_i), \vec{x}_i\right)$ complies with the
+definition of an eigenpair. \\
+
+The rationale behind including $\vec{r}_i$
+in the spanning set, is that it is proportional to the gradient of
+Rayleigh-Quotient function $\nabla(\func{\rho}(\vec{x_i}))$. The
+gradient itself generates a one-dimensional space that includes the
+direction where Rayleigh-Quotient function reaches its minimum (hence
+approximates better the desired eigenvalue), and that is why it makes
+sense to include such direction. This was mentioned already in
+\cref{sub:lobpcg}, and the references for further details are 
+\cite{knyazev01} and \cite{lashuk07}.
+
+\subsection{Search constrains / Requested spectra}
+
+\gls{LOBPCG} can focus on searching for the smallest eigenpair, while
+\gls{IRLM} needs to compute the first and the 
+second (because \gls{IRLM} is designed for computing ``continuous''
+sections of the spectra, eg the $k$ smallest ones, see
+\cite{arpack}). Let us recall that 
+\gls{LOBPCG} routine, see \cref{sub:lobpcg}, allows the user to pass a
+matrix $Y$ as input parameter. The columns of such matrix $Y$ span a
+subspace, and the \gls{LOBPCG} implementation restricts the search to its orthogonal
+complement $\ortc{Y}$. This feature fits perfectly our use case, as 
+the Laplacian matrix $L$ has a known first eigenvector $\vec{1}$ (the all
+ones vector associated with eigenvalue zero, see
+\cref{sub:lap-fvec}). Therefore, we set $Y = \vec{1}$,
+and allow \gls{LOBPCG} routine to focus on a single eigenpair instead of two.
+
+\subsection{Cheaper iterations}
+
+One of the main goals in the design of \gls{LOBPCG} (see
+\cite{knyazev01}, \cite{knyazev03}),
+was to be as cheap as the regular invocation of Lanczos
+algorithms (like \gls{IRLM}). Regular means here, that
+we use the algorithm to compute the biggest eigenpairs, as opposed to
+the use of the shift-invert-mode, which aims to compute the opposite
+side of the spectra. \\
+
+Going back to the point, the
+only matrix-dependent operation that \gls{LOBPCG} performs on every
+iteration, is the matrix-vector product $L\vec{x}$. Furthermore, such matrix
+multiplication is likely to be optimized for the sparse format being
+used (CSR or CSC). This contrasts with the far heavier operation that
+\gls{IRLM} needs to execute on each iteration, when called in
+shift-invert mode: To solve the linear system $L\vec{x} =
+\vec{b}$. Even with an state of the art solver based on the Cholesky
+Factorization (\cite{cholmod08}, \cite{cholmod08a}), and even if
+the factorization is performed just once for all the \gls{IRLM}
+iterations, the time spent there is big enough to accommodate several
+complete executions of \gls{LOBPCG}. As an example, for the biggest
+matrix of $4497$ entries the algorithm \gls{LOBPCG} finished in
+sub-second scale while the \gls{IRLM} computed the factorization in
+more than 4 seconds (see \cref{fig:exper-csr}).
+
+
+\subsection{Use of preconditioner}
+
+The \gls{IRLM} algorithm only allows for preconditioners in the
+sub-problem of solving the linear system $L\vec{x} = \vec{b}$, when we
+opt to use iterative solvers instead of direct-methods \footnote{The deal
+  here, is that direct methods are forbidden for huge matrices. This was
+  fortunately not our case, as they fit just fine in memory.}. But
+unless those linear solvers are used to compute high accuracy
+answers (which may not be easy with an iterative solver), they could
+slow down overall  convergence of \gls{IRLM} (see \cite{knyazev03}). The
+situation is different for \gls{LOBPCG}, which considers a preconditioner $T$ for
+the eigensolver itself. It is an optional argument, but we found that using
+it significantly speeds up the execution times. The preconditioner
+used , $T = \dfrac{1}{\func{diag}(L)} $, was taken from NetworkX
+package \cite{networkx}.
+
+\subsection{Clustered eigenvalues}
+
+This is perhaps the only point where we may declare a tie, as both
+implementations have issues with \gls{ClusteredEigenvalues}. But
+\gls{LOBPCG} still seems to show an advantage here: It does not
+inherit (at least not directly), the slow convergence that \gls{IRLM}
+gets from the Power Method. Instead, the implementation of
+\gls{LOBPCG} seems to rather have a defect (exception risen on the
+presence of \gls{ClusteredEigenvalues}).
+

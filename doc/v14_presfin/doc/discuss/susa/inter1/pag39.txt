@@ -1,0 +1,21 @@
+Dra. Susana: Recomendaría presentar gráfica de error entre simulación
+y tiempo real
+
+WARNING: Como la laptop que tenía, donde corrí todos los experimentos,
+ya no existe, tendría que volver a correr todo de nuevo dado que mi
+nueva laptop es más rápida y seguramente daría nuevos números. Pero
+como estos experimentos llegaban a tomar algunos días, y como reamente
+ya no me dejan instalar Ubuntu en el trabajo (uso una máquina
+virtual), preferiría de ser posible no tener que generar más gráficos.
+
+No estoy familiarizado con ese tipo de gráfica, pero busqué al
+respecto. Según parece, aplica para el área de Simulación. No
+estoy seguro de haber corrido alguna simulación en este trabajo,
+sólamente corrí los 3 algoritmos sobre distintos juegos de datos y
+presenté los resultados. Lo único especial que hice, fue usar
+Linux taskset para inhibir el multi-threading en las bibliotecas
+de álgebra lineal usadas.
+
+Favor de aplicar en qué consiste esta gráfica, y cómo aplicaría
+a este trabajo.
+
