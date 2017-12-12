@@ -9,5 +9,5 @@ they wanted the computation to occur serially.
 
 The proposal was LOBPCG, which can compute the required eigenvector in subsecond
 scale; as opposed to the minute scale of the dense-matrix algorithm that the
-aplication was using. I really had a lot of fun with this project.
+application was using. I really had a lot of fun with this project.
 
